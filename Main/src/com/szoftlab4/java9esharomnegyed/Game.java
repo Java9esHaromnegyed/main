@@ -35,4 +35,7 @@ public class Game {
 
     public void menu() {
     }
+
+    public void deploy(int key) {
+    }
 }
