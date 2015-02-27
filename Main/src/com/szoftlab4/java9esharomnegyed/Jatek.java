@@ -5,7 +5,7 @@ package com.szoftlab4.java9esharomnegyed;
  */
 public class Jatek {
 
-    Palya palya;
+    private Palya palya;
     private Scoreboard scoreboard;
     private Robot robot1;
     private Robot robot2;
