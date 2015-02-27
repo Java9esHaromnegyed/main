@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by Ricsard on 2015.02.27..
  */
-public class Scoreboard {
+public class Leaderborad {
     private List<Record> records;
 
     public List<Record> getList() {

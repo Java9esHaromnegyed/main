@@ -6,8 +6,8 @@ import java.util.List;
 /**
  * Created by Ricsard on 2015.02.27..
  */
-public class Palya {
-    private List<Akadaly> obstacles;
+public class Arena {
+    private List<Obstacle> obstacles;
     private Dimension size;
     private Dimension startingPos1;
     private Dimension startingPos2;
@@ -19,7 +19,7 @@ public class Palya {
         return null;
     }
 
-    public Akadaly collision(Robot r, Dimension d) {
+    public Obstacle collision(Robot r, Dimension d) {
         return null;
     }
 }
