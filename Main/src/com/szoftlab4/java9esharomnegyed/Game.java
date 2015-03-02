@@ -2,9 +2,6 @@ package com.szoftlab4.java9esharomnegyed;
 
 import java.awt.*;
 
-/**
- * Created by Ricsard on 2015.02.11..
- */
 public class Game {
 
     private Arena arena;
@@ -27,7 +24,7 @@ public class Game {
     public void requestName(String name) {
     }
 
-    public void showLeaderboard(Leaderborad leaderboard) {
+    public void showLeaderboard() {
     }
 
     public void updateLeaderboard(String name, double score) {
@@ -36,6 +33,24 @@ public class Game {
     public void menu() {
     }
 
-    public void deploy(int key) {
+    public void newGame(){
+    }
+
+    public void pauseGame(){
+    }
+
+    public void resumeGame(){
+    }
+
+    public void controlRobot(){
+    }
+
+    public void rematch(){
+    }
+
+    public void gameOver(){
+    }
+
+    public void leaveGame(){
     }
 }

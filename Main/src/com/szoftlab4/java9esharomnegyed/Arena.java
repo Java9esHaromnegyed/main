@@ -3,9 +3,6 @@ package com.szoftlab4.java9esharomnegyed;
 import java.awt.*;
 import java.util.List;
 
-/**
- * Created by Ricsard on 2015.02.27..
- */
 public class Arena {
     private List<Obstacle> obstacles;
     private Dimension size;
@@ -15,11 +12,22 @@ public class Arena {
     public void refresh() {
     }
 
+    public int getObstacle(Dimension dest){
+        return 0;
+    }
+
+    public void addObstacle(Dimension pos, int id){
+    }
+
     public Dimension getStartingPos(int robotNumber) {
         return null;
     }
 
     public Obstacle collision(Robot r, Dimension d) {
         return null;
+    }
+
+    public boolean isOutOfArena(Dimension d){
+        return false;
     }
 }
