@@ -6,22 +6,28 @@ import java.util.List;
 public class Arena {
     private List<Obstacle> obstacles;
     private Dimension size;
-    private Dimension startingPos1;
-    private Dimension startingPos2;
     private Robot robot1;
     private Robot robot2;
+
+    public Arena(){
+        System.out.println("Arena objektum létrejött");
+        size = new Dimension(64, 64);
+        robot1 = new Robot(this, "player_one", new Dimension(16, 24), Config.DIR_RIGHT);
+        robot2 = new Robot(this, "player_two", new Dimension(16, 16), Config.DIR_RIGHT);
+    }
 
     public void refresh() {
     }
 
     public void setRobotName(String name, int player){
+        System.out.println("setRobotName(name, player); Arena;");
         switch (player) {
             case 0 : robot1.setName(name);
                     break;
             case 1 : robot2.setName(name);
                     break;
         }
-
+        System.out.println("setRobotName(name, player) lefutott;");
     }
 
     public Obstacle getObstacle(Dimension dest) {
@@ -34,12 +40,6 @@ public class Arena {
         System.out.println("addObstacle() -> add(o); Arena");
         obstacles.add(o);
         System.out.println("addObstacle() lefutott");
-    }
-
-    public Dimension getStartingPos(int robotNumber) {
-        System.out.println("getStartingPos(); Arena");
-        System.out.println("getStartingPos() lefutott");
-        return new Dimension(0,0);
     }
 
     public Obstacle collision(Robot r, Dimension d) {
