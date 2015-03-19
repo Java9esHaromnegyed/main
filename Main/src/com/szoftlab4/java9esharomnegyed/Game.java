@@ -13,13 +13,13 @@ public class Game {
 
     public static void main(String[] args) {
         System.out.println("main()");
-        System.out.println("menu(); main()");
+        System.out.println("main() -> menu()");
         menu();
     }
 
     public static void requestName(String name, int player) {
         System.out.println("RequestName()");
-        System.out.println("setRobotName(); requestName()");
+        System.out.println("requestName() -> setRobotName()");
         arena.setRobotName(name, player);
         System.out.println("requestName() returned with: void");
     }
@@ -44,17 +44,17 @@ public class Game {
             String menuOption = bufferedReader.readLine();
             int option = Integer.parseInt(menuOption);
             switch (option) {
-                case 1 : System.out.println("newGame(); menu()");
+                case 1 : System.out.println("menu() -> newGame()");
                         newGame();
                          break;
-                case 2 : System.out.println("newGame(); menu()");
+                case 2 : System.out.println("menu() -> newGame()");
                         newGame();
                         arena.movementControl(new Event(null, KeyEvent.VK_W, KeyEvent.VK_W));
                         break;
-                case 3 : System.out.println("pauseGame(); menu()");
+                case 3 : System.out.println("menu() -> pauseGame()");
                         pauseGame();
                         break;
-                case 0 : System.out.println("exitGame(); menu()");
+                case 0 : System.out.println("menu() -> exitGame()");
                         exitGame();
                         break;
                 default : throw new Throwable();
@@ -66,14 +66,14 @@ public class Game {
     }
 
     public static void newGame(){
-        System.out.println("Arena(); newGame()");
+        System.out.println("newGame() -> Arena()");
         arena = new Arena();
         leaderborad = new Leaderborad();
         clock = new Clock();
 
-        System.out.println("requestGame(); newGame()");
+        System.out.println("newGame() -> requestGame()");
         requestName("player1", 0);
-        System.out.println("requestName(); newGame()");
+        System.out.println("newGame() -> requestName()");
         requestName("player2", 1);
         System.out.println("newGame() returned with: void");
     }
@@ -94,20 +94,20 @@ public class Game {
 
     public static void gameOver(){
         clock.stopClock();
-        System.out.println("menu(); gameOver()");
+        System.out.println("gameOver() -> menu()");
         menu();
         System.out.println("gameOver() returned with: void");
     }
 
     public static void leaveGame(){
         clock.stopClock();
-        System.out.println("menu(); leaveGame()");
+        System.out.println("leaveGame() -> menu()");
         menu();
         System.out.println("leaveGame() returned with: void");
     }
 
     public static void exitGame(){
-        System.out.println("Kilépés");
+        System.out.println("exitGame()");
         System.exit(0);
     }
 }
