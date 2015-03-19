@@ -25,20 +25,29 @@ public class Game {
     }
 
     public void newGame(){
+        arena = new Arena();
+        leaderborad = new Leaderborad();
+        clock = new Clock();
     }
 
     public void pauseGame(){
+        clock.pauseClock();
     }
 
     public void resumeGame(){
+        clock.startClock();
     }
 
     public void rematch(){
+        clock.pauseClock();
+        clock.stopClock();
     }
 
     public void gameOver(){
+        clock.stopClock();
     }
 
     public void leaveGame(){
+        clock.stopClock();
     }
 }
