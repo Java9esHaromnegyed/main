@@ -39,8 +39,13 @@ public class Robot {
     }
 
     public void stuck() {
+        System.out.println("stuck(); Robot");
     }
 
     public void slipping() {
+    }
+
+    public void stop(){
+
     }
 }
