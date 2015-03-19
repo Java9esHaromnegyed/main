@@ -45,9 +45,9 @@ public class Arena {
     public Obstacle collision(Robot r, Dimension d) {
         System.out.println("collision(); Arena");
         r.getPositon();
-        //TODO: ezzel miafasz legyen?
+        Obstacle temp = getObstacle(d);
         System.out.println("collision() lefutott");
-        return null;
+        return temp;
     }
 
     public boolean isOutOfArena(Dimension d) {
