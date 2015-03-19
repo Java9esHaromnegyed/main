@@ -6,19 +6,10 @@ public class Game {
 
     private Arena arena;
     private Leaderborad leaderborad;
-    private Robot robot1;
-    private Robot robot2;
     private Clock clock;
 
     public static void main(String[] args) {
-
-    }
-
-    public void handleEffect(Robot robot, Dimension dest) {
-    }
-
-    public boolean moveRobot(int key) {
-        return false;
+        Config c = new Config();
     }
 
     public void requestName(String name) {
@@ -40,9 +31,6 @@ public class Game {
     }
 
     public void resumeGame(){
-    }
-
-    public void controlRobot(){
     }
 
     public void rematch(){

@@ -8,15 +8,17 @@ public class Arena {
     private Dimension size;
     private Dimension startingPos1;
     private Dimension startingPos2;
+    private Robot robot1;
+    private Robot robot2;
 
     public void refresh() {
     }
 
-    public int getObstacle(Dimension dest){
+    public int getObstacle(Dimension dest) {
         return 0;
     }
 
-    public void addObstacle(Dimension pos, int id){
+    public void addObstacle(Dimension pos, int id) {
     }
 
     public Dimension getStartingPos(int robotNumber) {
@@ -27,7 +29,13 @@ public class Arena {
         return null;
     }
 
-    public boolean isOutOfArena(Dimension d){
+    public boolean isOutOfArena(Dimension d) {
         return false;
+    }
+
+    public void takeEffect(Robot r, Dimension position) {
+    }
+
+    public void movementControl(Event e) {
     }
 }
