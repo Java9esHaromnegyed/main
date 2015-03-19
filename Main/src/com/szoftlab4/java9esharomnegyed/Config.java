@@ -7,9 +7,11 @@ public class Config {
     public static final int DIR_RIGHT = 1;
     public static final int DIR_DOWN = 2;
     public static final int DIR_LEFT = 3;
-    public static final int EFF_NONE = 0;
+    /*
+    public static final int EFF_NONE = 0;       cserélni karakter jelölésekre
     public static final int EFF_OIL = 1;
     public static final int EFF_PUTTY = 2;
+    */
     public static final int MOV_P1_UP = KeyEvent.VK_UP;
     public static final int MOV_P1_DOWN = KeyEvent.VK_DOWN;
     public static final int MOV_P1_LEFT = KeyEvent.VK_LEFT;
