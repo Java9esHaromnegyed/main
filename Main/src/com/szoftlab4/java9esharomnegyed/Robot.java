@@ -24,7 +24,7 @@ public class Robot {
     }
 
     public Dimension getPositon() {
-        return null;
+        return position;
     }
 
     public void setPosition(Dimension pos) {
