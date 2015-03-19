@@ -31,26 +31,16 @@ public class Robot {
         position = pos;
     }
 
-    public double getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(double s) {
-        speed = s;
-    }
-
-    public int getDirection() {
-        return direction;
-    }
-
-    public void setDirection(int dir) {
-        direction = dir;
-    }
-
     public double getCoveredDistance() {
         return coveredDistance;
     }
 
     public void move() {
+    }
+
+    public void stuck() {
+    }
+
+    public void slipping() {
     }
 }
