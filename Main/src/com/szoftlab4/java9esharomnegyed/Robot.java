@@ -10,13 +10,11 @@ public class Robot {
     private String name = "Player";
     private double coveredDistance = 0;
     private Dimension position;
-    private int effect = Config.EFF_NONE;
 
     public Robot(String n, Dimension startPos, int dir) {
         name = n;
         position = startPos;
         direction = dir;
-        Config c = new Config();
     }
 
     public void dropPutty() {
@@ -47,14 +45,6 @@ public class Robot {
 
     public void setDirection(int dir) {
         direction = dir;
-    }
-
-    public int getEffect() {
-        return effect;
-    }
-
-    public void setEffect(int id) {
-        effect = id;
     }
 
     public double getCoveredDistance() {

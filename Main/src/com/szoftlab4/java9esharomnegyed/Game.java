@@ -9,7 +9,7 @@ public class Game {
     private Clock clock;
 
     public static void main(String[] args) {
-        Config c = new Config();
+
     }
 
     public void requestName(String name) {
