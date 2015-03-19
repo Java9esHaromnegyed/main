@@ -25,19 +25,19 @@ public class Arena {
 
     public Obstacle getObstacle(Dimension dest) {
         System.out.println("getObstacle(); Arena");
-        System.out.println("getObstacle(); lefutott");
+        System.out.println("getObstacle() lefutott");
         return null;
     }
 
-    public void addObstacle(Dimension pos, Obstacle o) {
-        System.out.println("addObstacle(); Arena");
-        obstacles.add(new Wall(pos));
-        System.out.println("addObstacle(); lefutott");
+    public void addObstacle(Obstacle o) {
+        System.out.println("addObstacle() -> add(o); Arena");
+        obstacles.add(o);
+        System.out.println("addObstacle() lefutott");
     }
 
     public Dimension getStartingPos(int robotNumber) {
         System.out.println("getStartingPos(); Arena");
-        System.out.println("getStartingPos(); lefutott");
+        System.out.println("getStartingPos() lefutott");
         return new Dimension(0,0);
     }
 
@@ -45,20 +45,20 @@ public class Arena {
         System.out.println("collision(); Arena");
         r.getPositon();
         //TODO: ezzel miafasz legyen?
-        System.out.println("collision(); lefutott");
+        System.out.println("collision() lefutott");
         return null;
     }
 
     public boolean isOutOfArena(Dimension d) {
         System.out.println("isOutOfArena(); Arena");
-        System.out.println("isOutOfArena(); lefutott");
+        System.out.println("isOutOfArena() lefutott");
         return false;
     }
 
     public void takeEffect(Robot r, Dimension position) {
         System.out.println("takeEffect(); Arena");
         getObstacle(position).effect(r);
-        System.out.println("takeEffect(); lefutott");
+        System.out.println("takeEffect() lefutott");
     }
 
     public void movementControl(Event e) {
@@ -113,6 +113,6 @@ public class Arena {
                 robot1.dropPutty();
                 break;
         }
-        System.out.println("movementControl(); lefutott");
+        System.out.println("movementControl() lefutott");
     }
 }

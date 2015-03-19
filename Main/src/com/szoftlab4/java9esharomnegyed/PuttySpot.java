@@ -3,9 +3,10 @@ package com.szoftlab4.java9esharomnegyed;
 import java.awt.*;
 
 public class PuttySpot extends Obstacle {
-
-    public PuttySpot(Dimension d){
+    public PuttySpot(Dimension pos){
         System.out.println("PuttySpot létrejött");
+        position = pos;
+
     }
 
     @Override
