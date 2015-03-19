@@ -14,6 +14,15 @@ public class Arena {
     public void refresh() {
     }
 
+    public void setRobotName(String name, int player){
+        switch (player) {
+            case 0 : robot1.setName(name);
+                    break;
+            case 1 : robot2.setName(name);
+        }
+
+    }
+
     public int getObstacle(Dimension dest) {
         return 0;
     }
