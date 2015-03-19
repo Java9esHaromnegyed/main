@@ -19,6 +19,7 @@ public class Arena {
             case 0 : robot1.setName(name);
                     break;
             case 1 : robot2.setName(name);
+                    break;
         }
 
     }
