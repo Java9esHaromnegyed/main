@@ -5,8 +5,8 @@ public class LogHelper {
     private static int logLevel = startLevel;
     private static boolean record = true;
 
-    public static void log(String log){     // kiír egy sort
-        if (record)                         // csak ha logolás folyik
+    public static void log(String log){     // kiír egy sort, sortöréssel
+        if (record)                             // csak ha logolás folyik
             System.out.println(log);
     }
 
@@ -23,12 +23,12 @@ public class LogHelper {
     }
 
     private static void lift(){             // egyet emel a hierarchiai szinten
-        if (record)
+        if (record)                             // csak ha van log
             logLevel++;
     }
 
     private static void close(){            // lezár egy hierarchiai szintet
-        if (record)
+        if (record)                             // csak ha van log
             logLevel--;
     }
 
@@ -36,11 +36,11 @@ public class LogHelper {
         String raw = String.valueOf(object);
         String fin;
         String tab = "";
-        for(int i = 1; i < logLevel; i++){      // szintnek megfelelő tab előállítása
+        for(int i = 1; i < logLevel; i++){          // szintnek megfelelő tab előállítása
             tab = tab.concat("  ");
         }
-        fin = tab.concat(raw);
-        log(fin);
+        fin = tab.concat(raw);                      // tab összefűzése a szöveggel
+        log(fin);                                   // átadás a kiírónak
     }
 
     public static void logFirst(String first){  // első hierarchia szint, 0 tab
@@ -48,20 +48,20 @@ public class LogHelper {
         inline(first);
     }
 
-    public static void call(String call){
-        inline(call);
-        lift();
+    public static void call(String call){       // ezt használod a függvény elején
+        inline(call);                               // kiírod majd
+        lift();                                     // nyit egy bekezdést
     }
 
-    public static void ret(String ret){
-        close();
-        inline(ret);
+    public static void ret(String ret){         // ezt pedig a függvény végén a return előtt
+        close();                                    // bezárod a bekezdést, visszalépsz egy tabot
+        inline(ret);                                // kiírod amit akartál
     }
 
     public static void comment(Object object){  // call utasítást kompenzáló egy szintet visszaugró log
-        close();                                // visszalép
-        inline(object);                         // logol
-        lift();                                 // előre lép az eredeti pozícióba
+        close();                                    // visszalép
+        inline(object);                             // logol
+        lift();                                     // előre lép az eredeti pozícióba
     }
 
     public static void question(String question){
@@ -70,20 +70,20 @@ public class LogHelper {
         for(int i = 1; i < logLevel; i++){      // szintnek megfelelő tab előállítása
             tab = tab.concat("  ");
         }
-        fin = tab.concat(question);
-        System.out.print(fin);
+        fin = tab.concat(question);                 // összefűzi a tabozást a kérdéssel
+        System.out.print(fin);                      // kiírja, sortörés nélkül
     }
 
 
 
     public static void error(Object object){    // error trace try catch hierarchikus megjelenítéséhez
-        String raw = String.valueOf(object);    // az error a megfelelő hierarchiánál áll meg
+        String raw = String.valueOf(object);        // az error a megfelelő hierarchiánál áll meg
         String fin;
         String tab = "ERROR:\t";
         for(int i = 1; i < logLevel; i++){
             tab = tab.concat("  ");
         }
-        fin = tab.concat(raw);
-        log(fin);
+        fin = tab.concat(raw);                      // összefűzi a tabozást az error üzenettel
+        log(fin);                                   // átadás a kiírónak
     }
 }
