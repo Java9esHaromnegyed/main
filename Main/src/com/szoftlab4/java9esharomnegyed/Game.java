@@ -49,9 +49,13 @@ public class Game {
                         requestName("player1", 0);
                         requestName("player2", 1);
                         LogHelper.rec();
-                        LogHelper.logFirst("#event: W lenyomása");
+                        LogHelper.logFirst("#event: W,S,Up,A,Right lenyomása");
                         LogHelper.clear();
                         arena.movementControl(KeyEvent.VK_W);
+                        arena.movementControl(KeyEvent.VK_S);
+                        arena.movementControl(KeyEvent.VK_UP);
+                        arena.movementControl(KeyEvent.VK_A);
+                        arena.movementControl(KeyEvent.VK_RIGHT);
                         break;
                     case 0:
                         LogHelper.inline("menu() -> exitGame();");

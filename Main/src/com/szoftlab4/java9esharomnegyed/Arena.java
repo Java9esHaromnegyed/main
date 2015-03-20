@@ -92,22 +92,22 @@ public class Arena {
                 robot1.dropPutty();
                 break;
             case Config.MOV_P2_UP:
-                robot1.speedUp();
+                robot2.speedUp();
                 break;
             case Config.MOV_P2_DOWN:
-                robot1.slowDown();
+                robot2.slowDown();
                 break;
             case Config.MOV_P2_LEFT:
-                robot1.turnLeft();
+                robot2.turnLeft();
                 break;
             case Config.MOV_P2_RIGHT:
-                robot1.turnRight();
+                robot2.turnRight();
                 break;
             case Config.MOV_P2_OIL:
-                robot1.dropOil();
+                robot2.dropOil();
                 break;
             case Config.MOV_P2_PUTTY:
-                robot1.dropPutty();
+                robot2.dropPutty();
                 break;
             default: LogHelper.error("none of it: " + e + "; " + KeyEvent.KEY_FIRST);
         }
