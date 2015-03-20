@@ -12,7 +12,9 @@ public class Arena {
     public Arena(){
         System.out.println("Arena objektum létrejött");
         size = new Dimension(64, 64);
+        System.out.println("Arena() -> Robot();");
         robot1 = new Robot(this, "player_one", new Dimension(16, 24), Config.DIR_RIGHT);
+        System.out.println("Arena() -> Robot();");
         robot2 = new Robot(this, "player_two", new Dimension(16, 16), Config.DIR_RIGHT);
     }
 
@@ -20,7 +22,7 @@ public class Arena {
     }
 
     public void setRobotName(String name, int player){
-        System.out.println("setRobotName(name, player); Arena;");
+        System.out.println("setRobotName("+ name + ", " + player + "); Arena;");
         switch (player) {
             case 0 : robot1.setName(name);
                     break;
