@@ -79,28 +79,22 @@ public class Game {
     }
 
     public static void pauseGame(){
-        clock.pauseClock();
         menu();
     }
 
     public static void resumeGame(){
-        clock.startClock();
     }
 
     public static void rematch(){
-        clock.pauseClock();
-        clock.stopClock();
     }
 
     public static void gameOver(){
-        clock.stopClock();
         System.out.println("gameOver() -> menu()");
         menu();
         System.out.println("gameOver() returned with: void");
     }
 
     public static void leaveGame(){
-        clock.stopClock();
         System.out.println("leaveGame() -> menu()");
         menu();
         System.out.println("leaveGame() returned with: void");
