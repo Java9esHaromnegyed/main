@@ -12,6 +12,8 @@ public class Game {
     private static Clock clock;
 
     public static void main(String[] args) {
+        System.out.println("main()");
+        System.out.println("main() -> menu()");
         System.out.println("main(); Game;");
         System.out.println("menu() -> main()");
         menu();
@@ -19,7 +21,7 @@ public class Game {
 
     public static void requestName(String name, int player) {
         System.out.println("RequestName()");
-        System.out.println("setRobotName(); requestName()");
+        System.out.println("requestName() -> setRobotName()");
         arena.setRobotName(name, player);
         System.out.println("requestName() returned with: void");
     }
@@ -71,7 +73,7 @@ public class Game {
         leaderborad = new Leaderborad();
         clock = new Clock();
 
-        System.out.println("requestName(); newGame()");
+        System.out.println("requestGame(); newGame()");
         requestName("player1", 0);
         System.out.println("requestName(); newGame()");
         requestName("player2", 1);

@@ -65,14 +65,19 @@ public class Robot {
     }
 
     public void stop(){
-
+        System.out.println("stopg(); Robot;");
+        System.out.println("stop() lefutott;");
     }
 
     public String getName() {
+        System.out.println("getName(); Robot;");
+        System.out.println("getName() returned with: " + name + ";");
         return name;
     }
 
     public void setName(String name) {
+        System.out.println("setName(name); Robot;");
+        System.out.println("setName() lefutott;");
         this.name = name;
     }
 }
