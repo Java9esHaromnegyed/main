@@ -1,53 +1,95 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+import sun.rmi.runtime.Log;
+
 import java.awt.*;
 
 public class Robot {
     Arena arena;
     private double speed = 0;
-    private int direction = Config.DIR_UP;
+    private int direction = Config.DIR_UP;      // direction only goes from 0 to 3
     private int puttyLeft = 0;
     private int oilLeft = 0;
     private String name = "Player";
     private double coveredDistance = 0;
     private Dimension position;
+    boolean paralyzed = false;
 
     public Robot(Arena a, String n, Dimension startPos, int dir) {
-        System.out.println("Robot objektum létrejött;");
+        LogHelper.call("Robot()");
         arena = a;
         name = n;
         position = startPos;
         direction = dir;
+        LogHelper.ret("Robot objektum létrejött");
     }
 
     public void dropPutty() {
-        System.out.println("dropPutty(); Robot; addObstacle(position, putty)");
+        LogHelper.call("dropPutty(); Robot; addObstacle(position, putty)");
         arena.addObstacle(new PuttySpot(position));
-        System.out.println("dropPutty() lefutott;");
+        LogHelper.ret("dropPutty() lefutott;");
     }
 
     public void dropOil() {
-        System.out.println("dropOil(); Robot; addObstacle(position, oil)");
+        LogHelper.call("dropOil(); Robot; addObstacle(position, oil)");
         arena.addObstacle(new OilSpot(position));
-        System.out.println("dropOil() lefutott;");
+        LogHelper.ret("dropOil() lefutott;");
     }
 
     public Dimension getPositon() {
-        System.out.println("getPosition(); Robot;");
-        System.out.println("getPosition() returned with: " + position);
+        LogHelper.call("getPosition(); Robot;");
+        LogHelper.ret("getPosition() returned with: " + position);
         return position;
     }
 
     public void setPosition(Dimension pos) {
-        System.out.println("setPosition(pos); Dimension; Robot;");
+        LogHelper.call("setPosition(pos); Dimension; Robot;");
         position = pos;
-        System.out.println("setPosition(pos) lefutott");
+        LogHelper.ret("setPosition(pos) lefutott");
     }
 
     public double getCoveredDistance() {
-        System.out.println("getCoveredDistance(); Robot;");
-        System.out.println("getCoveredDistance() returned with: " + coveredDistance);
+        LogHelper.call("getCoveredDistance(); Robot;");
+        LogHelper.ret("getCoveredDistance() returned with: " + coveredDistance);
         return coveredDistance;
+    }
+
+    public void turnLeft() {
+        LogHelper.call("turnLeft(); Robot");
+        if(!paralyzed)
+            direction++;
+        if (direction > Config.DIR_LEFT)     // when direction reached 4 we have to change it to 0.  direction only goes from 0 to 3
+            direction = Config.DIR_UP;
+        LogHelper.ret("turnLeft() lefutott;");
+    }
+    public void turnRight(){
+        LogHelper.call("turnRight(); Robot");
+        if(!paralyzed)
+            direction--;
+        if(direction < Config.DIR_UP)       // when direction reached -1 we have to change it to 3.  direction only goes from 0 to 3
+            direction = Config.DIR_LEFT;
+        LogHelper.ret("turnRight() lefutott;");
+    }
+
+    public void speedUp(){
+        LogHelper.call("speedUp(); Robot;");
+        if(!paralyzed)
+            if(speed + Config.SPD_UNIT < Config.SPD_LIMIT)
+                speed += Config.SPD_UNIT;
+            else
+                speed = Config.SPD_LIMIT;
+        LogHelper.ret("speedUp() lefutott;");
+    }
+
+    public void slowDown(){
+        LogHelper.call("slowDown(); Robot;");
+        if(!paralyzed)
+            if(speed - Config.SPD_UNIT > 0)
+                speed += Config.SPD_UNIT;
+            else
+                speed = 0;
+        LogHelper.ret("slowDown() lefutott;");
     }
 
     public void move() {
@@ -76,8 +118,8 @@ public class Robot {
     }
 
     public void setName(String name) {
-        System.out.println("setName(name); Robot;");
-        System.out.println("setName() lefutott;");
+        LogHelper.call("setName(" + name + "); Robot;");
+        LogHelper.ret("setName() lefutott;");
         this.name = name;
     }
 }

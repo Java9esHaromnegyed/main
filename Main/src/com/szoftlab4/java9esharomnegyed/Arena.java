@@ -1,6 +1,9 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class Arena {
@@ -10,26 +13,27 @@ public class Arena {
     private Robot robot2;
 
     public Arena(){
-        System.out.println("Arena objektum létrejött");
+        LogHelper.call("Arena()");
         size = new Dimension(64, 64);
-        System.out.println("Arena() -> Robot();");
+        LogHelper.call("Arena() -> Robot();");
         robot1 = new Robot(this, "player_one", new Dimension(16, 24), Config.DIR_RIGHT);
-        System.out.println("Arena() -> Robot();");
+        LogHelper.call("Arena() -> Robot();");
         robot2 = new Robot(this, "player_two", new Dimension(16, 16), Config.DIR_RIGHT);
+        LogHelper.ret("Arena objektum létrejött");
     }
 
     public void refresh() {
     }
 
     public void setRobotName(String name, int player){
-        System.out.println("setRobotName("+ name + ", " + player + "); Arena;");
+        LogHelper.call("setRobotName(" + name + ", " + player + "); Arena;");
         switch (player) {
             case 0 : robot1.setName(name);
                     break;
             case 1 : robot2.setName(name);
                     break;
         }
-        System.out.println("setRobotName(name, player) lefutott;");
+        LogHelper.ret("setRobotName(name, player) lefutott;");
     }
 
     public Obstacle getObstacle(Dimension dest) {
@@ -64,58 +68,49 @@ public class Arena {
         System.out.println("takeEffect() lefutott");
     }
 
-    public void movementControl(Event e) {
-        System.out.println("movementControl(); Arena");
-        switch (e.key) {
+    public void movementControl(int e) {   //Key event e
+        LogHelper.call("movementControl(); Arena");
+        //int key = e.getKeyCode();
+        int key = e;
+        switch (key) {
             case Config.MOV_P1_UP:
-                System.out.println("movementControl(); Arena; robot1.UP");
-                robot1.move();
+                robot1.speedUp();
                 break;
             case Config.MOV_P1_DOWN:
-                System.out.println("movementControl(); Arena; robot1.DOWN");
-                robot1.move();
+                robot1.slowDown();
                 break;
             case Config.MOV_P1_LEFT:
-                System.out.println("movementControl(); Arena; robot1.LEFT");
-                robot1.move();
+                robot1.turnLeft();
                 break;
             case Config.MOV_P1_RIGHT:
-                System.out.println("movementControl(); Arena; robot1.RIGHT");
-                robot1.move();
+                robot1.turnRight();
                 break;
             case Config.MOV_P1_OIL:
-                System.out.println("movementControl(); Arena; robot1.dropOIL");
                 robot1.dropOil();
                 break;
             case Config.MOV_P1_PUTTY:
-                System.out.println("movementControl(); Arena; robot1.dropPUTTY");
                 robot1.dropPutty();
                 break;
             case Config.MOV_P2_UP:
-                System.out.println("movementControl(); Arena; robot2.UP");
-                robot1.move();
+                robot1.speedUp();
                 break;
             case Config.MOV_P2_DOWN:
-                System.out.println("movementControl(); Arena; robot2.DOWN");
-                robot1.move();
+                robot1.slowDown();
                 break;
             case Config.MOV_P2_LEFT:
-                System.out.println("movementControl(); Arena; robot2.LEFT");
-                robot1.move();
+                robot1.turnLeft();
                 break;
             case Config.MOV_P2_RIGHT:
-                System.out.println("movementControl(); Arena; robot2.RIGHT");
-                robot1.move();
+                robot1.turnRight();
                 break;
             case Config.MOV_P2_OIL:
-                System.out.println("movementControl(); Arena; robot1.dropOIL");
                 robot1.dropOil();
                 break;
             case Config.MOV_P2_PUTTY:
-                System.out.println("movementControl(); Arena; robot1.dropPUTTY");
                 robot1.dropPutty();
                 break;
+            default: LogHelper.error("none of it: " + e + "; " + KeyEvent.KEY_FIRST);
         }
-        System.out.println("movementControl() lefutott");
+        LogHelper.ret("movementControl() lefutott;");
     }
 }
