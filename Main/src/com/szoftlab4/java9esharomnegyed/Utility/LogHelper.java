@@ -64,6 +64,16 @@ public class LogHelper {
         lift();                                 // előre lép az eredeti pozícióba
     }
 
+    public static void question(String question){
+        String fin;
+        String tab = "";
+        for(int i = 1; i < logLevel; i++){      // szintnek megfelelő tab előállítása
+            tab = tab.concat("  ");
+        }
+        fin = tab.concat(question);
+        System.out.print(fin);
+    }
+
 
 
     public static void error(Object object){    // error trace try catch hierarchikus megjelenítéséhez

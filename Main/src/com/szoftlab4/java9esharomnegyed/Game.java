@@ -38,7 +38,7 @@ public class Game {
                 int option = Integer.parseInt(menuOption);
                 switch (option) {
                     case 1:
-                        LogHelper.logFirst("menu() -> newGame();");
+                        LogHelper.inline("menu() -> newGame();");
                         newGame();
                         break;
                     case 2:
@@ -54,7 +54,7 @@ public class Game {
                         arena.movementControl(KeyEvent.VK_W);
                         break;
                     case 0:
-                        LogHelper.logFirst("menu() -> exitGame();");
+                        LogHelper.inline("menu() -> exitGame();");
                         exitGame();
                         break;
                     default:
@@ -67,7 +67,7 @@ public class Game {
     }
 
     public static void requestName(String name, int player) {
-        LogHelper.call("requestName() -> setRobotName();");
+        LogHelper.call("requestName(); Game;");
         arena.setRobotName(name, player);
         LogHelper.ret("requestName() returned with: void;");
     }
@@ -76,18 +76,16 @@ public class Game {
         InputStreamReader inputStreamReader = new InputStreamReader(System.in);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         try {
-            LogHelper.call("newGame();");
+            LogHelper.call("newGame(); Game;");
             arena = new Arena();
             leaderborad = new Leaderborad();
             clock = new Clock();
 
-            //System.out.println("newGame() -> requestGame();");
-            System.out.println("player one: ");
+            LogHelper.question("player one: ");
             String p1 = bufferedReader.readLine();
             requestName(p1, 0);
 
-            //System.out.println("newGame() -> requestName();");
-            System.out.println("player two: ");
+            LogHelper.question("player two: ");
             String p2 = bufferedReader.readLine();
             requestName(p2, 1);
         } catch (IOException e) {

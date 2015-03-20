@@ -15,9 +15,9 @@ public class Arena {
     public Arena(){
         LogHelper.call("Arena()");
         size = new Dimension(64, 64);
-        LogHelper.call("Arena() -> Robot();");
+        LogHelper.comment("Arena() -> Robot();");   // felesleges csak minta commentre
         robot1 = new Robot(this, "player_one", new Dimension(16, 24), Config.DIR_RIGHT);
-        LogHelper.call("Arena() -> Robot();");
+        LogHelper.comment("Arena() -> Robot();");   // felesleges csak minta commentre
         robot2 = new Robot(this, "player_two", new Dimension(16, 16), Config.DIR_RIGHT);
         LogHelper.ret("Arena objektum létrejött");
     }
