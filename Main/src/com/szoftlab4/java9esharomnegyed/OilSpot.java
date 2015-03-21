@@ -1,18 +1,21 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+
 import java.awt.*;
 
 public class OilSpot extends Obstacle {
     public OilSpot(Dimension pos){
-        System.out.println("OilSpot létrejött");
+        LogHelper.call("OilSpot();");
         position = pos;
+        LogHelper.ret("OilSpot objektum létrejött;");
     }
 
 
     @Override
     public void effect(Robot robot) {
-        System.out.println("effect(); OilSpot");
+        LogHelper.call("effect(); OilSpot; Robot: " + robot.getName() + ";");
         robot.slipping();
-        System.out.println("effect(); lefutott");
+        LogHelper.ret("effect() lefutott;");
     }
 }

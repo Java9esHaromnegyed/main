@@ -1,19 +1,21 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+
 import java.awt.*;
 
 public class PuttySpot extends Obstacle {
     public PuttySpot(Dimension pos){
-        System.out.println("PuttySpot létrejött");
+        LogHelper.call("PuttySpot();");
         position = pos;
-
+        LogHelper.ret("PuttySpot objektum létrejött;");
     }
 
     @Override
     public void effect(Robot robot) {
-        System.out.println("effect(); PuttySpot");
+        LogHelper.call("effect(); PuttySpot; Robot: " + robot.getName() + ";");
         robot.stuck();
-        System.out.println("effect(); lefutott");
+        LogHelper.ret("effect() lefutott;");
 
     }
 }

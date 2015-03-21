@@ -1,17 +1,20 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+
 import java.awt.*;
 
 public class Wall extends Obstacle {
 
     public Wall(Dimension d){
-        System.out.println("Wall létrejött");
+        LogHelper.call("Wall();");
+        LogHelper.ret("Wall objektum létrejött;");
     }
 
     @Override
     public void effect(Robot robot) {
-        System.out.println("effect(); Wall");
+        LogHelper.call("effect(); Wall; Robot: " + robot.getName() + ";");
         robot.stop();
-        System.out.println("effect(); lefutott");
+        LogHelper.ret("effect() lefutott;");
     }
 }
