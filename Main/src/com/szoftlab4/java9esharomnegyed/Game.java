@@ -24,7 +24,7 @@ public class Game {
             System.out.println();
             System.out.println("[1] New Game");
             System.out.println("[2] Robot Movement");
-            //System.out.println("[3] Leave Game");
+            System.out.println("[3] Arena initialization");
             System.out.println("[0] Exit");
 
             InputStreamReader inputStreamReader = new InputStreamReader(System.in);
@@ -53,6 +53,14 @@ public class Game {
                         arena.movementControl(KeyEvent.VK_UP);
                         arena.movementControl(KeyEvent.VK_A);
                         arena.movementControl(KeyEvent.VK_RIGHT);
+                        break;
+                    case 3:
+                        LogHelper.clear();
+                        LogHelper.rec();
+                        LogHelper.inline("menu() -> new Arena();");
+                        arena = new Arena();
+                        requestName("player1", 0);
+                        requestName("player2", 1);
                         break;
                     case 0:
                         LogHelper.inline("menu() -> exitGame();");
