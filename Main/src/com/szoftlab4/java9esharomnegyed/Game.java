@@ -16,9 +16,13 @@ public class Game {
     //Program belépési pontja
     public static void main(String[] args) {
         //Első log, és a menü megjelenítése
-        LogHelper.logFirst("main() -> menu();");
+        LogHelper.comment("main() -> menu();");
         menu();
-        LogHelper.ret("\nmain() returned with: void;");
+        LogHelper.comment("\nmain() returned with: void;");
+    }
+
+    public static void takeEffectSequence(){
+
     }
 
     //Menü megjelenítésért és kezelésért felelős fgv.
@@ -57,7 +61,7 @@ public class Game {
                         requestName("player1", 0); //Játékosok nevének beállítása
                         requestName("player2", 1);
                         LogHelper.rec();
-                        LogHelper.logFirst("#event: W,S,Up,A,Right lenyomása");
+                        LogHelper.comment("#event: W,S,Up,A,Right lenyomása");
                         LogHelper.clear();
                         //Robotnak különböző irányok megadása szimulációképp
                         arena.movementControl(KeyEvent.VK_W);

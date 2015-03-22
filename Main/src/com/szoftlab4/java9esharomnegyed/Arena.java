@@ -81,9 +81,9 @@ public class Arena {
     }
 
     //Effekt érvényesítése egy adott roboton egy adott pozícióban
-    public void takeEffect(Robot r, Dimension position) {
+    public void takeEffect(Robot r) {
         LogHelper.call("takeEffect(); Arena");
-        getObstacle(position).effect(r);
+        getObstacle(r.getPositon()).effect(r);
         LogHelper.ret("takeEffect() lefutott");
     }
 
