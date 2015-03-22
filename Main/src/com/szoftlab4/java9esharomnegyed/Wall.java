@@ -21,4 +21,9 @@ public class Wall extends Obstacle {
         robot.stop();
         LogHelper.ret("effect() lefutott;");
     }
+
+    @Override
+    public String toString() {
+        return "Wall(" + position.width + ", " + position.height + ")";
+    }
 }

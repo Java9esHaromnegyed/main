@@ -23,4 +23,9 @@ public class PuttySpot extends Obstacle {
         LogHelper.ret("effect() lefutott;");
 
     }
+
+    @Override
+    public String toString() {
+        return "PuttySpot(" + position.width + ", " + position.height + ")";
+    }
 }

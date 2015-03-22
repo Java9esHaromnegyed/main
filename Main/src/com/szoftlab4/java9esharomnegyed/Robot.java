@@ -31,14 +31,14 @@ public class Robot {
     public void dropPutty() {
         LogHelper.call("dropPutty(); Robot; " + name + "; addObstacle(position, putty);");
         arena.addObstacle(new PuttySpot(position));
-        LogHelper.ret("dropPutty() lefutott;");
+        LogHelper.ret("dropPutty() returned with: void;");
     }
 
     //Olajfolt lehelyezése a pályára
     public void dropOil() {
         LogHelper.call("dropOil(); Robot; " + name + "; addObstacle(position, oil);");
         arena.addObstacle(new OilSpot(position));
-        LogHelper.ret("dropOil() lefutott;");
+        LogHelper.ret("dropOil() returned with: void;");
     }
 
     //Robot pozíciójának lekérdezése
@@ -52,7 +52,7 @@ public class Robot {
     public void setPosition(Dimension pos) {
         LogHelper.call("setPosition(pos); Dimension; Robot; " + name + ";");
         position = pos;
-        LogHelper.ret("setPosition(pos) lefutott;");
+        LogHelper.ret("setPosition(pos) returned with: void;");
     }
 
     //Robot által megtett távolság lekérdezése
@@ -70,7 +70,7 @@ public class Robot {
             direction++;
         if (direction > Config.DIR_LEFT)     // when direction reached 4 we have to change it to 0.  direction only goes from 0 to 3
             direction = Config.DIR_UP;
-        LogHelper.ret("turnLeft() lefutott;");
+        LogHelper.ret("turnLeft() returned with: void;");
     }
 
     //Robotnak jobbra fordulás utasítás adása
@@ -81,7 +81,7 @@ public class Robot {
             direction--;
         if(direction < Config.DIR_UP)       // when direction reached -1 we have to change it to 3.  direction only goes from 0 to 3
             direction = Config.DIR_LEFT;
-        LogHelper.ret("turnRight() lefutott;");
+        LogHelper.ret("turnRight() returned with: void;");
     }
 
     //Robot gyorsítása
@@ -94,7 +94,7 @@ public class Robot {
                 speed += Config.SPD_UNIT;                       // with Config.SPD_UNIT steps
             else
                 speed = Config.SPD_LIMIT;
-        LogHelper.ret("speedUp() lefutott;");
+        LogHelper.ret("speedUp() returned with: void;");
     }
 
     //Robot lassítása
@@ -107,30 +107,32 @@ public class Robot {
                 speed += Config.SPD_UNIT;
             else
                 speed = 0;
-        LogHelper.ret("slowDown() lefutott;");
+        LogHelper.ret("slowDown() returned with: void;");
     }
 
     //Robot mozgatása
     public void move() {
         System.out.println("move(); Robot; " + name + ";");
-        System.out.println("move() lefutott;");
+        System.out.println("move() returned with: void;");
     }
 
     //Robotra ragacs hat
     public void stuck() {
-        System.out.println("stuck(); Robot");
+        LogHelper.call("stuck(); Robot");
+        speed *= 0.5;
+        LogHelper.ret("stuck() returned with: void");
     }
 
     //Robotra olajfolt hat
     public void slipping() {
         System.out.println("slipping(); Robot; " + name + ";");
-        System.out.println("sipping() lefutott;");
+        System.out.println("sipping() returned with: void;");
     }
 
     //Robot megállítása (pl fallal ütközés esetén)
     public void stop(){
         System.out.println("stopg(); Robot; " + name + ";");
-        System.out.println("stop() lefutott;");
+        System.out.println("stop() returned with: void;");
     }
 
     //Robot nevének lekérdezése
@@ -143,7 +145,7 @@ public class Robot {
     //Robot nevének beállítása
     public void setName(String name) {
         LogHelper.call("setName(" + name + "); Robot; " + name + ";");
-        LogHelper.ret("setName() lefutott;");
+        LogHelper.ret("setName() returned with: void;");
         this.name = name;
     }
 }

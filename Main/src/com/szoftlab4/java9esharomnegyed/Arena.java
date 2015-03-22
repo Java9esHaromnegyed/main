@@ -47,13 +47,19 @@ public class Arena {
             case 1 : robot2.setName(name);
                     break;
         }
-        LogHelper.ret("setRobotName(name, player) lefutott;");
+        LogHelper.ret("setRobotName(" + name + ", " + player + ") returned with: void;");
     }
 
     //Egy adott pozíció alapján esetleges ott lévő akadály elkérése
     public Obstacle getObstacle(Dimension dest) {
         System.out.println("getObstacle(); Arena");
-        System.out.println("getObstacle() lefutott");
+        for(int i = 0; i < obstacles.size(); i++){
+            if(obstacles.get(i).getPosition() == dest) {
+                LogHelper.ret("getObstacle() returned with: " + obstacles.get(i).toString());
+                return obstacles.get(i);
+            }
+        }
+        LogHelper.ret("getObstacle() returned with: null");
         return null;
     }
 
@@ -61,7 +67,7 @@ public class Arena {
     public void addObstacle(Obstacle o) {
         System.out.println("addObstacle() -> add(o); Arena");
         obstacles.add(o);
-        System.out.println("addObstacle() lefutott");
+        System.out.println("addObstacle() returned with: void");
     }
 
     //Ütközésdetekció
@@ -69,14 +75,14 @@ public class Arena {
         LogHelper.call("collision(); Arena");
         r.getPositon();
         //TODO: ezzel mi legyen?
-        LogHelper.ret("collision() lefutott");
+        LogHelper.ret("collision() returned with: void");
         return null;
     }
 
     //Pályáról kilépés érzékelése
     public boolean isOutOfArena(Dimension d) {
         LogHelper.call("isOutOfArena(); Arena");
-        LogHelper.ret("isOutOfArena() lefutott");
+        LogHelper.ret("isOutOfArena() returned with: void");
         return false;
     }
 
@@ -88,7 +94,7 @@ public class Arena {
             temp.effect(r);
         else
             LogHelper.inline("#there is no Obstacle.");
-        LogHelper.ret("takeEffect() lefutott");
+        LogHelper.ret("takeEffect() returned with: void");
     }
 
     //Robot objektum visszaadása
@@ -147,6 +153,6 @@ public class Arena {
                 break;
             default: LogHelper.error("none of it: " + e + "; " + KeyEvent.KEY_FIRST);
         }
-        LogHelper.ret("movementControl() lefutott;");
+        LogHelper.ret("movementControl() returned with: void;");
     }
 }

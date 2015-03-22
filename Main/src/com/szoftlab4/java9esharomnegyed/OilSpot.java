@@ -22,4 +22,9 @@ public class OilSpot extends Obstacle {
         robot.slipping();
         LogHelper.ret("effect() lefutott;");
     }
+
+    @Override
+    public String toString() {
+        return "OilSpot(" + position.width + ", " + position.height + ")";
+    }
 }

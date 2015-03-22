@@ -16,4 +16,7 @@ public abstract class Obstacle {
     public Dimension getPosition(){
         return position;
     }
+
+    //Szöveges megjelenítés akadályokra
+    public abstract String toString();
 }
