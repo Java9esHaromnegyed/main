@@ -2,7 +2,10 @@ package com.szoftlab4.java9esharomnegyed.Utility;
 
 import java.util.ArrayList;
 
+//Szkeleton logolás segítésére
 public class LogHelper {
+
+    //Osztály mezői
     private static final int startLevel = 1;    //kezdő hierarchiai szint, default: 1, magasabb esetén 0. szint is kap tabot.
     private static int logLevel = startLevel;
     private static ArrayList<Integer> hArchNum;
@@ -10,6 +13,7 @@ public class LogHelper {
 
     public LogHelper(){
         hArchNum = new ArrayList<Integer>();
+        //Kezdő számozás elindítása
         hArchNum.add(1);
     }
 
