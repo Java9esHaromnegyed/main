@@ -55,7 +55,8 @@ public class LogHelper {
 
     public static void logFirst(String first){  // első hierarchia szint, 0 tab
         clear();
-        inline(first);
+        inline("1. " + first);
+        hArchNum.add(1);
     }
 
     public static void call(String call){                   // ezt használod a függvény elején
