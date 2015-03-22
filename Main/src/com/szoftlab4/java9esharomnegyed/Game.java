@@ -24,6 +24,7 @@ public class Game {
 
     public static void menu() {
         while(true) {
+            LogHelper.clear();
             System.out.println();
             System.out.println("[1] New Game");
             System.out.println("[2] Robot Movement");

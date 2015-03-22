@@ -15,9 +15,9 @@ public class Arena {
     public Arena(){
         LogHelper.call("Arena()");
         size = new Dimension(64, 64);
-        LogHelper.comment("Arena() -> Robot();");   // felesleges csak minta commentre
+        //LogHelper.comment("Arena() -> Robot();");   // felesleges csak minta commentre
         robot1 = new Robot(this, "player_one", new Dimension(16, 24), Config.DIR_RIGHT);
-        LogHelper.comment("Arena() -> Robot();");   // felesleges csak minta commentre
+        //LogHelper.comment("Arena() -> Robot();");   // felesleges csak minta commentre
         robot2 = new Robot(this, "player_two", new Dimension(16, 16), Config.DIR_RIGHT);
         LogHelper.ret("Arena objektum létrejött");
     }
@@ -49,23 +49,23 @@ public class Arena {
     }
 
     public Obstacle collision(Robot r, Dimension d) {
-        System.out.println("collision(); Arena");
+        LogHelper.call("collision(); Arena");
         r.getPositon();
         //TODO: ezzel miafasz legyen?
-        System.out.println("collision() lefutott");
+        LogHelper.ret("collision() lefutott");
         return null;
     }
 
     public boolean isOutOfArena(Dimension d) {
-        System.out.println("isOutOfArena(); Arena");
-        System.out.println("isOutOfArena() lefutott");
+        LogHelper.call("isOutOfArena(); Arena");
+        LogHelper.ret("isOutOfArena() lefutott");
         return false;
     }
 
     public void takeEffect(Robot r, Dimension position) {
-        System.out.println("takeEffect(); Arena");
+        LogHelper.call("takeEffect(); Arena");
         getObstacle(position).effect(r);
-        System.out.println("takeEffect() lefutott");
+        LogHelper.ret("takeEffect() lefutott");
     }
 
     public void movementControl(int e) {   //Key event e
