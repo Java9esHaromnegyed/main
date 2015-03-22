@@ -16,7 +16,7 @@ public class Arena {
 
     //Üres konstruktor az elemek megfelelő inicializálásához
     public Arena(){
-        LogHelper.call("Arena()");
+        LogHelper.call("Arena();");
         //64x64-es pálya lesz
         size = new Dimension(64, 64);
         //Két robot létrehozása default névvel
@@ -31,6 +31,10 @@ public class Arena {
                 temp.setSize(i, j);
                 obstacles.add(new Wall(temp));
             }
+
+        // two Obstacle for takeEffect sequence
+        obstacles.add(new OilSpot(new Dimension(16, 16)));
+        obstacles.add(new PuttySpot(new Dimension(16, 24)));
 
         LogHelper.ret("Arena objektum létrejött");
     }
@@ -52,49 +56,62 @@ public class Arena {
 
     //Egy adott pozíció alapján esetleges ott lévő akadály elkérése
     public Obstacle getObstacle(Dimension dest) {
-        System.out.println("getObstacle(); Arena");
+        System.out.println("getObstacle(); Arena;");
         for(int i = 0; i < obstacles.size(); i++){
             if(obstacles.get(i).getPosition() == dest) {
-                LogHelper.ret("getObstacle() returned with: " + obstacles.get(i).toString());
+                LogHelper.ret("getObstacle() returned with: " + obstacles.get(i).toString() + ";");
                 return obstacles.get(i);
             }
         }
-        LogHelper.ret("getObstacle() returned with: null");
+        LogHelper.ret("getObstacle() returned with: null;");
         return null;
     }
 
     //Akadály felvétele a listába
     public void addObstacle(Obstacle o) {
-        System.out.println("addObstacle() -> add(o); Arena");
-        obstacles.add(o);
-        System.out.println("addObstacle() returned with: void");
+        LogHelper.call("addObstacle(" + o.toString() + "); Arena;");
+            LogHelper.call("add(" + o.toString() + "); Arena;");
+            boolean r = obstacles.add(o);
+            LogHelper.ret("add() returned with: " + r + ";");
+        LogHelper.ret("addObstacle() returned with: void;");
     }
 
     //Ütközésdetekció
     public Obstacle collision(Robot r, Dimension d) {
-        LogHelper.call("collision(); Arena");
+        LogHelper.call("collision(); Arena;");
         r.getPositon();
-        //TODO: ezzel mi legyen?
-        LogHelper.ret("collision() returned with: void");
-        return null;
+        // a skeletonban az ütközés detekciót nem valósítjuk meg,
+        // de visszatérünk egy Wall objectummal annak effect függvénytesztje miatt
+        Wall w = new Wall(new Dimension(24, 32));
+        LogHelper.ret("collision() returned with: " + w.toString() + ";");
+        return w;
     }
 
     //Pályáról kilépés érzékelése
     public boolean isOutOfArena(Dimension d) {
         LogHelper.call("isOutOfArena(); Arena");
-        LogHelper.ret("isOutOfArena() returned with: void");
-        return false;
+        boolean rBool = (d.width < 0 || d.width > size.width) || (d.height < 0 || d.height > size.height);
+        // akkor van pályán kívül ha bármelyik koordináta nagyobb mint a pálya méretében vagy kissebb mint nulla
+        LogHelper.ret("isOutOfArena() returned with: " + rBool + ";");
+        return rBool;
     }
 
     //Effekt érvényesítése egy adott roboton egy adott pozícióban
-    public void takeEffect(Robot r) {
+    public void takeEffect(Robot r, Dimension dest) {
         LogHelper.call("takeEffect(); Arena");
-        Obstacle temp = getObstacle(r.getPositon());
+        Obstacle temp = collision(r, dest);     //először megnézi falbe ütközött-e
         if(temp != null)
             temp.effect(r);
-        else
-            LogHelper.inline("#there is no Obstacle.");
-        LogHelper.ret("takeEffect() returned with: void");
+        else {
+            temp = getObstacle(r.getPositon());
+            if (temp != null)
+                temp.effect(r);
+            else {
+                r.clearEffects();       // ha nem lép semmire töröljük az eddigi hatásokat
+                LogHelper.inline("#there is no Obstacle.");
+            }
+        }
+        LogHelper.ret("takeEffect() returned with: void;");
     }
 
     //Robot objektum visszaadása
@@ -109,7 +126,7 @@ public class Arena {
 
     //Irányításkezelő fgv
     public void movementControl(int e) {   //Key event e
-        LogHelper.call("movementControl(); Arena");
+        LogHelper.call("movementControl(); Arena;");
         //int key = e.getKeyCode();
         int key = e;
         //A két robot mozgását külön gombokkal kezeljük, ezek megnyomása közvetlen a robot

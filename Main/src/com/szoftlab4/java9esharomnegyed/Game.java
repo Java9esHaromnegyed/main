@@ -21,7 +21,7 @@ public class Game {
         LogHelper.comment("\nmain() returned with: void;");
     }
 
-    public static void takeEffectSequence(){
+    public static void moveRobotSequence(){
         LogHelper.pause();  /*szükséges mezők inicializálása*/
         arena = new Arena(); //Arena init
         leaderborad = new Leaderborad();
@@ -30,7 +30,8 @@ public class Game {
         requestName("player2", 1);
         LogHelper.rec();
         LogHelper.clear();
-        arena.takeEffect(arena.getRobot(0));
+        arena.getRobot(0).move();
+        arena.getRobot(1).move();
     }
 
     //Menü megjelenítésért és kezelésért felelős fgv.
@@ -43,7 +44,7 @@ public class Game {
             System.out.println("[1] New Game");
             System.out.println("[2] Robot Movement");
             System.out.println("[3] Arena initialization");
-            System.out.println("[4] Akadály robotra hatása");
+            System.out.println("[4] Robot mozgás, akadály hatása");
             System.out.println("[0] Exit");
 
             //Választott menüpont beolvasásához szükséges readerek
@@ -86,9 +87,9 @@ public class Game {
                         requestName("player1", 0); //Játékosok nevének beállítása
                         requestName("player2", 1);
                         break;
-                    //Robot akadályralépése és annak hatáskiváltása
+                    //Robot mozgása akadályralépése és annak hatáskiváltása
                     case 4:
-                        takeEffectSequence();
+                        moveRobotSequence();
                         break;
                     //Exit választása esetén
                     case 0:
