@@ -83,8 +83,22 @@ public class Arena {
     //Effekt érvényesítése egy adott roboton egy adott pozícióban
     public void takeEffect(Robot r) {
         LogHelper.call("takeEffect(); Arena");
-        getObstacle(r.getPositon()).effect(r);
+        Obstacle temp = getObstacle(r.getPositon());
+        if(temp != null)
+            temp.effect(r);
+        else
+            LogHelper.inline("#there is no Obstacle.");
         LogHelper.ret("takeEffect() lefutott");
+    }
+
+    //Robot objektum visszaadása
+    public Robot getRobot(int id) {
+        if(id == 0)
+            return robot1;
+        else if(id == 1)
+            return robot2;
+        else
+            return null;
     }
 
     //Irányításkezelő fgv

@@ -22,7 +22,15 @@ public class Game {
     }
 
     public static void takeEffectSequence(){
-
+        LogHelper.pause();  /*szükséges mezők inicializálása*/
+        arena = new Arena(); //Arena init
+        leaderborad = new Leaderborad();
+        clock = new Clock();
+        requestName("player1", 0); //Játékosok nevének beállítása
+        requestName("player2", 1);
+        LogHelper.rec();
+        LogHelper.clear();
+        arena.takeEffect(arena.getRobot(0));
     }
 
     //Menü megjelenítésért és kezelésért felelős fgv.
@@ -35,6 +43,7 @@ public class Game {
             System.out.println("[1] New Game");
             System.out.println("[2] Robot Movement");
             System.out.println("[3] Arena initialization");
+            System.out.println("[4] Akadály robotra hatása");
             System.out.println("[0] Exit");
 
             //Választott menüpont beolvasásához szükséges readerek
@@ -49,7 +58,7 @@ public class Game {
                     //New Game választása esetén
                     case 1:
                         //Megfelelő log és newGame() fgv mehívása
-                        LogHelper.inline("menu() -> newGame();");
+                        LogHelper.comment("menu() -> newGame();");
                         newGame();
                         break;
                     //Robot Movement választása esetén
@@ -72,12 +81,14 @@ public class Game {
                         break;
                     //Arena initialization választása esetén
                     case 3:
-                        LogHelper.clear();
-                        LogHelper.rec();
-                        LogHelper.inline("menu() -> new Arena();");
+                        LogHelper.comment("menu() -> new Arena();");
                         arena = new Arena(); //Arena init
                         requestName("player1", 0); //Játékosok nevének beállítása
                         requestName("player2", 1);
+                        break;
+                    //Robot akadályralépése és annak hatáskiváltása
+                    case 4:
+                        takeEffectSequence();
                         break;
                     //Exit választása esetén
                     case 0:
