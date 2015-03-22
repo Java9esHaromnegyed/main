@@ -3,6 +3,9 @@ package com.szoftlab4.java9esharomnegyed;
 import java.awt.event.KeyEvent;
 
 public class Config {
+    //Program szinten egységes előre definiált konstans értékek
+    //Pl irányok, limitek, stb.
+
     /*ROBOT related*/
     //speed limit
     public static final double SPD_LIMIT = 3;
