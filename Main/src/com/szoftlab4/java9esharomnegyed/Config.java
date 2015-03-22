@@ -13,6 +13,10 @@ public class Config {
     public static final int DIR_RIGHT = 1;
     public static final int DIR_DOWN = 2;
     public static final int DIR_LEFT = 3;
+
+    public static final int OIL_TANK = 5;
+    public static final int PUTTY_TANK = 5;
+
     /*
     public static final int EFF_NONE = 0;       cserélni karakter jelölésekre
     public static final int EFF_OIL = 1;

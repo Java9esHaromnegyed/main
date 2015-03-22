@@ -4,21 +4,30 @@ import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Arena {
-    private List<Obstacle> obstacles;
-    private Dimension size;
+    private List<Obstacle> obstacles;   // a List where the arena register all the placed Obstacle
+    private Dimension size;             // Arena size
     private Robot robot1;
     private Robot robot2;
 
     public Arena(){
         LogHelper.call("Arena()");
         size = new Dimension(64, 64);
-        //LogHelper.comment("Arena() -> Robot();");   // felesleges csak minta commentre
         robot1 = new Robot(this, "player_one", new Dimension(16, 24), Config.DIR_RIGHT);
-        //LogHelper.comment("Arena() -> Robot();");   // felesleges csak minta commentre
         robot2 = new Robot(this, "player_two", new Dimension(16, 16), Config.DIR_RIGHT);
+
+        // Areana will be build from txt, this is just an example for skeleton
+        obstacles = new ArrayList<Obstacle>();
+        Dimension temp = new Dimension(0,0);
+        for(int i = 0; i < size.height; i += 16)         // this will build a rectangle around the Arena out of Wall
+            for(int j = 0; j < size.width; j += 16) {
+                temp.setSize(i, j);
+                obstacles.add(new Wall(temp));
+            }
+
         LogHelper.ret("Arena objektum létrejött");
     }
 
