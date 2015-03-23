@@ -25,17 +25,18 @@ public class Arena {
 
         // Areana will be build from txt, this is just an example for skeleton
         obstacles = new ArrayList<Obstacle>();
+
+        // two Obstacle for takeEffect sequence + a Wall
+        obstacles.add(new OilSpot(new Dimension(17, 16)));
+        obstacles.add(new PuttySpot(new Dimension(17, 24)));
+        obstacles.add(new Wall(new Dimension(18,16)));
+
         Dimension temp = new Dimension(0,0);
         for(int i = 0; i < size.height; i += 16)         // this will build a rectangle around the Arena out of Wall
             for(int j = 0; j < size.width; j += 16) {
                 temp.setSize(i, j);
                 obstacles.add(new Wall(temp));
             }
-
-        // two Obstacle for takeEffect sequence + a Wall
-        obstacles.add(new OilSpot(new Dimension(17, 16)));
-        obstacles.add(new PuttySpot(new Dimension(17, 24)));
-        obstacles.add(new Wall(new Dimension(18,24)));
 
         LogHelper.ret("Arena objektum létrejött");
     }
@@ -58,16 +59,13 @@ public class Arena {
     //Egy adott pozíció alapján esetleges ott lévő akadály elkérése
     public Obstacle getObstacle(Dimension dest) {
         LogHelper.call("getObstacle(); Arena;");
-        int i;
-        for(i = 0; i < obstacles.size(); i++){
-            if(i>1) LogHelper.pause();
-            if(obstacles.get(i).getPosition() == dest) {
+        for(int i = 0; i < obstacles.size(); i++){
+            if(obstacles.get(i).getPosition().width == dest.width
+                    && obstacles.get(i).getPosition().height == dest.height) {
                 LogHelper.ret("getObstacle() returned with: " + obstacles.get(i).toString() + ";");
                 return obstacles.get(i);
             }
-            if(i>1) LogHelper.rec();
         }
-        if(i>1)LogHelper.comment("[...]");
         LogHelper.ret("getObstacle() returned with: null;");
         return null;
     }

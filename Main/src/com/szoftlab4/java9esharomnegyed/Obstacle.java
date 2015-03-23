@@ -16,8 +16,8 @@ public abstract class Obstacle {
 
     //Akadály pozícióját adja vissza
     public Dimension getPosition(){
-        LogHelper.call("getPosition(); Obstacle;");
-        LogHelper.ret("getPosition() returned with: " + position + ";");
+        //LogHelper.call("getPosition(); Obstacle;");
+        //LogHelper.ret("getPosition() returned with: " + position + ";");
         return position;
     }
 

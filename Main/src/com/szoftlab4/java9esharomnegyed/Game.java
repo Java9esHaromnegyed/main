@@ -47,6 +47,7 @@ public class Game {
             System.out.println("[3] Arena initialization");
             System.out.println("[4] Robot mozgás, akadály hatása");
             System.out.println("[0] Exit");
+            System.out.println();
 
             //Választott menüpont beolvasásához szükséges readerek
             InputStreamReader inputStreamReader = new InputStreamReader(System.in);
