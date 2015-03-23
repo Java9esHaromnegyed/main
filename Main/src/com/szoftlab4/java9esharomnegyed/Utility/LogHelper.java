@@ -1,5 +1,7 @@
 package com.szoftlab4.java9esharomnegyed.Utility;
 
+import sun.rmi.runtime.Log;
+
 import java.util.ArrayList;
 
 //Szkeleton logolás segítésére

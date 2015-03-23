@@ -25,19 +25,19 @@ public class Robot {
         name = n;
         position = startPos;
         direction = dir;
-        LogHelper.ret("Robot objektum létrejött;");
+        LogHelper.ret("Robot object created;");
     }
 
     //Ragacsfolt lehelyezése a pályára
     public void dropPutty() {
-        LogHelper.call("dropPutty(); Robot; " + name + "; addObstacle(position, putty);");
+        LogHelper.call("dropPutty(); Robot; " + name + ";");
         arena.addObstacle(new PuttySpot(position));
         LogHelper.ret("dropPutty() returned with: void;");
     }
 
     //Olajfolt lehelyezése a pályára
     public void dropOil() {
-        LogHelper.call("dropOil(); Robot; " + name + "; addObstacle(position, oil);");
+        LogHelper.call("dropOil(); Robot; " + name + ";");
         arena.addObstacle(new OilSpot(position));
         LogHelper.ret("dropOil() returned with: void;");
     }
@@ -175,6 +175,6 @@ public class Robot {
     public void setName(String name) {
         LogHelper.call("setName(" + name + "); Robot; " + this.name + ";");
         this.name = name;
-        LogHelper.ret("setName() returned with: void;");
+        LogHelper.ret("setName(" + name + ") returned with: void;");
     }
 }

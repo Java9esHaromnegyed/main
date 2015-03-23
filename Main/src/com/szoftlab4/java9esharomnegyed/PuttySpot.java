@@ -11,19 +11,20 @@ public class PuttySpot extends Obstacle {
     public PuttySpot(Dimension pos){
         LogHelper.call("PuttySpot();");
         position = pos;
-        LogHelper.ret("PuttySpot objektum létrejött;");
+        LogHelper.ret("PuttySpot object created;");
     }
 
     //Absztrakt metódus megvalósítása az akadály hatásához
     @Override
     public void effect(Robot robot) {
-        LogHelper.call("effect(); PuttySpot; Robot: " + robot.getName() + ";");
+        LogHelper.call("effect(Robot: " + robot.getName() + "); param: Robot; PuttySpot;");
         //Roboton megfelelő hatást kiváltó fgv meghívása
         robot.stuck();
-        LogHelper.ret("effect() lefutott;");
+        LogHelper.ret("effect(Robot: " + robot.getName() + ") returned with: void;");
 
     }
 
+    //Absztrakt metódus megvalósítása a "fal-e" vizsgálathoz
     @Override
     public boolean isWall() {
         return false;

@@ -114,9 +114,9 @@ public class Game {
 
     //Játékosok nevének beállítása
     public static void requestName(String name, int player) {
-        LogHelper.call("requestName(); Game;");
+        LogHelper.call("requestName(" + name + ", " + player + "); param: String, int; Game;");
         arena.setRobotName(name, player);
-        LogHelper.ret("requestName() returned with: void;");
+        LogHelper.ret("requestName(" + name + ", " + player + ") returned with: void;");
     }
 
     //Új játék indítása
@@ -161,10 +161,8 @@ public class Game {
 
     //Játék elhagyása fgv
     public static void leaveGame(){
-        System.out.println("leaveGame() -> menu();");
         //Visszatérünk a menübe
         menu();
-        System.out.println("leaveGame() returned with: void;");
     }
 
     //Kilépés a játékból fgv
