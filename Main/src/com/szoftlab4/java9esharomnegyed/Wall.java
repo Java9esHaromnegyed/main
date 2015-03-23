@@ -8,8 +8,9 @@ import java.awt.*;
 public class Wall extends Obstacle {
 
     //Fal létrehozása adott pozícióra
-    public Wall(Dimension d){
+    public Wall(Dimension pos){
         LogHelper.call("Wall();");
+        position = pos;
         LogHelper.ret("Wall objektum létrejött;");
     }
 

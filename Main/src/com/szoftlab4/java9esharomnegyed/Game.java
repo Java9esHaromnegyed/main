@@ -122,7 +122,9 @@ public class Game {
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         try {
             LogHelper.call("newGame(); Game;");
-            arena = new Arena();
+            LogHelper.pause();
+            arena = new Arena();        // Arena felépítést kihagyjuk a newGame sekvenciából
+            LogHelper.rec();
             leaderborad = new Leaderborad();
             clock = new Clock();
             //Első játékos nevének beolvasása
@@ -141,7 +143,8 @@ public class Game {
 
     //Játék vége fgv
     public static void gameOver(){
-        LogHelper.call("gameOver() -> menu();");
+        LogHelper.call("gameOver(); Game;");
+        LogHelper.comment("--== GAME OVER! ==--");
         try {
             System.in.read();
         } catch (IOException e) {

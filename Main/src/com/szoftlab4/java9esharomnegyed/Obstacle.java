@@ -1,5 +1,7 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+
 import java.awt.*;
 
 //Absztrakt osztály a különboző akadálytípuokhoz, feladat hogy definiálja
@@ -14,6 +16,8 @@ public abstract class Obstacle {
 
     //Akadály pozícióját adja vissza
     public Dimension getPosition(){
+        LogHelper.call("getPosition(); Obstacle;");
+        LogHelper.ret("getPosition() returned with: " + position + ";");
         return position;
     }
 

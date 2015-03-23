@@ -44,16 +44,16 @@ public class Robot {
 
     //Robot pozíciójának lekérdezése
     public Dimension getPositon() {
-        LogHelper.call("getPosition(); Robot; " + name + ";");
+        LogHelper.call("getPosition(): Dimension; Robot; " + name + ";");
         LogHelper.ret("getPosition() returned with: " + position + ";");
         return position;
     }
 
     //Robot pozíciójának beállítása
     public void setPosition(Dimension pos) {
-        LogHelper.call("setPosition(pos); Dimension; Robot; " + name + ";");
+        LogHelper.call("setPosition(" + pos + "); param: Dimension; Robot; " + name + ";");
         position = pos;
-        LogHelper.ret("setPosition(pos) returned with: void;");
+        LogHelper.ret("setPosition(" + pos + ") returned with: void;");
     }
 
     //Robot által megtett távolság lekérdezése
@@ -158,7 +158,7 @@ public class Robot {
 
     //Robot megállítása (pl fallal ütközés esetén)
     public void stop(){
-        LogHelper.call("stopg(); Robot; " + name + ";");
+        LogHelper.call("stop(); Robot; " + name + ";");
         speed = 0;
         paralyzed = false; // muszáj feloldani mert irányváltás és sebességnövelés nélkül nem tudnál elmozdulni onnan.
         LogHelper.ret("stop() returned with: void;");
@@ -166,8 +166,8 @@ public class Robot {
 
     //Robot nevének lekérdezése
     public String getName() {
-        LogHelper.call("getName(); Robot; " + name + ";");
-        LogHelper.ret("getName() returned with: " + name + ";");
+        //LogHelper.call("getName(); Robot; " + name + ";");
+        //LogHelper.ret("getName() returned with: " + name + ";");
         return name;
     }
 

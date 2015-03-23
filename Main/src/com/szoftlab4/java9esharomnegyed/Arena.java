@@ -82,7 +82,11 @@ public class Arena {
         r.getPositon();
         // a skeletonban az ütközés detekciót nem valósítjuk meg,
         // de visszatérünk egy Wall objectummal annak effect függvénytesztje miatt
+        LogHelper.pause();
         Wall w = new Wall(new Dimension(24, 32));
+        LogHelper.rec();
+
+        r.setPosition(w.getPosition());
         LogHelper.ret("collision() returned with: " + w.toString() + ";");
         return w;
     }
