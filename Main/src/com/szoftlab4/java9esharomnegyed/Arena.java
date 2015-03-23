@@ -32,9 +32,10 @@ public class Arena {
                 obstacles.add(new Wall(temp));
             }
 
-        // two Obstacle for takeEffect sequence
-        obstacles.add(new OilSpot(new Dimension(16, 16)));
-        obstacles.add(new PuttySpot(new Dimension(16, 24)));
+        // two Obstacle for takeEffect sequence + a Wall
+        obstacles.add(new OilSpot(new Dimension(17, 16)));
+        obstacles.add(new PuttySpot(new Dimension(17, 24)));
+        obstacles.add(new Wall(new Dimension(18,24)));
 
         LogHelper.ret("Arena objektum létrejött");
     }
@@ -56,13 +57,17 @@ public class Arena {
 
     //Egy adott pozíció alapján esetleges ott lévő akadály elkérése
     public Obstacle getObstacle(Dimension dest) {
-        System.out.println("getObstacle(); Arena;");
-        for(int i = 0; i < obstacles.size(); i++){
+        LogHelper.call("getObstacle(); Arena;");
+        int i;
+        for(i = 0; i < obstacles.size(); i++){
+            if(i>1) LogHelper.pause();
             if(obstacles.get(i).getPosition() == dest) {
                 LogHelper.ret("getObstacle() returned with: " + obstacles.get(i).toString() + ";");
                 return obstacles.get(i);
             }
+            if(i>1) LogHelper.rec();
         }
+        if(i>1)LogHelper.comment("[...]");
         LogHelper.ret("getObstacle() returned with: null;");
         return null;
     }
@@ -80,15 +85,16 @@ public class Arena {
     public Obstacle collision(Robot r, Dimension d) {
         LogHelper.call("collision(); Arena;");
         r.getPositon();
-        // a skeletonban az ütközés detekciót nem valósítjuk meg,
-        // de visszatérünk egy Wall objectummal annak effect függvénytesztje miatt
-        LogHelper.pause();
-        Wall w = new Wall(new Dimension(24, 32));
-        LogHelper.rec();
-
-        r.setPosition(w.getPosition());
-        LogHelper.ret("collision() returned with: " + w.toString() + ";");
-        return w;
+        // a skeletonban az ütközés detekciót nem valósítjuk meg teljes mértékben
+        Obstacle w = getObstacle(d);
+        if(w != null)
+            if(w.isWall()) {
+                w.effect(r);
+                LogHelper.ret("collision() returned with: " + w.toString() + ";");
+                return w;
+            }
+        LogHelper.ret("collision() returned with: void");
+        return null;
     }
 
     //Pályáról kilépés érzékelése
@@ -107,6 +113,7 @@ public class Arena {
         if(temp != null)
             temp.effect(r);
         else {
+            r.setPosition(dest);
             temp = getObstacle(r.getPositon());
             if (temp != null)
                 temp.effect(r);

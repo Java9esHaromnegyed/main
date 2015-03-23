@@ -32,6 +32,7 @@ public class Game {
         LogHelper.clear();
         arena.getRobot(0).move();
         arena.getRobot(1).move();
+        arena.getRobot(1).move();
     }
 
     //Menü megjelenítésért és kezelésért felelős fgv.
@@ -101,6 +102,8 @@ public class Game {
                         //Érvénytelen menüpont esetén hibát dobunk amit majd a catch ágban le is kezelünk
                         throw new Throwable("out of range");
                 }
+                LogHelper.question("\n\nPress Enter to get back to the main menu... ");
+                System.in.read();
             } catch (Throwable e) {
                 //Bármely hiba esetén hiba konzolra íratása
                 LogHelper.error("Invalid menu argument; " + e.getMessage() + "; @Game:menu_switch");

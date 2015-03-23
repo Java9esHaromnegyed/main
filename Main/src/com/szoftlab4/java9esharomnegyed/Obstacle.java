@@ -21,6 +21,9 @@ public abstract class Obstacle {
         return position;
     }
 
+    //megmondja hogy fal-e?
+    public abstract boolean isWall();
+
     //Szöveges megjelenítés akadályokra
     public abstract String toString();
 }

@@ -25,6 +25,11 @@ public class PuttySpot extends Obstacle {
     }
 
     @Override
+    public boolean isWall() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "PuttySpot(" + position.width + ", " + position.height + ")";
     }

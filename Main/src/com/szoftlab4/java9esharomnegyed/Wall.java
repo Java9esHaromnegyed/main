@@ -24,6 +24,12 @@ public class Wall extends Obstacle {
     }
 
     @Override
+    public boolean isWall() {
+        return true;
+    }
+
+
+    @Override
     public String toString() {
         return "Wall(" + position.width + ", " + position.height + ")";
     }

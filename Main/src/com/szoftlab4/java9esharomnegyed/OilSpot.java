@@ -24,6 +24,11 @@ public class OilSpot extends Obstacle {
     }
 
     @Override
+    public boolean isWall() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "OilSpot(" + position.width + ", " + position.height + ")";
     }

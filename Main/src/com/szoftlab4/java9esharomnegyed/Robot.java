@@ -7,9 +7,9 @@ import java.awt.*;
 //Osztály a robotokhoz
 public class Robot {
     private Arena arena;                        // just to call addObstacles(Obstacle obstacle) func.
-    private double speed = 0;                   // speed only goes from 0 to Config.SPD_LIMIT with Config.SPD_UNIT steps
+    private double speed = Config.SPD_DEFFAULT; // speed only goes from 0 to Config.SPD_LIMIT with Config.SPD_UNIT steps
                                                                 // (only slowing effect can achieve other speed argument)
-    private int direction = Config.DIR_UP;      // direction only goes from 0 to 3
+    private int direction = Config.DIR_RIGHT;   // direction only goes from 0 to 3
     private int puttyLeft = Config.PUTTY_TANK;
     private int oilLeft = Config.OIL_TANK;
     private String name = "Robot";

@@ -54,7 +54,7 @@ public class LogHelper {
         String fin;
         String tab = "";
         for(int i = 1; i < logLevel; i++){          // szintnek megfelelő tab előállítása
-            tab = tab.concat("  ");
+            tab = tab.concat("    ");
         }
         fin = tab.concat(raw);                      // tab összefűzése a szöveggel
         LogHelper.rec();                          // viszont újra kell indítani
