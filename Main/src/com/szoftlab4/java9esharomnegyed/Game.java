@@ -126,9 +126,9 @@ public class Game {
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         try {
             LogHelper.call("newGame(); Game;");
-            LogHelper.pause();
+            //LogHelper.pause();
             arena = new Arena();        // Arena felépítést kihagyjuk a newGame sekvenciából
-            LogHelper.rec();
+            //LogHelper.rec();
             leaderborad = new Leaderborad();
             clock = new Clock();
             //Első játékos nevének beolvasása
