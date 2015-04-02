@@ -4,9 +4,6 @@ import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
 import java.awt.*;
 
-/**
- * Created by Ricsard on 2015.03.29..
- */
 public abstract class AbstractRobot {
     protected Arena arena;                        // just to call addObstacles(Obstacle obstacle) func.
     protected double speed = Config.SPD_DEFFAULT; // speed only goes from 0 to Config.SPD_LIMIT with Config.SPD_UNIT steps
@@ -28,6 +25,10 @@ public abstract class AbstractRobot {
         position = pos;
         LogHelper.ret("setPosition(" + pos + ") returned with: void;");
     }
+
+    public abstract void turnLeft();
+
+    public abstract void turnRight();
 
     //Robot nevének lekérdezése
     public String getName() {
