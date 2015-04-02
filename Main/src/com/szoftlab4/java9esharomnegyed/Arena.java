@@ -41,9 +41,6 @@ public class Arena {
         LogHelper.ret("Arena object created;");
     }
 
-    public void refresh() {
-    }
-
     //Robot nevét beállító fgv
     public void setRobotName(String name, int player){
         LogHelper.call("setRobotName(" + name + ", " + player + "); param: String, int; Arena;");
