@@ -8,8 +8,6 @@ public abstract class Obstacle {
     //Obstacle osztály mezői
     protected Dimension position;
     protected Dimension size;
-    private int age = -1;
-    private long createTime = -1;
 
     //Robotra hatáshoz fgv
     public abstract void effect(Robot robot);

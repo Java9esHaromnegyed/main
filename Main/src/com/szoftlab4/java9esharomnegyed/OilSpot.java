@@ -7,6 +7,8 @@ import java.awt.*;
 //Egy fajta Obstacle
 public class OilSpot extends Obstacle {
 
+    private int age = 0;
+
     //Olajfolt létrehozása adott pozícióra
     public OilSpot(Dimension pos){
         LogHelper.call("OilSpot();");
@@ -32,5 +34,13 @@ public class OilSpot extends Obstacle {
     @Override
     public String toString() {
         return "OilSpot(" + position.width + ", " + position.height + ")";
+    }
+
+    public void ageSpot(){
+        age++;
+    }
+
+    public int getAge(){
+        return age;
     }
 }

@@ -7,6 +7,8 @@ import java.awt.*;
 //Egy fajta Obstacle
 public class PuttySpot extends Obstacle {
 
+    private int decay =0;
+
     //Ragacsfolt létrehozása adott pozícióra
     public PuttySpot(Dimension pos){
         LogHelper.call("PuttySpot();");
@@ -33,5 +35,13 @@ public class PuttySpot extends Obstacle {
     @Override
     public String toString() {
         return "PuttySpot(" + position.width + ", " + position.height + ")";
+    }
+
+    public void getDamage(){
+        decay++;
+    }
+
+    public int getDecay(){
+        return decay;
     }
 }
