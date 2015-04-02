@@ -10,6 +10,7 @@ public class Config {
     //speed limit
     public static final double SPD_LIMIT = 3;
     public static final double SPD_UNIT = 1;
+    public static final double SPD_DEFFAULT = 1;
 
     //direction
     public static final int DIR_UP = 0;

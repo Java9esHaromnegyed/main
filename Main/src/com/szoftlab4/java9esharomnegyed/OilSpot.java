@@ -11,16 +11,22 @@ public class OilSpot extends Obstacle {
     public OilSpot(Dimension pos){
         LogHelper.call("OilSpot();");
         position = pos;
-        LogHelper.ret("OilSpot objektum létrejött;");
+        LogHelper.ret("OilSpot object created;");
     }
 
     //Absztrakt metódus megvalósítása az akadály hatásához
     @Override
     public void effect(Robot robot) {
-        LogHelper.call("effect(); OilSpot; Robot: " + robot.getName() + ";");
+        LogHelper.call("effect(Robot: " + robot.getName() + "); param: Robot; OilSpot;");
         //Roboton megfelelő hatást kiváltó fgv meghívása
         robot.slipping();
-        LogHelper.ret("effect() lefutott;");
+        LogHelper.ret("effect(Robot: " + robot.getName() + ") returned with: void;");
+    }
+
+    //Absztrakt metódus megvalósítása a "fal-e" vizsgálathoz
+    @Override
+    public boolean isWall() {
+        return false;
     }
 
     @Override
