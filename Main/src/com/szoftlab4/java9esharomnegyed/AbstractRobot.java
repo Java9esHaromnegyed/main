@@ -11,9 +11,10 @@ public abstract class AbstractRobot {
     protected int direction = Config.DIR_RIGHT; // direction only goes from 0 to 3
     protected String name = "Robot";
     protected Dimension position;                 // robot position on the arena
+    protected int id = -1;
 
     //Robot pozíciójának lekérdezése
-    public Dimension getPositon() {
+    public Dimension getPosition() {
         LogHelper.call("getPosition(): Dimension; Robot; " + name + ";");
         LogHelper.ret("getPosition() returned with: " + position + ";");
         return position;
@@ -45,4 +46,8 @@ public abstract class AbstractRobot {
     }
 
     abstract public void move();
+
+    public int getID() {
+        return id;
+    }
 }
