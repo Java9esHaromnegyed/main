@@ -68,6 +68,11 @@ public class Robot extends AbstractRobot {
         LogHelper.ret("turnRight() returned with: void;");
     }
 
+    //A robot halálakor bekövetkező esemény
+    @Override
+    public void die() {
+    }
+
     //Robot gyorsítása
     public void speedUp(){
         LogHelper.call("speedUp(); Robot; " + name + ";");

@@ -23,6 +23,11 @@ public class CleanerRobot extends AbstractRobot {
     }
 
     @Override
+    public void die() {
+
+    }
+
+    @Override
     public void move() {
 
     }

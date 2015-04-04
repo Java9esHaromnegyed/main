@@ -31,6 +31,8 @@ public abstract class AbstractRobot {
 
     public abstract void turnRight();
 
+    public abstract void die();
+
     //Robot nevének lekérdezése
     public String getName() {
         //LogHelper.call("getName(); Robot; " + name + ";");
@@ -50,4 +52,5 @@ public abstract class AbstractRobot {
     public int getID() {
         return id;
     }
+
 }
