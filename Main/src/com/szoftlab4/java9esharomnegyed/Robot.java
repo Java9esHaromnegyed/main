@@ -14,12 +14,13 @@ public class Robot extends AbstractRobot {
     boolean slowed = false;                     // this flag gets true while robot stands on putty
 
     //Robot létrehozása egy arénához adott névvel, kezdő pozícióval és iránnyal.
-    public Robot(Arena a, String n, Dimension startPos, int dir) {
+    public Robot(Arena a, String n, Dimension startPos, int dir, int ID) {
         LogHelper.call("Robot();");
         arena = a;
         name = n;
         position = startPos;
         direction = dir;
+        id = ID;
         LogHelper.ret("Robot object created;");
     }
 
@@ -145,5 +146,4 @@ public class Robot extends AbstractRobot {
         paralyzed = false; // muszáj feloldani mert irányváltás és sebességnövelés nélkül nem tudnál elmozdulni onnan.
         LogHelper.ret("stop() returned with: void;");
     }
-
 }

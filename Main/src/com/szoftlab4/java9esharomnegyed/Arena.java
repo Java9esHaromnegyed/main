@@ -11,8 +11,10 @@ public class Arena {
     //Arena osztály mezői
     private List<Obstacle> obstacles;   // a List where the arena register all the placed Obstacle
     private Dimension size;             // Arena size
-    private Robot robot1;
-    private Robot robot2;
+    //private Robot robot1;
+    //private Robot robot2;
+    private List<Robot> robots;
+    private List<CleanerRobot> cleaners;
 
     //Üres konstruktor az elemek megfelelő inicializálásához
     public Arena(){
@@ -20,8 +22,11 @@ public class Arena {
         //64x64-es pálya lesz
         size = new Dimension(64, 64);
         //Két robot létrehozása default névvel
-        robot1 = new Robot(this, "player_one", new Dimension(16, 24), Config.DIR_RIGHT);
-        robot2 = new Robot(this, "player_two", new Dimension(16, 16), Config.DIR_RIGHT);
+        //robot1 = new Robot(this, "player_one", new Dimension(16, 24), Config.DIR_RIGHT, 1);
+        //robot2 = new Robot(this, "player_two", new Dimension(16, 16), Config.DIR_RIGHT, 2);
+        robots = new ArrayList<Robot>();
+        robots.add(new Robot(this, "player_one", new Dimension(16, 24), Config.DIR_RIGHT, 1));
+        robots.add(new Robot(this, "player_two", new Dimension(16, 16), Config.DIR_RIGHT, 2));
 
         // Areana will be build from txt, this is just an example for skeleton
         obstacles = new ArrayList<Obstacle>();
@@ -43,14 +48,13 @@ public class Arena {
 
     //Robot nevét beállító fgv
     public void setRobotName(String name, int player){
-        LogHelper.call("setRobotName(" + name + ", " + player + "); param: String, int; Arena;");
-        switch (player) {
+        robots.get(player).setName(name);
+        /*switch (player) {
             case 0 : robot1.setName(name);
                     break;
             case 1 : robot2.setName(name);
                     break;
-        }
-        LogHelper.ret("setRobotName(" + name + ", " + player + ") returned with: void;");
+        }*/
     }
 
     //Egy adott pozíció alapján esetleges ott lévő akadály elkérése
@@ -74,6 +78,14 @@ public class Arena {
             boolean r = obstacles.add(o);
             LogHelper.ret("add(" + o.toString() + ") returned with: " + r + ";");
         LogHelper.ret("addObstacle(" + o.toString() + ") returned with: void;");
+    }
+
+    public void addCleanerRobot(CleanerRobot roboC){
+        cleaners.add(roboC);
+    }
+
+    public CleanerRobot getCleanerRobot(int id){
+        return cleaners.get(id);
     }
 
     //Ütközésdetekció
@@ -108,7 +120,7 @@ public class Arena {
             temp.effect(r);
         else {
             r.setPosition(dest);
-            temp = getObstacle(r.getPositon());
+            temp = getObstacle(r.getPosition());
             if (temp != null)
                 temp.effect(r);
             else {
@@ -121,12 +133,13 @@ public class Arena {
 
     //Robot objektum visszaadása
     public Robot getRobot(int id) {
-        if(id == 0)
+        /*if(id == 0)
             return robot1;
         else if(id == 1)
             return robot2;
         else
-            return null;
+            return null;*/
+        return robots.get(id);
     }
 
     //Irányításkezelő fgv
@@ -138,43 +151,78 @@ public class Arena {
         //megfelelő fgvének meghívását vonja maga után
         switch (key) {
             case Config.MOV_P1_UP:
-                robot1.speedUp();
+                //robot1.speedUp();
+                robots.get(0).speedUp();
                 break;
             case Config.MOV_P1_DOWN:
-                robot1.slowDown();
+                robots.get(0).slowDown();
                 break;
             case Config.MOV_P1_LEFT:
-                robot1.turnLeft();
+                robots.get(0).turnLeft();
                 break;
             case Config.MOV_P1_RIGHT:
-                robot1.turnRight();
+                robots.get(0).turnRight();
                 break;
             case Config.MOV_P1_OIL:
-                robot1.dropOil();
+                robots.get(0).dropOil();
                 break;
             case Config.MOV_P1_PUTTY:
-                robot1.dropPutty();
+                robots.get(0).dropPutty();
                 break;
             case Config.MOV_P2_UP:
-                robot2.speedUp();
+                robots.get(1).speedUp();
                 break;
             case Config.MOV_P2_DOWN:
-                robot2.slowDown();
+                robots.get(1).slowDown();
                 break;
             case Config.MOV_P2_LEFT:
-                robot2.turnLeft();
+                robots.get(1).turnLeft();
                 break;
             case Config.MOV_P2_RIGHT:
-                robot2.turnRight();
+                robots.get(1).turnRight();
                 break;
             case Config.MOV_P2_OIL:
-                robot2.dropOil();
+                robots.get(1).dropOil();
                 break;
             case Config.MOV_P2_PUTTY:
-                robot2.dropPutty();
+                robots.get(1).dropPutty();
                 break;
             default: LogHelper.error("none of it: " + e + "; " + KeyEvent.KEY_FIRST);
         }
         LogHelper.ret("movementControl(" + e + ") returned with: void;");
+    }
+
+    public void tick(int k){
+        for(int i = 0; i < k; i++){
+
+        }
+    }
+
+    public void movementProto(int id, String command){
+        int chars[] = {KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_C, KeyEvent.VK_V,
+                KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_O, KeyEvent.VK_P};
+        int key = 0;
+
+        if(command.equals("RIGHT"))
+            key = 1;
+        else if(command.equals("DOWN"))
+            key = 2;
+        else if(command.equals("LEFT"))
+            key = 3;
+        else if(command.equals("OIL"))
+            key = 4;
+        else if(command.equals("PUTTY"))
+            key = 5;
+
+        if(id == robots.get(0).getID())
+            key += 0;
+        else if(id == robots.get(0).getID())
+            key += 6;
+        else {
+            LogHelper.comment("Nincs ilyen id-val rendelkező Robot");
+            return;
+        }
+
+        movementControl(chars[key]);
     }
 }
