@@ -19,8 +19,9 @@ public class Game {
         menu();
     }
 
+/*
     public static void moveRobotSequence(){
-        LogHelper.pause();  /*szükséges mezők inicializálása*/
+        //szükséges mezők inicializálása
         arena = new Arena(); //Arena init
         leaderborad = new Leaderborad();
         clock = new Clock();
@@ -32,6 +33,7 @@ public class Game {
         arena.getRobot(1).move();
         arena.getRobot(1).move();
     }
+*/
 
     //Menü megjelenítésért és kezelésért felelős fgv.
     public static void menu() {
@@ -84,7 +86,7 @@ public class Game {
                         break;
                     //Robot mozgása akadályralépése és annak hatáskiváltása
                     case 4:
-                        moveRobotSequence();
+                        //moveRobotSequence();
                         break;
                     //Exit választása esetén
                     case 0:

@@ -7,22 +7,18 @@ import java.awt.*;
 //Egy fajta Obstacle
 public class PuttySpot extends Obstacle {
 
-    private int decay =0;
+    private int decay = 0;
 
     //Ragacsfolt létrehozása adott pozícióra
     public PuttySpot(Dimension pos){
-        LogHelper.call("PuttySpot();");
         position = pos;
-        LogHelper.ret("PuttySpot object created;");
     }
 
     //Absztrakt metódus megvalósítása az akadály hatásához
     @Override
     public void effect(Robot robot) {
-        LogHelper.call("effect(Robot: " + robot.getName() + "); param: Robot; PuttySpot;");
         //Roboton megfelelő hatást kiváltó fgv meghívása
         robot.stuck();
-        LogHelper.ret("effect(Robot: " + robot.getName() + ") returned with: void;");
 
     }
 
