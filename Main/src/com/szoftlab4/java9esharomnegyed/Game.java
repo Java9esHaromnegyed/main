@@ -16,9 +16,7 @@ public class Game {
     //Program belépési pontja
     public static void main(String[] args) {
         //Első log, és a menü megjelenítése
-        LogHelper.comment("main() -> menu();");
         menu();
-        LogHelper.comment("\nmain() returned with: void;");
     }
 
     public static void moveRobotSequence(){
@@ -61,7 +59,6 @@ public class Game {
                     //New Game választása esetén
                     case 1:
                         //Megfelelő log és newGame() fgv mehívása
-                        LogHelper.comment("menu() -> newGame();");
                         newGame();
                         break;
                     //Robot Movement választása esetén
@@ -72,9 +69,6 @@ public class Game {
                         clock = new Clock();
                         requestName("player1", 0); //Játékosok nevének beállítása
                         requestName("player2", 1);
-                        LogHelper.rec();
-                        LogHelper.comment("#event: W,S,Up,A,Right lenyomása");
-                        LogHelper.clear();
                         //Robotnak különböző irányok megadása szimulációképp
                         arena.movementControl(KeyEvent.VK_W);
                         arena.movementControl(KeyEvent.VK_S);
@@ -84,7 +78,6 @@ public class Game {
                         break;
                     //Arena initialization választása esetén
                     case 3:
-                        LogHelper.comment("menu() -> new Arena();");
                         arena = new Arena(); //Arena init
                         requestName("player1", 0); //Játékosok nevének beállítása
                         requestName("player2", 1);
@@ -96,27 +89,22 @@ public class Game {
                     //Exit választása esetén
                     case 0:
                         //Megfelelő log és exitGame() meghívása
-                        LogHelper.inline("menu() -> exitGame();");
                         exitGame();
                         break;
                     default:
                         //Érvénytelen menüpont esetén hibát dobunk amit majd a catch ágban le is kezelünk
                         throw new Throwable("out of range");
                 }
-                LogHelper.question("\n\nPress Enter to get back to the main menu... ");
                 System.in.read();
             } catch (Throwable e) {
                 //Bármely hiba esetén hiba konzolra íratása
-                LogHelper.error("Invalid menu argument; " + e.getMessage() + "; @Game:menu_switch");
             }
         }
     }
 
     //Játékosok nevének beállítása
     public static void requestName(String name, int player) {
-        LogHelper.call("requestName(" + name + ", " + player + "); param: String, int; Game;");
         arena.setRobotName(name, player);
-        LogHelper.ret("requestName(" + name + ", " + player + ") returned with: void;");
     }
 
     //Új játék indítása
@@ -125,36 +113,29 @@ public class Game {
         InputStreamReader inputStreamReader = new InputStreamReader(System.in);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         try {
-            LogHelper.call("newGame(); Game;");
             //LogHelper.pause();
             arena = new Arena();        // Arena felépítést kihagyjuk a newGame sekvenciából
             //LogHelper.rec();
             leaderborad = new Leaderborad();
             clock = new Clock();
             //Első játékos nevének beolvasása
-            LogHelper.question("player one: ");
             String p1 = bufferedReader.readLine();
             requestName(p1, 0);
             //Második játékos nevének beolvasása
-            LogHelper.question("player two: ");
             String p2 = bufferedReader.readLine();
             requestName(p2, 1);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        LogHelper.ret("newGame() returned with: void;");
     }
 
     //Játék vége fgv
     public static void gameOver(){
-        LogHelper.call("gameOver(); Game;");
-        LogHelper.comment("--== GAME OVER! ==--");
         try {
             System.in.read();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        LogHelper.ret("gameOver() returned with: void;");
         //Végül visszatérünk a menübe
         menu();
     }
@@ -167,7 +148,6 @@ public class Game {
 
     //Kilépés a játékból fgv
     public static void exitGame(){
-        LogHelper.call("exitGame();");
         System.exit(0);
     }
 

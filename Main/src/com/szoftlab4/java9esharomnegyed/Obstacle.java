@@ -22,6 +22,9 @@ public abstract class Obstacle {
     //megmondja hogy fal-e?
     public abstract boolean isWall();
 
+    //megmondja hogy olaj-e? (kell a kor növeléshez tudni hogy olajat vettünk-e elő
+    public abstract boolean isOil();
+
     //Szöveges megjelenítés akadályokra
     public abstract String toString();
 }

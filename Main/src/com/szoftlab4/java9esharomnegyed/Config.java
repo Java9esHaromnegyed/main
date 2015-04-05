@@ -3,16 +3,20 @@ package com.szoftlab4.java9esharomnegyed;
 import java.awt.event.KeyEvent;
 
 public class Config {
-    //Program szinten egységes előre definiált konstans értékek
-    //Pl irányok, limitek, stb.
+    // Program szinten egységes előre definiált konstans értékek
+    // Pl irányok, limitek, stb.
 
-    /*ROBOT related*/
-    //speed limit
+    /* ROBOT related */
+    // speed limit
     public static final double SPD_LIMIT = 3;
     public static final double SPD_UNIT = 1;
     public static final double SPD_DEFFAULT = 1;
 
-    //direction
+    /* Cleaner ROBOT related */
+    // clean time
+    public static final int CLN_TIME = 2;
+
+    // direction
     public static final int DIR_UP = 0;
     public static final int DIR_RIGHT = 1;
     public static final int DIR_DOWN = 2;
@@ -21,13 +25,7 @@ public class Config {
     public static final int OIL_TANK = 5;
     public static final int PUTTY_TANK = 5;
 
-    /*
-    public static final int EFF_NONE = 0;       cserélni karakter jelölésekre
-    public static final int EFF_OIL = 1;
-    public static final int EFF_PUTTY = 2;
-    */
-
-    //controll
+    // controll
     public static final int MOV_P2_UP = KeyEvent.VK_UP;
     public static final int MOV_P2_DOWN = KeyEvent.VK_DOWN;
     public static final int MOV_P2_LEFT = KeyEvent.VK_LEFT;

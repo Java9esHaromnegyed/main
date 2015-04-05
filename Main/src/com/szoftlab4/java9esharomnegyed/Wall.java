@@ -17,16 +17,19 @@ public class Wall extends Obstacle {
     //Absztrakt metódus megvalósítása az akadály hatásához
     @Override
     public void effect(Robot robot) {
-        LogHelper.call("effect(Robot: " + robot.getName() + "); Wall;");
         //Roboton megfelelő hatást kiváltó fgv meghívása
         robot.stop();
-        LogHelper.ret("effect(Robot: " + robot.getName() + ") returned with: void;");
     }
 
     //Absztrakt metódus megvalósítása a "fal-e" vizsgálathoz
     @Override
     public boolean isWall() {
         return true;
+    }
+
+    @Override
+    public boolean isOil() {
+        return false;
     }
 
 

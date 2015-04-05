@@ -33,11 +33,16 @@ public class PuttySpot extends Obstacle {
     }
 
     @Override
+    public boolean isOil() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "PuttySpot(" + position.width + ", " + position.height + ")";
     }
 
-    public void getDamage(){
+    public void decayPutty(){
         decay++;
     }
 
