@@ -23,18 +23,6 @@ public class Wall extends Obstacle {
         v.effect(this, robot);
     }
 
-    //Absztrakt metódus megvalósítása a "fal-e" vizsgálathoz
-    @Override
-    public boolean isWall() {
-        return true;
-    }
-
-    @Override
-    public boolean isOil() {
-        return false;
-    }
-
-
     @Override
     public String toString() {
         return "Wall(" + position.width + ", " + position.height + ")";

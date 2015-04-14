@@ -22,18 +22,6 @@ public class OilSpot extends Obstacle {
         v.effect(this, robot);
     }
 
-    //Absztrakt metódus megvalósítása a "fal-e" vizsgálathoz
-    @Override
-    public boolean isWall() {
-        return false;
-    }
-
-    @Override
-    public boolean isOil() {
-        return true;
-    }
-
-
     @Override
     public String toString() {
         return "OilSpot(" + position.width + ", " + position.height + ")";

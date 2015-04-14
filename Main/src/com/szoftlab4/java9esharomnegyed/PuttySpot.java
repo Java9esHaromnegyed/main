@@ -22,17 +22,6 @@ public class PuttySpot extends Obstacle {
 
     }
 
-    //Absztrakt metódus megvalósítása a "fal-e" vizsgálathoz
-    @Override
-    public boolean isWall() {
-        return false;
-    }
-
-    @Override
-    public boolean isOil() {
-        return false;
-    }
-
     @Override
     public String toString() {
         return "PuttySpot(" + position.width + ", " + position.height + ")";
