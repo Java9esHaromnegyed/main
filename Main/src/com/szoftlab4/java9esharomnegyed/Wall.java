@@ -20,9 +20,6 @@ public class Wall extends Obstacle {
     public void age() {}
 
     @Override
-    public void decay() {}
-
-    @Override
     public void collide(Robot robot) {
         //Roboton megfelelő hatást kiváltó fgv meghívása
         robot.stop();

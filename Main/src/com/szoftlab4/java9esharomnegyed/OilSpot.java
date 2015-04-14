@@ -25,9 +25,6 @@ public class OilSpot extends Obstacle {
     }
 
     @Override
-    public void decay() {}
-
-    @Override
     public void collide(Robot robot) {}
 
     @Override

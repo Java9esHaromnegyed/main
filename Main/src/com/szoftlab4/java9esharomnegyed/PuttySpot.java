@@ -17,10 +17,6 @@ public class PuttySpot extends Obstacle {
     public void effect(Robot robot) {
         //Roboton megfelelő hatást kiváltó fgv meghívása
         robot.stuck();
-    }
-
-    @Override
-    public void decay(){
         decay++;
     }
 

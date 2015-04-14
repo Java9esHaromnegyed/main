@@ -22,8 +22,6 @@ public abstract class Obstacle {
 
     public abstract void age();
 
-    public abstract void decay();
-
     public abstract void collide(Robot robot);
 
     public int getDecay(){
