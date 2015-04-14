@@ -19,18 +19,6 @@ public class Wall extends Obstacle {
         robot.stop();
     }
 
-    //Absztrakt metódus megvalósítása a "fal-e" vizsgálathoz
-    @Override
-    public boolean isWall() {
-        return true;
-    }
-
-    @Override
-    public boolean isOil() {
-        return false;
-    }
-
-
     @Override
     public String toString() {
         return "Wall(" + position.width + ", " + position.height + ")";
