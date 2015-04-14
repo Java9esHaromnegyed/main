@@ -19,7 +19,6 @@ public class PuttySpot extends Obstacle {
     public void effect(Robot robot) {
         //Roboton megfelelő hatást kiváltó fgv meghívása
         robot.stuck();
-
     }
 
     //Absztrakt metódus megvalósítása a "fal-e" vizsgálathoz
