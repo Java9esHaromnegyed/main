@@ -1,7 +1,5 @@
 package com.szoftlab4.java9esharomnegyed;
 
-import com.szoftlab4.java9esharomnegyed.Interface.Visitor;
-
 import java.awt.*;
 
 //Absztrakt osztály a különboző akadálytípuokhoz, feladat hogy definiálja

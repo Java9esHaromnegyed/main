@@ -1,7 +1,5 @@
 package com.szoftlab4.java9esharomnegyed;
 
-import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
-
 import java.awt.*;
 
 //Egy fajta Obstacle
