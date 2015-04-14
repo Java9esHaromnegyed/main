@@ -11,12 +11,29 @@ public abstract class Obstacle {
     protected Dimension position;
     protected Dimension size;
 
+    protected int decay;
+    protected int age;
+
     //Robotra hatáshoz fgv
-    public abstract void effect(Visitor v, Robot robot);
+    public abstract void effect(Robot robot);
 
     //Akadály pozícióját adja vissza
     public Dimension getPosition() {
         return position;
+    }
+
+    public abstract void age();
+
+    public abstract void decay();
+
+    public abstract void collide(Robot robot);
+
+    public int getDecay(){
+        return decay;
+    }
+
+    public int getAge(){
+        return age;
     }
 
     //Szöveges megjelenítés akadályokra

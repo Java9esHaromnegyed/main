@@ -92,11 +92,10 @@ public class Arena {
     public Obstacle collision(Robot r, Dimension d) {
         // a skeletonban az ütközés detekciót nem valósítjuk meg teljes mértékben
         Obstacle w = getObstacle(d);
-        if(w != null)
-            if(w.isWall()) {
-                w.effect(r);
-                return w;
-            }
+        if (w != null) {
+            w.collide(r);
+            return w;
+        }
         return null;
     }
 
@@ -179,11 +178,7 @@ public class Arena {
             cleaners.get(j).move();
         }
         for (int j = 0; j < obstacles.size(); j++) {
-            OilSpot oilSpot;
-            if (obstacles.get(j).isOil()) {
-                oilSpot = (OilSpot) obstacles.get(j);
-                oilSpot.ageOil();
-            }
+            obstacles.get(j).age();
         }
 
     }

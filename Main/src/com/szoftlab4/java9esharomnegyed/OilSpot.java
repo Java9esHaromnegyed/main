@@ -16,22 +16,24 @@ public class OilSpot extends Obstacle {
 
     //Absztrakt metódus megvalósítása az akadály hatásához
     @Override
-    public void effect(Visitor v, Robot robot) {
+    public void effect(Robot robot) {
         //Roboton megfelelő hatást kiváltó fgv meghívása
-        //robot.slipping();
-        v.effect(this, robot);
+        robot.slipping();
     }
+
+    @Override
+    public void age(){
+        age++;
+    }
+
+    @Override
+    public void decay() {}
+
+    @Override
+    public void collide(Robot robot) {}
 
     @Override
     public String toString() {
         return "OilSpot(" + position.width + ", " + position.height + ")";
-    }
-
-    public void ageOil(){
-        age++;
-    }
-
-    public int getAge(){
-        return age;
     }
 }

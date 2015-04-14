@@ -19,19 +19,24 @@ public class PuttySpot extends Obstacle {
     public void effect(Robot robot) {
         //Roboton megfelelő hatást kiváltó fgv meghívása
         robot.stuck();
-
     }
+
+    @Override
+    public void decay(){
+        decay++;
+    }
+
+    @Override
+    public void age() {}
+
+
+    @Override
+    public void collide(Robot robot) {}
 
     @Override
     public String toString() {
         return "PuttySpot(" + position.width + ", " + position.height + ")";
     }
 
-    public void decayPutty(){
-        decay++;
-    }
 
-    public int getDecay(){
-        return decay;
-    }
 }
