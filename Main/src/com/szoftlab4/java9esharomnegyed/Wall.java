@@ -1,5 +1,6 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import com.szoftlab4.java9esharomnegyed.Interface.Visitor;
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
 import java.awt.*;
@@ -14,9 +15,10 @@ public class Wall extends Obstacle {
 
     //Absztrakt metódus megvalósítása az akadály hatásához
     @Override
-    public void effect(Robot robot) {
+    public void effect(Visitor v, Robot robot) {
         //Roboton megfelelő hatást kiváltó fgv meghívása
-        robot.stop();
+        //robot.stop();
+        v.effect(this, robot);
     }
 
     @Override

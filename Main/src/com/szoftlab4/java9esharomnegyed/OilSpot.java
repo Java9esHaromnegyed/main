@@ -1,6 +1,6 @@
 package com.szoftlab4.java9esharomnegyed;
 
-import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+import com.szoftlab4.java9esharomnegyed.Interface.Visitor;
 
 import java.awt.*;
 
@@ -16,9 +16,10 @@ public class OilSpot extends Obstacle {
 
     //Absztrakt metódus megvalósítása az akadály hatásához
     @Override
-    public void effect(Robot robot) {
+    public void effect(Visitor v, Robot robot) {
         //Roboton megfelelő hatást kiváltó fgv meghívása
-        robot.slipping();
+        //robot.slipping();
+        v.effect(this, robot);
     }
 
     @Override

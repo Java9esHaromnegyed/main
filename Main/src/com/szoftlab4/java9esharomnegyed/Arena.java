@@ -32,7 +32,7 @@ public class Arena {
         // two Obstacle for takeEffect sequence + a Wall
         obstacles.add(new OilSpot(new Dimension(17, 16)));
         obstacles.add(new PuttySpot(new Dimension(17, 24)));
-        obstacles.add(new Wall(new Dimension(18,16)));
+        obstacles.add(new Wall(new Dimension(18, 16)));
 
         Dimension temp = new Dimension(0,0);
         for(int i = 0; i < size.height; i += 16)         // this will build a rectangle around the Arena out of Wall
