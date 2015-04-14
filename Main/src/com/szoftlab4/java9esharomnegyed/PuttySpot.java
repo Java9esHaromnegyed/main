@@ -1,5 +1,6 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import com.szoftlab4.java9esharomnegyed.Interface.Visitor;
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
 import java.awt.*;
@@ -16,9 +17,10 @@ public class PuttySpot extends Obstacle {
 
     //Absztrakt metódus megvalósítása az akadály hatásához
     @Override
-    public void effect(Robot robot) {
+    public void effect(Visitor v, Robot robot) {
         //Roboton megfelelő hatást kiváltó fgv meghívása
-        robot.stuck();
+        //robot.stuck();
+        v.effect(this, robot);
     }
 
     //Absztrakt metódus megvalósítása a "fal-e" vizsgálathoz

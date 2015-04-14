@@ -1,5 +1,7 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import com.szoftlab4.java9esharomnegyed.Interface.Visitor;
+
 import java.awt.*;
 
 //Absztrakt osztály a különboző akadálytípuokhoz, feladat hogy definiálja
@@ -10,7 +12,7 @@ public abstract class Obstacle {
     protected Dimension size;
 
     //Robotra hatáshoz fgv
-    public abstract void effect(Robot robot);
+    public abstract void effect(Visitor v, Robot robot);
 
     //Akadály pozícióját adja vissza
     public Dimension getPosition() {
