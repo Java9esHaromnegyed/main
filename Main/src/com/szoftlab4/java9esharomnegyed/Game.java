@@ -15,7 +15,8 @@ public class Game {
 
     //Program belépési pontja
     public static void main(String[] args) {
-        newGame();
+        arena = new Arena();
+        leaderborad =  new Leaderborad();
     }
 
 /*
@@ -47,14 +48,13 @@ public class Game {
         //BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
             //LogHelper.pause();
-            arena = new Arena();        // Arena felépítést kihagyjuk a newGame sekvenciából
+            //arena = new Arena();        // Arena felépítést kihagyjuk a newGame sekvenciából
             //LogHelper.rec();
-            leaderborad = new Leaderborad();
+            //leaderborad = new Leaderborad();
             //clock = new Clock();
             //requestName(p1, 0);
             //requestName(p2, 1);
 
-        //TODO játékos név átvétele
     }
 
     //Játék vége fgv
@@ -91,7 +91,6 @@ public class Game {
     //Új játékot kezd a megadott pályával, és robot nevekkel, azok pontszámát nullázva
     public static void rematch(){
         arena = new Arena();
-        //TODO biztos kell új Arena, Robot stb?
     }
 
     //(később megjeleníti a leaderboardot)
