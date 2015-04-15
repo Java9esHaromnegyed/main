@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class Prototype {
     private ArrayList<String> inputCommands;
-    private ArrayList<String> outputMessages;
     private String[] args;
 
     public Prototype(String[] a){
@@ -55,12 +54,15 @@ public class Prototype {
             //A parancs neve a cmd tömb első eleme lesz
             String commandName = cmd[0];
             //A cmd tömb többi eleme a parancs argumentumai lesznek
-            String[] commandArguments = new String[cmd.length-1];
-            for (int i=1; i<cmd.length;i++)
-                commandArguments[i-1]=cmd[i];
+            //Abban az esetben ha a tesztelő nem írt argumentumot,csak egy parancsot:
+            String[] commandArguments = null;
+            if (cmd.length>1) {
+                commandArguments = new String[cmd.length - 1];
+                for (int i = 1; i < cmd.length; i++)
+                    commandArguments[i - 1] = cmd[i];
+            }
             command=new Command(commandName, commandArguments);
-            //A kimeneti üzenetek közé felvesszük a legutóbb végrehajtott parancs visszatérési értékét
-            outputMessages.add(command.execute());
+            command.execute();
         }
     }
 }
