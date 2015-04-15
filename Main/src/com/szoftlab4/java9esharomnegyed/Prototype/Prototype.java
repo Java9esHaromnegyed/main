@@ -9,6 +9,11 @@ import java.util.ArrayList;
 public class Prototype {
     private ArrayList<String> inputCommands;
     private ArrayList<String> outputMessages;
+    private String[] args;
+
+    public Prototype(String[] a){
+        args=a;
+    }
 
     //    args[0]= fileIn; args[1]= fileOut
     public void runPrototype(String[] args) throws IOException {
