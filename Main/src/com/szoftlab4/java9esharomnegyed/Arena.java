@@ -61,7 +61,16 @@ public class Arena {
         return null;
     }
 
-    //TODO: getWall()
+    //Egy adott pozíció alapján esetleges itt lévő fal elkérése
+    public Wall getWall(Dimension dest){
+        for(int i = 0; i < walls.size(); i++){
+            if(walls.get(i).getPosition().width == dest.width
+                    && walls.get(i).getPosition().height == dest.height) {
+                return walls.get(i);
+            }
+        }
+        return null;
+    }
 
     //cleaner robot ezt hívja meg az akadály eltüntetésére
     public void removeObstacle(Obstacle obstacle){
@@ -98,8 +107,8 @@ public class Arena {
 
     //Ütközésdetekció
     public Dimension collision(Robot r, Dimension d) {
-        // a skeletonban az ütközés detekciót nem valósítjuk meg teljes mértékben
-        Obstacle w = getObstacle(d);
+        Obstacle w = getWall(d);
+        // TODO: skálázás(köztes pozíciók ellenőrzése)
         if (w != null)
             w.collide(r);
         else

@@ -144,19 +144,20 @@ public class Robot extends AbstractRobot {
         slowed = false; //Jófejségből ha voltál olyan szerencsétlen hogy falnak mentél akkor ezt is levesszük
     }
 
-    public void stepBack(){
+    //Falba ütközéskor a robotot a fal előtti pozícióba állítja
+    public void stepBack(Dimension wall){
         switch (direction) {
             case Config.DIR_UP:
-                position.setSize(position.width, position.height - speed);
+                position.setSize(wall.width, wall.height - Config.TILE_SIZE);
                 break;
             case Config.DIR_RIGHT:
-                position.setSize(position.width - speed, position.height);
+                position.setSize(wall.width - Config.TILE_SIZE, wall.height);
                 break;
             case Config.DIR_DOWN:
-                position.setSize(position.width, position.height + speed);
+                position.setSize(wall.width, wall.height + Config.TILE_SIZE);
                 break;
             case Config.DIR_LEFT:
-                position.setSize(position.width + speed, position.height);
+                position.setSize(wall.width + Config.TILE_SIZE, wall.height);
                 break;
         }
     }
