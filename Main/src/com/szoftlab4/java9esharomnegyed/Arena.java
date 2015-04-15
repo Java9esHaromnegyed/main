@@ -16,8 +16,7 @@ public class Arena {
     private List<CleanerRobot> cleaners;
 
     //Üres konstruktor az elemek megfelelő inicializálásához
-    public Arena(){
-        LogHelper.call("Arena();");
+    public Arena(){ // String arenaTxt
         //64x64-es pálya lesz
         //TODO : fileReader() methode
         size = new Dimension(64, 64);
@@ -91,6 +90,10 @@ public class Arena {
     //Robot objektum visszaadása
     public Robot getRobot(int id) {
         return robots.get(id);
+    }
+
+    public List<Robot> getRobotList(){
+        return robots;
     }
 
     //Ütközésdetekció

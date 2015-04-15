@@ -1,10 +1,14 @@
 package com.szoftlab4.java9esharomnegyed;
 
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+import sun.org.mozilla.javascript.internal.ast.ArrayComprehensionLoop;
+
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
 
@@ -67,9 +71,9 @@ public class Game {
     //Játék elhagyása fgv
     //Leaderboardhoz hozzáadja a játékosok adatait, (később clockot megállítja, megjeleníti a menüt)
     public static void leaveGame(){
-        updateLeaderboard(arena.getRobot(0).getName(), arena.getRobot(0).getCoveredDistance());
-        updateLeaderboard(arena.getRobot(1).getName(), arena.getRobot(1).getCoveredDistance());
-
+        // TODO: Leave Game nem adja hozzá a leaderboardhoz az eredményt, mert még nincs eredmény. Igazság szerint csak visszalép a menübe.
+        // updateLeaderboard(arena.getRobot(0).getName(), arena.getRobot(0).getCoveredDistance());
+        // updateLeaderboard(arena.getRobot(1).getName(), arena.getRobot(1).getCoveredDistance());
     }
 
     //Kilépés a játékból fgv
@@ -90,7 +94,9 @@ public class Game {
 
     //Új játékot kezd a megadott pályával, és robot nevekkel, azok pontszámát nullázva
     public static void rematch(){
+        List<Robot> robots = arena.getRobotList();
         arena = new Arena();
+        // TODO: robotok visszatöltése
     }
 
     //(később megjeleníti a leaderboardot)
