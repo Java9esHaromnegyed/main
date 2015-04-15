@@ -4,6 +4,9 @@ import java.awt.*;
 
 public class CleanerRobot extends AbstractRobot {
 
+    private int cleanTime = Config.CLN_TIME;
+    Obstacle target = null;
+
     CleanerRobot(Arena a, Dimension pos, int dir, int ID, int cTime){
         super();
         arena = a;
@@ -17,27 +20,6 @@ public class CleanerRobot extends AbstractRobot {
         this(arena, pos, dir, ID, Config.CLN_TIME);
     }
 
-    private int cleanTime = Config.CLN_TIME;
-    Obstacle target = null;
-
-    @Override
-    public void turnLeft() {
-        if(!dead) {
-            direction++;
-            if (direction > Config.DIR_LEFT)     // when direction reached 4 we have to change it to 0.  direction only goes from 0 to 3
-                direction = Config.DIR_UP;
-        }
-    }
-
-    @Override
-    public void turnRight() {
-        if(!dead) {
-            direction--;
-            if (direction < Config.DIR_UP)       // when direction reached -1 we have to change it to 3.  direction only goes from 0 to 3
-                direction = Config.DIR_LEFT;
-        }
-    }
-
     @Override
     public void die() {
         PuttySpot puttySpot = new PuttySpot(position);
@@ -47,8 +29,27 @@ public class CleanerRobot extends AbstractRobot {
 
     @Override
     public void move() {
-        if(!dead){
-
+        if(position != target.getPosition()) {
+            Dimension destination = position;
+            //Csak akkor tehető meg ha nem halott
+            if (!dead) {
+                switch (direction) {
+                    case Config.DIR_UP:
+                        destination.setSize(destination.width, destination.height + speed);
+                        break;
+                    case Config.DIR_RIGHT:
+                        destination.setSize(destination.width + speed, destination.height);
+                        break;
+                    case Config.DIR_DOWN:
+                        destination.setSize(destination.width, destination.height - speed);
+                        break;
+                    case Config.DIR_LEFT:
+                        destination.setSize(destination.width - speed, destination.height);
+                        break;
+                }
+            }
+        } else {
+            clean();
         }
     }
 
@@ -58,9 +59,8 @@ public class CleanerRobot extends AbstractRobot {
         if(!dead){
             if(cleanTime > 0)
                 cleanTime--;
-            else if(cleanTime == 0){
+            if(cleanTime == 0){
                 arena.removeObstacle(target);
-
                 cleanTime = Config.CLN_TIME;
             }
         }

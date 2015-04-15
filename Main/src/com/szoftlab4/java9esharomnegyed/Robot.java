@@ -44,48 +44,55 @@ public class Robot extends AbstractRobot {
 
     //Robotnak balra fordulás utasítás adása
     public void turnLeft() {
-        //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
-        if(!dead && !paralyzed)
-            direction++;
-        if (direction > Config.DIR_LEFT)     // when direction reached 4 we have to change it to 0.  direction only goes from 0 to 3
-            direction = Config.DIR_UP;
+        //Ha nem paralyzed meghívjuk az ősosztály turnLeft-jét
+        if(!paralyzed){
+            super.turnLeft();
+        //Amúgy semmit sem csinálunk
+        } else {
+            return;
+        }
     }
 
     //Robotnak jobbra fordulás utasítás adása
     public void turnRight(){
-        //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
-        if(!paralyzed)
-            direction--;
-        if(direction < Config.DIR_UP)       // when direction reached -1 we have to change it to 3.  direction only goes from 0 to 3
-            direction = Config.DIR_LEFT;
-    }
-
-    //A robot halálakor bekövetkező esemény
-    @Override
-    public void die() {
-        dead = true;
+        //Ha nem paralyzed meghívjuk az ősosztály turnRight-ját
+        if(!paralyzed){
+            super.turnRight();
+        //Amúgy semmit sem csinálunk
+        } else {
+            return;
+        }
     }
 
     //Robot gyorsítása
     public void speedUp(){
         //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
-        if(!paralyzed || speed == 0)
+        if(!paralyzed && !dead && !slowed) {
             //Csak ha nem lépi túl a max. sebességet
-            if(speed + Config.SPD_UNIT < Config.SPD_LIMIT)  // speed only goes from 0 to Config.SPD_LIMIT
+            if ((speed + Config.SPD_UNIT) < Config.SPD_LIMIT)  // speed only goes from 0 to Config.SPD_LIMIT
                 speed += Config.SPD_UNIT;                       // with Config.SPD_UNIT steps
             else
                 speed = Config.SPD_LIMIT;
+        //Amúgy semmit sem csinálunk
+        } else {
+            return;
+        }
     }
 
     //Robot lassítása
     public void slowDown(){
         //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
-        if(!paralyzed)
+        if(!paralyzed && !dead && !slowed) {
             //Csak ha nem csökken 1-nél lentebb a sebessége
-            if(speed - Config.SPD_UNIT > 0)
-                speed += Config.SPD_UNIT;
+            if ((speed - Config.SPD_UNIT) > 0)
+                speed -= Config.SPD_UNIT;
+            //Egyébként a lehető legkisebb lesz, tehát 1
             else
-                speed = 0;
+                speed = 1;
+        //Amúgy semmit sem csinálunk
+        } else {
+            return;
+        }
     }
 
     //Robot mozgatása
@@ -113,6 +120,7 @@ public class Robot extends AbstractRobot {
         }
     }
 
+    //Effektek hatását leveszi a robotról
     public void clearEffects(){
         paralyzed = false;
         slowed = false;
@@ -120,21 +128,20 @@ public class Robot extends AbstractRobot {
 
     //Robotra ragacs hat
     public void stuck() {
-        slowed = true;
         speed *= 0.5;
-        paralyzed = false;
+        slowed = true;
     }
 
     //Robotra olajfolt hat
     public void slipping() {
         paralyzed = true;
-        slowed = false;
     }
 
     //Robot megállítása (pl fallal ütközés esetén)
     public void stop(){
         speed = 0;
         paralyzed = false; // muszáj feloldani mert irányváltás és sebességnövelés nélkül nem tudnál elmozdulni onnan.
+        slowed = false; //Jófejségből ha voltál olyan szerencsétlen hogy falnak mentél akkor ezt is levesszük
     }
 
     public void stepBack(){

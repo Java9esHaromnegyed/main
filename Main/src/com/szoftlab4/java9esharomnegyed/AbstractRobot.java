@@ -24,11 +24,26 @@ public abstract class AbstractRobot {
         position = pos;
     }
 
-    public abstract void turnLeft();
+    public void turnLeft(){
+        //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
+        if(!dead)
+            direction++;
+        if (direction > Config.DIR_LEFT)     // when direction reached 4 we have to change it to 0.  direction only goes from 0 to 3
+            direction = Config.DIR_UP;
+    };
 
-    public abstract void turnRight();
+    public void turnRight(){
+        //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
+        if(!dead)
+            direction--;
+        if(direction < Config.DIR_UP)       // when direction reached -1 we have to change it to 3.  direction only goes from 0 to 3
+            direction = Config.DIR_LEFT;
+    };
 
-    public abstract void die();
+    //A robot halálakor bekövetkező esemény
+    public void die(){
+        dead = true;
+    };
 
     //Robot nevének lekérdezése
     public String getName() {
