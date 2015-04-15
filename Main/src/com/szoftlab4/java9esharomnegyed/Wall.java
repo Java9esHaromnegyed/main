@@ -24,6 +24,7 @@ public class Wall extends Obstacle {
     public void collide(Robot robot) {
         //Roboton megfelelő hatást kiváltó fgv meghívása
         robot.stop();
+        robot.stepBack();
     }
 
     @Override

@@ -136,4 +136,21 @@ public class Robot extends AbstractRobot {
         speed = 0;
         paralyzed = false; // muszáj feloldani mert irányváltás és sebességnövelés nélkül nem tudnál elmozdulni onnan.
     }
+
+    public void stepBack(){
+        switch (direction) {
+            case Config.DIR_UP:
+                position.setSize(position.width, position.height - speed);
+                break;
+            case Config.DIR_RIGHT:
+                position.setSize(position.width - speed, position.height);
+                break;
+            case Config.DIR_DOWN:
+                position.setSize(position.width, position.height + speed);
+                break;
+            case Config.DIR_LEFT:
+                position.setSize(position.width + speed, position.height);
+                break;
+        }
+    }
 }

@@ -11,6 +11,7 @@ public class Arena {
     //Arena osztály mezői
     private Dimension size;             // Arena size
     private List<Obstacle> obstacles;   // a List where the arena register all the placed Obstacle
+    private List<Wall> walls;
     private List<Robot> robots;
     private List<CleanerRobot> cleaners;
 
@@ -18,6 +19,7 @@ public class Arena {
     public Arena(){
         LogHelper.call("Arena();");
         //64x64-es pálya lesz
+        //TODO : fileReader() methode
         size = new Dimension(64, 64);
         //Két robot létrehozása default névvel
         robots = new ArrayList<Robot>();
@@ -28,17 +30,18 @@ public class Arena {
 
         // Areana will be build from txt, this is just an example for skeleton
         obstacles = new ArrayList<Obstacle>();
+        walls = new ArrayList<Wall>();
 
         // two Obstacle for takeEffect sequence + a Wall
         obstacles.add(new OilSpot(new Dimension(17, 16)));
         obstacles.add(new PuttySpot(new Dimension(17, 24)));
-        obstacles.add(new Wall(new Dimension(18, 16)));
+        walls.add(new Wall(new Dimension(18, 16)));
 
         Dimension temp = new Dimension(0,0);
         for(int i = 0; i < size.height; i += 16)         // this will build a rectangle around the Arena out of Wall
             for(int j = 0; j < size.width; j += 16) {
                 temp.setSize(i, j);
-                obstacles.add(new Wall(temp));
+                walls.add(new Wall(temp));
             }
 
     }
@@ -58,6 +61,8 @@ public class Arena {
         }
         return null;
     }
+
+    //TODO: getWall()
 
     //cleaner robot ezt hívja meg az akadály eltüntetésére
     public void removeObstacle(Obstacle obstacle){
@@ -89,14 +94,14 @@ public class Arena {
     }
 
     //Ütközésdetekció
-    public Obstacle collision(Robot r, Dimension d) {
+    public Dimension collision(Robot r, Dimension d) {
         // a skeletonban az ütközés detekciót nem valósítjuk meg teljes mértékben
         Obstacle w = getObstacle(d);
-        if (w != null) {
+        if (w != null)
             w.collide(r);
-            return w;
-        }
-        return null;
+        else
+            r.setPosition(d);
+        return r.getPosition();
     }
 
     //Pályáról kilépés érzékelése
@@ -108,18 +113,15 @@ public class Arena {
 
     //Effekt érvényesítése egy adott roboton egy adott pozícióban
     public void takeEffect(Robot r, Dimension dest) {
-        Obstacle temp = collision(r, dest);     //először megnézi falbe ütközött-e
-        if(temp != null) {
-            temp.effect(r);
-            //megfelelő helyre elhelyezni majd tesztelni hogy ott történik e valami.
-        }else {
-            r.setPosition(dest);
-            temp = getObstacle(r.getPosition());
-            if (temp != null)
-                temp.effect(r);
-            else {
-                r.clearEffects();       // ha nem lép semmire töröljük az eddigi hatásokat
-            }
+        Dimension fin = collision(r, dest);     // először megnézi falbe ütközött-e
+        if(isOutOfArena(fin))                   // fin a végső pozíció ahova ugrottunk
+            r.die();                            // ha pályán kívül van akkor kinyírjuk a robotot
+        else{
+            Obstacle on = getObstacle(fin);
+            if(on != null)
+                on.effect(r);
+            else
+                r.clearEffects();               // ha nem lép semmire töröljük az eddigi hatásokat
         }
     }
 
