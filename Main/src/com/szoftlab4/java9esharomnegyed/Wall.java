@@ -14,7 +14,8 @@ public class Wall extends Obstacle {
 
     //Absztrakt metódus megvalósítása az akadály hatásához
     @Override
-    public void effect(Robot robot) {}
+    public void effect(Robot robot) {
+    }
 
     @Override
     public void age() {}
