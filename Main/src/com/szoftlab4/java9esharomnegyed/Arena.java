@@ -107,8 +107,20 @@ public class Arena {
 
     //Ütközésdetekció
     public Dimension collision(Robot r, Dimension d) {
-        Obstacle w = getWall(d);
-        // TODO: skálázás(köztes pozíciók ellenőrzése)
+        Obstacle w = null;
+        Dimension temp;
+        int dir = r.getDirection();
+        for (temp = r.getPosition() ; w == null && temp != d;) {
+            w = getWall(temp);
+            if(dir % 2 == 0) {
+                dir = (dir - 1) * (-1);                 // 0: (0 - 1) = -1; (-1) * (-1) = +1;  => X+
+                temp.width += dir * Config.TILE_SIZE;   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => X-
+            } else {
+                dir = (dir - 2) * (-1);                 // 1: (1 - 2) = -1; (-1) * (-1) = +1;  => Y+
+                temp.height += dir * Config.TILE_SIZE;  // 3: (3 - 2) = +1;   1  * (-1) = -1;  => Y-
+            }
+        }
+
         if (w != null)
             w.collide(r);
         else

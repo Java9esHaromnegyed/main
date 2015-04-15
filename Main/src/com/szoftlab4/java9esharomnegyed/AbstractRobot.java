@@ -7,7 +7,8 @@ import java.awt.*;
 public abstract class AbstractRobot {
     protected Arena arena;                        // just to call back to Arena in functions
     protected double speed = Config.SPD_DEFFAULT; // speed only goes from 0 to Config.SPD_LIMIT with Config.SPD_UNIT steps
-                                                        // (only slowing effect can achieve other speed argument)
+
+    // (only slowing effect can achieve other speed argument)
     protected int direction = Config.DIR_RIGHT; // direction only goes from 0 to 3
     protected String name = "Robot";
     protected Dimension position;                 // robot position on the arena
@@ -45,6 +46,10 @@ public abstract class AbstractRobot {
         dead = true;
     };
 
+    public int getDirection() {
+        return direction;
+    }
+
     //Robot nevének lekérdezése
     public String getName() {
         return name;
@@ -60,5 +65,4 @@ public abstract class AbstractRobot {
     public int getID() {
         return id;
     }
-
 }
