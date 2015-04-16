@@ -62,7 +62,7 @@ public class Prototype {
                 for (int i = 1; i < cmd.length; i++)
                     commandArguments[i - 1] = cmd[i];
             }
-            command = new Command(commandName, commandArguments);
+            command = new Command(arena, commandName, commandArguments);
             command.execute();
         }
     }

@@ -58,11 +58,12 @@ public class Arena {
                         addRobot("player"+element, place, Config.DIR_UP, Integer.valueOf(element));
                     }
                 }
+            LogHelper.inline("arenaInited");
         }
     }
 
     // feladata beolvasni az arénát tartalmazó txt-t majd visszaadni a beolvasott sortömbböt
-    public void fileReader(String fileName) {
+    public void loadMap(String fileName) {
         ArrayList<String> temp = new ArrayList<String>();
         String line = null;
 
@@ -86,6 +87,8 @@ public class Arena {
         }
 
         this.map = temp;
+        LogHelper.inline("arenaLoaded src: " + fileName);
+
         if(this.map != null)
             this.size = new Dimension(this.map.get(0).length(), this.map.size());
         else

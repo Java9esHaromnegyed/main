@@ -1,13 +1,19 @@
 package com.szoftlab4.java9esharomnegyed.Prototype;
 
+import com.szoftlab4.java9esharomnegyed.Arena;
+import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+import sun.rmi.runtime.Log;
+
 import java.io.IOException;
 
 public class Command {
+    Arena inGameArena;
     boolean exitPrototype = false;
     private String name;
     private String[] args;
 
-    Command (String n, String[] a){
+    Command (Arena arena, String n, String[] a){
+        inGameArena = arena;
         name=n;
         args=a;
     }
@@ -132,21 +138,27 @@ public class Command {
 
 
     private void loadArena(String[] args){
+        String txt = "";
         if(args!=null && args.length==1){
-            String txt = args[0].replace("\"", ""); //loadArena "arena1.txt" a formátumunk így le kell vágni mindkét "-t
-
+            txt = args[0].replace("\"", ""); //loadArena "arena1.txt" a formátumunk így le kell vágni mindkét "-t
+            inGameArena.loadMap(txt);
         }
-        else{
-
+        else if(args != null) {
+            for(int i = 0; i < args.length; i++)
+                txt.concat(args[i]);
+            txt = txt.replace("\"", "");
+            inGameArena.loadMap(txt);
+        } else {
+            LogHelper.error("Not enough arguments!");
         }
     }
 
     private void initArena(String[] args) {
-        if(args==null){
-
+        if(args == null){
+            inGameArena.initArena();
         }
         else{
-
+            LogHelper.error("Too many arguments!");
         }
     }
 
