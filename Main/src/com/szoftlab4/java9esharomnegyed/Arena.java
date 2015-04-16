@@ -142,13 +142,26 @@ public class Arena {
     }
 
     public void addRobot(String name, Dimension pos, int dir, int id){
-        Robot robo = new Robot(this, name, pos, dir, id);
-        robots.add(robo);
+        if(robots.size() < 2) {
+            Robot robo = new Robot(this, name, pos, dir, id);
+            //TODO: kimenet
+            robots.add(robo);
+        } else {
+            LogHelper.error("There isn't room for another robot!");
+        }
     }
 
     //Robot objektum visszaadása
     public Robot getRobot(int id) {
-        return robots.get(id);
+        Robot temp = null;
+        for(int i = 0; i < robots.size(); i++)
+            if(robots.get(i).getID() == id)
+                temp = robots.get(i);
+        if(temp == null)
+            LogHelper.error("There is no such Robot with id: " + id + "!");
+        else
+            ;//TODO: kimenet
+        return temp;
     }
 
     public List<Robot> getRobotList(){

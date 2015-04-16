@@ -147,13 +147,15 @@ public class Command {
                 key = 4;
             else if(command.equals("PUTTY"))
                 key = 5;
+            else
+                LogHelper.error("Wrong command!");
 
-            if(id == inGameArena.getRobot(0).getID())
+            if(id == inGameArena.getRobotList().get(0).getID())
                 key += 0;
-            else if(id == inGameArena.getRobot(0).getID())
+            else if(id == inGameArena.getRobotList().get(1).getID())
                 key += 6;
             else {
-                LogHelper.log("Nincs ilyen id-val rendelkező Robot");
+                LogHelper.error("There is no such robot with id: " + id + "!");
                 return;
             }
 
