@@ -2,11 +2,8 @@ package com.szoftlab4.java9esharomnegyed.Prototype;
 
 import java.io.IOException;
 
-/**
- * Created by Abel on 2015.04.15..
- */
 public class Command {
-    boolean exitPrototype=false;
+    boolean exitPrototype = false;
     private String name;
     private String[] args;
 
@@ -18,18 +15,18 @@ public class Command {
     protected void execute() throws IOException {
         //Mindig a kapott string első szavát nézzük, az lesz a parancs, utána következnek a parancs argumentummal
         //Argumentum nélküli parancsoknál (pl testAll) megnézzük hogy args==null -> ha igen, akkor helyes az utasítás, tehát a paraméter nélküli parancs után nem írt a tesztelő semmit
-        if (name=="loadArena")  loadArena(args);
-        if (name=="initArena") initArena(args);
-        if (name=="robotMovement") robotMovement(args);
-        if (name=="robotMove") robotMove(args);
-        if (name=="endGame") endGame(args);
-        if (name=="pauseGame") pauseGame(args);
-        if (name=="addCleanerRobot") addCleanerRobot(args);
-        if (name=="cleanerRobotTest") cleanerRobotTest(args);
-        if (name=="exitGame") exitGame(args);
-        if (name=="testAll") testAll(args);
-        if (name=="addRobot") addRobot(args);
-        if (name=="tick") tick(args);
+        if (name.equals("loadArena"))  loadArena(args);
+        if (name.equals("initArena")) initArena(args);
+        if (name.equals("robotMovement")) robotMovement(args);
+        if (name.equals("robotMove")) robotMove(args);
+        if (name.equals("endGame")) endGame(args);
+        if (name.equals("pauseGame")) pauseGame(args);
+        if (name.equals("addCleanerRobot")) addCleanerRobot(args);
+        if (name.equals("cleanerRobotTest")) cleanerRobotTest(args);
+        if (name.equals("exitGame")) exitGame(args);
+        if (name.equals("testAll")) testAll(args);
+        if (name.equals("addRobot")) addRobot(args);
+        if (name.equals("tick")) tick(args);
     }
 
     /*Ide jönnek a fügvények amik a már értelmezett parancsot végrehajtják a kapott argumentumokkal*/
@@ -134,8 +131,9 @@ public class Command {
     }
 
 
-    private void loadArena(String [] args){
+    private void loadArena(String[] args){
         if(args!=null && args.length==1){
+            String txt = args[0].replace("\"", ""); //loadArena "arena1.txt" a formátumunk így le kell vágni mindkét "-t
 
         }
         else{
@@ -143,7 +141,7 @@ public class Command {
         }
     }
 
-    private void initArena(String [] args) {
+    private void initArena(String[] args) {
         if(args==null){
 
         }

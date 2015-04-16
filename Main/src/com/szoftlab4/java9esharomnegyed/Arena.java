@@ -1,9 +1,14 @@
 package com.szoftlab4.java9esharomnegyed;
 
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+import sun.rmi.runtime.Log;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,35 +19,77 @@ public class Arena {
     private List<Wall> walls;
     private List<Robot> robots;
     private List<CleanerRobot> cleaners;
+    ArrayList<String> map;
 
     //Üres konstruktor az elemek megfelelő inicializálásához
-    public Arena(){ // String arenaTxt
-        //64x64-es pálya lesz
-        //TODO : fileReader() methode
-        size = new Dimension(64, 64);
-        //Két robot létrehozása default névvel
+    public Arena(){
         robots = new ArrayList<Robot>();
-        robots.add(new Robot(this, "player_one", new Dimension(16, 24), Config.DIR_RIGHT, 1));
-        robots.add(new Robot(this, "player_two", new Dimension(16, 16), Config.DIR_RIGHT, 2));
-
         cleaners = new ArrayList<CleanerRobot>();
-
-        // Areana will be build from txt, this is just an example for skeleton
         obstacles = new ArrayList<Obstacle>();
         walls = new ArrayList<Wall>();
+    }
 
-        // two Obstacle for takeEffect sequence + a Wall
-        obstacles.add(new OilSpot(new Dimension(17, 16)));
-        obstacles.add(new PuttySpot(new Dimension(17, 24)));
-        walls.add(new Wall(new Dimension(18, 16)));
+    // feladata a már beolvasott map-ből elhelyezni a szükséges robotokat akadályokat
+    public void initArena(){
+        int startX = Config.TILE_SIZE / 2;
+        int startY = Config.TILE_SIZE / 2;
+        int tile = Config.TILE_SIZE;
+        Dimension place;
+        char element;
 
-        Dimension temp = new Dimension(0,0);
-        for(int i = 0; i < size.height; i += 16)         // this will build a rectangle around the Arena out of Wall
-            for(int j = 0; j < size.width; j += 16) {
-                temp.setSize(i, j);
-                walls.add(new Wall(temp));
-            }
+        if(this.map != null){
+            for(int i = 0; i < this.size.height; i++)
+                for(int j = 0; j < this.size.width; j++){
+                    element = this.map.get(i).charAt(j);
+                    place = new Dimension(startX + (j * tile), startY + (i * tile));
 
+                    switch (element) {
+                        case 'w': walls.add(new Wall(place));
+                            break;
+                        case 'o': obstacles.add(new OilSpot(place));
+                            break;
+                        case 'p': obstacles.add(new PuttySpot(place));
+                            break;
+                        case '_': break;
+                        default: break;
+                    }
+
+                    if(element >= '0' && element <= '9'){
+                        addRobot("player"+element, place, Config.DIR_UP, Integer.valueOf(element));
+                    }
+                }
+        }
+    }
+
+    // feladata beolvasni az arénát tartalmazó txt-t majd visszaadni a beolvasott sortömbböt
+    public void fileReader(String fileName) {
+        ArrayList<String> temp = new ArrayList<String>();
+        String line = null;
+
+        FileReader fr = null;
+        BufferedReader br = null;
+
+        try {
+            fr = new FileReader(Config.ARENA_FOLDER + fileName);
+            br = new BufferedReader(fr);
+
+            while ((line = br.readLine()) != null)
+                temp.add(new String(line.toLowerCase()));
+
+            if (br != null) br.close();
+            if (fr != null) fr.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        this.map = temp;
+        if(this.map != null)
+            this.size = new Dimension(this.map.get(0).length(), this.map.size());
+        else
+            this.size = new Dimension(Config.DEF_MAPSIZE, Config.DEF_MAPSIZE);
     }
 
     //Robot nevét beállító fgv
@@ -138,9 +185,11 @@ public class Arena {
     //Effekt érvényesítése egy adott roboton egy adott pozícióban
     public void takeEffect(Robot r, Dimension dest) {
         Dimension fin = collision(r, dest);     // először megnézi falbe ütközött-e
-        if(isOutOfArena(fin))                   // fin a végső pozíció ahova ugrottunk
+        if(isOutOfArena(fin)) {                 // fin a végső pozíció ahova ugrottunk
             r.die();                            // ha pályán kívül van akkor kinyírjuk a robotot
-        else{
+            if(robots.size() == 1)
+                Game.gameOver();
+        } else {
             Obstacle on = getObstacle(fin);
             if(on != null)
                 on.effect(r);

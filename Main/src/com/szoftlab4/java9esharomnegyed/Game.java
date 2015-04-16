@@ -1,5 +1,6 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import com.szoftlab4.java9esharomnegyed.Prototype.Prototype;
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 import sun.org.mozilla.javascript.internal.ast.ArrayComprehensionLoop;
 
@@ -20,24 +21,11 @@ public class Game {
     //Program belépési pontja
     public static void main(String[] args) {
         arena = new Arena();
-        leaderborad =  new Leaderborad();
+        Prototype prototype = new Prototype(arena);
+
+        //leaderborad =  new Leaderborad();
     }
 
-/*
-    public static void moveRobotSequence(){
-        //szükséges mezők inicializálása
-        arena = new Arena(); //Arena init
-        leaderborad = new Leaderborad();
-        clock = new Clock();
-        requestName("player1", 0); //Játékosok nevének beállítása
-        requestName("player2", 1);
-        LogHelper.rec();
-        LogHelper.clear();
-        arena.getRobot(0).move();
-        arena.getRobot(1).move();
-        arena.getRobot(1).move();
-    }
-*/
 
 
     //Játékosok nevének beállítása

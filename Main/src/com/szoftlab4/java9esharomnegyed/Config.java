@@ -41,4 +41,9 @@ public class Config {
 
     /* ARENA related */
     public static final int TILE_SIZE = 16;     // obstacles, robots and generally "tile"-s dimension in pixel
+    public static final int DEF_MAPSIZE = 64;
+    public static final String ARENA_FOLDER = "data/arenas/";
+
+    /* TEST related */
+    public static final String TEST_FOLDER = "data/tests/";
 }
