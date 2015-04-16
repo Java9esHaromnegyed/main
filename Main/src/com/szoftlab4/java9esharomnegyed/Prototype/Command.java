@@ -4,6 +4,7 @@ import com.szoftlab4.java9esharomnegyed.Arena;
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 import sun.rmi.runtime.Log;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 public class Command {
@@ -129,7 +130,34 @@ public class Command {
 
     private void robotMovement(String[] args) {
         if(args!=null && args.length==2){
+            int id = Integer.valueOf(args[0]);
+            String command = args[1];
 
+            int chars[] = {KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_C, KeyEvent.VK_V,
+                    KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_O, KeyEvent.VK_P};
+            int key = 0;
+
+            if(command.equals("RIGHT"))
+                key = 1;
+            else if(command.equals("DOWN"))
+                key = 2;
+            else if(command.equals("LEFT"))
+                key = 3;
+            else if(command.equals("OIL"))
+                key = 4;
+            else if(command.equals("PUTTY"))
+                key = 5;
+
+            if(id == inGameArena.getRobot(0).getID())
+                key += 0;
+            else if(id == inGameArena.getRobot(0).getID())
+                key += 6;
+            else {
+                LogHelper.log("Nincs ilyen id-val rendelkező Robot");
+                return;
+            }
+
+            inGameArena.movementControl(chars[key]);
         }
         else{
 
@@ -145,7 +173,7 @@ public class Command {
         }
         else if(args != null) {
             for(int i = 0; i < args.length; i++)
-                txt.concat(args[i]);
+                txt.concat(" " + args[i]);
             txt = txt.replace("\"", "");
             inGameArena.loadMap(txt);
         } else {
