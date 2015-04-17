@@ -21,6 +21,7 @@ public class Game {
     //Program belépési pontja
     public static void main(String[] args) {
         arena = new Arena();
+        leaderborad = new Leaderborad();
         Prototype prototype = new Prototype(arena);
 
         //leaderborad =  new Leaderborad();
@@ -39,11 +40,6 @@ public class Game {
         //InputStreamReader inputStreamReader = new InputStreamReader(System.in);
         //BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-            //LogHelper.pause();
-            //arena = new Arena();        // Arena felépítést kihagyjuk a newGame sekvenciából
-            //LogHelper.rec();
-            //leaderborad = new Leaderborad();
-            //clock = new Clock();
             //requestName(p1, 0);
             //requestName(p2, 1);
 
@@ -89,10 +85,12 @@ public class Game {
 
     //(később megjeleníti a leaderboardot)
     public static void showLeaderboard() {
+        for(int i = 0; i < leaderborad.getListSize(); i++)
+            LogHelper.inline((i+1) + ".\t" + leaderborad.getName(i) + " score: " + leaderborad.getScore(i));
     }
 
     //Hozzá fűz egy rekordot a leaderboardhoz
     public static void updateLeaderboard(String name, double score) {
-        leaderborad.addRecord(new Record(name, score));
+        leaderborad.addRecord(name, score);
     }
 }

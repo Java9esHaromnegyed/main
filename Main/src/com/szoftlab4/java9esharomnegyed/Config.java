@@ -46,4 +46,7 @@ public class Config {
 
     /* TEST related */
     public static final String TEST_FOLDER = "data/tests/";
+
+    /* LEADERBOARD related */
+    public static final int LEADERBOARD_SIZE = 10;
 }

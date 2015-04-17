@@ -41,7 +41,13 @@ public class Command {
 
     private void tick(String[] args) {
         if(args!=null && args.length==1){
-
+            try {
+                int count = Integer.valueOf(args[0]);
+                for (int i = 0; i < count; i++)
+                    inGameArena.tick();
+            } catch (NumberFormatException e) {
+                LogHelper.error("Invalid argument! Argument has to be a number");
+            }
         }
         else{
 
