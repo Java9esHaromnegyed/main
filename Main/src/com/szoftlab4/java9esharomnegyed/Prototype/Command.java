@@ -1,17 +1,26 @@
 package com.szoftlab4.java9esharomnegyed.Prototype;
 
 import com.szoftlab4.java9esharomnegyed.Arena;
+import com.szoftlab4.java9esharomnegyed.CleanerRobot;
+import com.szoftlab4.java9esharomnegyed.Leaderborad;
+import com.szoftlab4.java9esharomnegyed.Robot;
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 import sun.rmi.runtime.Log;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.List;
 
 public class Command {
     Arena inGameArena;
     boolean exitPrototype = false;
     private String name;
     private String[] args;
+    private List<Robot> robots;
+    private List<CleanerRobot> cleanerBots;
+    //LeaderBORAD.. komolyan? :D
+    private Leaderborad leaderB;
 
     Command (Arena arena, String n, String[] a){
         inGameArena = arena;
@@ -58,12 +67,13 @@ public class Command {
 
     private void addRobot(String[] args) {
         if(args!=null && args.length==4){
-
+            Dimension dim = new Dimension(Integer.valueOf(args[2]), Integer.valueOf(args[3]));
+            Robot robo = new Robot(inGameArena, args[1], dim, 0, Integer.valueOf(args[0]));
+            robots.add(robo);
         }
         else{
-
+            LogHelper.error("You are a fucking retarded idiot, fuck you and give me exactly 4 arguments. Thanks.");
         }
-
     }
 
     private void testAll(String[] args) {
@@ -78,10 +88,10 @@ public class Command {
 
     private void exitGame(String[] args) {
         if(args==null){
-
+            System.exit(0);
         }
         else{
-
+            LogHelper.error("There is no option needed for exitGame command.");
         }
 
     }
@@ -98,10 +108,12 @@ public class Command {
 
     private void addCleanerRobot(String[] args) {
         if(args!=null && args.length==3){
-
+            Dimension dim = new Dimension(Integer.valueOf(args[1]), Integer.valueOf(args[2]));
+            CleanerRobot crobo = new CleanerRobot(inGameArena, dim, 0, Integer.valueOf(args[0]));
+            cleanerBots.add(crobo);
         }
         else{
-
+            LogHelper.error("Please give me exactly 3 arguments. - [id] [x] [y]");
         }
 
     }
@@ -118,7 +130,17 @@ public class Command {
 
     private void endGame(String[] args) {
         if(args!=null && args.length==1){
-
+            if (args[0].equals("timeOver")) {
+                // honnan lesz meg a pontszám, azt hol tároljuk?
+                leaderB.addRecord(robots.get(0).getName(), 100);
+                leaderB.addRecord(robots.get(1).getName(), 120);
+            } else if (args[0].equals("robotOut")) {
+//itt honnan tudjuk, hogy melyik robot nyert?
+            } else if (args[0].equals("robotDied")){
+//itt honnan tudjuk, hogy melyik robot nyert?
+            } else {
+                LogHelper.error("Not valid option");
+            }
         }
         else{
 
