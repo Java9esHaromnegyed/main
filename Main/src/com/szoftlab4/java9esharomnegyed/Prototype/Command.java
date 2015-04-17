@@ -23,17 +23,19 @@ public class Command {
         //Mindig a kapott string első szavát nézzük, az lesz a parancs, utána következnek a parancs argumentummal
         //Argumentum nélküli parancsoknál (pl testAll) megnézzük hogy args==null -> ha igen, akkor helyes az utasítás, tehát a paraméter nélküli parancs után nem írt a tesztelő semmit
         if (name.equals("loadArena"))  loadArena(args);
-        if (name.equals("initArena")) initArena(args);
-        if (name.equals("robotMovement")) robotMovement(args);
-        if (name.equals("robotMove")) robotMove(args);
-        if (name.equals("endGame")) endGame(args);
-        if (name.equals("pauseGame")) pauseGame(args);
-        if (name.equals("addCleanerRobot")) addCleanerRobot(args);
-        if (name.equals("cleanerRobotTest")) cleanerRobotTest(args);
-        if (name.equals("exitGame")) exitGame(args);
-        if (name.equals("testAll")) testAll(args);
-        if (name.equals("addRobot")) addRobot(args);
-        if (name.equals("tick")) tick(args);
+        else if (name.equals("initArena")) initArena(args);
+        else if (name.equals("robotMovement")) robotMovement(args);
+        else if (name.equals("robotMove")) robotMove(args);
+        else if (name.equals("endGame")) endGame(args);
+        else if (name.equals("pauseGame")) pauseGame(args);
+        else if (name.equals("addCleanerRobot")) addCleanerRobot(args);
+        else if (name.equals("cleanerRobotTest")) cleanerRobotTest(args);
+        else if (name.equals("exitGame")) exitGame(args);
+        else if (name.equals("testAll")) testAll(args);
+        else if (name.equals("addRobot")) addRobot(args);
+        else if (name.equals("tick")) tick(args);
+        else
+            LogHelper.error("Unknown command!");
     }
 
     /*Ide jönnek a fügvények amik a már értelmezett parancsot végrehajtják a kapott argumentumokkal*/
