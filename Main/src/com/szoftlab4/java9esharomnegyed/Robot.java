@@ -103,16 +103,16 @@ public class Robot extends AbstractRobot {
         if(!dead) {
             switch (direction) {
                 case Config.DIR_UP:
-                    destination.setSize(destination.width, destination.height + speed);
+                    position.setSize(destination.width, destination.height + speed);
                     break;
                 case Config.DIR_RIGHT:
-                    destination.setSize(destination.width + speed, destination.height);
+                    position.setSize(destination.width + speed, destination.height);
                     break;
                 case Config.DIR_DOWN:
-                    destination.setSize(destination.width, destination.height - speed);
+                    position.setSize(destination.width, destination.height - speed);
                     break;
                 case Config.DIR_LEFT:
-                    destination.setSize(destination.width - speed, destination.height);
+                    position.setSize(destination.width - speed, destination.height);
                     break;
             }
 

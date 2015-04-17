@@ -6,6 +6,7 @@ public class CleanerRobot extends AbstractRobot {
 
     private int cleanTime = Config.CLN_TIME;
     Obstacle target = null;
+    Dimension directionVector = new Dimension();
 
     CleanerRobot(Arena a, Dimension pos, int dir, int ID, int cTime){
         super();
@@ -14,42 +15,41 @@ public class CleanerRobot extends AbstractRobot {
         direction = dir;
         id = ID;
         cleanTime = cTime;
+        speed = Config.SPD_DEFFAULT;
+        target = findTarget();
     }
 
     CleanerRobot(Arena arena, Dimension pos, int dir, int ID){
         this(arena, pos, dir, ID, Config.CLN_TIME);
     }
 
+    //Takarító robot meghal
     @Override
     public void die() {
-        PuttySpot puttySpot = new PuttySpot(position);
+        OilSpot oilSpot = new OilSpot(position);
         dead = true;
-        arena.addObstacle(puttySpot);
+        //Halálakor egy olajfolt kerül a helyére
+        arena.addObstacle(oilSpot);
     }
 
+    //Takarító robot mozgatása
     @Override
     public void move() {
-        if(position != target.getPosition()) {
-            Dimension destination = position;
-            //Csak akkor tehető meg ha nem halott
-            if (!dead) {
-                switch (direction) {
-                    case Config.DIR_UP:
-                        destination.setSize(destination.width, destination.height + speed);
-                        break;
-                    case Config.DIR_RIGHT:
-                        destination.setSize(destination.width + speed, destination.height);
-                        break;
-                    case Config.DIR_DOWN:
-                        destination.setSize(destination.width, destination.height - speed);
-                        break;
-                    case Config.DIR_LEFT:
-                        destination.setSize(destination.width - speed, destination.height);
-                        break;
+        //Ha nincs a cél akadályon akkor lép
+        if(target != null) {
+            if (position != target.getPosition()) {
+                Dimension destination = target.getPosition();
+                //Csak akkor tehető meg ha nem halott
+                if (!dead) {
+                    position.setSize(position.getWidth() + (directionVector.getWidth()*speed),
+                            position.getHeight() + (directionVector.getHeight()*speed));
                 }
+            } else {  //Egyébként takarít
+                clean();
             }
         } else {
-            clean();
+            target = findTarget();
+            move();
         }
     }
 
@@ -61,6 +61,7 @@ public class CleanerRobot extends AbstractRobot {
                 cleanTime--;
             if(cleanTime == 0){
                 arena.removeObstacle(target);
+                target = null;
                 cleanTime = Config.CLN_TIME;
             }
         }
@@ -71,8 +72,26 @@ public class CleanerRobot extends AbstractRobot {
     }
 
     //élesben majd ez kell
-    public void findTarget(){
-
+    public Obstacle findTarget(){
+        double length = 0;
+        double diffLengthMax = -1;
+        for(Obstacle o : arena.getObstacles()){
+            Dimension diff = new Dimension();
+            diff.setSize(Math.abs(position.getHeight() - o.getPosition().getHeight()),
+                    Math.abs(position.getHeight() - o.getPosition().getHeight()));
+            double diffLength = Math.sqrt(Math.pow(diff.getHeight(),2) + Math.pow(diff.getWidth(),2));
+            if (Double.compare(diffLengthMax, -1) > 0){
+                if(diffLength < diffLengthMax){
+                    diffLengthMax = diffLength;
+                    directionVector.setSize((position.getHeight() - o.getPosition().getHeight()) / diffLengthMax,
+                            (position.getHeight() - o.getPosition().getHeight()) / diffLengthMax);
+                }
+            } else {
+                diffLengthMax = diffLength;
+                directionVector.setSize((position.getHeight() - o.getPosition().getHeight()) / diffLengthMax,
+                        (position.getHeight() - o.getPosition().getHeight()) / diffLengthMax);
+            }
+        }
     }
 
     //csak tesztelésre

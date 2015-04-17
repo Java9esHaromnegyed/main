@@ -273,4 +273,9 @@ public class Arena {
         }
 
     }
+
+    public List<Obstacle> getObstacles() {
+        return obstacles;
+    }
+
 }
