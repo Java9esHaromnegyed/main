@@ -73,6 +73,7 @@ public class Command {
         }
         else{
             LogHelper.error("You are a fucking retarded idiot, fuck you and give me exactly 4 arguments. Thanks.");
+            // TODO: Zsiga, are you mad? :D Soul.
         }
     }
 

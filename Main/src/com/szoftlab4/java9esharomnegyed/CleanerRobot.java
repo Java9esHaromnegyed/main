@@ -8,7 +8,7 @@ public class CleanerRobot extends AbstractRobot {
     Obstacle target = null;
     Dimension directionVector = new Dimension();
 
-    CleanerRobot(Arena a, Dimension pos, int dir, int ID, int cTime){
+    public CleanerRobot(Arena a, Dimension pos, int dir, int ID, int cTime){
         super();
         arena = a;
         position = pos;
@@ -19,7 +19,7 @@ public class CleanerRobot extends AbstractRobot {
         target = findTarget();
     }
 
-    CleanerRobot(Arena arena, Dimension pos, int dir, int ID){
+    public CleanerRobot(Arena arena, Dimension pos, int dir, int ID){
         this(arena, pos, dir, ID, Config.CLN_TIME);
     }
 
@@ -92,6 +92,8 @@ public class CleanerRobot extends AbstractRobot {
                         (position.getHeight() - o.getPosition().getHeight()) / diffLengthMax);
             }
         }
+
+        //TODO: return something, nem merek belenyúlni. Soul.
     }
 
     //csak tesztelésre

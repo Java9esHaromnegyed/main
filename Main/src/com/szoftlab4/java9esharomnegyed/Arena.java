@@ -4,7 +4,6 @@ import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 import sun.rmi.runtime.Log;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,6 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+// TODO: more comments. Soul.
 public class Arena {
     //Arena osztály mezői
     private Dimension size;             // Arena size
@@ -144,7 +145,7 @@ public class Arena {
     public void addRobot(String name, Dimension pos, int dir, int id){
         if(robots.size() < 2) {
             Robot robo = new Robot(this, name, pos, dir, id);
-            //TODO: kimenet
+            //TODO: LogHelper.kimenet. Soul.
             robots.add(robo);
         } else {
             LogHelper.error("There isn't room for another robot!");
@@ -160,7 +161,7 @@ public class Arena {
         if(temp == null)
             LogHelper.error("There is no such Robot with id: " + id + "!");
         else
-            ;//TODO: kimenet
+            ;//TODO: LogHelper. kimenet. Soul
         return temp;
     }
 

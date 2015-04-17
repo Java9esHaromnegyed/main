@@ -55,7 +55,7 @@ public class Game {
     //Játék elhagyása fgv
     //Leaderboardhoz hozzáadja a játékosok adatait, (később clockot megállítja, megjeleníti a menüt)
     public static void leaveGame(){
-        // TODO: Leave Game nem adja hozzá a leaderboardhoz az eredményt, mert még nincs eredmény. Igazság szerint csak visszalép a menübe.
+        // TODO: Leave Game nem adja hozzá a leaderboardhoz az eredményt, még nincs eredmény. Igazság szerint csak visszalép a menübe. Soul.
         // updateLeaderboard(arena.getRobot(0).getName(), arena.getRobot(0).getCoveredDistance());
         // updateLeaderboard(arena.getRobot(1).getName(), arena.getRobot(1).getCoveredDistance());
     }
@@ -80,7 +80,11 @@ public class Game {
     public static void rematch(){
         List<Robot> robots = arena.getRobotList();
         arena = new Arena();
-        // TODO: robotok visszatöltése
+        // TODO: robotok visszatöltése. Soul.
+            // kelleni fog:
+            // - név
+            // - ID
+            // és valahogy a kezdőpozíció (csak hogy ez a szar prototype ne száljon el a gecibe)
     }
 
     //(később megjeleníti a leaderboardot)
