@@ -98,24 +98,28 @@ public class Robot extends AbstractRobot {
     //Robot mozgatása
     @Override
     public void move() {
+        // új változó felvétele szükséges, mert a belső position változó kell a rajzoláshoz
         Dimension destination = position;
         //Csak akkor tehető meg ha nem halott
         if(!dead) {
             switch (direction) {
                 case Config.DIR_UP:
-                    position.setSize(destination.width, destination.height + speed);
+                    destination.setSize(destination.width, destination.height + speed);
                     break;
                 case Config.DIR_RIGHT:
-                    position.setSize(destination.width + speed, destination.height);
+                    destination.setSize(destination.width + speed, destination.height);
                     break;
                 case Config.DIR_DOWN:
-                    position.setSize(destination.width, destination.height - speed);
+                    destination.setSize(destination.width, destination.height - speed);
                     break;
                 case Config.DIR_LEFT:
-                    position.setSize(destination.width - speed, destination.height);
+                    destination.setSize(destination.width - speed, destination.height);
                     break;
             }
 
+
+            // majd a takeEffect fogja a pályának megfelelően eldönteni hogy a destination valid pozíció
+            // és ha odaléptünk milyen hatás érvényesüljön a robotra, addig a robot jelenlegi pozíciója marad.
             arena.takeEffect(this, destination);
         }
     }
