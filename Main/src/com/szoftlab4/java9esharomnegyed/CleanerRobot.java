@@ -32,6 +32,7 @@ public class CleanerRobot extends AbstractRobot {
         LogHelper.inline("cleanerRobotDied id: " + id);
         //Halálakor egy olajfolt kerül a helyére
         arena.addObstacle(oilSpot);
+        LogHelper.inline("obstacleAdded type: OIL  pos: [" + position.width + "; " + position.height +"]");
     }
 
     //Takarító robot mozgatása

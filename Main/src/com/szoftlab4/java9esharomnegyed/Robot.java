@@ -134,11 +134,13 @@ public class Robot extends AbstractRobot {
     public void stuck() {
         speed *= 0.5;
         slowed = true;
+        LogHelper.inline("robotStuck id: " + id);
     }
 
     //Robotra olajfolt hat
     public void slipping() {
         paralyzed = true;
+        LogHelper.inline("robotSlipped id: " + id);
     }
 
     //Robot megállítása (pl fallal ütközés esetén)
