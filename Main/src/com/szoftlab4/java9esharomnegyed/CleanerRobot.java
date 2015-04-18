@@ -75,6 +75,7 @@ public class CleanerRobot extends AbstractRobot {
     public Obstacle findTarget(){
         double length = 0;
         double diffLengthMax = -1;
+        Obstacle targ = null;
         for(Obstacle o : arena.getObstacles()){
             Dimension diff = new Dimension();
             diff.setSize(Math.abs(position.getHeight() - o.getPosition().getHeight()),
@@ -85,15 +86,16 @@ public class CleanerRobot extends AbstractRobot {
                     diffLengthMax = diffLength;
                     directionVector.setSize((position.getHeight() - o.getPosition().getHeight()) / diffLengthMax,
                             (position.getHeight() - o.getPosition().getHeight()) / diffLengthMax);
+                    targ = o;
                 }
             } else {
                 diffLengthMax = diffLength;
                 directionVector.setSize((position.getHeight() - o.getPosition().getHeight()) / diffLengthMax,
                         (position.getHeight() - o.getPosition().getHeight()) / diffLengthMax);
+                targ = o;
             }
         }
-
-        //TODO: return something, nem merek belenyúlni. Soul.
+        return targ;
     }
 
     //csak tesztelésre
