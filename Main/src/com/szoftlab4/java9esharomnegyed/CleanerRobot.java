@@ -51,7 +51,7 @@ public class CleanerRobot extends AbstractRobot {
                     } else if(position.getHeight() > target.getPosition().getHeight()) {
                         position.setSize(position.getWidth(), position.getHeight() - speed);
                     }
-                    LogHelper.inline("robotPos id:" + id + " pos: [" + position.getWidth() + "; " + position.getHeight() + "]");
+                    LogHelper.inline("cleanerRobotMoved id:" + id + " pos: [" + position.width + "; " + position.height + "]");
                 }
             } else {  //Egyébként takarít
                 clean();
@@ -71,12 +71,12 @@ public class CleanerRobot extends AbstractRobot {
         if(!dead){
             if(cleanTime > 0)
                 cleanTime--;
-            LogHelper.inline("cleanerRobotClean id:" + id + " pos: [" + position.getWidth() + "; " + position.getHeight() + "]");
+            LogHelper.inline("cleanerRobotClean id:" + id + " pos: [" + position.width + "; " + position.height + "]");
             if(cleanTime == 0){
                 arena.removeObstacle(target);
                 target = null;
                 cleanTime = Config.CLN_TIME;
-                LogHelper.inline("obstacleRemoved pos: [" + position.getWidth() + "; " + position.getHeight() + "]");
+                LogHelper.inline("obstacleRemoved pos: [" + position.width + "; " + position.height + "]");
             }
         }
     }
