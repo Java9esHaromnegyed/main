@@ -211,6 +211,7 @@ public class Arena {
             if(robots.size() == 1)
                 Game.gameOver();
         } else {
+            LogHelper.inline("robotMoved id: " + r.getID() + " pos: [" + r.getPosition().width + "; " + r.getPosition().height + "]");
             Obstacle on = getObstacle(fin);
             if(on != null)
                 on.effect(r);

@@ -121,7 +121,6 @@ public class Robot extends AbstractRobot {
             // majd a takeEffect fogja a pályának megfelelően eldönteni hogy a destination valid pozíció
             // és ha odaléptünk milyen hatás érvényesüljön a robotra, addig a robot jelenlegi pozíciója marad.
             arena.takeEffect(this, destination);
-            LogHelper.inline("robotMoved id: " + id + " pos: [" + position.width + "; " + position.height + "]");
         }
     }
 
