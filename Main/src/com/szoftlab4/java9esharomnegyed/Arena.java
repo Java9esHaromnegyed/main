@@ -52,7 +52,7 @@ public class Arena {
                             LogHelper.inline("obstacleAdded type: OIL  pos: [" + place.width + "; " + place.height +"]");
                             break;
                         case 'p': obstacles.add(new PuttySpot(place));
-                            LogHelper.inline("obstacleAdded type: PUTTY  pos: [" + place.width + "; " + place.height +"]");
+                            LogHelper.inline("obstacleAdded type: PUTTY  pos: [" + place.width + "; " + place.height + "]");
                             break;
                         case '_': break;
                         default: break;
@@ -266,6 +266,7 @@ public class Arena {
     }
 
     public void tick() {
+        LogHelper.inline("tick");
         for (int j = 0; j < robots.size(); j++) {
             robots.get(j).move();
         }
@@ -275,7 +276,6 @@ public class Arena {
         for (int j = 0; j < obstacles.size(); j++) {
             obstacles.get(j).age();
         }
-        LogHelper.inline("tick");
     }
 
     public List<Obstacle> getObstacles() {
