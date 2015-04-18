@@ -1,5 +1,5 @@
 loadArena testArena3.txt
 initArena
 addCleanerRobot 1 1 2
-robotMovement 0 LEFT
-tick 10
+robotMovement 0 RIGHT
+tick 2
