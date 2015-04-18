@@ -2,6 +2,7 @@ package com.szoftlab4.java9esharomnegyed.Prototype;
 
 import com.szoftlab4.java9esharomnegyed.Arena;
 import com.szoftlab4.java9esharomnegyed.Config;
+import com.szoftlab4.java9esharomnegyed.Leaderboard;
 
 import java.io.*;
 import java.util.ArrayList;

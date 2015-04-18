@@ -1,0 +1,2 @@
+loadArena testArena1.txt
+initArena

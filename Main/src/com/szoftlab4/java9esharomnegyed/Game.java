@@ -3,6 +3,7 @@ package com.szoftlab4.java9esharomnegyed;
 import com.szoftlab4.java9esharomnegyed.Prototype.Prototype;
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Game {
@@ -18,7 +19,11 @@ public class Game {
         leaderboard = new Leaderboard();
         Prototype prototype = new Prototype(arena);
 
-        //leaderboard =  new Leaderboard();
+        try {
+            prototype.runPrototype(args);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -49,9 +54,6 @@ public class Game {
     //Játék elhagyása fgv
     //Leaderboardhoz hozzáadja a játékosok adatait, (később clockot megállítja, megjeleníti a menüt)
     public static void leaveGame(){
-        // TODO: Leave Game nem adja hozzá a leaderboardhoz az eredményt, még nincs eredmény. Igazság szerint csak visszalép a menübe. Soul.
-        // updateLeaderboard(arena.getRobot(0).getName(), arena.getRobot(0).getCoveredDistance());
-        // updateLeaderboard(arena.getRobot(1).getName(), arena.getRobot(1).getCoveredDistance());
     }
 
     //Kilépés a játékból fgv
