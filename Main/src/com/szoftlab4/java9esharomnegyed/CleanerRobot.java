@@ -1,12 +1,13 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+
 import java.awt.*;
 
 public class CleanerRobot extends AbstractRobot {
 
     private int cleanTime = Config.CLN_TIME;
     Obstacle target = null;
-    Dimension directionVector = new Dimension();
 
     public CleanerRobot(Arena a, Dimension pos, int dir, int ID, int cTime){
         super();
@@ -37,19 +38,30 @@ public class CleanerRobot extends AbstractRobot {
     public void move() {
         //Ha nincs a cél akadályon akkor lép
         if(target != null) {
-            if (position != target.getPosition()) {
+            if ((position.getHeight() != target.getPosition().getHeight()) || (position.getWidth() != target.getPosition().getWidth())) {
                 Dimension destination = target.getPosition();
                 //Csak akkor tehető meg ha nem halott
                 if (!dead) {
-                    position.setSize(position.getWidth() + (directionVector.getWidth()*speed),
-                            position.getHeight() + (directionVector.getHeight()*speed));
+                    if(position.getWidth() < target.getPosition().getWidth()){
+                        position.setSize(position.getWidth() + speed, position.getHeight());
+                    } else if(position.getWidth() > target.getPosition().getWidth()){
+                        position.setSize(position.getWidth() - speed, position.getHeight());
+                    } else if(position.getHeight() < target.getPosition().getHeight()){
+                        position.setSize(position.getWidth(), position.getHeight() + speed);
+                    } else if(position.getHeight() > target.getPosition().getHeight()) {
+                        position.setSize(position.getWidth(), position.getHeight() - speed);
+                    }
+                    LogHelper.inline("robotPos id:" + id + " pos: [" + position.getWidth() + "; " + position.getHeight() + "]");
                 }
             } else {  //Egyébként takarít
                 clean();
             }
         } else {
             target = findTarget();
-            move();
+            if(target != null)
+                move();
+            else
+                return;
         }
     }
 
@@ -63,8 +75,10 @@ public class CleanerRobot extends AbstractRobot {
                 arena.removeObstacle(target);
                 target = null;
                 cleanTime = Config.CLN_TIME;
+                LogHelper.inline("obstacleRemoved pos: [" + position.getWidth() + "; " + position.getHeight() + "]");
             }
         }
+        LogHelper.inline("cleanerRobotClean id:" + id + " pos: [" + position.getWidth() + "; " + position.getHeight() + "]");
     }
 
     public Obstacle getTarget() {
@@ -84,17 +98,15 @@ public class CleanerRobot extends AbstractRobot {
             if (Double.compare(diffLengthMax, -1) > 0){
                 if(diffLength < diffLengthMax){
                     diffLengthMax = diffLength;
-                    directionVector.setSize((position.getHeight() - o.getPosition().getHeight()) / diffLengthMax,
-                            (position.getHeight() - o.getPosition().getHeight()) / diffLengthMax);
                     targ = o;
                 }
             } else {
                 diffLengthMax = diffLength;
-                directionVector.setSize((position.getHeight() - o.getPosition().getHeight()) / diffLengthMax,
-                        (position.getHeight() - o.getPosition().getHeight()) / diffLengthMax);
                 targ = o;
             }
         }
+        //if(targ != null)
+        //    LogHelper.inline("Target pos: " + targ.getPosition().getWidth() + "; " + targ.getPosition().getHeight());
         return targ;
     }
 
