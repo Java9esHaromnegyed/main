@@ -42,14 +42,14 @@ public class CleanerRobot extends AbstractRobot {
                 Dimension destination = target.getPosition();
                 //Csak akkor tehető meg ha nem halott
                 if (!dead) {
-                    if(position.getWidth() < target.getPosition().getWidth()){
-                        position.setSize(position.getWidth() + speed, position.getHeight());
-                    } else if(position.getWidth() > target.getPosition().getWidth()){
-                        position.setSize(position.getWidth() - speed, position.getHeight());
-                    } else if(position.getHeight() < target.getPosition().getHeight()){
+                    if(position.getHeight() < target.getPosition().getHeight()){
                         position.setSize(position.getWidth(), position.getHeight() + speed);
-                    } else if(position.getHeight() > target.getPosition().getHeight()) {
+                    } else if(position.getHeight() > target.getPosition().getHeight()){
                         position.setSize(position.getWidth(), position.getHeight() - speed);
+                    } else if(position.getWidth() < target.getPosition().getWidth()){
+                        position.setSize(position.getWidth() + speed, position.getHeight());
+                    } else if(position.getWidth() > target.getPosition().getWidth()) {
+                        position.setSize(position.getWidth() - speed, position.getHeight());
                     }
                     LogHelper.inline("cleanerRobotMoved id: " + id + " pos: [" + position.width + "; " + position.height + "]");
                 }
