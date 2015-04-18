@@ -1,0 +1,5 @@
+loadArena testArena8.txt
+initArena
+tick 1
+robotMovement 1 UP
+tick 1

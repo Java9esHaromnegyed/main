@@ -1,0 +1,3 @@
+loadArena testArena5.txt
+initArena
+tick 5

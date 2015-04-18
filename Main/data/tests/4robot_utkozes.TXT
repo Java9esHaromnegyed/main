@@ -1,0 +1,13 @@
+loadArena testArena4.txt
+initArena
+addRobot 1 player1 0 0
+addRobot 2 player2 0 5
+robotMovement 1 LEFT
+robotMovement 1 UP
+robotMovement 1 UP
+robotMovement 2 RIGHT
+robotMovement 2 UP
+tick 2
+addCleanerRobot 3 0 0
+addCleanerRobot 4 0 1
+tick 4

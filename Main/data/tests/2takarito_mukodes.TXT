@@ -1,0 +1,4 @@
+loadArena testArena2.txt
+initArena
+addCleanerRobot 0 0 0
+tick 7
