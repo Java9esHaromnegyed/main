@@ -3,10 +3,10 @@ package com.szoftlab4.java9esharomnegyed;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Leaderborad {
+public class Leaderboard {
     private List<Record> records;
 
-    public Leaderborad(){
+    public Leaderboard(){
         records = new ArrayList<Record>();
     }
 
