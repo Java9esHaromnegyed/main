@@ -13,7 +13,7 @@ public abstract class AbstractRobot {
     protected String name = "Robot";
     protected Dimension position;                 // robot position on the arena
     protected int id = -1;
-    protected boolean dead = false;
+    public boolean dead = false;
 
     //Robot pozíciójának lekérdezése
     public Dimension getPosition() {

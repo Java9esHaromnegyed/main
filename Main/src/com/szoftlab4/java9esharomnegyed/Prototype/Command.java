@@ -1,8 +1,6 @@
 package com.szoftlab4.java9esharomnegyed.Prototype;
 
-import com.szoftlab4.java9esharomnegyed.Arena;
-import com.szoftlab4.java9esharomnegyed.CleanerRobot;
-import com.szoftlab4.java9esharomnegyed.Leaderborad;
+import com.szoftlab4.java9esharomnegyed.*;
 import com.szoftlab4.java9esharomnegyed.Robot;
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 import sun.rmi.runtime.Log;
@@ -19,8 +17,8 @@ public class Command {
     private String[] args;
     private List<Robot> robots;
     private List<CleanerRobot> cleanerBots;
-    //LeaderBORAD.. komolyan? :D
     private Leaderborad leaderB;
+    private Game gameObject;
 
     Command (Arena arena, String n, String[] a){
         inGameArena = arena;
@@ -97,9 +95,10 @@ public class Command {
 
     }
 
+    //TODO: Ilyen tesztesetünk amúgy nem volt, vagy de? Illetve mi a 2 argumentum, mert a doksiban nem találtam.
     private void cleanerRobotTest(String[] args) {
         if(args!=null && args.length==2){
-
+            cleanerBots.get(Integer.valueOf(args[0])).move();
         }
         else{
 
@@ -121,24 +120,12 @@ public class Command {
 
     private void pauseGame(String[] args) {
         if(args!=null && args.length==1){
-
-        }
-        else{
-
-        }
-
-    }
-
-    private void endGame(String[] args) {
-        if(args!=null && args.length==1){
-            if (args[0].equals("timeOver")) {
-                // honnan lesz meg a pontszám, azt hol tároljuk?
-                leaderB.addRecord(robots.get(0).getName(), 100);
-                leaderB.addRecord(robots.get(1).getName(), 120);
-            } else if (args[0].equals("robotOut")) {
-//itt honnan tudjuk, hogy melyik robot nyert?
-            } else if (args[0].equals("robotDied")){
-//itt honnan tudjuk, hogy melyik robot nyert?
+            if (args[0].equals("leaveGame")) {
+                gameObject.leaveGame();
+            } else if (args[0].equals("resume")) {
+                gameObject.resumeGame();
+            } else if (args[0].equals("rematch")){
+                gameObject.rematch();
             } else {
                 LogHelper.error("Not valid option");
             }
@@ -149,12 +136,40 @@ public class Command {
 
     }
 
-    private void robotMove(String[] args) {
+    private void endGame(String[] args) {
         if(args!=null && args.length==1){
-
+            if (args[0].equals("timeOver")) {
+                // TODO: honnan lesz meg a pontszám, azt hol tároljuk? - Zsiga
+                leaderB.addRecord(robots.get(0).getName(), 100);
+                leaderB.addRecord(robots.get(1).getName(), 120);
+            } else if (args[0].equals("robotOut")) {
+                if (robots.get(0).dead) {
+                    leaderB.addRecord(robots.get(1).getName(), 120);
+                } else {
+                    leaderB.addRecord(robots.get(0).getName(), 100);
+                }
+            } else if (args[0].equals("robotDied")){
+                if (robots.get(0).dead) {
+                    leaderB.addRecord(robots.get(1).getName(), 120);
+                } else {
+                    leaderB.addRecord(robots.get(0).getName(), 100);
+                }
+            } else {
+                LogHelper.error("Not valid option");
+            }
         }
         else{
+            LogHelper.error("One argument is required.");
+        }
 
+    }
+
+    private void robotMove(String[] args) {
+        if(args!=null && args.length==1){
+            robots.get(Integer.valueOf(args[0])).move();
+        }
+        else{
+            LogHelper.error("This command requires exactly one argument which is the robot ID");
         }
 
     }
