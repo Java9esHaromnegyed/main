@@ -35,7 +35,7 @@ public class Prototype {
             if(br != null) {
                 lastLine = br.readLine();
                 while (lastLine != null) {  //Soronként beolvassuk a bemeneti fájlt
-                    inputCommands.add(new String(lastLine));
+                    inputCommands.add(lastLine);
                     lastLine = br.readLine();
                 }
             }

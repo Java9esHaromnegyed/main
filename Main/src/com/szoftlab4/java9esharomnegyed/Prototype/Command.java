@@ -3,7 +3,6 @@ package com.szoftlab4.java9esharomnegyed.Prototype;
 import com.szoftlab4.java9esharomnegyed.*;
 import com.szoftlab4.java9esharomnegyed.Robot;
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
-import sun.rmi.runtime.Log;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -15,10 +14,7 @@ public class Command {
     boolean exitPrototype = false;
     private String name;
     private String[] args;
-    private List<Robot> robots;
-    private List<CleanerRobot> cleanerBots;
-    private Leaderborad leaderB;
-    private Game gameObject;
+    private Leaderboard leaderB;
 
     Command (Arena arena, String n, String[] a){
         inGameArena = arena;
@@ -33,12 +29,12 @@ public class Command {
         else if (name.equals("initArena")) initArena(args);
         else if (name.equals("robotMovement")) robotMovement(args);
         else if (name.equals("robotMove")) robotMove(args);
-        else if (name.equals("endGame")) endGame(args);
+        // else if (name.equals("endGame")) endGame(args); ez egy faszság, lehet törölni...
         else if (name.equals("pauseGame")) pauseGame(args);
         else if (name.equals("addCleanerRobot")) addCleanerRobot(args);
-        else if (name.equals("cleanerRobotTest")) cleanerRobotTest(args);
+        // else if (name.equals("cleanerRobotTest")) cleanerRobotTest(args); nincs ilyen tesztfüggvény
         else if (name.equals("exitGame")) exitGame(args);
-        //else if (name.equals("testAll")) testAll(args); nem kell
+        // else if (name.equals("testAll")) testAll(args); nem kell
         else if (name.equals("addRobot")) addRobot(args);
         else if (name.equals("tick")) tick(args);
         else
@@ -66,12 +62,10 @@ public class Command {
     private void addRobot(String[] args) {
         if(args!=null && args.length==4){
             Dimension dim = new Dimension(Integer.valueOf(args[2]), Integer.valueOf(args[3]));
-            Robot robo = new Robot(inGameArena, args[1], dim, 0, Integer.valueOf(args[0]));
-            robots.add(robo);
+            inGameArena.addRobot(args[1], dim, 0, Integer.valueOf(args[0]));
         }
         else{
             LogHelper.error("You are a fucking retarded idiot, fuck you and give me exactly 4 arguments. Thanks.");
-            // TODO: Zsiga, are you mad? :D Soul.
         }
     }
 
@@ -88,7 +82,7 @@ public class Command {
 
     private void exitGame(String[] args) {
         if(args==null){
-            System.exit(0);
+            Game.exitGame();
         }
         else{
             LogHelper.error("There is no option needed for exitGame command.");
@@ -96,22 +90,10 @@ public class Command {
 
     }
 
-    //TODO: Ilyen tesztesetünk amúgy nem volt, vagy de? Illetve mi a 2 argumentum, mert a doksiban nem találtam.
-    private void cleanerRobotTest(String[] args) {
-        if(args!=null && args.length==2){
-            cleanerBots.get(Integer.valueOf(args[0])).move();
-        }
-        else{
-
-        }
-
-    }
-
     private void addCleanerRobot(String[] args) {
         if(args!=null && args.length==3){
             Dimension dim = new Dimension(Integer.valueOf(args[1]), Integer.valueOf(args[2]));
-            CleanerRobot crobo = new CleanerRobot(inGameArena, dim, 0, Integer.valueOf(args[0]));
-            cleanerBots.add(crobo);
+            inGameArena.addCleanerRobot(dim, Config.DIR_RIGHT, Integer.valueOf(args[0]));
         }
         else{
             LogHelper.error("Please give me exactly 3 arguments. - [id] [x] [y]");
@@ -119,30 +101,35 @@ public class Command {
 
     }
 
+    // kár hogy egyszer sem fog lefutni...
     private void pauseGame(String[] args) {
         if(args!=null && args.length==1){
+            Game.pauseGame();
             if (args[0].equals("leaveGame")) {
-                gameObject.leaveGame();
+                Game.leaveGame();
             } else if (args[0].equals("resume")) {
-                gameObject.resumeGame();
+                Game.resumeGame();
             } else if (args[0].equals("rematch")){
-                gameObject.rematch();
+                Game.rematch();
             } else {
-                LogHelper.error("Not valid option");
+                LogHelper.error("Not valid option!");
             }
         }
         else{
-
+            LogHelper.error("Not enough arguments!");
         }
 
     }
 
+    // ez egy faszság... mehet a kukába
+    /*
     private void endGame(String[] args) {
         if(args!=null && args.length==1){
             if (args[0].equals("timeOver")) {
-                // TODO: honnan lesz meg a pontszám, azt hol tároljuk? - Zsiga
-                leaderB.addRecord(robots.get(0).getName(), 100);
-                leaderB.addRecord(robots.get(1).getName(), 120);
+                for(int i = 0; i < inGameArena.getRobotList().size(); i++){
+                    Robot temp = inGameArena.getRobotList().get(i);
+                    leaderB.addRecord(temp.getName(), temp.getCoveredDistance());
+                }
             } else if (args[0].equals("robotOut")) {
                 if (robots.get(0).dead) {
                     leaderB.addRecord(robots.get(1).getName(), 120);
@@ -163,11 +150,11 @@ public class Command {
             LogHelper.error("One argument is required.");
         }
 
-    }
+    }*/
 
     private void robotMove(String[] args) {
         if(args!=null && args.length==1){
-            robots.get(Integer.valueOf(args[0])).move();
+            inGameArena.getRobot(Integer.valueOf(args[0])).move();
         }
         else{
             LogHelper.error("This command requires exactly one argument which is the robot ID");
@@ -212,7 +199,6 @@ public class Command {
 
         }
     }
-
 
     private void loadArena(String[] args){
         String txt = "";

@@ -56,7 +56,7 @@ public class Arena {
                     }
 
                     if(element >= '0' && element <= '9'){
-                        addRobot("player"+element, place, Config.DIR_UP, Integer.valueOf(element));
+                        addRobot("player"+element, place, Config.DIR_RIGHT, Integer.valueOf(element));
                     }
                 }
             LogHelper.inline("arenaInited");

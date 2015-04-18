@@ -2,29 +2,23 @@ package com.szoftlab4.java9esharomnegyed;
 
 import com.szoftlab4.java9esharomnegyed.Prototype.Prototype;
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
-import sun.org.mozilla.javascript.internal.ast.ArrayComprehensionLoop;
 
-import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
 
     //Mezők a Game osztályhoz
     private static Arena arena;
-    private static Leaderborad leaderborad;
+    private static Leaderboard leaderboard;
     //private static Clock clock;
 
     //Program belépési pontja
     public static void main(String[] args) {
         arena = new Arena();
-        leaderborad = new Leaderborad();
+        leaderboard = new Leaderboard();
         Prototype prototype = new Prototype(arena);
 
-        //leaderborad =  new Leaderborad();
+        //leaderboard =  new Leaderboard();
     }
 
 
@@ -93,12 +87,12 @@ public class Game {
 
     //(később megjeleníti a leaderboardot)
     public static void showLeaderboard() {
-        for(int i = 0; i < leaderborad.getListSize(); i++)
-            LogHelper.inline((i+1) + ".\t" + leaderborad.getName(i) + " score: " + leaderborad.getScore(i));
+        for(int i = 0; i < leaderboard.getListSize(); i++)
+            LogHelper.inline((i+1) + ".\t" + leaderboard.getName(i) + " score: " + leaderboard.getScore(i));
     }
 
     //Hozzá fűz egy rekordot a leaderboardhoz
     public static void updateLeaderboard(String name, double score) {
-        leaderborad.addRecord(name, score);
+        leaderboard.addRecord(name, score);
     }
 }
