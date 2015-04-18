@@ -73,7 +73,7 @@ public class CleanerRobot extends AbstractRobot {
         if(!dead){
             if(cleanTime > 0)
                 cleanTime--;
-            LogHelper.inline("cleanerRobotClean id:" + id + " pos: [" + position.width + "; " + position.height + "]");
+            LogHelper.inline("cleanerRobotClean id: " + id + " pos: [" + position.width + "; " + position.height + "]");
             if(cleanTime == 0){
                 arena.removeObstacle(target);
                 target = null;

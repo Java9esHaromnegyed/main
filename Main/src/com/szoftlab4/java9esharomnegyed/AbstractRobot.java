@@ -42,9 +42,7 @@ public abstract class AbstractRobot {
     };
 
     //A robot halálakor bekövetkező esemény
-    public void die(){
-        dead = true;
-    };
+    public abstract void die();
 
     public int getDirection() {
         return direction;
@@ -60,7 +58,11 @@ public abstract class AbstractRobot {
         this.name = name;
     }
 
-    abstract public void move();
+    public abstract void move();
+
+    public double getSpeed(){
+        return speed;
+    }
 
     public int getID() {
         return id;

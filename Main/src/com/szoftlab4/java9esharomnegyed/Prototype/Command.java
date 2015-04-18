@@ -138,7 +138,9 @@ public class Command {
                     KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_O, KeyEvent.VK_P};
             int key = 0;
 
-            if(command.equals("RIGHT"))
+            if(command.equals("UP"))
+                key = 0;
+            else if(command.equals("RIGHT"))
                 key = 1;
             else if(command.equals("DOWN"))
                 key = 2;

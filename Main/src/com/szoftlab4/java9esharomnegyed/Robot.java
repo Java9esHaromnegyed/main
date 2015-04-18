@@ -64,6 +64,12 @@ public class Robot extends AbstractRobot {
         }
     }
 
+    @Override
+    public void die() {
+        dead = true;
+        LogHelper.inline("robotDied id: " + id);
+    }
+
     //Robot gyorsítása
     public void speedUp(){
         //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott

@@ -62,7 +62,8 @@ public class Arena {
                         addRobot("player" + element, place, Config.DIR_RIGHT, Integer.valueOf(Integer.valueOf(element)-'0'));
                     }
                 }
-            LogHelper.inline("arenaInited");
+            //LogHelper.inline("arenaInited");
+            LogHelper.inline("arenaInited [" + size.width + "; " + size.height + "]");
         }
     }
 
@@ -178,6 +179,15 @@ public class Arena {
         return temp;
     }
 
+    public Robot getRobot(Dimension pos){
+        Robot robo = null;
+        for(int i = 0; i < cleaners.size(); i++)
+            if(robots.get(i).getPosition().equals(pos)) {
+                robo = robots.get(i);
+            }
+        return robo;
+    }
+
     public List<Robot> getRobotList(){
         return robots;
     }
@@ -215,15 +225,23 @@ public class Arena {
     //Effekt érvényesítése egy adott roboton egy adott pozícióban
     public void takeEffect(Robot r, Dimension dest) {
         Dimension fin = collision(r, dest);     // először megnézi falbe ütközött-e
+        LogHelper.inline("robotMoved id: " + r.getID() + " pos: [" + r.getPosition().width + "; " + r.getPosition().height + "]");
         if(isOutOfArena(fin)) {                 // fin a végső pozíció ahova ugrottunk
             r.die();                            // ha pályán kívül van akkor kinyírjuk a robotot
             if(robots.size() == 1)
                 Game.gameOver();
         } else {
-            LogHelper.inline("robotMoved id: " + r.getID() + " pos: [" + r.getPosition().width + "; " + r.getPosition().height + "]");
             CleanerRobot cRobo = getCleanerRobot(fin);
             if(cRobo != null)
                 cRobo.die();
+
+            Robot robo = getRobot(fin);
+            if(robo != null){
+                if(robo.getSpeed() <= r.getSpeed())
+                    robo.die();
+                else
+                    r.die();
+            }
             Obstacle on = getObstacle(fin);
             if(on != null)
                 on.effect(r);
