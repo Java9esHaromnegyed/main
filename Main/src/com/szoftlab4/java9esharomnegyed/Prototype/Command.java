@@ -173,13 +173,21 @@ public class Command {
         String txt = "";
         if(args!=null && args.length==1){
             txt = args[0].replace("\"", ""); //loadArena "arena1.txt" a formátumunk így le kell vágni mindkét "-t
-            inGameArena.loadMap(txt);
+            try {
+                inGameArena.loadMap(txt);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         else if(args != null) {
             for(int i = 0; i < args.length; i++)
                 txt.concat(" " + args[i]);
             txt = txt.replace("\"", "");
-            inGameArena.loadMap(txt);
+            try {
+                inGameArena.loadMap(txt);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             LogHelper.error("Not enough arguments!");
         }

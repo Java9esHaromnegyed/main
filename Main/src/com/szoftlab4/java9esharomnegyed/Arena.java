@@ -68,7 +68,7 @@ public class Arena {
     }
 
     // feladata beolvasni az arénát tartalmazó txt-t majd visszaadni a beolvasott sortömbböt
-    public void loadMap(String fileName) {
+    public void loadMap(String fileName) throws IOException {
         ArrayList<String> temp = new ArrayList<String>();
         String line = null;
 
@@ -82,13 +82,13 @@ public class Arena {
             while ((line = br.readLine()) != null)
                 temp.add(new String(line.toLowerCase()));
 
-            if (br != null) br.close();
-            if (fr != null) fr.close();
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (br != null) br.close();
+            if (fr != null) fr.close();
         }
 
         this.map = temp;
