@@ -1,0 +1,11 @@
+arenaLoaded testArena10.txt
+robotAdded id: 1 name: „player1” pos: [0; 0]
+arenaInited
+obstacleAdded type: OIL pos: [0; 0]
+tick
+robotMoved id: 1 pos: [1; 0]
+obstacleAdded type: PUTTY pos: [1; 0]
+tick
+robotMoved id: 1 pos: [2; 0]
+#OIL TANK IS EMPTY
+#PUTTY TANK IS EMPTY
