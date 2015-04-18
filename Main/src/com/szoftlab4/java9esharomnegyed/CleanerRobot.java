@@ -32,7 +32,7 @@ public class CleanerRobot extends AbstractRobot {
         LogHelper.inline("cleanerRobotDied id: " + id);
         //Halálakor egy olajfolt kerül a helyére
         arena.addObstacle(oilSpot);
-        LogHelper.inline("obstacleAdded type: OIL  pos: [" + position.width + "; " + position.height +"]");
+        LogHelper.inline("obstacleAdded type: OIL  pos: [" + position.width + "; " + position.height + "]");
     }
 
     //Takarító robot mozgatása
@@ -44,16 +44,25 @@ public class CleanerRobot extends AbstractRobot {
                 Dimension destination = target.getPosition();
                 //Csak akkor tehető meg ha nem halott
                 if (!dead) {
-                    if(position.getHeight() < target.getPosition().getHeight()){
-                        position.setSize(position.getWidth(), position.getHeight() + speed);
-                    } else if(position.getHeight() > target.getPosition().getHeight()){
-                        position.setSize(position.getWidth(), position.getHeight() - speed);
-                    } else if(position.getWidth() < target.getPosition().getWidth()){
+                    if(arena.getCleanerRobot(position, id) == null) {
+                        if(position.getHeight() < target.getPosition().getHeight()){
+                            position.setSize(position.getWidth(), position.getHeight() + speed);
+                        } else if(position.getHeight() > target.getPosition().getHeight()){
+                            position.setSize(position.getWidth(), position.getHeight() - speed);
+                        } else if(position.getWidth() < target.getPosition().getWidth()){
+                            position.setSize(position.getWidth() + speed, position.getHeight());
+                        } else if(position.getWidth() > target.getPosition().getWidth()) {
+                            position.setSize(position.getWidth() - speed, position.getHeight());
+                        }
+                        LogHelper.inline("cleanerRobotMoved id: " + id + " pos: [" + position.width + "; " + position.height + "]");
+                    } else {
+                        CleanerRobot c = arena.getCleanerRobot(position, id);
+                        c.position.setSize(c.position.getWidth() - speed, c.position.getHeight());
                         position.setSize(position.getWidth() + speed, position.getHeight());
-                    } else if(position.getWidth() > target.getPosition().getWidth()) {
-                        position.setSize(position.getWidth() - speed, position.getHeight());
+                        LogHelper.inline("cleanerRobotMoved id: " + c.getID() + " pos: [" + c.getPosition().width + "; " + c.getPosition().height + "]");
+                        LogHelper.inline("cleanerRobotMoved id: " + id + " pos: [" + position.width + "; " + position.height + "]");
                     }
-                    LogHelper.inline("cleanerRobotMoved id: " + id + " pos: [" + position.width + "; " + position.height + "]");
+
                 }
             } else {  //Egyébként takarít
                 clean();
