@@ -145,7 +145,7 @@ public class Arena {
     public void addRobot(String name, Dimension pos, int dir, int id){
         if(robots.size() < 2) {
             Robot robo = new Robot(this, name, pos, dir, id);
-            //TODO: LogHelper.kimenet. Soul.
+            LogHelper.inline("robotAdded id: " + id + " \"" + name + "\" pos: [" + pos.width + "; " + pos.height + "]");
             robots.add(robo);
         } else {
             LogHelper.error("There isn't room for another robot!");
@@ -272,7 +272,7 @@ public class Arena {
         for (int j = 0; j < obstacles.size(); j++) {
             obstacles.get(j).age();
         }
-
+        LogHelper.inline("tick");
     }
 
     public List<Obstacle> getObstacles() {
