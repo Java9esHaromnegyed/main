@@ -1,0 +1,9 @@
+arenaLoaded src: testArena8.txt
+robotAdded id: 1 name: „player1” pos: [0; 0]
+obstacleAdded type: OIL pos: [1; 0]
+arenaInited
+tick
+robotMoved id: 1 pos: [1; 0]
+robotParalized id: 1
+tick
+robotMoved id: 1 pos: [2; 0]

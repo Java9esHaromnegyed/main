@@ -1,0 +1,10 @@
+arenaLoaded src: testArena6.txt
+robotAdded id: 1 name: „player1” pos: [0; 0]
+arenaInited
+robotSpeedUp id: 1 speed: 2
+robotTurnedLeft id: 1 dir: UP
+tick
+robotMoved id: 1 pos: [0; 1]
+tick
+robotMoved id: 1 pos: [0; 2]
+puttyDropped formId: 1 pos: [0; 2]

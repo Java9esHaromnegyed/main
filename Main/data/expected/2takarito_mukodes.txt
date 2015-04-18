@@ -1,0 +1,19 @@
+arenaLoaded src: testArena2.txt
+obstacleAdded type: OIL pos: [2; 2]
+arenaInited
+cleanerRobotAdded id: 0 pos: [0; 0]
+tick
+cleanerRobotMoved id: 0 pos: [0; 1]
+tick
+cleanerRobotMoved id: 0 pos: [0; 2]
+tick
+cleanerRobotMoved id: 0 pos: [1; 2]
+tick
+cleanerRobotMoved id: 0 pos: [2; 2]
+cleanerRobotClean id: 0 pos: [2; 2]
+tick
+cleanerRobotClean id: 0 pos: [2; 2]
+tick
+cleanerRobotClean id: 0 pos: [2; 2]
+tick
+obstacleRemoved type: OIL pos: [2; 2]
