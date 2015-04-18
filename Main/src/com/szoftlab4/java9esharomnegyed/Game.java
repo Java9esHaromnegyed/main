@@ -85,6 +85,10 @@ public class Game {
             // - név
             // - ID
             // és valahogy a kezdőpozíció (csak hogy ez a szar prototype ne száljon el a gecibe)
+
+        /*for(int i = 0; i < robots.size(); i++){
+            arena.addRobot(robots.get(i).getName(), POS, Config.DIR_RIGHT, robots.get(i).getID());
+        }*/
     }
 
     //(később megjeleníti a leaderboardot)

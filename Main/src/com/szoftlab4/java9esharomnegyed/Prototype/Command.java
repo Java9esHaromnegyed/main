@@ -38,7 +38,7 @@ public class Command {
         else if (name.equals("addCleanerRobot")) addCleanerRobot(args);
         else if (name.equals("cleanerRobotTest")) cleanerRobotTest(args);
         else if (name.equals("exitGame")) exitGame(args);
-        else if (name.equals("testAll")) testAll(args);
+        //else if (name.equals("testAll")) testAll(args); nem kell
         else if (name.equals("addRobot")) addRobot(args);
         else if (name.equals("tick")) tick(args);
         else
@@ -75,15 +75,16 @@ public class Command {
         }
     }
 
+    /* nem kell
     private void testAll(String[] args) {
         if(args==null){
 
         }
         else{
-
+            LogHelper.error("There is no option needed for testAll command.");
         }
 
-    }
+    }*/
 
     private void exitGame(String[] args) {
         if(args==null){
