@@ -156,6 +156,15 @@ public class Arena {
         return cRobo;
     }
 
+    public CleanerRobot getCleanerRobot(Dimension pos, int id){
+        CleanerRobot cRobo = null;
+        for(int i = 0; i < cleaners.size(); i++)
+            if(cleaners.get(i).getPosition().equals(pos) && cleaners.get(i).getID() != id) {
+                cRobo = cleaners.get(i);
+            }
+        return cRobo;
+    }
+
     public void addRobot(String name, Dimension pos, int dir, int id){
         if(robots.size() < 2) {
             Robot robo = new Robot(this, name, pos, dir, id);
