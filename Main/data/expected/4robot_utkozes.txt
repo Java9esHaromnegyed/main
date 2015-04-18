@@ -1,6 +1,6 @@
 arenaLoaded src: testArena4.txt
-robotAdded id: 1 name: „player1” pos: [0; 0]
-robotAdded id: 2 name: „player2” pos: [0; 5]
+robotAdded id: 1 name: "player1" pos: [0; 0]
+robotAdded id: 2 name: "player2" pos: [0; 5]
 obstacleAdded type: OIL pos: [1; 0]
 obstacleAdded type: OIL pos: [1; 3]
 arenaInited

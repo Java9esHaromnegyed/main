@@ -1,5 +1,5 @@
 arenaLoaded src: testArena7.txt
-robotAdded id:1 name: „player1” pos: [0; 0]
+robotAdded id:1 name: "player1" pos: [0; 0]
 obstacleAdded type: WALL pos: [1; 0]
 arenaInited
 tick

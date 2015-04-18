@@ -1,5 +1,5 @@
 arenaLoaded testArena10.txt
-robotAdded id: 1 name: „player1” pos: [0; 0]
+robotAdded id: 1 name: "player1" pos: [0; 0]
 arenaInited
 obstacleAdded type: OIL pos: [0; 0]
 tick
