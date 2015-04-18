@@ -63,7 +63,7 @@ public class Command {
             inGameArena.addRobot(args[1], dim, 0, Integer.valueOf(args[0]));
         }
         else{
-            LogHelper.error("You are a fucking retarded idiot, fuck you and give me exactly 4 arguments. Thanks.");
+            LogHelper.error("You have to give four arguments for the addRobot test.");
         }
     }
 
