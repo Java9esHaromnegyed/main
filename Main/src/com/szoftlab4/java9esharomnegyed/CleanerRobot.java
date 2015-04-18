@@ -29,6 +29,7 @@ public class CleanerRobot extends AbstractRobot {
     public void die() {
         OilSpot oilSpot = new OilSpot(position);
         dead = true;
+        LogHelper.inline("cleanerRobotDied id: " + id);
         //Halálakor egy olajfolt kerül a helyére
         arena.addObstacle(oilSpot);
     }

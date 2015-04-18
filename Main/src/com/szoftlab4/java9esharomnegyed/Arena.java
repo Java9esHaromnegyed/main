@@ -146,6 +146,14 @@ public class Arena {
         return cleaners.get(id);
     }
 
+    public CleanerRobot getCleanerRobot(Dimension pos){
+        CleanerRobot cRobo = null;
+        for(int i = 0; i < cleaners.size(); i++)
+            if(cleaners.get(i).getPosition() == pos)
+                cRobo = cleaners.get(i);
+        return cRobo;
+    }
+
     public void addRobot(String name, Dimension pos, int dir, int id){
         if(robots.size() < 2) {
             Robot robo = new Robot(this, name, pos, dir, id);
@@ -212,6 +220,9 @@ public class Arena {
                 Game.gameOver();
         } else {
             LogHelper.inline("robotMoved id: " + r.getID() + " pos: [" + r.getPosition().width + "; " + r.getPosition().height + "]");
+            CleanerRobot cRobo = getCleanerRobot(fin);
+            if(cRobo != null)
+                cRobo.die();
             Obstacle on = getObstacle(fin);
             if(on != null)
                 on.effect(r);
