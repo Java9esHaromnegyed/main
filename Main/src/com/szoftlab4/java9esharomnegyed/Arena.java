@@ -159,7 +159,7 @@ public class Arena {
     public void addRobot(String name, Dimension pos, int dir, int id){
         if(robots.size() < 2) {
             Robot robo = new Robot(this, name, pos, dir, id);
-            LogHelper.inline("robotAdded id: " + id + " \"" + name + "\" pos: [" + pos.width + "; " + pos.height + "]");
+            LogHelper.inline("robotAdded id: " + id + " name: \"" + name + "\" pos: [" + pos.width + "; " + pos.height + "]");
             robots.add(robo);
         } else {
             LogHelper.error("There isn't room for another robot!");
@@ -179,10 +179,10 @@ public class Arena {
         return temp;
     }
 
-    public Robot getRobot(Dimension pos){
+    public Robot getRobot(Dimension pos, int id){
         Robot robo = null;
         for(int i = 0; i < cleaners.size(); i++)
-            if(robots.get(i).getPosition().equals(pos)) {
+            if(robots.get(i).getPosition().equals(pos) && robots.get(i).getID() != id) {
                 robo = robots.get(i);
             }
         return robo;
@@ -235,9 +235,9 @@ public class Arena {
             if(cRobo != null)
                 cRobo.die();
 
-            Robot robo = getRobot(fin);
+            Robot robo = getRobot(fin, r.getID());
             if(robo != null){
-                if(robo.getSpeed() <= r.getSpeed())
+                if(robo.getSpeed() == r.getSpeed())
                     robo.die();
                 else
                     r.die();
