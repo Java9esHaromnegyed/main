@@ -1,11 +1,11 @@
 loadArena testArena4.txt
 initArena
-robotMovement 1 LEFT
+robotMovement 1 RIGHT
 robotMovement 1 UP
 robotMovement 1 UP
-robotMovement 2 RIGHT
+robotMovement 2 LEFT
 robotMovement 2 UP
-tick 2
+tick 1
 addCleanerRobot 3 0 0
-addCleanerRobot 4 0 1
+addCleanerRobot 4 0 5
 tick 4
