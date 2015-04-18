@@ -38,6 +38,7 @@ public class CleanerRobot extends AbstractRobot {
     //Takarító robot mozgatása
     @Override
     public void move() {
+        //TODO: kisRobot ütközés kezelés
         //Ha nincs a cél akadályon akkor lép
         if(target != null) {
             if ((position.getHeight() != target.getPosition().getHeight()) || (position.getWidth() != target.getPosition().getWidth())) {
