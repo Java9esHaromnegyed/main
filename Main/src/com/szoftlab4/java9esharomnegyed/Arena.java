@@ -149,8 +149,9 @@ public class Arena {
     public CleanerRobot getCleanerRobot(Dimension pos){
         CleanerRobot cRobo = null;
         for(int i = 0; i < cleaners.size(); i++)
-            if(cleaners.get(i).getPosition() == pos)
+            if(cleaners.get(i).getPosition().equals(pos)) {
                 cRobo = cleaners.get(i);
+            }
         return cRobo;
     }
 
