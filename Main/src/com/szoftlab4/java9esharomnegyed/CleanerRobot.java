@@ -51,7 +51,7 @@ public class CleanerRobot extends AbstractRobot {
                     } else if(position.getHeight() > target.getPosition().getHeight()) {
                         position.setSize(position.getWidth(), position.getHeight() - speed);
                     }
-                    LogHelper.inline("cleanerRobotMoved id:" + id + " pos: [" + position.width + "; " + position.height + "]");
+                    LogHelper.inline("cleanerRobotMoved id: " + id + " pos: [" + position.width + "; " + position.height + "]");
                 }
             } else {  //Egyébként takarít
                 clean();

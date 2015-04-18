@@ -138,6 +138,7 @@ public class Arena {
 
     public void addCleanerRobot(Dimension pos, int dir, int id){
         CleanerRobot roboC = new CleanerRobot(this, pos, dir, id);
+        LogHelper.inline("cleanerRobotAdded id: " + id + " pos: [" + pos.width + "; " + pos.height + "]");
         cleaners.add(roboC);
     }
 
