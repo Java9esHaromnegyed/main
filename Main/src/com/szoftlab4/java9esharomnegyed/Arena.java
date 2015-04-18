@@ -181,7 +181,7 @@ public class Arena {
 
     public Robot getRobot(Dimension pos, int id){
         Robot robo = null;
-        for(int i = 0; i < cleaners.size(); i++)
+        for(int i = 0; i < robots.size(); i++)
             if(robots.get(i).getPosition().equals(pos) && robots.get(i).getID() != id) {
                 robo = robots.get(i);
             }
@@ -237,10 +237,10 @@ public class Arena {
 
             Robot robo = getRobot(fin, r.getID());
             if(robo != null){
-                if(robo.getSpeed() == r.getSpeed())
-                    robo.die();
-                else
+                if(robo.getSpeed() < r.getSpeed())
                     r.die();
+                else
+                    robo.die();
             }
             Obstacle on = getObstacle(fin);
             if(on != null)
