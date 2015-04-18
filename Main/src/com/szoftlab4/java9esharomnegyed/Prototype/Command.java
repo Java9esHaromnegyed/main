@@ -29,10 +29,8 @@ public class Command {
         else if (name.equals("initArena")) initArena(args);
         else if (name.equals("robotMovement")) robotMovement(args);
         else if (name.equals("robotMove")) robotMove(args);
-        // else if (name.equals("endGame")) endGame(args); ez egy faszság, lehet törölni...
         else if (name.equals("pauseGame")) pauseGame(args);
         else if (name.equals("addCleanerRobot")) addCleanerRobot(args);
-        // else if (name.equals("cleanerRobotTest")) cleanerRobotTest(args); nincs ilyen tesztfüggvény
         else if (name.equals("exitGame")) exitGame(args);
         // else if (name.equals("testAll")) testAll(args); nem kell
         else if (name.equals("addRobot")) addRobot(args);
@@ -120,37 +118,6 @@ public class Command {
         }
 
     }
-
-    // ez egy faszság... mehet a kukába
-    /*
-    private void endGame(String[] args) {
-        if(args!=null && args.length==1){
-            if (args[0].equals("timeOver")) {
-                for(int i = 0; i < inGameArena.getRobotList().size(); i++){
-                    Robot temp = inGameArena.getRobotList().get(i);
-                    leaderB.addRecord(temp.getName(), temp.getCoveredDistance());
-                }
-            } else if (args[0].equals("robotOut")) {
-                if (robots.get(0).dead) {
-                    leaderB.addRecord(robots.get(1).getName(), 120);
-                } else {
-                    leaderB.addRecord(robots.get(0).getName(), 100);
-                }
-            } else if (args[0].equals("robotDied")){
-                if (robots.get(0).dead) {
-                    leaderB.addRecord(robots.get(1).getName(), 120);
-                } else {
-                    leaderB.addRecord(robots.get(0).getName(), 100);
-                }
-            } else {
-                LogHelper.error("Not valid option");
-            }
-        }
-        else{
-            LogHelper.error("One argument is required.");
-        }
-
-    }*/
 
     private void robotMove(String[] args) {
         if(args!=null && args.length==1){
