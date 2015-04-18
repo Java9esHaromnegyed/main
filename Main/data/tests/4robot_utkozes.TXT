@@ -1,7 +1,5 @@
 loadArena testArena4.txt
 initArena
-addRobot 1 player1 0 0
-addRobot 2 player2 0 5
 robotMovement 1 LEFT
 robotMovement 1 UP
 robotMovement 1 UP
