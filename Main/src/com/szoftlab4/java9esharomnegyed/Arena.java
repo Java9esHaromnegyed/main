@@ -46,17 +46,20 @@ public class Arena {
 
                     switch (element) {
                         case 'w': walls.add(new Wall(place));
+                            LogHelper.inline("obstacleAdded type: WALL  pos: [" + place.width + "; " + place.height +"]");
                             break;
                         case 'o': obstacles.add(new OilSpot(place));
+                            LogHelper.inline("obstacleAdded type: OIL  pos: [" + place.width + "; " + place.height +"]");
                             break;
                         case 'p': obstacles.add(new PuttySpot(place));
+                            LogHelper.inline("obstacleAdded type: PUTTY  pos: [" + place.width + "; " + place.height +"]");
                             break;
                         case '_': break;
                         default: break;
                     }
 
                     if(element >= '0' && element <= '9'){
-                        addRobot("player"+element, place, Config.DIR_RIGHT, Integer.valueOf(element));
+                        addRobot("player" + element, place, Config.DIR_RIGHT, Integer.valueOf(Integer.valueOf(element)-'0'));
                     }
                 }
             LogHelper.inline("arenaInited");
