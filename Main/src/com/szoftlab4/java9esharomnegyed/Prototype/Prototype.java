@@ -23,7 +23,7 @@ public class Prototype {
         executeInput();
     }
 
-    private void initInput(String in) {
+    private void initInput(String in) throws IOException {
         FileReader fr = null;
         BufferedReader br = null;
         try {
@@ -36,13 +36,15 @@ public class Prototype {
             while ((lastLine = br.readLine()) != null)
                 inputCommands.add(new String(lastLine));
 
-            if (br != null) br.close();
-            if (fr != null) fr.close();
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally{
+            if (br != null) br.close();
+            if (fr != null) fr.close();
         }
     }
 
