@@ -32,13 +32,9 @@ public class Prototype {
             inputCommands = new ArrayList<String>();
             String lastLine;
 
-            if(br != null) {
-                lastLine = br.readLine();
-                while (lastLine != null) {  //Soronként beolvassuk a bemeneti fájlt
-                    inputCommands.add(new String(lastLine));
-                    lastLine = br.readLine();
-                }
-            }
+            //Soronként beolvassuk a bemeneti fájlt
+            while ((lastLine = br.readLine()) != null)
+                inputCommands.add(lastLine);
 
 
         } catch (FileNotFoundException e) {
