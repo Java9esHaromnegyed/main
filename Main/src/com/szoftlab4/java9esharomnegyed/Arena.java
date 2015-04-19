@@ -316,14 +316,12 @@ public class Arena {
         }
         for (int j = 0; j < obstacles.size(); j++) {
             if(obstacles.get(j).getAge() == Config.AGE_LIMIT){
-                LogHelper.inline("obstacleRemoved pos: ["+obstacles.get(j).getPosition().width+";"+obstacles.get(j).getPosition().height);
+                LogHelper.inline("obstacleRemoved pos: ["+obstacles.get(j).getPosition().width+"; "+obstacles.get(j).getPosition().height + "]");
                 obstacles.remove(j);
-            }
-            if(obstacles.get(j).getDecay() == Config.DECAY_LIMIT){
-                LogHelper.inline("obstacleRemoved pos: ["+obstacles.get(j).getPosition().width+";"+obstacles.get(j).getPosition().height);
+            } else if(obstacles.get(j).getDecay() == Config.DECAY_LIMIT){
+                LogHelper.inline("obstacleRemoved pos: ["+obstacles.get(j).getPosition().width+"; "+obstacles.get(j).getPosition().height + "]");
                 obstacles.remove(j);
-            }
-            else{
+            } else {
                 obstacles.get(j).age();
             }
         }

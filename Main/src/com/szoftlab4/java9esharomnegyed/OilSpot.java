@@ -7,8 +7,6 @@ import java.awt.*;
 //Egy fajta Obstacle
 public class OilSpot extends Obstacle {
 
-    private int age = 0;
-
     //Olajfolt létrehozása adott pozícióra
     public OilSpot(Dimension pos){
         position = pos;
