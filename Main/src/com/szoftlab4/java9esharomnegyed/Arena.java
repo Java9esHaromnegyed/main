@@ -204,9 +204,9 @@ public class Arena {
     public Dimension collision(Robot r, Dimension d) {
         Obstacle w = null;
         Dimension temp;
-        int dir = r.getDirection();
-
+        int dir;
         for (temp = r.getPosition() ; w == null && !temp.equals(d);) {
+            dir = r.getDirection();
             if(dir % 2 == 0) {
                 dir = (dir - 1) * (-1);                 // 0: (0 - 1) = -1; (-1) * (-1) = +1;  => X+
                 temp.height += dir * Config.TILE_SIZE;   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => X-
