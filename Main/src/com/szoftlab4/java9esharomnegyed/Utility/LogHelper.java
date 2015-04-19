@@ -1,7 +1,9 @@
 package com.szoftlab4.java9esharomnegyed.Utility;
 
+import com.szoftlab4.java9esharomnegyed.Game;
 import sun.rmi.runtime.Log;
 
+import java.io.*;
 import java.util.ArrayList;
 
 //Szkeleton logolás segítésére
@@ -12,16 +14,40 @@ public class LogHelper {
     private static int logLevel = startLevel;
     private static ArrayList<Integer> hArchNum;
     private static int record = 0;      // felvételi szint ha 0 akkor logol ha bármi nagyobb akkor nem
-
+    private static FileWriter fileWriter;
     public LogHelper(){
         hArchNum = new ArrayList<Integer>();
         //Kezdő számozás elindítása
         hArchNum.add(1);
+
+
+
     }
 
     public static void log(String log){     // kiír egy sort, sortöréssel
-        if (record == 0)                             // csak ha logolás folyik
+        if (record == 0) {                             // csak ha logolás folyik
             System.out.println(log);
+
+            String fileName = Game.getArguments()[Game.getArguments().length-1];
+            try {
+                fileWriter = new FileWriter(fileName, true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                fileWriter.write(log+'\n');
+            } catch (IOException e) {
+                e.printStackTrace();
+            }finally{
+                try {
+                    fileWriter.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
     }
 
     public static void rec(){               // folytatja a logolást

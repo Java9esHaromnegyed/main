@@ -11,13 +11,20 @@ public class Game {
     //Mezők a Game osztályhoz
     private static Arena arena;
     private static Leaderboard leaderboard;
+    private static String[] arguments = null;
     //private static Clock clock;
+
+    public static String[] getArguments() {
+        return arguments;
+    }
 
     //Program belépési pontja
     public static void main(String[] args) {
+        arguments = args;
         arena = new Arena();
         leaderboard = new Leaderboard();
         Prototype prototype = new Prototype(arena);
+
 
         try {
             prototype.runPrototype(args);
