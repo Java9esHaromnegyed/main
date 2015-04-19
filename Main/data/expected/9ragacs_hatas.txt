@@ -5,6 +5,6 @@ arenaInited
 tick
 robotMoved id: 1 pos: [1; 0]
 robotSlowedDown id: 1 speed: 0.5
-puttyDecayed decay: 1
+puttyDecayed atPos: [1; 0] decay: 0
 tick
 robotMoved id: 1 pos: [2; 0]

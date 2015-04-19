@@ -5,7 +5,7 @@ arenaInited
 tick
 robotMoved id: 1 pos: [1; 0]
 robotSlipped id: 1
-oilAged: 1
+oilAged atPos: [1; 0] decay: 1
 tick
 robotMoved id: 1 pos: [2; 0]
-oilAged: 2
+oilAged atPos: [1; 0] decay: 2

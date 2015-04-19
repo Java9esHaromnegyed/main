@@ -8,12 +8,12 @@ tick
 robotMoved id: 1 pos: [0; 3]
 robotMoved id: 2 pos: [0; 3]
 robotDied id: 1
-oilAged: 1
-oilAged: 1
+oilAged atPos: [4; 2] decay: 1
+oilAged atPos: [11; 2] decay: 1
 tick
 robotMoved id: 2 pos: [0; 1]
-oilAged: 2
-oilAged: 2
+oilAged atPos: [4; 2] decay: 2
+oilAged atPos: [11; 2] decay: 2
 cleanerRobotAdded id: 3 pos: [0; 0]
 cleanerRobotAdded id: 4 pos: [0; 4]
 tick
@@ -21,8 +21,8 @@ robotMoved id: 2 pos: [0; -1]
 robotDied id: 2
 cleanerRobotMoved id: 3 pos: [0; 1]
 cleanerRobotMoved id: 4 pos: [0; 3]
-oilAged: 3
-oilAged: 3
+oilAged atPos: [4; 2] decay: 3
+oilAged atPos: [11; 2] decay: 3
 tick
 cleanerRobotMoved id: 3 pos: [0; 2]
 cleanerRobotMoved id: 4 pos: [1; 3]
