@@ -1,5 +1,7 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+
 import java.awt.*;
 
 //Egy fajta Obstacle
@@ -22,6 +24,7 @@ public class OilSpot extends Obstacle {
     @Override
     public void age(){
         age++;
+        LogHelper.inline("oilAged: "+age);
     }
 
     @Override
