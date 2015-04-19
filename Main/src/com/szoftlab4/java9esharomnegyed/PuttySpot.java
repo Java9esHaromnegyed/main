@@ -7,8 +7,6 @@ import java.awt.*;
 //Egy fajta Obstacle
 public class PuttySpot extends Obstacle {
 
-    private int decay = 0;
-
     //Ragacsfolt létrehozása adott pozícióra
     public PuttySpot(Dimension pos){
         position = pos;
