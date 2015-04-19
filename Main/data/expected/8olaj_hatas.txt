@@ -4,6 +4,6 @@ obstacleAdded type: OIL pos: [1; 0]
 arenaInited
 tick
 robotMoved id: 1 pos: [1; 0]
-robotParalized id: 1
+robotSlipped id: 1
 tick
 robotMoved id: 1 pos: [2; 0]
