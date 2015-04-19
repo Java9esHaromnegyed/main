@@ -39,8 +39,8 @@ public class Arena {
         char element;
 
         if(this.map != null){
-            for(int i = 0; i < this.size.height; i++)
-                for(int j = 0; j < this.size.width; j++){
+            for(int i = 0; i < this.map.size(); i++)
+                for(int j = 0; j < this.map.get(0).length(); j++){
                     element = this.map.get(i).charAt(j);
                     place = new Dimension(startX + (j * tile), startY + (i * tile));
 
@@ -95,7 +95,7 @@ public class Arena {
         LogHelper.inline("arenaLoaded src: " + fileName);
 
         if(this.map != null)
-            this.size = new Dimension(this.map.get(0).length(), this.map.size());
+            this.size = new Dimension(this.map.get(0).length() * Config.TILE_SIZE, this.map.size() * Config.TILE_SIZE);
         else
             this.size = new Dimension(Config.DEF_MAPSIZE, Config.DEF_MAPSIZE);
     }
@@ -208,11 +208,11 @@ public class Arena {
         for (temp = r.getPosition() ; w == null && !temp.equals(d);) {
             dir = r.getDirection();
             if(dir % 2 == 0) {
-                dir = (dir - 1) * (-1);                 // 0: (0 - 1) = -1; (-1) * (-1) = +1;  => X+
-                temp.height += dir * Config.TILE_SIZE;   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => X-
+                dir = (dir - 1) * (-1);                                             // 0: (0 - 1) = -1; (-1) * (-1) = +1;  => X+
+                temp.height += Math.round(dir * r.getSpeed() * Config.TILE_SIZE);   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => X-
             } else {
-                dir = (dir - 2) * (-1);                 // 1: (1 - 2) = -1; (-1) * (-1) = +1;  => Y+
-                temp.width += dir * Config.TILE_SIZE;  // 3: (3 - 2) = +1;   1  * (-1) = -1;  => Y-
+                dir = (dir - 2) * (-1);                                             // 1: (1 - 2) = -1; (-1) * (-1) = +1;  => Y+
+                temp.width += Math.round(dir * r.getSpeed() * Config.TILE_SIZE);    // 3: (3 - 2) = +1;   1  * (-1) = -1;  => Y-
             }
             w = getWall(temp);
         }
