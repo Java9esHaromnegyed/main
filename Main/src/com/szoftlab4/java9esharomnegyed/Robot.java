@@ -160,7 +160,7 @@ public class Robot extends AbstractRobot {
     public void stuck() {
         speed *= 0.5;
         slowed = true;
-        LogHelper.inline("robotStuck id: " + id);
+        LogHelper.inline("robotSlowedDown id: " + id + " speed: " + speed);
     }
 
     //Robotra olajfolt hat

@@ -22,8 +22,8 @@ public class Config {
     public static final int DIR_DOWN = 2;
     public static final int DIR_LEFT = 3;
 
-    public static final int OIL_TANK = 5;
-    public static final int PUTTY_TANK = 5;
+    public static final int OIL_TANK = 2;
+    public static final int PUTTY_TANK = 2;
 
     // controll
     public static final int MOV_P2_UP = KeyEvent.VK_UP;
