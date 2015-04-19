@@ -30,14 +30,14 @@ public class Config {
     public static final int MOV_P2_DOWN = KeyEvent.VK_DOWN;
     public static final int MOV_P2_LEFT = KeyEvent.VK_LEFT;
     public static final int MOV_P2_RIGHT = KeyEvent.VK_RIGHT;
-    public static final int MOV_P2_OIL = KeyEvent.VK_C;
-    public static final int MOV_P2_PUTTY = KeyEvent.VK_V;
+    public static final int MOV_P2_OIL = KeyEvent.VK_O;
+    public static final int MOV_P2_PUTTY = KeyEvent.VK_P;
     public static final int MOV_P1_UP = KeyEvent.VK_W;
     public static final int MOV_P1_DOWN = KeyEvent.VK_S;
     public static final int MOV_P1_LEFT = KeyEvent.VK_A;
     public static final int MOV_P1_RIGHT = KeyEvent.VK_D;
-    public static final int MOV_P1_OIL = KeyEvent.VK_O;
-    public static final int MOV_P1_PUTTY = KeyEvent.VK_P;
+    public static final int MOV_P1_OIL = KeyEvent.VK_C;
+    public static final int MOV_P1_PUTTY = KeyEvent.VK_V;
 
     /* ARENA related */
     public static final int TILE_SIZE = 1;     // obstacles, robots and generally "tile"-s dimension in pixel
