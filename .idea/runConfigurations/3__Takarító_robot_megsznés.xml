@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="3. cleanerRobot megszűnése" type="Application" factoryName="Application">
+  <configuration default="false" name="3. Takarító robot megszűnés" type="Application" factoryName="Application">
     <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
     <option name="MAIN_CLASS_NAME" value="com.szoftlab4.java9esharomnegyed.Game" />
     <option name="VM_PARAMETERS" value="" />
@@ -12,8 +12,6 @@
     <option name="PASS_PARENT_ENVS" value="true" />
     <module name="Main" />
     <envs />
-    <RunnerSettings RunnerId="Run" />
-    <ConfigurationWrapper RunnerId="Run" />
     <method />
   </configuration>
 </component>
