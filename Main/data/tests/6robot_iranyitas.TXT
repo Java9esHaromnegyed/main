@@ -1,7 +1,5 @@
 loadArena testArena6.txt
 initArena
-addRobot 1 player1 0 0
-robotMovement 1 UP
-robotMovement 1 LEFT
+robotMovement 1 RIGHT
 tick 2
 robotMovement 1 PUTTY

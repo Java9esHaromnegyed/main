@@ -6,4 +6,4 @@ tick
 robotMoved id: 1 pos: [1; 0]
 robotSlowedDown id: 1 speed: 0.5
 tick
-robotMoved id: 1 pos: [2.5; 0]
+robotMoved id: 1 pos: [2; 0]
