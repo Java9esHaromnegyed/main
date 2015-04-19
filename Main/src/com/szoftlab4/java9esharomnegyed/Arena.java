@@ -205,16 +205,19 @@ public class Arena {
         Obstacle w = null;
         Dimension temp;
         int dir;
-        for (temp = r.getPosition() ; w == null && !temp.equals(d);) {
-            dir = r.getDirection();
-            if(dir % 2 == 0) {
-                dir = (dir - 1) * (-1);                                             // 0: (0 - 1) = -1; (-1) * (-1) = +1;  => X+
-                temp.height += Math.round(dir * r.getSpeed() * Config.TILE_SIZE);   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => X-
-            } else {
-                dir = (dir - 2) * (-1);                                             // 1: (1 - 2) = -1; (-1) * (-1) = +1;  => Y+
-                temp.width += Math.round(dir * r.getSpeed() * Config.TILE_SIZE);    // 3: (3 - 2) = +1;   1  * (-1) = -1;  => Y-
+        if(r.getSpeed() >= 0.5) {
+            for (temp = r.getPosition(); w == null && !temp.equals(d); ) {
+                //LogHelper.comment(temp.toString() + " dest: " + d.toString());
+                dir = r.getDirection();
+                if (dir % 2 == 0) {
+                    dir = (dir - 1) * (-1);                                             // 0: (0 - 1) = -1; (-1) * (-1) = +1;  => X+
+                    temp.height += Math.round(dir * r.getSpeed() * Config.TILE_SIZE);   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => X-
+                } else {
+                    dir = (dir - 2) * (-1);                                             // 1: (1 - 2) = -1; (-1) * (-1) = +1;  => Y+
+                    temp.width += Math.round(dir * r.getSpeed() * Config.TILE_SIZE);    // 3: (3 - 2) = +1;   1  * (-1) = -1;  => Y-
+                }
+                w = getWall(temp);
             }
-            w = getWall(temp);
         }
 
         if (w != null)
