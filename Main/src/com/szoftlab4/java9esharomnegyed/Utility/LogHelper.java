@@ -14,7 +14,8 @@ public class LogHelper {
     private static int logLevel = startLevel;
     private static ArrayList<Integer> hArchNum;
     private static int record = 0;      // felvételi szint ha 0 akkor logol ha bármi nagyobb akkor nem
-    private static FileWriter fileWriter;
+    private static FileWriter fileWriter = null;
+    private static BufferedWriter out = null;
     public LogHelper(){
         hArchNum = new ArrayList<Integer>();
         //Kezdő számozás elindítása
@@ -31,17 +32,14 @@ public class LogHelper {
             String fileName = Game.getArguments()[Game.getArguments().length-1];
             try {
                 fileWriter = new FileWriter(fileName, true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                fileWriter.write(log+'\n');
+                out = new BufferedWriter(fileWriter);
+                out.write(log);
+                out.newLine();
             } catch (IOException e) {
                 e.printStackTrace();
             }finally{
-                try {
-                    fileWriter.close();
+                if(out != null) try {
+                    out.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

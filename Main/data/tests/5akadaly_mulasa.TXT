@@ -1,3 +1,5 @@
 loadArena testArena5.txt
 initArena
+robotMovement 1 RIGHT
+robotMovement 2 RIGHT
 tick 5

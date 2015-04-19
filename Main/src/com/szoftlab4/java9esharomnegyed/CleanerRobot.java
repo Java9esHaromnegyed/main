@@ -38,7 +38,7 @@ public class CleanerRobot extends AbstractRobot {
     //Takarító robot mozgatása
     @Override
     public void move() {
-        //Ha nincs a cél akadályon akkor lép
+        //Ha van cél akadály és nincs a cél akadályon akkor lép
         if(target != null) {
             if (!position.equals(target.getPosition())) { // ha még nem állunk a célponton
                 Dimension destination;
