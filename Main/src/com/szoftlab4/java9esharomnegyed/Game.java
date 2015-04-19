@@ -25,6 +25,10 @@ public class Game {
         leaderboard = new Leaderboard();
         Prototype prototype = new Prototype(arena);
 
+        if(args.length == 4){
+            Config.TEST_FOLDER = args[2];
+            Config.ARENA_FOLDER = args[3];
+        }
 
         try {
             prototype.runPrototype(args);

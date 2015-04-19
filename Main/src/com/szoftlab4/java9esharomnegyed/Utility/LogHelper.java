@@ -20,16 +20,13 @@ public class LogHelper {
         hArchNum = new ArrayList<Integer>();
         //Kezdő számozás elindítása
         hArchNum.add(1);
-
-
-
     }
 
     public static void log(String log){     // kiír egy sort, sortöréssel
         if (record == 0) {                             // csak ha logolás folyik
             System.out.println(log);
 
-            String fileName = Game.getArguments()[Game.getArguments().length-1];
+            String fileName = Game.getArguments()[1];
             try {
                 fileWriter = new FileWriter(fileName, true);
                 out = new BufferedWriter(fileWriter);

@@ -5,6 +5,7 @@ import com.szoftlab4.java9esharomnegyed.Config;
 import com.szoftlab4.java9esharomnegyed.Leaderboard;
 
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Prototype {
