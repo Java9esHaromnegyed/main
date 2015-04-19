@@ -11,15 +11,3 @@ tick 1
 robotMovement 1 OIL
 tick 1
 robotMovement 1 PUTTY
-tick 1
-robotMovement 1 OIL
-tick 1
-robotMovement 1 PUTTY
-tick 1
-robotMovement 1 OIL
-tick 1
-robotMovement 1 PUTTY
-tick 1
-robotMovement 1 OIL
-tick 1
-robotMovement 1 PUTTY
