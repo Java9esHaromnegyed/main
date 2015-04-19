@@ -315,7 +315,15 @@ public class Arena {
             cleaners.get(j).move();
         }
         for (int j = 0; j < obstacles.size(); j++) {
-            obstacles.get(j).age();
+            if(obstacles.get(j).getAge() == Config.AGE_LIMIT){
+                obstacles.remove(j);
+            }
+            if(obstacles.get(j).getDecay() == Config.DECAY_LIMIT){
+                obstacles.remove(j);
+            }
+            else{
+                obstacles.get(j).age();
+            }
         }
     }
 
