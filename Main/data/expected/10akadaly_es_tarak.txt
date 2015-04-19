@@ -1,11 +1,35 @@
-arenaLoaded testArena10.txt
+arenaLoaded src: testArena10.txt
 robotAdded id: 1 name: "player1" pos: [0; 0]
 arenaInited
-obstacleAdded type: OIL pos: [0; 0]
+oilDropped fromId: 1 pos: [0; 0]
 tick
 robotMoved id: 1 pos: [1; 0]
-obstacleAdded type: PUTTY pos: [1; 0]
+robotSlipped id: 1
+oilAged: 1
 tick
 robotMoved id: 1 pos: [2; 0]
-#OIL TANK IS EMPTY
-#PUTTY TANK IS EMPTY
+oilAged: 2
+puttyDropped fromId: 1 pos: [2; 0]
+tick
+robotMoved id: 1 pos: [3; 0]
+robotSlowedDown id: 1 speed: 0.5
+puttyDecayed decay: 1
+oilAged: 3
+tick
+robotMoved id: 1 pos: [4; 0]
+obstacleRemoved pos: [1; 0]
+oilDropped fromId: 1 pos: [4; 0]
+tick
+robotMoved id: 1 pos: [5; 0]
+robotSlipped id: 1
+oilAged: 1
+tick
+robotMoved id: 1 pos: [6; 0]
+oilAged: 2
+puttyDropped fromId: 1 pos: [6; 0]
+tick
+robotMoved id: 1 pos: [7; 0]
+robotSlowedDown id: 1 speed: 0.25
+puttyDecayed decay: 1
+oilAged: 3
+tick

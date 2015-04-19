@@ -1,13 +1,13 @@
 loadArena testArena10.txt
 initArena
 robotMovement 1 OIL
-tick 2
+tick 1
 robotMovement 1 PUTTY
-tick 2
+tick 1
 robotMovement 1 OIL
-tick 2
+tick 1
 robotMovement 1 PUTTY
-tick 2
+tick 1
 robotMovement 1 OIL
-tick 2
+tick 1
 robotMovement 1 PUTTY

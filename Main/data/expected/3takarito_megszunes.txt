@@ -1,5 +1,5 @@
 arenaLoaded src: testArena3.txt
-robotAdded id: 0 "player0" pos: [1; 0]
+robotAdded id: 0 name: "player0" pos: [1; 0]
 arenaInited
 cleanerRobotAdded id: 1 pos: [1; 2]
 tick
@@ -9,3 +9,4 @@ robotMoved id: 0 pos: [1; 2]
 cleanerRobotDied id: 1
 obstacleAdded type: OIL  pos: [1; 2]
 robotSlipped id: 0
+oilAged: 1 pos: [1; 2]

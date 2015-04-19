@@ -1,42 +1,25 @@
 arenaLoaded src: testArena5.txt
-robotAdded id: 1 name: "player1" pos: [0; 0]
-robotAdded id: 2 name: "player2" pos: [2; 0]
-obstacleAdded type: PUTTY pos: [4; 0]
-obstacleAdded type: OIL pos: [5; 5]
+robotAdded id: 2 name: "player2" pos: [0; 0]
+robotAdded id: 1 name: "player1" pos: [2; 0]
+obstacleAdded type: PUTTY  pos: [4; 0]
+obstacleAdded type: OIL  pos: [5; 5]
 arenaInited
 tick
-robotMoved id: 4 pos: [4; 0]
-robotMoved id: 3 pos: [3; 0]
-robotMoved id: 2 pos: [2; 0]
-robotMoved id: 1 pos: [1; 0]
-robotSlowedDown id: 4 speed: 0.5
-puttyAged age: 1
-oilDecayed decay: 1
+robotMoved id: 2 pos: [0; 1]
+robotMoved id: 1 pos: [2; 1]
+oilAged: 1
 tick
-robotMoved id: 4 pos: [4.5; 0]
-robotMoved id: 3 pos: [4; 0]
-robotMoved id: 2 pos: [3; 0]
-robotMoved id: 1 pos: [2; 0]
-robotSlowedDown id: 3 speed: 0.5
-puttyAged age: 2
-oilDecayed decay: 2
+robotMoved id: 2 pos: [0; 2]
+robotMoved id: 1 pos: [2; 2]
+oilAged: 2
 tick
-robotMoved id: 4 pos: [5; 0]
-robotMoved id: 3 pos: [4.5; 0]
-robotMoved id: 2 pos: [4; 0]
-robotMoved id: 1 pos: [3; 0]
-robotSlowedDown id: 2 speed: 0.5
-puttyAged age: 3
-oilDecayed decay: 3
+robotMoved id: 2 pos: [0; 3]
+robotMoved id: 1 pos: [2; 3]
+oilAged: 3
 tick
-robotMoved id: 4 pos: [5.5; 0]
-robotMoved id: 3 pos: [5; 0]
-robotMoved id: 2 pos: [4.5; 0]
-robotMoved id: 1 pos: [4; 0]
-robotSlowedDown id: 4 speed: 0.5
-puttyAged age: 4
-oilDecayed decay: 4
-obstacleRemoved type: PUTTY pos: [0; 1]
+robotMoved id: 2 pos: [0; 4]
+robotMoved id: 1 pos: [2; 4]
+obstacleRemoved pos: [5; 5]
 tick
-oilDecayed decay: 5
-obstacleRemoved type: OIL pos: [1; 0]
+robotMoved id: 2 pos: [0; 5]
+robotMoved id: 1 pos: [2; 5]

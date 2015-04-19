@@ -1,1 +1,11 @@
-testAll
+loadArena testArena1.txt
+initArena
+loadArena testArena2.txt
+initArena
+addCleanerRobot 0 0 0
+tick 6
+loadArena testArena3.txt
+initArena
+addCleanerRobot 1 1 2
+robotMovement 0 RIGHT
+tick 2
