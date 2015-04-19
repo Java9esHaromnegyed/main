@@ -63,7 +63,7 @@ public class Arena {
                     }
                 }
             //LogHelper.inline("arenaInited");
-            LogHelper.inline("arenaInited [" + size.width + "; " + size.height + "]");
+            LogHelper.inline("arenaInited");
         }
     }
 
