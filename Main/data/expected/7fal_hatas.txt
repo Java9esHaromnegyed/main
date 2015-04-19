@@ -3,5 +3,5 @@ robotAdded id:1 name: "player1" pos: [0; 0]
 obstacleAdded type: WALL pos: [1; 0]
 arenaInited
 tick
-robotStoped id: 1 speed: 0
+robotStopped id: 1 speed: 0
 robotMoved id: 1 pos: [0; 0]

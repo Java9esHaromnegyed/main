@@ -154,6 +154,7 @@ public class Robot extends AbstractRobot {
         speed = 0;
         paralyzed = false; // muszáj feloldani mert irányváltás és sebességnövelés nélkül nem tudnál elmozdulni onnan.
         slowed = false; //Jófejségből ha voltál olyan szerencsétlen hogy falnak mentél akkor ezt is levesszük
+        LogHelper.inline("robotStopped "+"id: "+id+" speed: "+speed);
     }
 
     //Falba ütközéskor a robotot a fal előtti pozícióba állítja
