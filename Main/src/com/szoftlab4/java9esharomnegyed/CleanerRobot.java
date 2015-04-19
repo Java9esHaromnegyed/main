@@ -38,31 +38,32 @@ public class CleanerRobot extends AbstractRobot {
     //Takarító robot mozgatása
     @Override
     public void move() {
-        //TODO: kisRobot ütközés kezelés
         //Ha nincs a cél akadályon akkor lép
         if(target != null) {
-            if ((position.getHeight() != target.getPosition().getHeight()) || (position.getWidth() != target.getPosition().getWidth())) {
-                Dimension destination = target.getPosition();
+            if (!position.equals(target.getPosition())) {
+                Dimension destination;
                 //Csak akkor tehető meg ha nem halott
                 if (!dead) {
-                    if(arena.getCleanerRobot(position, id) == null) {
-                        if(position.getHeight() < target.getPosition().getHeight()){
-                            position.setSize(position.getWidth(), position.getHeight() + speed);
-                        } else if(position.getHeight() > target.getPosition().getHeight()){
-                            position.setSize(position.getWidth(), position.getHeight() - speed);
-                        } else if(position.getWidth() < target.getPosition().getWidth()){
-                            position.setSize(position.getWidth() + speed, position.getHeight());
-                        } else if(position.getWidth() > target.getPosition().getWidth()) {
-                            position.setSize(position.getWidth() - speed, position.getHeight());
-                        }
-                        LogHelper.inline("cleanerRobotMoved id: " + id + " pos: [" + position.width + "; " + position.height + "]");
-                    } else {
-                        CleanerRobot c = arena.getCleanerRobot(position, id);
-                        c.position.setSize(c.position.getWidth() - speed, c.position.getHeight());
-                        position.setSize(position.getWidth() + speed, position.getHeight());
-                        LogHelper.inline("cleanerRobotMoved id: " + c.getID() + " pos: [" + c.getPosition().width + "; " + c.getPosition().height + "]");
-                        LogHelper.inline("cleanerRobotMoved id: " + id + " pos: [" + position.width + "; " + position.height + "]");
+                    destination = tryFromY();   // megpróbáljuk Y tengely felől megközelíteni
+                    CleanerRobot c = arena.getCleanerRobot(destination, id);
+                    if (c == null) {            // ha nem ütközünk
+                        position = destination;     // lépjünk oda
+                    } else {                    // ha igen akkor
+                        // if(destination == target.getPosition())
+                        // TODO: find new target if another robot cleaning yours
+                        Obstacle temp = findTarget();   // nézzük meg van e közelebb másik folt("induljunk másfele")
+                        if(temp != target) {            // ha van új
+                            target = temp;                  // célozzuk meg
+                            move();                         // és próbáljunk afelé elindulni...(először Y tengelyen aztán...
+                        } else {                        // ha nincs
+                            destination = tryFromX();       // próbáljunk meg X tengely felől közelíteni
+                            c = arena.getCleanerRobot(destination, id);
+                            if (c == null) {        // ha nincs robot
+                                position = destination;     // lépjünk oda
+                            } // viszont ha így sem jó, várunk
+                        }           // és nem lépünk sehova(esetleg animálhatunk egy ütközés/lepattanást)...
                     }
+                    LogHelper.inline("cleanerRobotMoved id: " + id + " pos: [" + position.width + "; " + position.height + "]");
 
                 }
             } else {  //Egyébként takarít
@@ -75,6 +76,38 @@ public class CleanerRobot extends AbstractRobot {
             else
                 return;
         }
+    }
+
+    private Dimension tryFromX(){
+        Dimension x = new Dimension();
+
+        if (position.getWidth() < target.getPosition().getWidth()) {
+            x.setSize(position.getWidth() + speed, position.getHeight());
+        } else if (position.getWidth() > target.getPosition().getWidth()) {
+            x.setSize(position.getWidth() - speed, position.getHeight());
+        }else if (position.getHeight() < target.getPosition().getHeight()) {
+            x.setSize(position.getWidth(), position.getHeight() + speed);
+        } else if (position.getHeight() > target.getPosition().getHeight()) {
+            x.setSize(position.getWidth(), position.getHeight() - speed);
+        }
+
+        return x;
+    }
+
+    private Dimension tryFromY(){
+        Dimension y = new Dimension();
+
+        if (position.getHeight() < target.getPosition().getHeight()) {
+            y.setSize(position.getWidth(), position.getHeight() + speed);
+        } else if (position.getHeight() > target.getPosition().getHeight()) {
+            y.setSize(position.getWidth(), position.getHeight() - speed);
+        } else if (position.getWidth() < target.getPosition().getWidth()) {
+            y.setSize(position.getWidth() + speed, position.getHeight());
+        } else if (position.getWidth() > target.getPosition().getWidth()) {
+            y.setSize(position.getWidth() - speed, position.getHeight());
+        }
+
+        return y;
     }
 
 
@@ -118,7 +151,7 @@ public class CleanerRobot extends AbstractRobot {
             }
         }
         //if(targ != null)
-        //    LogHelper.inline("Target pos: " + targ.getPosition().getWidth() + "; " + targ.getPosition().getHeight());
+        //    LogHelper.inline("Target " + targ.toString());
         return targ;
     }
 

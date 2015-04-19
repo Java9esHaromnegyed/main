@@ -8,4 +8,4 @@ robotMovement 2 UP
 tick 1
 addCleanerRobot 3 0 0
 addCleanerRobot 4 0 4
-tick 4
+tick 10
