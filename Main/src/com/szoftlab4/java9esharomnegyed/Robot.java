@@ -25,15 +25,35 @@ public class Robot extends AbstractRobot {
     //Ragacsfolt lehelyezése a pályára
     public void dropPutty() {
         //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
-        if(!dead && !paralyzed)
-            arena.addObstacle(new PuttySpot(position));
+        if(!dead && !paralyzed) {
+            if(puttyLeft != 0){
+                arena.addObstacle(new PuttySpot(position));
+                puttyLeft--;
+                LogHelper.inline("puttyDropped fromId: "+id+" pos: "+"["+position.width+"; "+position.height+"]");
+            }
+            else{
+                LogHelper.inline("#PUTTY TANK IS EMPTY");
+            }
+
+        }
+
     }
 
     //Olajfolt lehelyezése a pályára
     public void dropOil() {
         //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
-        if(!dead && !paralyzed)
-            arena.addObstacle(new OilSpot(position));
+        if(!dead && !paralyzed){
+            if(oilLeft != 0){
+                arena.addObstacle(new OilSpot(position));
+                oilLeft--;
+                LogHelper.inline("oilDropped fromId: "+id+" pos: "+"["+position.width+"; "+position.height+"]");
+            }
+            else{
+                LogHelper.inline("#OIL TANK IS EMPTY");
+            }
+
+        }
+
     }
 
     //Robot által megtett távolság lekérdezése
