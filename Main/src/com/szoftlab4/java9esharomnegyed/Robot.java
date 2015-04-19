@@ -105,7 +105,7 @@ public class Robot extends AbstractRobot {
     @Override
     public void move() {
         // új változó felvétele szükséges, mert a belső position változó kell a rajzoláshoz
-        Dimension destination = position;
+        Dimension destination = new Dimension(position);
         //Csak akkor tehető meg ha nem halott
         if(!dead) {
             switch (direction) {

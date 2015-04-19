@@ -119,8 +119,7 @@ public class Arena {
     //Egy adott pozíció alapján esetleges itt lévő fal elkérése
     public Wall getWall(Dimension dest){
         for(int i = 0; i < walls.size(); i++){
-            if(walls.get(i).getPosition().width == dest.width
-                    && walls.get(i).getPosition().height == dest.height) {
+            if(walls.get(i).getPosition().equals(dest)) {
                 return walls.get(i);
             }
         }
@@ -206,15 +205,16 @@ public class Arena {
         Obstacle w = null;
         Dimension temp;
         int dir = r.getDirection();
-        for (temp = r.getPosition() ; w == null && temp != d;) {
-            w = getWall(temp);
+
+        for (temp = r.getPosition() ; w == null && !temp.equals(d);) {
             if(dir % 2 == 0) {
                 dir = (dir - 1) * (-1);                 // 0: (0 - 1) = -1; (-1) * (-1) = +1;  => X+
-                temp.width += dir * Config.TILE_SIZE;   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => X-
+                temp.height += dir * Config.TILE_SIZE;   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => X-
             } else {
                 dir = (dir - 2) * (-1);                 // 1: (1 - 2) = -1; (-1) * (-1) = +1;  => Y+
-                temp.height += dir * Config.TILE_SIZE;  // 3: (3 - 2) = +1;   1  * (-1) = -1;  => Y-
+                temp.width += dir * Config.TILE_SIZE;  // 3: (3 - 2) = +1;   1  * (-1) = -1;  => Y-
             }
+            w = getWall(temp);
         }
 
         if (w != null)
