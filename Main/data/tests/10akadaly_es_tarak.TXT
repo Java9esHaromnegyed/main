@@ -5,4 +5,21 @@ tick
 robotMovement 1 PUTTY
 tick
 robotMovement 1 OIL
+tick
+robotMovement 1 PUTTY
+tick
+robotMovement 1 OIL
+tick
+robotMovement 1 PUTTY
+tick
+robotMovement 1 OIL
+tick
+robotMovement 1 PUTTY
+tick
+robotMovement 1 OIL
+tick
+robotMovement 1 PUTTY
+tick
+robotMovement 1 OIL
+tick
 robotMovement 1 PUTTY
