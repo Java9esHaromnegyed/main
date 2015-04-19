@@ -40,10 +40,9 @@ public class CleanerRobot extends AbstractRobot {
     public void move() {
         //Ha nincs a cél akadályon akkor lép
         if(target != null) {
-            if (!position.equals(target.getPosition())) {
+            if (!position.equals(target.getPosition())) { // ha még nem állunk a célponton
                 Dimension destination;
-                //Csak akkor tehető meg ha nem halott
-                if (!dead) {
+                if (!dead) {        // (Csak akkor ha nem halott)
                     destination = tryFromY();   // megpróbáljuk Y tengely felől megközelíteni
                     CleanerRobot c = arena.getCleanerRobot(destination, id);
                     if (c == null) {            // ha nem ütközünk
@@ -55,6 +54,7 @@ public class CleanerRobot extends AbstractRobot {
                         if(temp != target) {            // ha van új
                             target = temp;                  // célozzuk meg
                             move();                         // és próbáljunk afelé elindulni...(először Y tengelyen aztán...
+                            return;
                         } else {                        // ha nincs
                             destination = tryFromX();       // próbáljunk meg X tengely felől közelíteni
                             c = arena.getCleanerRobot(destination, id);
@@ -64,17 +64,16 @@ public class CleanerRobot extends AbstractRobot {
                         }           // és nem lépünk sehova(esetleg animálhatunk egy ütközés/lepattanást)...
                     }
                     LogHelper.inline("cleanerRobotMoved id: " + id + " pos: [" + position.width + "; " + position.height + "]");
-
                 }
             } else {  //Egyébként takarít
-                clean();
+                clean();    // önmagában figyeli hogy halott-e a robot
             }
         } else {
             target = findTarget();
-            if(target != null)
+            if(target != null) {
                 move();
-            else
                 return;
+            }
         }
     }
 
