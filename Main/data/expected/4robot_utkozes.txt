@@ -1,9 +1,10 @@
 arenaLoaded src: testArena4.txt
 robotAdded id: 1 name: "player1" pos: [0; 0]
+obstacleAdded type: OIL  pos: [1; 0]
+obstacleAdded type: OIL  pos: [1; 3]
 robotAdded id: 2 name: "player2" pos: [0; 5]
-obstacleAdded type: OIL pos: [1; 0]
-obstacleAdded type: OIL pos: [1; 3]
 arenaInited
+tick
 robotTurnedLeft id: 1 dir: UP
 robotSpeedUp id: 1 speed: 2
 robotSpeedUp id: 1 speed: 3
