@@ -26,6 +26,7 @@ public class LogHelper {
         if (record == 0) {                             // csak ha logolás folyik
             System.out.println(log);
 
+            //kimeneti fileba kiírjuk az összes kimenetet
             String fileName = Game.getArguments()[1];
             try {
                 fileWriter = new FileWriter(fileName, true);
