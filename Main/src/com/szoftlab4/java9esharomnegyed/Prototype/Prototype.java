@@ -25,6 +25,7 @@ public class Prototype {
         executeInput();
     }
 
+    // beolvassa fájlt!
     private void initInput(String in) throws IOException {
         FileReader fr = null;
         BufferedReader br = null;

@@ -16,10 +16,10 @@ public class Arena {
     //Arena osztály mezői
     private Dimension size;             // Arena size
     private List<Obstacle> obstacles;   // a List where the arena register all the placed Obstacle
-    private List<Wall> walls;
-    private List<Robot> robots;
-    private List<CleanerRobot> cleaners;
-    ArrayList<String> map;
+    private List<Wall> walls;           // a List where the arena register all the walls from init
+    private List<Robot> robots;         // Playable robot list
+    private List<CleanerRobot> cleaners;    // cleaner robot list
+    ArrayList<String> map;              // temporary place for the source txt
 
     //Üres konstruktor az elemek megfelelő inicializálásához
     public Arena(){
@@ -37,6 +37,7 @@ public class Arena {
         Dimension place;
         char element;
 
+        // tárolók törlése, hogy minden betöltéskor tiszta lappal induljunk
         robots = new ArrayList<Robot>();
         cleaners = new ArrayList<CleanerRobot>();
         obstacles = new ArrayList<Obstacle>();
@@ -45,36 +46,37 @@ public class Arena {
         if(this.map != null){
             for(int i = 0; i < this.map.size(); i++)
                 for(int j = 0; j < this.map.get(0).length(); j++){
-                    element = this.map.get(i).charAt(j);
+                    element = this.map.get(i).charAt(j);    // csupán rövidítésnek vettem fel
+                    // legenerálja a TILE_SIZE-nak megfelelő pozíciókat beszúrásra
                     place = new Dimension(startX + (j * tile), startY + (i * tile));
 
                     switch (element) {
-                        case 'w': walls.add(new Wall(place));
+                        case 'w': walls.add(new Wall(place));   // W falat jelöl a txt-ben
                             LogHelper.inline("obstacleAdded type: WALL  pos: [" + place.width + "; " + place.height +"]");
                             break;
-                        case 'o': obstacles.add(new OilSpot(place));
+                        case 'o': obstacles.add(new OilSpot(place));    // O olajat jelöl a txt-ben
                             LogHelper.inline("obstacleAdded type: OIL  pos: [" + place.width + "; " + place.height +"]");
                             break;
-                        case 'p': obstacles.add(new PuttySpot(place));
+                        case 'p': obstacles.add(new PuttySpot(place));  // P ragacsot jelöl a txt-ben
                             LogHelper.inline("obstacleAdded type: PUTTY  pos: [" + place.width + "; " + place.height + "]");
                             break;
-                        case '_': break;
+                        case '_': break;    // _ üres mezőt jelent a txt-ben
                         default: break;
                     }
 
-                    if(element >= '0' && element <= '9'){
+                    if(element >= '0' && element <= '9'){   // ha szám karakter robotot jelent a txt-ben
                         addRobot("player" + element, place, Config.DIR_RIGHT, Integer.valueOf(Integer.valueOf(element)-'0'));
                     }
                 }
             //LogHelper.inline("arenaInited");
-            LogHelper.inline("arenaInited");
+            LogHelper.inline("arenaInited");    // kimenet generálás
         }
     }
 
     // feladata beolvasni az arénát tartalmazó txt-t majd visszaadni a beolvasott sortömbböt
     public void loadMap(String fileName) throws IOException {
         ArrayList<String> temp = new ArrayList<String>();
-        String line = null;
+        String line;
 
         FileReader fr = null;
         BufferedReader br = null;
@@ -98,6 +100,7 @@ public class Arena {
         this.map = temp;
         LogHelper.inline("arenaLoaded src: " + fileName);
 
+        // size beállítása
         if(this.map != null)
             this.size = new Dimension(this.map.get(0).length() * Config.TILE_SIZE, this.map.size() * Config.TILE_SIZE);
         else
@@ -168,6 +171,7 @@ public class Arena {
         return cRobo;
     }
 
+    // tesztesethez addRobot
     public void addRobot(String name, Dimension pos, int dir, int id){
         if(robots.size() < 2) {
             Robot robo = new Robot(this, name, pos, dir, id);
@@ -186,8 +190,6 @@ public class Arena {
                 temp = robots.get(i);
         if(temp == null)
             LogHelper.error("There is no such Robot with id: " + id + "!");
-        else
-            ;//TODO: LogHelper. kimenet. Soul
         return temp;
     }
 
@@ -247,20 +249,20 @@ public class Arena {
             if(robots.size() == 1)
                 Game.gameOver();
         } else {
-            CleanerRobot cRobo = getCleanerRobot(fin);
-            if(cRobo != null)
+            CleanerRobot cRobo = getCleanerRobot(fin);  // ha ráléptünk takarítóra
+            if(cRobo != null)                           // nyírjuk ki
                 cRobo.die();
 
             Robot robo = getRobot(fin, r.getID());
             if(robo != null){
-                if(robo.getSpeed() < r.getSpeed())
+                if(robo.getSpeed() < r.getSpeed())      // sebesség alapján nyírjuk ki a megfelelőt
                     r.die();
                 else
                     robo.die();
             }
             Obstacle on = getObstacle(fin);
             if(on != null)
-                on.effect(r);
+                on.effect(r);                   // ha akdályra lép akkor hasson rá
             else
                 r.clearEffects();               // ha nem lép semmire töröljük az eddigi hatásokat
         }
@@ -336,6 +338,7 @@ public class Arena {
         }
     }
 
+    // visszaadja a teljes obstacle listát
     public List<Obstacle> getObstacles() {
         return obstacles;
     }

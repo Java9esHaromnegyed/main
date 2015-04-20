@@ -10,11 +10,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class Command {
-    Arena inGameArena;
-    boolean exitPrototype = false;
-    private String name;
-    private String[] args;
-    private Leaderboard leaderB;
+    Arena inGameArena;  // aréna elérhetőség miatt itt is tároljuk
+    private String name;    // parancs neve
+    private String[] args;  // argumentumok feldarabolva
 
     Command (Arena arena, String n, String[] a){
         inGameArena = arena;
@@ -29,7 +27,6 @@ public class Command {
         else if (name.equals("initArena")) initArena(args);
         else if (name.equals("robotMovement")) robotMovement(args);
         else if (name.equals("robotMove")) robotMove(args);
-        else if (name.equals("pauseGame")) pauseGame(args);
         else if (name.equals("addCleanerRobot")) addCleanerRobot(args);
         else if (name.equals("exitGame")) exitGame(args);
         // else if (name.equals("testAll")) testAll(args); nem kell
@@ -96,26 +93,6 @@ public class Command {
 
     }
 
-    // kár hogy egyszer sem fog lefutni...
-    private void pauseGame(String[] args) {
-        if(args!=null && args.length==1){
-            Game.pauseGame();
-            if (args[0].equals("leaveGame")) {
-                Game.leaveGame();
-            } else if (args[0].equals("resume")) {
-                Game.resumeGame();
-            } else if (args[0].equals("rematch")){
-                Game.rematch();
-            } else {
-                LogHelper.error("Not valid option!");
-            }
-        }
-        else{
-            LogHelper.error("Not enough arguments!");
-        }
-
-    }
-
     //Robot mozgatása parancs
     private void robotMove(String[] args) {
         if(args!=null && args.length==1){
@@ -139,6 +116,7 @@ public class Command {
                     KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_O, KeyEvent.VK_P};
             int key = 0;
 
+            // megfelelő action megfelelő pozíció hozzárendelés
             if(command.equals("UP"))
                 key = 0;
             else if(command.equals("RIGHT"))
@@ -156,7 +134,7 @@ public class Command {
 
             if(id == inGameArena.getRobotList().get(0).getID())
                 key += 0;
-            else if(id == inGameArena.getRobotList().get(1).getID())
+            else if(id == inGameArena.getRobotList().get(1).getID())    // második játékos vezérlői a 6. pozíciótól kezdődnek
                 key += 6;
             else {
                 LogHelper.error("There is no such robot with id: " + id + "!");
@@ -184,7 +162,7 @@ public class Command {
         else if(args != null) {
             for(int i = 0; i < args.length; i++)
                 txt.concat(" " + args[i]);
-            txt = txt.replace("\"", "");
+            txt = txt.replace("\"", "");    // töröld az aposztrófak
             try {
                 inGameArena.loadMap(txt);
             } catch (IOException e) {
