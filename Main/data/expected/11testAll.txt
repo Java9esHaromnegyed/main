@@ -135,3 +135,46 @@ robotSlowedDown id: 1 speed: 0.5
 puttyDecayed atPos: [1; 0] decay: 1
 tick
 robotMoved id: 1 pos: [2; 0]
+arenaLoaded src: testArena10.txt
+robotAdded id: 1 name: "player1" pos: [0; 0]
+arenaInited
+oilDropped fromId: 1 pos: [0; 0]
+tick
+robotMoved id: 1 pos: [1; 0]
+robotSlipped id: 1
+oilAged atPos: [1; 0] age: 1
+tick
+robotMoved id: 1 pos: [2; 0]
+oilAged atPos: [1; 0] age: 2
+puttyDropped fromId: 1 pos: [2; 0]
+tick
+robotMoved id: 1 pos: [3; 0]
+robotSlowedDown id: 1 speed: 0.5
+puttyDecayed atPos: [3; 0] decay: 1
+oilAged atPos: [1; 0] age: 3
+tick
+robotMoved id: 1 pos: [4; 0]
+obstacleRemoved pos: [1; 0]
+oilDropped fromId: 1 pos: [4; 0]
+tick
+robotMoved id: 1 pos: [5; 0]
+robotSlipped id: 1
+oilAged atPos: [5; 0] age: 1
+tick
+robotMoved id: 1 pos: [6; 0]
+oilAged atPos: [5; 0] age: 2
+puttyDropped fromId: 1 pos: [6; 0]
+tick
+robotMoved id: 1 pos: [7; 0]
+robotSlowedDown id: 1 speed: 0.25
+puttyDecayed atPos: [7; 0] decay: 1
+oilAged atPos: [5; 0] age: 3
+tick
+robotMoved id: 1 pos: [8; 0]
+obstacleRemoved pos: [5; 0]
+#OIL TANK IS EMPTY
+tick
+robotMoved id: 1 pos: [9; 0]
+tick
+robotMoved id: 1 pos: [10; 0]
+#PUTTY TANK IS EMPTY

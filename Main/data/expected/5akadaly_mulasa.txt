@@ -1,25 +1,12 @@
 arenaLoaded src: testArena5.txt
-robotAdded id: 2 name: "player2" pos: [0; 0]
-robotAdded id: 1 name: "player1" pos: [2; 0]
-obstacleAdded type: PUTTY  pos: [4; 0]
 obstacleAdded type: OIL  pos: [5; 5]
 arenaInited
 tick
-robotMoved id: 2 pos: [0; 1]
-robotMoved id: 1 pos: [2; 1]
-oilAged atPos: [5; 5] decay: 1
+oilAged atPos: [5; 5] age: 1
 tick
-robotMoved id: 2 pos: [0; 2]
-robotMoved id: 1 pos: [2; 2]
-oilAged atPos: [5; 5] decay: 2
+oilAged atPos: [5; 5] age: 2
 tick
-robotMoved id: 2 pos: [0; 3]
-robotMoved id: 1 pos: [2; 3]
-oilAged atPos: [5; 5] decay: 3
+oilAged atPos: [5; 5] age: 3
 tick
-robotMoved id: 2 pos: [0; 4]
-robotMoved id: 1 pos: [2; 4]
 obstacleRemoved pos: [5; 5]
 tick
-robotMoved id: 2 pos: [0; 5]
-robotMoved id: 1 pos: [2; 5]

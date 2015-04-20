@@ -2,7 +2,13 @@ arenaLoaded src: testArena6.txt
 robotAdded id: 1 name: "player1" pos: [0; 0]
 arenaInited
 tick
-robotMoved id: 1 pos: [0; 1]
-tick
 robotMoved id: 1 pos: [0; 2]
-puttyDropped fromId: 1 pos: [0; 2]
+tick
+robotMoved id: 1 pos: [0; 4]
+puttyDropped fromId: 1 pos: [0; 4]
+tick
+robotMoved id: 1 pos: [3; 4]
+robotSlowedDown id: 1 speed: 1.5
+puttyDecayed atPos: [3; 4] decay: 1
+tick
+robotMoved id: 1 pos: [5; 4]

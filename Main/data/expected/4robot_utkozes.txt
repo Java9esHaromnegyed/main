@@ -1,44 +1,36 @@
 arenaLoaded src: testArena4.txt
 robotAdded id: 1 name: "player1" pos: [0; 0]
-obstacleAdded type: OIL  pos: [4; 2]
-obstacleAdded type: OIL  pos: [11; 2]
+obstacleAdded type: PUTTY  pos: [4; 2]
+obstacleAdded type: PUTTY  pos: [11; 2]
 robotAdded id: 2 name: "player2" pos: [0; 5]
 arenaInited
+cleanerRobotAdded id: 3 pos: [1; 0]
+cleanerRobotAdded id: 4 pos: [1; 4]
 tick
 robotMoved id: 1 pos: [0; 3]
 robotMoved id: 2 pos: [0; 3]
 robotDied id: 1
-oilAged atPos: [4; 2] decay: 1
-oilAged atPos: [11; 2] decay: 1
+cleanerRobotMoved id: 3 pos: [1; 1]
+cleanerRobotMoved id: 4 pos: [1; 3]
 tick
 robotMoved id: 2 pos: [0; 1]
-oilAged atPos: [4; 2] decay: 2
-oilAged atPos: [11; 2] decay: 2
-cleanerRobotAdded id: 3 pos: [0; 0]
-cleanerRobotAdded id: 4 pos: [0; 4]
+cleanerRobotMoved id: 3 pos: [1; 2]
+cleanerRobotMoved id: 4 pos: [2; 3]
 tick
 robotMoved id: 2 pos: [0; -1]
 robotDied id: 2
-cleanerRobotMoved id: 3 pos: [0; 1]
-cleanerRobotMoved id: 4 pos: [0; 3]
-oilAged atPos: [4; 2] decay: 3
-oilAged atPos: [11; 2] decay: 3
-tick
-cleanerRobotMoved id: 3 pos: [0; 2]
-cleanerRobotMoved id: 4 pos: [1; 3]
-obstacleRemoved pos: [4; 2]
-tick
-cleanerRobotMoved id: 3 pos: [1; 2]
-cleanerRobotMoved id: 4 pos: [2; 3]
-obstacleRemoved pos: [11; 2]
-tick
 cleanerRobotMoved id: 3 pos: [2; 2]
+cleanerRobotMoved id: 4 pos: [3; 3]
 tick
 cleanerRobotMoved id: 3 pos: [3; 2]
+cleanerRobotMoved id: 4 pos: [4; 3]
 tick
 cleanerRobotMoved id: 3 pos: [4; 2]
+cleanerRobotMoved id: 4 pos: [4; 3]
 tick
 cleanerRobotClean id: 3 pos: [4; 2]
+cleanerRobotMoved id: 4 pos: [4; 3]
 tick
 cleanerRobotClean id: 3 pos: [4; 2]
 obstacleRemoved pos: [4; 2]
+cleanerRobotMoved id: 4 pos: [5; 3]
