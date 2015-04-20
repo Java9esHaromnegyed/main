@@ -22,10 +22,11 @@ public class Config {
     public static final int DIR_DOWN = 2;
     public static final int DIR_LEFT = 3;
 
+    // oil, putty reserves
     public static final int OIL_TANK = 2;
     public static final int PUTTY_TANK = 2;
 
-    // controll
+    // control
     public static final int MOV_P2_UP = KeyEvent.VK_UP;
     public static final int MOV_P2_DOWN = KeyEvent.VK_DOWN;
     public static final int MOV_P2_LEFT = KeyEvent.VK_LEFT;
