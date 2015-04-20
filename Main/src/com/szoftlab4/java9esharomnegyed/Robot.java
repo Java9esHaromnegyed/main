@@ -26,6 +26,7 @@ public class Robot extends AbstractRobot {
     public void dropPutty() {
         //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
         if(!dead && !paralyzed) {
+            //Ha van még ragacs a készleten lerakjuk, egyébként jelezzük, hogy kiürült
             if(puttyLeft != 0){
                 arena.addObstacle(new PuttySpot(position));
                 puttyLeft--;
@@ -43,6 +44,7 @@ public class Robot extends AbstractRobot {
     public void dropOil() {
         //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
         if(!dead && !paralyzed){
+            //Ha van még olaj a készleten lerakjuk, egyébként jelezzük, hogy kiürült
             if(oilLeft != 0){
                 arena.addObstacle(new OilSpot(position));
                 oilLeft--;
@@ -86,6 +88,7 @@ public class Robot extends AbstractRobot {
 
     @Override
     public void die() {
+        //ha meghalt, vele nem foglalkozunk
         dead = true;
         LogHelper.inline("robotDied id: " + id);
     }
