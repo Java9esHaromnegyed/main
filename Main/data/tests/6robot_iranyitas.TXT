@@ -1,5 +1,11 @@
 loadArena testArena6.txt
 initArena
+robotMovement 1 UP
 robotMovement 1 RIGHT
 tick 2
 robotMovement 1 PUTTY
+robotMovement 1 UP
+robotMovement 1 LEFT
+tick 1
+robotMovement 1 DOWN
+tick 1
