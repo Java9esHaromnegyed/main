@@ -5,7 +5,6 @@ robotMovement 1 UP
 robotMovement 1 UP
 robotMovement 2 LEFT
 robotMovement 2 UP
-tick 2
-addCleanerRobot 3 0 0
-addCleanerRobot 4 0 4
-tick 8
+addCleanerRobot 3 1 0
+addCleanerRobot 4 1 4
+tick 7

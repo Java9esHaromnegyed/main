@@ -118,7 +118,7 @@ public class LogHelper {
 
     public static void comment(Object object){  // call utasítást kompenzáló egy szintet visszaugró log
         close();                                    // visszalép
-        inline(object);                             // logol
+        inline("COMMENT:\t" + object);              // logol
         lift();                                     // előre lép az eredeti pozícióba
     }
 

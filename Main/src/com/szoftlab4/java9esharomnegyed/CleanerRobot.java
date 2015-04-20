@@ -150,7 +150,7 @@ public class CleanerRobot extends AbstractRobot {
             }
         }
         //if(targ != null)
-        //    LogHelper.inline("Target " + targ.toString());
+        //    LogHelper.comment("Target id: " + id + " target: " + targ.toString());
         return targ;
     }
 

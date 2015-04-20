@@ -1,7 +1,6 @@
 package com.szoftlab4.java9esharomnegyed;
 
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
-import sun.rmi.runtime.Log;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -37,6 +36,11 @@ public class Arena {
         int tile = Config.TILE_SIZE;
         Dimension place;
         char element;
+
+        robots = new ArrayList<Robot>();
+        cleaners = new ArrayList<CleanerRobot>();
+        obstacles = new ArrayList<Obstacle>();
+        walls = new ArrayList<Wall>();
 
         if(this.map != null){
             for(int i = 0; i < this.map.size(); i++)
@@ -317,7 +321,7 @@ public class Arena {
         for (int j = 0; j < cleaners.size(); j++) {
             cleaners.get(j).move();
         }
-        for (int j = 0; j < obstacles.size(); j++) {
+        for (int j = 0; j < obstacles.size();) {
             //ha az olaj felszáradt, vagy ragacs elkopott, töröljük a pályáról, egyébként az olajat öregítjük
             if(obstacles.get(j).getAge() == Config.AGE_LIMIT){
                 LogHelper.inline("obstacleRemoved pos: ["+obstacles.get(j).getPosition().width+"; "+obstacles.get(j).getPosition().height + "]");
@@ -327,6 +331,7 @@ public class Arena {
                 obstacles.remove(j);
             } else {
                 obstacles.get(j).age();
+                j++;
             }
         }
     }
