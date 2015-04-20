@@ -1,0 +1,137 @@
+arenaLoaded src: testArena1.txt
+obstacleAdded type: WALL  pos: [3; 0]
+obstacleAdded type: WALL  pos: [9; 1]
+obstacleAdded type: OIL  pos: [2; 2]
+obstacleAdded type: OIL  pos: [14; 2]
+robotAdded id: 1 name: "player1" pos: [1; 3]
+obstacleAdded type: WALL  pos: [9; 4]
+obstacleAdded type: WALL  pos: [3; 5]
+obstacleAdded type: PUTTY  pos: [15; 5]
+robotAdded id: 2 name: "player2" pos: [1; 6]
+obstacleAdded type: WALL  pos: [4; 9]
+arenaInited
+arenaLoaded src: testArena2.txt
+obstacleAdded type: OIL  pos: [2; 2]
+arenaInited
+cleanerRobotAdded id: 0 pos: [0; 0]
+tick
+cleanerRobotMoved id: 0 pos: [0; 1]
+oilAged atPos: [2; 2] age: 1
+tick
+cleanerRobotMoved id: 0 pos: [0; 2]
+oilAged atPos: [2; 2] age: 2
+tick
+cleanerRobotMoved id: 0 pos: [1; 2]
+oilAged atPos: [2; 2] age: 3
+tick
+cleanerRobotMoved id: 0 pos: [2; 2]
+obstacleRemoved pos: [2; 2]
+tick
+cleanerRobotClean id: 0 pos: [2; 2]
+tick
+cleanerRobotClean id: 0 pos: [2; 2]
+obstacleRemoved pos: [2; 2]
+arenaLoaded src: testArena3.txt
+robotAdded id: 0 name: "player0" pos: [1; 0]
+arenaInited
+cleanerRobotAdded id: 1 pos: [1; 2]
+tick
+robotMoved id: 0 pos: [1; 1]
+tick
+robotMoved id: 0 pos: [1; 2]
+cleanerRobotDied id: 1
+obstacleAdded type: OIL  pos: [1; 2]
+robotSlipped id: 0
+oilAged atPos: [1; 2] age: 1
+arenaLoaded src: testArena4.txt
+robotAdded id: 1 name: "player1" pos: [0; 0]
+obstacleAdded type: PUTTY  pos: [4; 2]
+obstacleAdded type: PUTTY  pos: [11; 2]
+robotAdded id: 2 name: "player2" pos: [0; 5]
+arenaInited
+cleanerRobotAdded id: 3 pos: [1; 0]
+cleanerRobotAdded id: 4 pos: [1; 4]
+tick
+robotMoved id: 1 pos: [0; 3]
+robotMoved id: 2 pos: [0; 3]
+robotDied id: 1
+cleanerRobotMoved id: 3 pos: [1; 1]
+cleanerRobotMoved id: 4 pos: [1; 3]
+tick
+robotMoved id: 2 pos: [0; 1]
+cleanerRobotMoved id: 3 pos: [1; 2]
+cleanerRobotMoved id: 4 pos: [2; 3]
+tick
+robotMoved id: 2 pos: [0; -1]
+robotDied id: 2
+cleanerRobotMoved id: 3 pos: [2; 2]
+cleanerRobotMoved id: 4 pos: [3; 3]
+tick
+cleanerRobotMoved id: 3 pos: [3; 2]
+cleanerRobotMoved id: 4 pos: [4; 3]
+tick
+cleanerRobotMoved id: 3 pos: [4; 2]
+cleanerRobotMoved id: 4 pos: [4; 3]
+tick
+cleanerRobotClean id: 3 pos: [4; 2]
+cleanerRobotMoved id: 4 pos: [4; 3]
+tick
+cleanerRobotClean id: 3 pos: [4; 2]
+obstacleRemoved pos: [4; 2]
+cleanerRobotMoved id: 4 pos: [5; 3]
+arenaLoaded src: testArena5.txt
+obstacleAdded type: OIL  pos: [5; 5]
+arenaInited
+tick
+oilAged atPos: [5; 5] age: 1
+tick
+oilAged atPos: [5; 5] age: 2
+tick
+oilAged atPos: [5; 5] age: 3
+tick
+obstacleRemoved pos: [5; 5]
+tick
+arenaLoaded src: testArena6.txt
+robotAdded id: 1 name: "player1" pos: [0; 0]
+arenaInited
+tick
+robotMoved id: 1 pos: [0; 2]
+tick
+robotMoved id: 1 pos: [0; 4]
+puttyDropped fromId: 1 pos: [0; 4]
+tick
+robotMoved id: 1 pos: [3; 4]
+robotSlowedDown id: 1 speed: 1.5
+puttyDecayed atPos: [3; 4] decay: 1
+tick
+robotMoved id: 1 pos: [5; 4]
+arenaLoaded src: testArena7.txt
+robotAdded id: 1 name: "player1" pos: [0; 0]
+obstacleAdded type: WALL  pos: [2; 0]
+arenaInited
+tick
+robotMoved id: 1 pos: [1; 0]
+tick
+robotStopped id: 1 speed: 0.0
+robotMoved id: 1 pos: [1; 0]
+arenaLoaded src: testArena8.txt
+robotAdded id: 1 name: "player1" pos: [0; 0]
+obstacleAdded type: OIL  pos: [1; 0]
+arenaInited
+tick
+robotMoved id: 1 pos: [1; 0]
+robotSlipped id: 1
+oilAged atPos: [1; 0] age: 1
+tick
+robotMoved id: 1 pos: [2; 0]
+oilAged atPos: [1; 0] age: 2
+arenaLoaded src: testArena9.txt
+robotAdded id: 1 name: "player1" pos: [0; 0]
+obstacleAdded type: PUTTY  pos: [1; 0]
+arenaInited
+tick
+robotMoved id: 1 pos: [1; 0]
+robotSlowedDown id: 1 speed: 0.5
+puttyDecayed atPos: [1; 0] decay: 1
+tick
+robotMoved id: 1 pos: [2; 0]

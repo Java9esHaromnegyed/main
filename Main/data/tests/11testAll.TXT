@@ -9,3 +9,51 @@ initArena
 addCleanerRobot 1 1 2
 robotMovement 0 RIGHT
 tick 2
+loadArena testArena4.txt
+initArena
+robotMovement 1 RIGHT
+robotMovement 1 UP
+robotMovement 1 UP
+robotMovement 2 LEFT
+robotMovement 2 UP
+addCleanerRobot 3 1 0
+addCleanerRobot 4 1 4
+tick 7
+loadArena testArena5.txt
+initArena
+tick 5
+loadArena testArena6.txt
+initArena
+robotMovement 1 UP
+robotMovement 1 RIGHT
+tick 2
+robotMovement 1 PUTTY
+robotMovement 1 UP
+robotMovement 1 LEFT
+tick 1
+robotMovement 1 DOWN
+tick 1
+loadArena testArena7.txt
+initArena
+tick 2
+loadArena testArena8.txt
+initArena
+tick 1
+robotMovement 1 UP
+tick 1
+loadArena testArena9.txt
+initArena
+tick 2
+loadArena testArena10.txt
+initArena
+robotMovement 1 OIL
+tick 2
+robotMovement 1 PUTTY
+tick 2
+robotMovement 1 OIL
+tick 2
+robotMovement 1 PUTTY
+tick 2
+robotMovement 1 OIL
+tick 2
+robotMovement 1 PUTTY
