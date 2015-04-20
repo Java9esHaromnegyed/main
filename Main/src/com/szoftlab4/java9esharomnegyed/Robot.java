@@ -29,7 +29,7 @@ public class Robot extends AbstractRobot {
             //Ha van még ragacs a készleten lerakjuk, egyébként jelezzük, hogy kiürült
             if(puttyLeft != 0){
                 arena.addObstacle(new PuttySpot(position));
-                puttyLeft--;
+                puttyLeft--;  //csökkentyük a putty készletet 1-el
                 LogHelper.inline("puttyDropped fromId: "+id+" pos: "+"["+position.width+"; "+position.height+"]");
             }
             else{
@@ -47,7 +47,7 @@ public class Robot extends AbstractRobot {
             //Ha van még olaj a készleten lerakjuk, egyébként jelezzük, hogy kiürült
             if(oilLeft != 0){
                 arena.addObstacle(new OilSpot(position));
-                oilLeft--;
+                oilLeft--; //csökkentyük az olaj készletet 1-el
                 LogHelper.inline("oilDropped fromId: "+id+" pos: "+"["+position.width+"; "+position.height+"]");
             }
             else{
@@ -161,7 +161,7 @@ public class Robot extends AbstractRobot {
 
     //Robotra ragacs hat
     public void stuck() {
-        speed *= 0.5;
+        speed *= 0.5; //sebesség feleződik
         slowed = true;
         LogHelper.inline("robotSlowedDown id: " + id + " speed: " + speed);
     }
@@ -174,7 +174,7 @@ public class Robot extends AbstractRobot {
 
     //Robot megállítása (pl fallal ütközés esetén)
     public void stop(){
-        speed = 0;
+        speed = 0; //robot megállítása
         paralyzed = false; // muszáj feloldani mert irányváltás és sebességnövelés nélkül nem tudnál elmozdulni onnan.
         slowed = false; //Jófejségből ha voltál olyan szerencsétlen hogy falnak mentél akkor ezt is levesszük
         LogHelper.inline("robotStopped "+"id: "+id+" speed: "+speed);

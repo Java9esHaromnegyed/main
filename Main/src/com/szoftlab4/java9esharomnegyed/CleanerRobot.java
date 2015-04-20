@@ -9,6 +9,7 @@ public class CleanerRobot extends AbstractRobot {
     private int cleanTime = Config.CLN_TIME;
     Obstacle target = null;
 
+    //CleanerRobot konstruktor
     public CleanerRobot(Arena a, Dimension pos, int dir, int ID, int cTime){
         super();
         arena = a;
@@ -17,7 +18,7 @@ public class CleanerRobot extends AbstractRobot {
         id = ID;
         cleanTime = cTime;
         speed = Config.SPD_DEFFAULT;
-        target = findTarget();
+        target = findTarget(); //Initnél megkeresi a legközelebbi foltot, hogy egyből el tudjon arra indulni
     }
 
     public CleanerRobot(Arena arena, Dimension pos, int dir, int ID){
@@ -77,32 +78,42 @@ public class CleanerRobot extends AbstractRobot {
         }
     }
 
+    //X tengelyen indulunk meg a folt felé
     private Dimension tryFromX(){
         Dimension x = new Dimension();
 
         if (position.getWidth() < target.getPosition().getWidth()) {
+            //X tengelyen lép előre
             x.setSize(position.getWidth() + speed, position.getHeight());
         } else if (position.getWidth() > target.getPosition().getWidth()) {
+            //X tengelyen lép vissza
             x.setSize(position.getWidth() - speed, position.getHeight());
         }else if (position.getHeight() < target.getPosition().getHeight()) {
+            //Y tengelyen lép előre
             x.setSize(position.getWidth(), position.getHeight() + speed);
         } else if (position.getHeight() > target.getPosition().getHeight()) {
+            //Y tengelyen lép vissza
             x.setSize(position.getWidth(), position.getHeight() - speed);
         }
 
         return x;
     }
 
+    //Y tengelyen indulunk meg a folt felé
     private Dimension tryFromY(){
         Dimension y = new Dimension();
 
         if (position.getHeight() < target.getPosition().getHeight()) {
+            //Y tengelyen lép előre
             y.setSize(position.getWidth(), position.getHeight() + speed);
         } else if (position.getHeight() > target.getPosition().getHeight()) {
+            //Y tengelyen lép vissza
             y.setSize(position.getWidth(), position.getHeight() - speed);
         } else if (position.getWidth() < target.getPosition().getWidth()) {
+            //X tengelyen lép előre
             y.setSize(position.getWidth() + speed, position.getHeight());
         } else if (position.getWidth() > target.getPosition().getWidth()) {
+            //X tengelyen lép vissza
             y.setSize(position.getWidth() - speed, position.getHeight());
         }
 
@@ -114,9 +125,11 @@ public class CleanerRobot extends AbstractRobot {
     public void clean(){
         if(!dead){
             if(cleanTime > 0)
+                //A takarításból hátralévő idő csökkentése
                 cleanTime--;
             LogHelper.inline("cleanerRobotClean id: " + id + " pos: [" + position.width + "; " + position.height + "]");
             if(cleanTime == 0){
+                //Ha a cleantime == 0 akkor eltűntetjük a foltot
                 arena.removeObstacle(target);
                 target = null;
                 cleanTime = Config.CLN_TIME;
@@ -131,26 +144,26 @@ public class CleanerRobot extends AbstractRobot {
 
     //élesben majd ez kell
     public Obstacle findTarget(){
-        double length = 0;
         double diffLengthMax = -1;
         Obstacle targ = null;
+        //Végig iterálunk az obstacle-ökön és mindegyikre megnézzük a távolságot
         for(Obstacle o : arena.getObstacles()){
             Dimension diff = new Dimension();
+            //Távolságot számolunk a pitagorasz tétel alapján
             diff.setSize(Math.abs(position.getHeight() - o.getPosition().getHeight()),
                     Math.abs(position.getHeight() - o.getPosition().getHeight()));
             double diffLength = Math.sqrt(Math.pow(diff.getHeight(),2) + Math.pow(diff.getWidth(),2));
+            //Ha közelebbit találtunk akkor azt állítjuk be targetnek
             if (Double.compare(diffLengthMax, -1) > 0){
                 if(diffLength < diffLengthMax){
                     diffLengthMax = diffLength;
                     targ = o;
                 }
-            } else {
+            } else { //Először az első obstacle távolságát adjuk meg inicializálásként
                 diffLengthMax = diffLength;
                 targ = o;
             }
         }
-        //if(targ != null)
-        //    LogHelper.comment("Target id: " + id + " target: " + targ.toString());
         return targ;
     }
 
