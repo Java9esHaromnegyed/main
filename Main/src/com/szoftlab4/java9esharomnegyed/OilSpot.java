@@ -21,7 +21,7 @@ public class OilSpot extends Obstacle {
 
     @Override
     public void age(){
-        age++;
+        age++; //Olajfolt öregítése
         LogHelper.inline("oilAged atPos: [" + position.width + "; " + position.height + "] age: " + age);
     }
 

@@ -17,7 +17,7 @@ public class PuttySpot extends Obstacle {
     public void effect(Robot robot) {
         //Roboton megfelelő hatást kiváltó fgv meghívása
         robot.stuck();
-        decay++;
+        decay++; //ragacs öregítése
         LogHelper.inline("puttyDecayed atPos: [" + position.width + "; " + position.height + "] decay: " + decay);
     }
 

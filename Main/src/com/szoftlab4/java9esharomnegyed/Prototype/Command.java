@@ -42,24 +42,29 @@ public class Command {
     /*Ide jönnek a fügvények amik a már értelmezett parancsot végrehajtják a kapott argumentumokkal*/
 
 
+    //Tick parancs
     private void tick(String[] args) {
+        //Megfelelő argumentum szám ellenőrzése
         if(args!=null && args.length==1){
             try {
                 int count = Integer.valueOf(args[0]);
                 for (int i = 0; i < count; i++)
+                    //Tick fgv meghívása
                     inGameArena.tick();
             } catch (NumberFormatException e) {
                 LogHelper.error("Invalid argument! Argument has to be a number");
             }
         }
         else{
-
+            LogHelper.error("Too many arguments!");
         }
     }
 
+    //Robot hozzáadása parancs
     private void addRobot(String[] args) {
         if(args!=null && args.length==4){
             Dimension dim = new Dimension(Integer.valueOf(args[2]), Integer.valueOf(args[3]));
+            //Robot felvétele
             inGameArena.addRobot(args[1], dim, 0, Integer.valueOf(args[0]));
         }
         else{
@@ -67,17 +72,7 @@ public class Command {
         }
     }
 
-    /* nem kell
-    private void testAll(String[] args) {
-        if(args==null){
-
-        }
-        else{
-            LogHelper.error("There is no option needed for testAll command.");
-        }
-
-    }*/
-
+    //ExitGame parancs
     private void exitGame(String[] args) {
         if(args==null){
             Game.exitGame();
@@ -88,9 +83,11 @@ public class Command {
 
     }
 
+    //CleanerRobot felvétele parancs
     private void addCleanerRobot(String[] args) {
         if(args!=null && args.length==3){
             Dimension dim = new Dimension(Integer.valueOf(args[1]), Integer.valueOf(args[2]));
+            //CleanerRobot felvétele
             inGameArena.addCleanerRobot(dim, Config.DIR_RIGHT, Integer.valueOf(args[0]));
         }
         else{
@@ -119,8 +116,10 @@ public class Command {
 
     }
 
+    //Robot mozgatása parancs
     private void robotMove(String[] args) {
         if(args!=null && args.length==1){
+            //Robot mozgatás indukálása
             inGameArena.getRobot(Integer.valueOf(args[0])).move();
         }
         else{
@@ -129,11 +128,13 @@ public class Command {
 
     }
 
+    //Robot iránytása parancs
     private void robotMovement(String[] args) {
         if(args!=null && args.length==2){
             int id = Integer.valueOf(args[0]);
             String command = args[1];
 
+            //Karakterek a bemenet szimulálásához
             int chars[] = {KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_C, KeyEvent.VK_V,
                     KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_O, KeyEvent.VK_P};
             int key = 0;
@@ -165,10 +166,11 @@ public class Command {
             inGameArena.movementControl(chars[key]);
         }
         else{
-
+            LogHelper.error("Too many arguments!");
         }
     }
 
+    //Aréna betöltése parancs
     private void loadArena(String[] args){
         String txt = "";
         if(args!=null && args.length==1){
@@ -193,6 +195,7 @@ public class Command {
         }
     }
 
+    //Aréna inicializálása
     private void initArena(String[] args) {
         if(args == null){
             inGameArena.initArena();
