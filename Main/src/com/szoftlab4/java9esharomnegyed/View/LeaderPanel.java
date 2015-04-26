@@ -10,4 +10,8 @@ import javax.swing.*;
 public class LeaderPanel extends JPanel {
     private Leaderboard subject;
     private JButton backButton;
+
+    public void backButtonFunction(){
+        
+    }
 }

@@ -9,4 +9,14 @@ public class MenuPanel extends JPanel {
     private JButton play;
     private JButton leaderBoard;
     private JButton exit;
+
+    public void playButtonFunction(){
+
+    }
+    public void leaderBoardButtonFunction(){
+
+    }
+    public void exitButtonFunction(){
+
+    }
 }
