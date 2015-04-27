@@ -24,7 +24,15 @@ public class GUI extends JFrame{
     public void loadLeaderPanel(){
 
     }
-    public void PausePanel(){
+    public void loadPausePanel(){
+
+    }
+
+    public void showGamePanel(){
+
+    }
+
+    public void updateGame(){
 
     }
 }

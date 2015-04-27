@@ -15,11 +15,7 @@ public class GamePanel extends JPanel {
     private ArrayList<Obstacle> obstacles;
     private ArrayList<Wall> walls;
 
-    public void clockTick(){
-
-    }
-
-    public void statusChanged(){
+    public void update(){
 
     }
 }

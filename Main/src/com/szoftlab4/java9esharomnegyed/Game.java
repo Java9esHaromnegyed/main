@@ -108,4 +108,7 @@ public class Game {
     public static void updateLeaderboard(String name, double score) {
         leaderboard.addRecord(name, score);
     }
+
+    public void tick(){
+    }
 }
