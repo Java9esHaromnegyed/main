@@ -12,7 +12,7 @@ public class Game {
     private static Arena arena;
     private static Leaderboard leaderboard;
     private static String[] arguments = null;
-    //private static Clock clock;
+    private static Clock clock;
 
     public static String[] getArguments() {
         return arguments;
@@ -23,6 +23,7 @@ public class Game {
         arguments = args;
         arena = new Arena();
         leaderboard = new Leaderboard();
+        clock = new Clock();
         Prototype prototype = new Prototype(arena);
 
         if(args.length == 4){
