@@ -202,10 +202,6 @@ public class Arena {
         return robo;
     }
 
-    public List<Robot> getRobotList(){
-        return robots;
-    }
-
     //Ütközésdetekció
     public Dimension collision(Robot r, Dimension d) {
         Obstacle w = null;
@@ -339,8 +335,19 @@ public class Arena {
     }
 
     // visszaadja a teljes obstacle listát
-    public List<Obstacle> getObstacles() {
+    public List<Obstacle> getObstacleList() {
         return obstacles;
     }
 
+    public List<Wall> getWallList(){
+        return walls;
+    }
+
+    public List<Robot> getRobotList(){
+        return robots;
+    }
+
+    public List<CleanerRobot> getCleanersList(){
+        return cleaners;
+    }
 }

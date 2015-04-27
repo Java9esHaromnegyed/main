@@ -147,7 +147,7 @@ public class CleanerRobot extends AbstractRobot {
         double diffLengthMax = -1;
         Obstacle targ = null;
         //Végig iterálunk az obstacle-ökön és mindegyikre megnézzük a távolságot
-        for(Obstacle o : arena.getObstacles()){
+        for(Obstacle o : arena.getObstacleList()){
             Dimension diff = new Dimension();
             //Távolságot számolunk a pitagorasz tétel alapján
             diff.setSize(Math.abs(position.getHeight() - o.getPosition().getHeight()),
