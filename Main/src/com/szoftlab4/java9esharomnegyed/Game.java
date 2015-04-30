@@ -2,6 +2,7 @@ package com.szoftlab4.java9esharomnegyed;
 
 import com.szoftlab4.java9esharomnegyed.Prototype.Prototype;
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+import com.szoftlab4.java9esharomnegyed.View.GUI;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,28 +15,29 @@ public class Game {
     private static String[] arguments = null;
     private static Clock clock;
 
-    public static String[] getArguments() {
-        return arguments;
-    }
+
 
     //Program belépési pontja
     public static void main(String[] args) {
-        arguments = args;
+        //arguments = args;
         arena = new Arena();
         leaderboard = new Leaderboard();
         clock = new Clock();
-        Prototype prototype = new Prototype(arena);
 
-        if(args.length == 4){
+        GUI gui = new GUI();
+
+        //Prototype prototype = new Prototype(arena);
+
+        /*if(args.length == 4){
             Config.TEST_FOLDER = args[2];
             Config.ARENA_FOLDER = args[3];
-        }
+        }*/
 
-        try {
+        /*try {
             prototype.runPrototype(args);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
 
@@ -111,5 +113,10 @@ public class Game {
     }
 
     public void tick(){
+        arena.tick();
+    }
+
+    public static String[] getArguments() {
+        return arguments;
     }
 }

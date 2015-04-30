@@ -1,5 +1,6 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Config {
@@ -53,4 +54,8 @@ public class Config {
 
     /* LEADERBOARD related */
     public static final int LEADERBOARD_SIZE = 10;
+
+    /* GUI related */
+    public static final String MAIN_TITLE = "Phoebe";
+    public static final Dimension FRAME_SIZE = new Dimension(670,390);
 }
