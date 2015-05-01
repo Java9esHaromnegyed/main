@@ -45,7 +45,7 @@ public class GamePanel extends JPanel {
 
     //----------------------------------------Key-listeners----------------------------------------
     private class escAction extends KeyAdapter {
-        public void keyPressed(KeyEvent e){
+        public void keyReleased(KeyEvent e){
             if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
                 parent.loadPausePanel();
         }
