@@ -5,17 +5,27 @@ import com.szoftlab4.java9esharomnegyed.Robot;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.List;
 
 public class GamePanel extends JPanel {
     private Canvas playGround;
     private Canvas statusCanvas;
-    private ArrayList<Robot> robots;
-    private ArrayList<CleanerRobot> cleaners;
-    private ArrayList<Obstacle> obstacles;
-    private ArrayList<Wall> walls;
+    private List<Robot> robots;
+    private List<CleanerRobot> cleaners;
+    private List<Obstacle> obstacles;
+    private List<Wall> walls;
+
+
+
+
 
     public void update(){
+        Arena temp = Game.getArena();
+        robots = temp.getRobotList();
+        cleaners = temp.getCleanersList();
+        obstacles = temp.getObstacleList();
+        walls = temp.getWallList();
 
+        this.invalidate();
     }
 }

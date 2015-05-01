@@ -5,6 +5,7 @@ import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 import com.szoftlab4.java9esharomnegyed.View.GUI;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -58,9 +59,9 @@ public class Game {
         //InputStreamReader inputStreamReader = new InputStreamReader(System.in);
         //BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-            requestName(playerOne, 0);
-            requestName(playerTwo, 1);
-
+        requestName(playerOne, 0);
+        requestName(playerTwo, 1);
+        clock.startClock();
     }
 
     //Játék vége fgv
@@ -119,6 +120,10 @@ public class Game {
 
     public static Leaderboard getLeaderboard() {
         return leaderboard;
+    }
+
+    public static Arena getArena(){
+        return arena;
     }
 
     public void tick(){

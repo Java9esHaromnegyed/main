@@ -27,15 +27,12 @@ public class GUI extends JFrame{
     }
 
     private void initFrame(){
-
-        //menuPanel = new MenuPanel();
         this.setLayout(new BorderLayout());
 
         this.setTitle(Config.MAIN_TITLE);
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new exitApp());
 
-        //setContentPane(menuPanel);
         setFrameSize(Config.FRAME_SIZE, this);
 
         this.setLocationRelativeTo(null);
@@ -44,18 +41,30 @@ public class GUI extends JFrame{
 
     //----------------------------------------Panel-placers----------------------------------------
     public void loadGamePanel(){
+        if(gamePanel == null)
+            gamePanel = new GamePanel();
+        else
+            gamePanel.update();
+        setContentPane(gamePanel);
+        setVisible(true);
+    }
+
+    public void showGamePanel(){
 
     }
+
     public void loadMenuPanel(){
         if (menuPanel == null)
             menuPanel = new MenuPanel(this);
         setContentPane(menuPanel);
         setVisible(true);
     }
+
     public void loadGameInitPanel(){
-        LogHelper.inline("letsPlay!");
         if(gameInitPanel == null)
             gameInitPanel = new GameInitPanel(this);
+        setContentPane(gameInitPanel);
+        setVisible(true);
     }
 
     public void loadLeaderPanel(){
@@ -66,12 +75,12 @@ public class GUI extends JFrame{
         setContentPane(leaderPanel);
         setVisible(true);
     }
+
     public void loadPausePanel(){
-
-    }
-
-    public void showGamePanel(){
-
+        if(pausePanel == null)
+            pausePanel = new PausePanel(this);
+        setContentPane(pausePanel);
+        setVisible(true);
     }
 
     public void updateGame(){

@@ -1,5 +1,6 @@
 package com.szoftlab4.java9esharomnegyed.View;
 
+import com.szoftlab4.java9esharomnegyed.Arena;
 import com.szoftlab4.java9esharomnegyed.Config;
 import com.szoftlab4.java9esharomnegyed.Game;
 
@@ -7,18 +8,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class GameInitPanel extends JPanel {
     GUI parent;
+    Arena subject;
     private JTextField playerOneName;
     private JTextField playerTwoName;
     private JButton doneButton;
 
     GameInitPanel(GUI p){
         parent = p;
+        subject = Game.getArena();
 
-        doneButton = new JButton("Back");
-        doneButton.addActionListener(new backAction());
+        doneButton = new JButton("Done");
+        doneButton.addActionListener(new doneAction());
 
         playerOneName = new JTextField("playerOne");
         playerTwoName = new JTextField("playerTwo");
@@ -51,16 +55,34 @@ public class GameInitPanel extends JPanel {
 
     //Új játékot indítunk, a megadott nevekkel elnevezve a robotokat
     public void doneButtonFunction(){
+        try {
+            subject.loadMap(Config.DEF_MAP);
+            subject.initArena();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Game.newGame(playerOneName.getText(), playerTwoName.getText());
         parent.loadGamePanel();
     }
 
     //Gombnyomásra meghívjuk a megfelelő metódust
-    private class backAction implements ActionListener{
+    private class doneAction implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
             doneButtonFunction();
+        }
+    }
+
+    public void backButtonFunction(){
+        parent.loadMenuPanel();
+    }
+
+    private class backAction implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            backButtonFunction();
         }
     }
 }
