@@ -84,7 +84,7 @@ public class GUI extends JFrame{
     }
 
     public void updateGame(){
-
+        gamePanel.update();
     }
 
     //---------------------------------------Windows-Listeners--------------------------------------
