@@ -53,12 +53,17 @@ public class GUI extends JFrame{
     }
     public void loadGameInitPanel(){
         LogHelper.inline("letsPlay!");
+        if(gameInitPanel == null)
+            gameInitPanel = new GameInitPanel(this);
     }
+
     public void loadLeaderPanel(){
+        //nem kell nullt ellenőrizni, úgyis mindig új leaderPanel kell, hogy frissüljön
         LogHelper.inline("leader");
-        /*if (leaderPanel == null)
-            leaderPanel = new LeaderPanel();
-        setContentPane(leaderPanel);*/
+        this.remove(menuPanel);
+        leaderPanel = new LeaderPanel(this);
+        this.add(leaderPanel);
+        setContentPane(leaderPanel);
     }
     public void loadPausePanel(){
 

@@ -17,6 +17,7 @@ public class Game {
 
 
 
+
     //Program belépési pontja
     public static void main(String[] args) {
         //arguments = args;
@@ -48,13 +49,13 @@ public class Game {
     }
 
     //Új játék indítása
-    public static void newGame(){
+    public static void newGame(String playerOne, String playerTwo){
         //Beolvasás konzolról
         //InputStreamReader inputStreamReader = new InputStreamReader(System.in);
         //BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-            //requestName(p1, 0);
-            //requestName(p2, 1);
+            requestName(playerOne, 0);
+            requestName(playerTwo, 1);
 
     }
 
@@ -119,4 +120,5 @@ public class Game {
     public static String[] getArguments() {
         return arguments;
     }
+
 }
