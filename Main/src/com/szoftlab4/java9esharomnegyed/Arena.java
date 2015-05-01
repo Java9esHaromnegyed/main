@@ -43,6 +43,8 @@ public class Arena {
         obstacles = new ArrayList<Obstacle>();
         walls = new ArrayList<Wall>();
 
+
+        LogHelper.pause();
         if(this.map != null){
             for(int i = 0; i < this.map.size(); i++)
                 for(int j = 0; j < this.map.get(0).length(); j++){
@@ -70,6 +72,7 @@ public class Arena {
                 }
             //LogHelper.inline("arenaInited");
             LogHelper.inline("arenaInited");    // kimenet generálás
+            LogHelper.rec();
         }
     }
 
@@ -98,7 +101,9 @@ public class Arena {
         }
 
         this.map = temp;
+        LogHelper.pause();
         LogHelper.inline("arenaLoaded src: " + fileName);
+        LogHelper.rec();
 
         // size beállítása
         if(this.map != null)

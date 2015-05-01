@@ -62,7 +62,7 @@ public class GameInitPanel extends JPanel {
             e.printStackTrace();
         }
 
-        Game.newGame(playerOneName.getText(), playerTwoName.getText());
+        //Game.newGame(playerOneName.getText(), playerTwoName.getText());
         parent.loadGamePanel();
     }
 

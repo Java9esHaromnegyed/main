@@ -40,24 +40,25 @@ public class GUI extends JFrame{
     }
 
     //----------------------------------------Panel-placers----------------------------------------
-    public void loadGamePanel(){
-        if(gamePanel == null)
-            gamePanel = new GamePanel();
-        else
-            gamePanel.update();
-        setContentPane(gamePanel);
-        setVisible(true);
-    }
-
-    public void showGamePanel(){
-
-    }
-
     public void loadMenuPanel(){
         if (menuPanel == null)
             menuPanel = new MenuPanel(this);
         setContentPane(menuPanel);
         setVisible(true);
+    }
+
+    public void loadGamePanel(){
+        if(gamePanel == null)
+            gamePanel = new GamePanel(this);
+        else
+            gamePanel.update();
+        setContentPane(gamePanel);
+        setVisible(true);
+        gamePanel.requestFocus();
+    }
+
+    public void showGamePanel(){
+
     }
 
     public void loadGameInitPanel(){
@@ -67,19 +68,19 @@ public class GUI extends JFrame{
         setVisible(true);
     }
 
+    public void loadPausePanel(){
+        if(pausePanel == null)
+            pausePanel = new PausePanel(this);
+        setContentPane(pausePanel);
+        setVisible(true);
+    }
+
     public void loadLeaderPanel(){
         if (leaderPanel == null)
             leaderPanel = new LeaderPanel(this);
         else
             leaderPanel.update();
         setContentPane(leaderPanel);
-        setVisible(true);
-    }
-
-    public void loadPausePanel(){
-        if(pausePanel == null)
-            pausePanel = new PausePanel(this);
-        setContentPane(pausePanel);
         setVisible(true);
     }
 
