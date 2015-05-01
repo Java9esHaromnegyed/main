@@ -14,33 +14,19 @@ public class GameInitPanel extends JPanel {
     private JTextField playerTwoName;
     private JButton doneButton;
 
-
-    //------Button listeners------
-    //Új játékot indítunk, a megadott nevekkel elnevezve a robotokat
-    public void doneButtonFunction(){
-        Game.newGame(playerOneName.getText(), playerTwoName.getText());
-        parent.loadGamePanel();
-    }
-
-    //Gombnyomásra meghívjuk a megfelelő metódust
-    private class backAction implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            doneButtonFunction();
-        }
-    }
-
     GameInitPanel(GUI p){
-        //TODO
         parent = p;
+
         doneButton = new JButton("Back");
         doneButton.addActionListener(new backAction());
 
-        initLayout();
+        playerOneName = new JTextField("playerOne");
+        playerTwoName = new JTextField("playerTwo");
 
+        initLayout();
     }
 
+    //----------------------------------------Init-------------------------------------------------
     public void initLayout(){
         setLayout(null);
         Dimension buttonSize = new Dimension(Config.FRAME_SIZE.width / 2, Config.FRAME_SIZE.height / 10);
@@ -59,6 +45,22 @@ public class GameInitPanel extends JPanel {
         this.add(doneButton);
         doneButton.setSize(buttonSize);
         doneButton.setLocation(place.x, place.y*7);
+    }
 
+    //----------------------------------------Button-listeners-------------------------------------
+
+    //Új játékot indítunk, a megadott nevekkel elnevezve a robotokat
+    public void doneButtonFunction(){
+        Game.newGame(playerOneName.getText(), playerTwoName.getText());
+        parent.loadGamePanel();
+    }
+
+    //Gombnyomásra meghívjuk a megfelelő metódust
+    private class backAction implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            doneButtonFunction();
+        }
     }
 }

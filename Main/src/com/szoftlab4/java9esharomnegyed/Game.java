@@ -25,6 +25,10 @@ public class Game {
         leaderboard = new Leaderboard();
         clock = new Clock();
 
+        for(int i = 1; i < 15; i++){
+            leaderboard.addRecord("test" + i, i);
+        }
+
         GUI gui = new GUI();
 
         //Prototype prototype = new Prototype(arena);
@@ -111,6 +115,10 @@ public class Game {
     //Hozzá fűz egy rekordot a leaderboardhoz
     public static void updateLeaderboard(String name, double score) {
         leaderboard.addRecord(name, score);
+    }
+
+    public static Leaderboard getLeaderboard() {
+        return leaderboard;
     }
 
     public void tick(){

@@ -50,6 +50,7 @@ public class GUI extends JFrame{
         if (menuPanel == null)
             menuPanel = new MenuPanel(this);
         setContentPane(menuPanel);
+        setVisible(true);
     }
     public void loadGameInitPanel(){
         LogHelper.inline("letsPlay!");
@@ -58,12 +59,12 @@ public class GUI extends JFrame{
     }
 
     public void loadLeaderPanel(){
-        //nem kell nullt ellenőrizni, úgyis mindig új leaderPanel kell, hogy frissüljön
-        LogHelper.inline("leader");
-        this.remove(menuPanel);
-        leaderPanel = new LeaderPanel(this);
-        this.add(leaderPanel);
+        if (leaderPanel == null)
+            leaderPanel = new LeaderPanel(this);
+        else
+            leaderPanel.update();
         setContentPane(leaderPanel);
+        setVisible(true);
     }
     public void loadPausePanel(){
 

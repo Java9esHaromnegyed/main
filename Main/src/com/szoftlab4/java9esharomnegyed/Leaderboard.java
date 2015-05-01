@@ -1,5 +1,7 @@
 package com.szoftlab4.java9esharomnegyed;
 
+import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,10 +37,14 @@ public class Leaderboard {
     }
 
     public String getName(int place){
+        if(records.size() <= place)
+            return null;
         return records.get(place).getName();
     }
 
     public double getScore(int place){
+        if(records.size() <= place)
+            return 0;
         return records.get(place).getScore();
     }
 }
