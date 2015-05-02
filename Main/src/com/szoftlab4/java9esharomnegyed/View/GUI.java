@@ -97,7 +97,7 @@ public class GUI extends JFrame{
     }
 
     //---------------------------------------Window-Listeners--------------------------------------
-    //Ablak bezárásakor megerősítés kérése
+    //Ablak bezárásakor megerősítés kérése és kilépés a programból
     private class exitApp extends WindowAdapter {
         public void windowClosing(WindowEvent e){
             int i = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?",
@@ -109,13 +109,14 @@ public class GUI extends JFrame{
     }
 
     //---------------------------------------utility-functions--------------------------------------
-    //Ablak megjelenésének beállítása
+    //Ablak méretének beállítása
     private void setFrameSize(Dimension d, JFrame frame){
         frame.setMinimumSize(d);
         frame.setPreferredSize(d);
         frame.setMaximumSize(d);
     }
 
+    //Ablak megjelésének beállítása
     public static void setWindowTheme(String set){
         try {
             UIManager.setLookAndFeel(set);

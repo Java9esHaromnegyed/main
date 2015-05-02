@@ -29,6 +29,7 @@ public class MenuPanel extends JPanel {
         initLayout();
     }
 
+    //Elrendezés beállítása
     public void initLayout(){
         setLayout(null);
         Dimension buttonSize = new Dimension(Config.FRAME_SIZE.width / 2, Config.FRAME_SIZE.height / 10);
@@ -49,10 +50,13 @@ public class MenuPanel extends JPanel {
     }
 
     //----------------------------------------Button-listeners-------------------------------------
+
+    //Új játék indítása
     public void playButtonFunction(){
         parent.loadGameInitPanel();
     }
 
+    //Gombnyomásra megfelelő metódus meghívása(Új játék indítása)
     private class playAction implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -60,10 +64,12 @@ public class MenuPanel extends JPanel {
         }
     }
 
+    //Ranglista megjelenítése
     public void leaderBoardButtonFunction(){
         parent.loadLeaderPanel();
     }
 
+    //Gombnyomásra megfelelő metódus meghívása(Ranglista megjelenítése)
     private class leaderAction implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -71,6 +77,7 @@ public class MenuPanel extends JPanel {
         }
     }
 
+    //Kilépés a programból
     public void exitButtonFunction(){
         int i = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?",
                 "Confirm Exit", JOptionPane.YES_NO_OPTION);
@@ -79,6 +86,7 @@ public class MenuPanel extends JPanel {
         }
     }
 
+    //Gombnyomásra megfelelő metódus meghívása(Kilépés a programból)
     private class exitAction implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
