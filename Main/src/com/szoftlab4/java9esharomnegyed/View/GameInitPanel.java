@@ -51,13 +51,13 @@ public class GameInitPanel extends JPanel {
         playerTwoName.setSize(textFieldSize);
         playerTwoName.setLocation(place.x, place.y + textFieldSize.height + 10);
 
-        this.add(backButton);
-        backButton.setSize(buttonSize);
-        backButton.setLocation(place.x, place.y*7 - (Config.FRAME_SIZE.height / 8));
-
         this.add(doneButton);
         doneButton.setSize(buttonSize);
-        doneButton.setLocation(place.x, place.y*7);
+        doneButton.setLocation(place.x, place.y*7 - (Config.FRAME_SIZE.height / 8));
+
+        this.add(backButton);
+        backButton.setSize(buttonSize);
+        backButton.setLocation(place.x, place.y*7);
     }
 
     //----------------------------------------Button-listeners-------------------------------------
@@ -88,6 +88,7 @@ public class GameInitPanel extends JPanel {
     public void backButtonFunction(){
         parent.loadMenuPanel();
     }
+
     //Gombnyomásra meghívjuk a megfelelő metódust(Vissza a főmenübe)
     private class backAction implements ActionListener {
         @Override
