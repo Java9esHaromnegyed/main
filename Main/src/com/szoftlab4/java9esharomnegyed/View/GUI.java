@@ -26,6 +26,7 @@ public class GUI extends JFrame{
         setVisible(true);
     }
 
+    //Játékot tartalmazó ablak beállítása
     private void initFrame(){
         this.setLayout(new BorderLayout());
 
@@ -40,6 +41,8 @@ public class GUI extends JFrame{
     }
 
     //----------------------------------------Panel-placers----------------------------------------
+
+    //Főmenü megjelenítése
     public void loadMenuPanel(){
         if (menuPanel == null)
             menuPanel = new MenuPanel(this);
@@ -47,6 +50,7 @@ public class GUI extends JFrame{
         setVisible(true);
     }
 
+    //Játék nézet megjelenítése
     public void loadGamePanel(){
         if(gamePanel == null)
             gamePanel = new GamePanel(this);
@@ -61,6 +65,7 @@ public class GUI extends JFrame{
 
     }
 
+    //Játékos nevek bekérése menü megjelenítése
     public void loadGameInitPanel(){
         if(gameInitPanel == null)
             gameInitPanel = new GameInitPanel(this);
@@ -68,6 +73,7 @@ public class GUI extends JFrame{
         setVisible(true);
     }
 
+    //Játék szüneteltetése menü megjelenítése
     public void loadPausePanel(){
         if(pausePanel == null)
             pausePanel = new PausePanel(this);
@@ -75,6 +81,7 @@ public class GUI extends JFrame{
         setVisible(true);
     }
 
+    //Ranglista megjelenítése
     public void loadLeaderPanel(){
         if (leaderPanel == null)
             leaderPanel = new LeaderPanel(this);
@@ -84,11 +91,13 @@ public class GUI extends JFrame{
         setVisible(true);
     }
 
+    //Játék nézet frissítése
     public void updateGame(){
         gamePanel.update();
     }
 
-    //---------------------------------------Windows-Listeners--------------------------------------
+    //---------------------------------------Window-Listeners--------------------------------------
+    //Ablak bezárásakor megerősítés kérése
     private class exitApp extends WindowAdapter {
         public void windowClosing(WindowEvent e){
             int i = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?",
@@ -100,6 +109,7 @@ public class GUI extends JFrame{
     }
 
     //---------------------------------------utility-functions--------------------------------------
+    //Ablak megjelenésének beállítása
     private void setFrameSize(Dimension d, JFrame frame){
         frame.setMinimumSize(d);
         frame.setPreferredSize(d);

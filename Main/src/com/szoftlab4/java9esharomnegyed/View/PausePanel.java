@@ -31,6 +31,7 @@ public class PausePanel extends JPanel {
     }
 
     //----------------------------------------Init-------------------------------------------------
+    //Megfelelő elrendezés beállítása
     public void initLayout(){
         setLayout(null);
         Dimension buttonSize = new Dimension(Config.FRAME_SIZE.width / 2, Config.FRAME_SIZE.height / 10);
@@ -52,10 +53,13 @@ public class PausePanel extends JPanel {
 
 
     //----------------------------------------Button-listeners-------------------------------------
+
+    //Játék folytatása
     public void resumeButtonFunction(){
         Game.resumeGame();
     }
 
+    //Gombnyomásra meghívjuk a megfelelő metódust(Vissza a játékba)
     private class resumeAction implements ActionListener{
 
         @Override
@@ -64,11 +68,13 @@ public class PausePanel extends JPanel {
         }
     }
 
+    //Új játék indítása az előzőleg megadott játékos nevekkel
     public void rematchButtonFunction(){
         Game.rematch();
         parent.loadGamePanel();
     }
 
+    //Gombnyomásra meghívjuk a megfelelő metódust(Új játék, adott nevekkel)
     private class rematchAction implements ActionListener{
 
         @Override
@@ -77,10 +83,12 @@ public class PausePanel extends JPanel {
         }
     }
 
+    //Játék elhagyása, főmenübe lépés
     public void leaveButtonFunction(){
         parent.loadMenuPanel();
     }
 
+    //Gombnyomásra meghívjuk a megfelelő metódust, megerősítés a kilépésről(Vissza a főmenübe)
     private class leaveAction implements ActionListener{
 
         @Override

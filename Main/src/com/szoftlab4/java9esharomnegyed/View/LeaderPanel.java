@@ -34,12 +34,14 @@ public class LeaderPanel extends JPanel {
         initLayout();
     }
 
+    //Ha már létezik, csak frissítjük
     public void update(){
         subject = Game.getLeaderboard();
         initData();
     }
 
     //----------------------------------------Init-------------------------------------------------
+    //Megfelelő elrendezés beállítása
     public void initLayout(){
         setLayout(null);
         Dimension buttonSize = new Dimension(Config.FRAME_SIZE.width / 2, Config.FRAME_SIZE.height / 10);
@@ -67,6 +69,7 @@ public class LeaderPanel extends JPanel {
         table.setLocation(new Point(Config.FRAME_SIZE.width / 6, Config.FRAME_SIZE.height / 10));
     }
 
+    //Táblázat feltöltése a ranglistának megfelelő adatokkal
     private void initData(){
         for(int i = 0; i < Config.LEADERBOARD_SIZE; i++){
             if(subject.getListSize() > i) {
@@ -78,10 +81,13 @@ public class LeaderPanel extends JPanel {
 
 
     //----------------------------------------Button-listeners-------------------------------------
+
+    //Vissza lépünk a főmenübe
     public void backButtonFunction(){
         parent.loadMenuPanel();
     }
 
+    //Gombnyomásra meghívjuk a megfelelő metódust(Vissza a főmenübe)
     private class backAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

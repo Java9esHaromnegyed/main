@@ -35,6 +35,7 @@ public class GameInitPanel extends JPanel {
     }
 
     //----------------------------------------Init-------------------------------------------------
+    //Megfelelő elrendezés beállítása
     public void initLayout(){
         setLayout(null);
         Dimension buttonSize = new Dimension(Config.FRAME_SIZE.width / 2, Config.FRAME_SIZE.height / 10);
