@@ -16,6 +16,7 @@ public class GameInitPanel extends JPanel {
     private JTextField playerOneName;
     private JTextField playerTwoName;
     private JButton doneButton;
+    private JButton backButton;
 
     GameInitPanel(GUI p){
         parent = p;
@@ -24,8 +25,11 @@ public class GameInitPanel extends JPanel {
         doneButton = new JButton("Done");
         doneButton.addActionListener(new doneAction());
 
-        playerOneName = new JTextField("playerOne");
-        playerTwoName = new JTextField("playerTwo");
+        backButton = new JButton("Back");
+        backButton.addActionListener(new backAction());
+
+        playerOneName = new JTextField("Player One");
+        playerTwoName = new JTextField("Player Two");
 
         initLayout();
     }
@@ -34,17 +38,21 @@ public class GameInitPanel extends JPanel {
     public void initLayout(){
         setLayout(null);
         Dimension buttonSize = new Dimension(Config.FRAME_SIZE.width / 2, Config.FRAME_SIZE.height / 10);
-        Dimension textFieldSize = new Dimension(Config.FRAME_SIZE.width / 2, Config.FRAME_SIZE.height / 10);
+        Dimension textFieldSize = new Dimension(Config.FRAME_SIZE.width / 2, Config.FRAME_SIZE.height / 15);
         Point place = new Point(Config.FRAME_SIZE.width / 4, Config.FRAME_SIZE.height / 10);
 
 
         this.add(playerOneName);
         playerOneName.setSize(textFieldSize);
-        playerTwoName.setLocation(place);
+        playerOneName.setLocation(place);
 
         this.add(playerTwoName);
         playerTwoName.setSize(textFieldSize);
         playerTwoName.setLocation(place.x, place.y + textFieldSize.height + 10);
+
+        this.add(backButton);
+        backButton.setSize(buttonSize);
+        backButton.setLocation(place.x, place.y*7 - (Config.FRAME_SIZE.height / 8));
 
         this.add(doneButton);
         doneButton.setSize(buttonSize);
@@ -66,7 +74,7 @@ public class GameInitPanel extends JPanel {
         parent.loadGamePanel();
     }
 
-    //Gombnyomásra meghívjuk a megfelelő metódust
+    //Gombnyomásra meghívjuk a megfelelő metódust(Új játék indítása)
     private class doneAction implements ActionListener{
 
         @Override
@@ -75,10 +83,11 @@ public class GameInitPanel extends JPanel {
         }
     }
 
+    //Vissza lépünk a főmenübe
     public void backButtonFunction(){
         parent.loadMenuPanel();
     }
-
+    //Gombnyomásra meghívjuk a megfelelő metódust(Vissza a főmenübe)
     private class backAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
