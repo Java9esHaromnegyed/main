@@ -93,9 +93,9 @@ public class GameInitPanel extends JPanel {
                 doneButtonFunction();
             else {
                 if(!one)
-                    playerOneName.setBackground(new Color(255, 0, 0, 109));
+                    playerOneName.setBackground(new Color(255, 200, 200));
                 if(!two)
-                    playerTwoName.setBackground(new Color(255, 0, 0, 109));
+                    playerTwoName.setBackground(new Color(255, 200, 200));
                 invalidate();
             }
         }
