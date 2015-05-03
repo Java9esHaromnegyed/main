@@ -67,7 +67,8 @@ public class Arena {
                     }
 
                     if(element >= '0' && element <= '9'){   // ha szám karakter robotot jelent a txt-ben
-                        addRobot("player" + element, place, Config.DIR_RIGHT, Integer.valueOf(Integer.valueOf(element)-'0'));
+                        //addRobot("player" + element, place, Config.DIR_RIGHT, Integer.valueOf(Integer.valueOf(element)-'0'));
+                        addRobot("player" + element, place, Config.DIR_RIGHT, robots.size()); // így megegyezik a robot id a robots-beli helyével
                     }
                 }
             //LogHelper.inline("arenaInited");

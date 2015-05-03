@@ -34,6 +34,12 @@ public class GameInitPanel extends JPanel {
         initLayout();
     }
 
+    public void setToDefault(){
+        playerOneName = new JTextField("Player One");
+        playerTwoName = new JTextField("Player Two");
+        invalidate();
+    }
+
     //----------------------------------------Init-------------------------------------------------
     //Megfelelő elrendezés beállítása
     public void initLayout(){
@@ -71,7 +77,8 @@ public class GameInitPanel extends JPanel {
             e.printStackTrace();
         }
 
-        //Game.newGame(playerOneName.getText(), playerTwoName.getText());
+
+        Game.newGame(playerOneName.getText(), playerTwoName.getText());
         parent.loadGamePanel();
     }
 
@@ -80,7 +87,17 @@ public class GameInitPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            doneButtonFunction();
+            boolean one = (playerOneName.getText().length() != 0);
+            boolean two = (playerTwoName.getText().length() != 0);
+            if(one && two)
+                doneButtonFunction();
+            else {
+                if(!one)
+                    playerOneName.setBackground(new Color(255, 0, 0, 109));
+                if(!two)
+                    playerTwoName.setBackground(new Color(255, 0, 0, 109));
+                invalidate();
+            }
         }
     }
 

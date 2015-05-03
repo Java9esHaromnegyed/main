@@ -21,26 +21,48 @@ public class GamePanel extends JPanel {
     private List<Obstacle> obstacles;
     private List<Wall> walls;
 
+    JLabel one;
+    JLabel two;
+
     private GUI parent;
 
     public GamePanel(GUI p){
         super();
         parent = p;
 
-        update();
-
         this.addKeyListener(new escAction());
         this.setFocusable(true);
+        initLayout();
+        invalidate();
     }
 
-    public void update(){
+    public void update() {
         Arena temp = Game.getArena();
         robots = temp.getRobotList();
         cleaners = temp.getCleanersList();
         obstacles = temp.getObstacleList();
         walls = temp.getWallList();
 
+        if (one != null && one.getText() != temp.getRobot(0).getName()) {
+            this.remove(one);
+            one = new JLabel(temp.getRobot(0).getName());
+            this.add(one);
+        }
+
+        if (two != null && two.getText() != temp.getRobot(1).getName()) {
+            this.remove(two);
+            two = new JLabel(temp.getRobot(1).getName());
+            this.add(two);
+        }
+
         this.invalidate();
+    }
+
+    private void initLayout(){
+        one = new JLabel(Game.getArena().getRobot(0).getName());
+        two = new JLabel(Game.getArena().getRobot(1).getName());
+        this.add(one);
+        this.add(two);
     }
 
     //----------------------------------------Key-listeners----------------------------------------

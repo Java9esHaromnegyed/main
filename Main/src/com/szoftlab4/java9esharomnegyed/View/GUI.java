@@ -67,8 +67,7 @@ public class GUI extends JFrame{
 
     //Játékos nevek bekérése menü megjelenítése
     public void loadGameInitPanel(){
-        if(gameInitPanel == null)
-            gameInitPanel = new GameInitPanel(this);
+        gameInitPanel = new GameInitPanel(this);
         setContentPane(gameInitPanel);
         setVisible(true);
     }
@@ -90,6 +89,8 @@ public class GUI extends JFrame{
         setContentPane(leaderPanel);
         setVisible(true);
     }
+
+
 
     //Játék nézet frissítése
     public void updateGame(){

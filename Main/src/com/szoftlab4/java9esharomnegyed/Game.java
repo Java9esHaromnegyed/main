@@ -95,16 +95,10 @@ public class Game {
     //Új játékot kezd a megadott pályával, és robot nevekkel, azok pontszámát nullázva
     public static void rematch(){
         List<Robot> robots = arena.getRobotList();
-        arena = new Arena();
-        // TODO: robotok visszatöltése. Soul.
-            // kelleni fog:
-            // - név
-            // - ID
-            // és valahogy a kezdőpozíció (csak hogy ez a szar prototype ne száljon el a gecibe)
+        arena.initArena();
+        arena.setRobotName(robots.get(0).getName(), 0);
+        arena.setRobotName(robots.get(1).getName(), 1);
 
-        /*for(int i = 0; i < robots.size(); i++){
-            arena.addRobot(robots.get(i).getName(), POS, Config.DIR_RIGHT, robots.get(i).getID());
-        }*/
     }
 
     //(később megjeleníti a leaderboardot)
