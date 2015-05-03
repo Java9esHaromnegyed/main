@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 public class GameInitPanel extends JPanel {
@@ -29,7 +31,9 @@ public class GameInitPanel extends JPanel {
         backButton.addActionListener(new backAction());
 
         playerOneName = new JTextField("Player One");
+        playerOneName.addKeyListener(new keyAction());
         playerTwoName = new JTextField("Player Two");
+        playerTwoName.addKeyListener(new keyAction());
 
         initLayout();
     }
@@ -96,6 +100,17 @@ public class GameInitPanel extends JPanel {
                     playerOneName.setBackground(new Color(255, 200, 200));
                 if(!two)
                     playerTwoName.setBackground(new Color(255, 200, 200));
+                invalidate();
+            }
+        }
+    }
+
+    private class keyAction extends KeyAdapter{
+        @Override
+        public void keyPressed(KeyEvent e){
+            JTextField temp = (JTextField) e.getSource();
+            if(temp.getBackground().equals(new Color(255, 200, 200))) {
+                temp.setBackground(new JTextField().getBackground());
                 invalidate();
             }
         }
