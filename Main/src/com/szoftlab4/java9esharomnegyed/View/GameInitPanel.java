@@ -96,10 +96,15 @@ public class GameInitPanel extends JPanel {
             if(one && two)
                 doneButtonFunction();
             else {
-                if(!one)
+                if(!one) {
                     playerOneName.setBackground(new Color(255, 200, 200));
-                if(!two)
+                    playerOneName.requestFocus();
+                }
+                if(!two) {
                     playerTwoName.setBackground(new Color(255, 200, 200));
+                    playerTwoName.requestFocus();
+                }
+                doneButton.setEnabled(false);
                 invalidate();
             }
         }
@@ -111,6 +116,7 @@ public class GameInitPanel extends JPanel {
             JTextField temp = (JTextField) e.getSource();
             if(temp.getBackground().equals(new Color(255, 200, 200))) {
                 temp.setBackground(new JTextField().getBackground());
+                doneButton.setEnabled(true);
                 invalidate();
             }
         }
