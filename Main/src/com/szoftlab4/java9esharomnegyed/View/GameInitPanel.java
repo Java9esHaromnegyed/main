@@ -30,9 +30,9 @@ public class GameInitPanel extends JPanel {
         backButton = new JButton("Back");
         backButton.addActionListener(new backAction());
 
-        playerOneName = new JTextField("Player One");
+        playerOneName = new JTextField("PlayerOne");
         playerOneName.addKeyListener(new keyAction());
-        playerTwoName = new JTextField("Player Two");
+        playerTwoName = new JTextField("PlayerTwo");
         playerTwoName.addKeyListener(new keyAction());
 
         initLayout();
@@ -49,25 +49,26 @@ public class GameInitPanel extends JPanel {
     public void initLayout(){
         setLayout(null);
         Dimension buttonSize = new Dimension(Config.FRAME_SIZE.width / 2, Config.FRAME_SIZE.height / 10);
-        Dimension textFieldSize = new Dimension(Config.FRAME_SIZE.width / 2, Config.FRAME_SIZE.height / 15);
-        Point place = new Point(Config.FRAME_SIZE.width / 4, Config.FRAME_SIZE.height / 10);
+        Dimension textFieldSize = new Dimension(Config.FRAME_SIZE.width / 4, Config.FRAME_SIZE.height / 15);
+        Point buttonPlace = new Point(Config.FRAME_SIZE.width / 4, Config.FRAME_SIZE.height / 10);
+        Point textFieldPlace = new Point(Config.FRAME_SIZE.width / 8, Config.FRAME_SIZE.height / 10);
 
 
         this.add(playerOneName);
         playerOneName.setSize(textFieldSize);
-        playerOneName.setLocation(place);
+        playerOneName.setLocation(textFieldPlace);
 
         this.add(playerTwoName);
         playerTwoName.setSize(textFieldSize);
-        playerTwoName.setLocation(place.x, place.y + textFieldSize.height + 10);
+        playerTwoName.setLocation(textFieldPlace.x * 5, textFieldPlace.y);
 
         this.add(doneButton);
         doneButton.setSize(buttonSize);
-        doneButton.setLocation(place.x, place.y*7 - (Config.FRAME_SIZE.height / 8));
+        doneButton.setLocation(buttonPlace.x, buttonPlace.y*7 - (Config.FRAME_SIZE.height / 8));
 
         this.add(backButton);
         backButton.setSize(buttonSize);
-        backButton.setLocation(place.x, place.y*7);
+        backButton.setLocation(buttonPlace.x, buttonPlace.y*7);
     }
 
     //----------------------------------------Button-listeners-------------------------------------
