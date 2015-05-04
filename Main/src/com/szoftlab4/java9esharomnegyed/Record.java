@@ -1,6 +1,8 @@
 package com.szoftlab4.java9esharomnegyed;
 
-public class Record {
+import java.io.Serializable;
+
+public class Record implements Serializable {
     private String name;
     private double score;
 

@@ -21,12 +21,23 @@ public class Game {
     public static void main(String[] args) {
         //arguments = args;
         arena = new Arena();
-        leaderboard = new Leaderboard();
-        clock = new Clock();
 
+        leaderboard = new Leaderboard();
+        //Loading the leaderboard from file
+        try {
+            if (leaderboard.loadLeaderboard() != null)
+                leaderboard = leaderboard.loadLeaderboard();
+        }
+        catch (IOException e){
+            //e.printStackTrace();
+        }
+
+        clock = new Clock();
+        /*
         for(int i = 1; i < 15; i++){
             leaderboard.addRecord("test" + i, i);
         }
+        */
 
         gui = new GUI();
 
@@ -67,6 +78,12 @@ public class Game {
     public static void gameOver(){
         updateLeaderboard(arena.getRobot(0).getName(), arena.getRobot(0).getCoveredDistance());
         updateLeaderboard(arena.getRobot(1).getName(), arena.getRobot(1).getCoveredDistance());
+        //Saving the leaderboard
+        try {
+            leaderboard.saveLeaderboard();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         pauseGame();
     }
 
