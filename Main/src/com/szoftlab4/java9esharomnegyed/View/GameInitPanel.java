@@ -3,13 +3,17 @@ package com.szoftlab4.java9esharomnegyed.View;
 import com.szoftlab4.java9esharomnegyed.Arena;
 import com.szoftlab4.java9esharomnegyed.Config;
 import com.szoftlab4.java9esharomnegyed.Game;
+import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 public class GameInitPanel extends JPanel {
@@ -30,29 +34,21 @@ public class GameInitPanel extends JPanel {
         backButton = new JButton("Back");
         backButton.addActionListener(new backAction());
 
-        playerOneName = new JTextField("PlayerOne");
+        playerOneName = new JTextField("Player One");
         playerOneName.addKeyListener(new keyAction());
-        playerTwoName = new JTextField("PlayerTwo");
+        playerTwoName = new JTextField("Player Two");
         playerTwoName.addKeyListener(new keyAction());
 
         initLayout();
-    }
-
-    public void setToDefault(){
-        playerOneName = new JTextField("Player One");
-        playerTwoName = new JTextField("Player Two");
-        invalidate();
     }
 
     //----------------------------------------Init-------------------------------------------------
     //Megfelelő elrendezés beállítása
     public void initLayout(){
         setLayout(null);
-        Dimension buttonSize = new Dimension(Config.FRAME_SIZE.width / 2, Config.FRAME_SIZE.height / 10);
-        Dimension textFieldSize = new Dimension(Config.FRAME_SIZE.width / 4, Config.FRAME_SIZE.height / 15);
-        Point buttonPlace = new Point(Config.FRAME_SIZE.width / 4, Config.FRAME_SIZE.height / 10);
-        Point textFieldPlace = new Point(Config.FRAME_SIZE.width / 8, Config.FRAME_SIZE.height / 10);
 
+        Dimension textFieldSize = new Dimension(Config.FRAME_SIZE.width / 3, Config.FRAME_SIZE.height / 15);
+        Point textFieldPlace = new Point(Config.FRAME_SIZE.width / 9, Config.FRAME_SIZE.height / 10);
 
         this.add(playerOneName);
         playerOneName.setSize(textFieldSize);
@@ -60,7 +56,33 @@ public class GameInitPanel extends JPanel {
 
         this.add(playerTwoName);
         playerTwoName.setSize(textFieldSize);
-        playerTwoName.setLocation(textFieldPlace.x * 5, textFieldPlace.y);
+        playerTwoName.setLocation(textFieldPlace.x * 2 + Config.FRAME_SIZE.width / 3, textFieldPlace.y);
+
+
+        Dimension imgSize = new Dimension(96, 96);
+        Point imgBluePlace = new Point(playerOneName.getLocation().x + playerOneName.getSize().width/2 - imgSize.width/2,
+                Config.FRAME_SIZE.height/4);
+        Point imgRedPlace = new Point(playerTwoName.getLocation().x + playerTwoName.getSize().width/2 - imgSize.width/2,
+                Config.FRAME_SIZE.height/4);
+
+        JLabel blue = new JLabel();
+        JLabel red = new JLabel();
+        Image temp = getToolkit().getImage(getClass().getResource(Config.BLUE));
+
+        blue.setIcon(new ImageIcon(temp.getScaledInstance(imgSize.width, imgSize.height, Image.SCALE_DEFAULT)));
+        this.add(blue);
+        blue.setSize(imgSize);
+        blue.setLocation(imgBluePlace);
+
+        temp = getToolkit().getImage(getClass().getResource(Config.RED));
+        red.setIcon(new ImageIcon(temp.getScaledInstance(imgSize.width, imgSize.height, Image.SCALE_DEFAULT)));
+        this.add(red);
+        red.setSize(imgSize);
+        red.setLocation(imgRedPlace);
+
+
+        Dimension buttonSize = new Dimension(Config.FRAME_SIZE.width / 2, Config.FRAME_SIZE.height / 10);
+        Point buttonPlace = new Point(Config.FRAME_SIZE.width / 4, Config.FRAME_SIZE.height / 10);
 
         this.add(doneButton);
         doneButton.setSize(buttonSize);
