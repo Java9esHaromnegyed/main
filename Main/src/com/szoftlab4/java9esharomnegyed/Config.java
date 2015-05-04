@@ -55,6 +55,7 @@ public class Config {
 
     /* LEADERBOARD related */
     public static final int LEADERBOARD_SIZE = 10;
+    public static final String LEADERBOARD_FILE = "leaderboard.ser";
 
     /* Clock related */
     public static final int TIME_OVER = 5;    //in second

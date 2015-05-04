@@ -3,17 +3,13 @@ package com.szoftlab4.java9esharomnegyed.View;
 import com.szoftlab4.java9esharomnegyed.Arena;
 import com.szoftlab4.java9esharomnegyed.Config;
 import com.szoftlab4.java9esharomnegyed.Game;
-import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class GameInitPanel extends JPanel {

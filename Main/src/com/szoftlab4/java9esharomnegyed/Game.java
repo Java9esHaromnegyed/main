@@ -96,6 +96,11 @@ public class Game {
     //Kilépés a játékból fgv
     //Leállítja a játék program futását
     public static void exitGame(){
+        try {
+            leaderboard.saveLeaderboard();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.exit(0);
     }
 
