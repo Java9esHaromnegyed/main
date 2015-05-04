@@ -85,11 +85,13 @@ public class Game {
     //Játék szüneteltetése fgv
     //(később szünetelteti a clockot, megjeleníti a pause menüt)
     public static void pauseGame(){
+        clock.pauseClock();
     }
 
     //Játék folytatása fgv
     //(később a játék szüneteltetéséből vissza lép a játékba)
     public static void resumeGame(){
+        clock.startClock();
     }
 
     //Új játékot kezd a megadott pályával, és robot nevekkel, azok pontszámát nullázva
@@ -98,7 +100,7 @@ public class Game {
         arena.initArena();
         arena.setRobotName(robots.get(0).getName(), 0);
         arena.setRobotName(robots.get(1).getName(), 1);
-
+        clock.startClock();
     }
 
     //(később megjeleníti a leaderboardot)

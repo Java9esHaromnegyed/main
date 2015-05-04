@@ -65,6 +65,7 @@ public class PausePanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             resumeButtonFunction();
+            parent.showGamePanel();
         }
     }
 

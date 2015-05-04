@@ -62,7 +62,9 @@ public class GUI extends JFrame{
     }
 
     public void showGamePanel(){
-
+        setContentPane(gamePanel);
+        setVisible(true);
+        gamePanel.requestFocus();
     }
 
     //Játékos nevek bekérése menü megjelenítése

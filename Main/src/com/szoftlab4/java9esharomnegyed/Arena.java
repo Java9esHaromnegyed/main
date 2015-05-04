@@ -71,10 +71,10 @@ public class Arena {
                         addRobot("player" + element, place, Config.DIR_RIGHT, robots.size()); // így megegyezik a robot id a robots-beli helyével
                     }
                 }
-            //LogHelper.inline("arenaInited");
             LogHelper.inline("arenaInited");    // kimenet generálás
-            LogHelper.rec();
+
         }
+        LogHelper.rec();
     }
 
     // feladata beolvasni az arénát tartalmazó txt-t majd visszaadni a beolvasott sortömbböt
