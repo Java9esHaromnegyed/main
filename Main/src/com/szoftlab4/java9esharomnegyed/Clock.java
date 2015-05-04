@@ -10,7 +10,7 @@ public class Clock{
 
     public Clock(){
         counter = 0;
-        timer = new Timer(1000, new action());  // 1000 means that the clock will tick every second
+        timer = new Timer(Config.TIMER_TICK, new action());
     }
 
     public void tick() {

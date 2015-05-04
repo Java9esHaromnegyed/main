@@ -35,9 +35,7 @@ public class Robot extends AbstractRobot {
             else{
                 LogHelper.inline("#PUTTY TANK IS EMPTY");
             }
-
         }
-
     }
 
     //Olajfolt lehelyezése a pályára
@@ -53,9 +51,7 @@ public class Robot extends AbstractRobot {
             else{
                 LogHelper.inline("#OIL TANK IS EMPTY");
             }
-
         }
-
     }
 
     //Robot által megtett távolság lekérdezése
@@ -67,23 +63,39 @@ public class Robot extends AbstractRobot {
     //Robotnak balra fordulás utasítás adása
     public void turnLeft() {
         //Ha nem paralyzed meghívjuk az ősosztály turnLeft-jét
-        if(!paralyzed){
+        if(!paralyzed) {
             super.turnLeft();
-        //Amúgy semmit sem csinálunk
-        } else {
-            return;
+
+            String temp = "Up";
+            if(direction == Config.DIR_RIGHT)
+                temp = "Right";
+            else if(direction == Config.DIR_DOWN)
+                temp = "Down";
+            else if(direction == Config.DIR_LEFT)
+                temp = "Left";
+
+            LogHelper.inline("robotTurnedLeft id: " + id + " facing: " + temp);
         }
+        //Amúgy semmit sem csinálunk
     }
 
     //Robotnak jobbra fordulás utasítás adása
     public void turnRight(){
         //Ha nem paralyzed meghívjuk az ősosztály turnRight-ját
-        if(!paralyzed){
+        if(!paralyzed) {
             super.turnRight();
-        //Amúgy semmit sem csinálunk
-        } else {
-            return;
+
+            String temp = "Up";
+            if(direction == Config.DIR_RIGHT)
+                temp = "Right";
+            else if(direction == Config.DIR_DOWN)
+                temp = "Down";
+            else if(direction == Config.DIR_LEFT)
+                temp = "Left";
+
+            LogHelper.inline("robotTurnedRight id: " + id + " facing: " + temp);
         }
+        //Amúgy semmit sem csinálunk
     }
 
     @Override
@@ -102,10 +114,9 @@ public class Robot extends AbstractRobot {
                 speed += Config.SPD_UNIT;                       // with Config.SPD_UNIT steps
             else
                 speed = Config.SPD_LIMIT;
-        //Amúgy semmit sem csinálunk
-        } else {
-            return;
+            LogHelper.inline("robotSpeedUp id: " + id + " speed: " + speed);
         }
+        //Amúgy semmit sem csinálunk
     }
 
     //Robot lassítása
@@ -118,10 +129,9 @@ public class Robot extends AbstractRobot {
             //Egyébként a lehető legkisebb lesz, tehát 1
             else
                 speed = 1;
-        //Amúgy semmit sem csinálunk
-        } else {
-            return;
+            LogHelper.inline("robotSlowedDown id: " + id + " speed: " + speed);
         }
+        //Amúgy semmit sem csinálunk
     }
 
     //Robot mozgatása

@@ -249,31 +249,26 @@ public class Arena {
         LogHelper.inline("robotMoved id: " + r.getID() + " pos: [" + r.getPosition().width + "; " + r.getPosition().height + "]");
         if(isOutOfArena(fin)) {                 // fin a végső pozíció ahova ugrottunk
             r.die();                            // ha pályán kívül van akkor kinyírjuk a robotot
-            if(robots.size() < 2)               // minden alkalommal amikor meghal egy robot tesztelni kell hogy gameOver van-e
+            if(remainingRobots() < 2)           // minden alkalommal amikor meghal egy robot tesztelni kell hogy gameOver van-e
                 Game.gameOver();
         } else {
             CleanerRobot cRobo = getCleanerRobot(fin);  // ha ráléptünk takarítóra
-            if(cRobo != null)                           // nyírjuk ki
+            if (cRobo != null)                           // nyírjuk ki
                 cRobo.die();
-            if(robots.size() < 2)                       // minden alkalommal amikor meghal egy robot tesztelni kell hogy gameOver van-e
-                Game.gameOver();
-            else {
-                Robot robo = getRobot(fin, r.getID());
-                if (robo != null) {
-                    if (robo.getSpeed() < r.getSpeed())      // sebesség alapján nyírjuk ki a megfelelőt
-                        r.die();
-                    else
-                        robo.die();
-                }
-                if(robots.size() < 2)                   // minden alkalommal amikor meghal egy robot tesztelni kell hogy gameOver van-e
-                    Game.gameOver();
-                else {
-                    Obstacle on = getObstacle(fin);
-                    if (on != null)
-                        on.effect(r);                   // ha akdályra lép akkor hasson rá
-                    else
-                        r.clearEffects();               // ha nem lép semmire töröljük az eddigi hatásokat
-                }
+            Robot robo = getRobot(fin, r.getID());
+            if (robo != null) {
+                if (robo.getSpeed() < r.getSpeed())      // sebesség alapján nyírjuk ki a megfelelőt
+                    r.die();
+                else
+                    robo.die();
+            }
+
+            if(!r.dead) {
+                Obstacle on = getObstacle(fin);
+                if (on != null)
+                    on.effect(r);                   // ha akdályra lép akkor hasson rá
+                else
+                    r.clearEffects();               // ha nem lép semmire töröljük az eddigi hatásokat
             }
         }
     }
@@ -335,19 +330,35 @@ public class Arena {
         for (int j = 0; j < cleaners.size(); j++) {
             cleaners.get(j).move();
         }
-        for (int j = 0; j < obstacles.size();) {
-            //ha az olaj felszáradt, vagy ragacs elkopott, töröljük a pályáról, egyébként az olajat öregítjük
-            if(obstacles.get(j).getAge() == Config.AGE_LIMIT){
-                LogHelper.inline("obstacleRemoved pos: ["+obstacles.get(j).getPosition().width+"; "+obstacles.get(j).getPosition().height + "]");
-                obstacles.remove(j);
-            } else if(obstacles.get(j).getDecay() == Config.DECAY_LIMIT){
-                LogHelper.inline("obstacleRemoved pos: ["+obstacles.get(j).getPosition().width+"; "+obstacles.get(j).getPosition().height + "]");
-                obstacles.remove(j);
-            } else {
-                obstacles.get(j).age();
-                j++;
+
+        if(remainingRobots() < 2)
+            Game.gameOver();
+        else {
+            for (int j = 0; j < obstacles.size(); ) {
+                //ha az olaj felszáradt, vagy ragacs elkopott, töröljük a pályáról, egyébként az olajat öregítjük
+                if (obstacles.get(j).getAge() == Config.AGE_LIMIT) {
+                    LogHelper.inline("obstacleRemoved pos: [" + obstacles.get(j).getPosition().width + "; " + obstacles.get(j).getPosition().height + "]");
+                    obstacles.remove(j);
+                } else if (obstacles.get(j).getDecay() == Config.DECAY_LIMIT) {
+                    LogHelper.inline("obstacleRemoved pos: [" + obstacles.get(j).getPosition().width + "; " + obstacles.get(j).getPosition().height + "]");
+                    obstacles.remove(j);
+                } else {
+                    obstacles.get(j).age();
+                    j++;
+                }
             }
         }
+    }
+
+    private int remainingRobots(){
+        int ret = robots.size();
+
+        for(int i = 0; i < robots.size(); i++){
+            if(robots.get(i).dead)
+                ret--;
+        }
+
+        return ret;
     }
 
     // visszaadja a teljes obstacle listát

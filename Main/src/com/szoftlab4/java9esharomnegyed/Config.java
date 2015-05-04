@@ -58,7 +58,8 @@ public class Config {
     public static final String LEADERBOARD_FILE = "leaderboard.ser";
 
     /* Clock related */
-    public static final int TIME_OVER = 5;    //in second
+    public static final int TIME_OVER = 60;    //in second
+    public static final int TIMER_TICK = 3000; // 1000 means that the clock will tick every second
 
     /* GUI related */
     public static final String MAIN_TITLE = "Phoebe";

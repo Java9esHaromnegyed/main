@@ -84,7 +84,7 @@ public class Game {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        pauseGame();
+        clock.pauseClock();
     }
 
     //Játék elhagyása fgv
