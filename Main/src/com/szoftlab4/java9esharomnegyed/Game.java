@@ -15,9 +15,7 @@ public class Game {
     private static Leaderboard leaderboard;
     private static String[] arguments = null;
     private static Clock clock;
-
-
-
+    private static GUI gui;
 
     //Program belépési pontja
     public static void main(String[] args) {
@@ -30,7 +28,7 @@ public class Game {
             leaderboard.addRecord("test" + i, i);
         }
 
-        GUI gui = new GUI();
+        gui = new GUI();
 
         //Prototype prototype = new Prototype(arena);
 
@@ -69,11 +67,13 @@ public class Game {
     public static void gameOver(){
         updateLeaderboard(arena.getRobot(0).getName(), arena.getRobot(0).getCoveredDistance());
         updateLeaderboard(arena.getRobot(1).getName(), arena.getRobot(1).getCoveredDistance());
+        pauseGame();
     }
 
     //Játék elhagyása fgv
     //Leaderboardhoz hozzáadja a játékosok adatait, (később clockot megállítja, megjeleníti a menüt)
     public static void leaveGame(){
+        clock.stopClock();
     }
 
     //Kilépés a játékból fgv
@@ -96,11 +96,14 @@ public class Game {
 
     //Új játékot kezd a megadott pályával, és robot nevekkel, azok pontszámát nullázva
     public static void rematch(){
+        clock.stopClock();  // nullázás
+
         List<Robot> robots = arena.getRobotList();
         arena.initArena();
         arena.setRobotName(robots.get(0).getName(), 0);
         arena.setRobotName(robots.get(1).getName(), 1);
-        clock.startClock();
+
+        clock.startClock(); // újra indítás
     }
 
     //(később megjeleníti a leaderboardot)
@@ -122,8 +125,13 @@ public class Game {
         return arena;
     }
 
-    public void tick(){
+    public static void tick(){
         arena.tick();
+        gui.updateGame();
+    }
+
+    public static int getTime(){
+        return clock.getTime();
     }
 
     public static String[] getArguments() {

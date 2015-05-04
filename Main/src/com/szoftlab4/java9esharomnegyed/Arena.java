@@ -3,6 +3,7 @@ package com.szoftlab4.java9esharomnegyed;
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -248,36 +249,40 @@ public class Arena {
         LogHelper.inline("robotMoved id: " + r.getID() + " pos: [" + r.getPosition().width + "; " + r.getPosition().height + "]");
         if(isOutOfArena(fin)) {                 // fin a végső pozíció ahova ugrottunk
             r.die();                            // ha pályán kívül van akkor kinyírjuk a robotot
-            if(robots.size() == 1)
+            if(robots.size() < 2)               // minden alkalommal amikor meghal egy robot tesztelni kell hogy gameOver van-e
                 Game.gameOver();
         } else {
             CleanerRobot cRobo = getCleanerRobot(fin);  // ha ráléptünk takarítóra
             if(cRobo != null)                           // nyírjuk ki
                 cRobo.die();
-
-            Robot robo = getRobot(fin, r.getID());
-            if(robo != null){
-                if(robo.getSpeed() < r.getSpeed())      // sebesség alapján nyírjuk ki a megfelelőt
-                    r.die();
-                else
-                    robo.die();
+            if(robots.size() < 2)                       // minden alkalommal amikor meghal egy robot tesztelni kell hogy gameOver van-e
+                Game.gameOver();
+            else {
+                Robot robo = getRobot(fin, r.getID());
+                if (robo != null) {
+                    if (robo.getSpeed() < r.getSpeed())      // sebesség alapján nyírjuk ki a megfelelőt
+                        r.die();
+                    else
+                        robo.die();
+                }
+                if(robots.size() < 2)                   // minden alkalommal amikor meghal egy robot tesztelni kell hogy gameOver van-e
+                    Game.gameOver();
+                else {
+                    Obstacle on = getObstacle(fin);
+                    if (on != null)
+                        on.effect(r);                   // ha akdályra lép akkor hasson rá
+                    else
+                        r.clearEffects();               // ha nem lép semmire töröljük az eddigi hatásokat
+                }
             }
-            Obstacle on = getObstacle(fin);
-            if(on != null)
-                on.effect(r);                   // ha akdályra lép akkor hasson rá
-            else
-                r.clearEffects();               // ha nem lép semmire töröljük az eddigi hatásokat
         }
     }
 
     //Irányításkezelő fgv
     public void movementControl(int e) {
-        //Key event lesz majd az 'int e'-ből
-        //int key = e.getKeyCode()
-        int key = e;
         //A két robot mozgását külön gombokkal kezeljük, ezek megnyomása közvetlen a robot
         //megfelelő fgvének meghívását vonja maga után
-        switch (key) {
+        switch (e) {
             case Config.MOV_P1_UP:
                 robots.get(0).speedUp();
                 break;
@@ -315,6 +320,11 @@ public class Arena {
                 robots.get(1).dropPutty();
                 break;
         }
+    }
+
+    //meg kellett tartani az (int e)-s alakot, hogy a prototype müködőképes maradjon
+    public void movementControl(KeyEvent e){
+        movementControl(e.getKeyCode());
     }
 
     public void tick() {

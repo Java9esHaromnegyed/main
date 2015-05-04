@@ -80,6 +80,7 @@ public class GUI extends JFrame{
             pausePanel = new PausePanel(this);
         setContentPane(pausePanel);
         setVisible(true);
+        pausePanel.requestFocus();
     }
 
     //Ranglista megjelenítése
@@ -97,6 +98,9 @@ public class GUI extends JFrame{
     //Játék nézet frissítése
     public void updateGame(){
         gamePanel.update();
+        setContentPane(gamePanel);
+        setVisible(true);
+        gamePanel.requestFocus();
     }
 
     //---------------------------------------Window-Listeners--------------------------------------

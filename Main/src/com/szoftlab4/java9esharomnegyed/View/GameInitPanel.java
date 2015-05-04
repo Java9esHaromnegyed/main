@@ -116,6 +116,9 @@ public class GameInitPanel extends JPanel {
             JTextField temp = (JTextField) e.getSource();
             if(temp.getBackground().equals(new Color(255, 200, 200))) {
                 temp.setBackground(new JTextField().getBackground());
+                invalidate();
+            }
+            if(playerOneName.getText().length() > 0 && playerTwoName.getText().length() > 0) {
                 doneButton.setEnabled(true);
                 invalidate();
             }

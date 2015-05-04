@@ -47,14 +47,17 @@ public class Config {
     public static final int DEF_MAPSIZE = 64;
     public static String ARENA_FOLDER = "Main/data/arenas/";
     public static final String DEF_MAP = "testArena1.txt";
-    public static final int AGE_LIMIT = 3;
-    public static final int DECAY_LIMIT = 3;
+    public static final int AGE_LIMIT = 10;
+    public static final int DECAY_LIMIT = 4;
 
     /* TEST related */
     public static String TEST_FOLDER = "Main/data/tests/";
 
     /* LEADERBOARD related */
     public static final int LEADERBOARD_SIZE = 10;
+
+    /* Clock related */
+    public static final int TIME_OVER = 5;    //in second
 
     /* GUI related */
     public static final String MAIN_TITLE = "Phoebe";

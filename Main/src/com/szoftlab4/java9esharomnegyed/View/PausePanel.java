@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class PausePanel extends JPanel {
     private GUI parent;
@@ -16,7 +18,6 @@ public class PausePanel extends JPanel {
     private JButton leaveButton;
 
     public PausePanel(GUI p){
-        //TODO
         parent = p;
 
         resumeButton = new JButton("Resume Game");
@@ -26,6 +27,8 @@ public class PausePanel extends JPanel {
         resumeButton.addActionListener(new resumeAction());
         rematchButton.addActionListener(new rematchAction());
         leaveButton.addActionListener(new leaveAction());
+
+        this.addKeyListener(new escAction());
 
         initLayout();
     }
@@ -57,6 +60,7 @@ public class PausePanel extends JPanel {
     //Játék folytatása
     public void resumeButtonFunction(){
         Game.resumeGame();
+        parent.showGamePanel();
     }
 
     //Gombnyomásra meghívjuk a megfelelő metódust(Vissza a játékba)
@@ -65,7 +69,6 @@ public class PausePanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             resumeButtonFunction();
-            parent.showGamePanel();
         }
     }
 
@@ -77,7 +80,6 @@ public class PausePanel extends JPanel {
 
     //Gombnyomásra meghívjuk a megfelelő metódust(Új játék, adott nevekkel)
     private class rematchAction implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             rematchButtonFunction();
@@ -87,6 +89,7 @@ public class PausePanel extends JPanel {
     //Játék elhagyása, főmenübe lépés
     public void leaveButtonFunction(){
         parent.loadMenuPanel();
+        Game.leaveGame();
     }
 
     //Gombnyomásra meghívjuk a megfelelő metódust, megerősítés a kilépésről(Vissza a főmenübe)
@@ -99,6 +102,14 @@ public class PausePanel extends JPanel {
             if(i == 0) {
                 leaveButtonFunction();
             }
+        }
+    }
+
+    //----------------------------------------Key-listeners----------------------------------------
+    private class escAction extends KeyAdapter {
+        public void keyReleased(KeyEvent e){
+            if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                resumeButtonFunction();
         }
     }
 }

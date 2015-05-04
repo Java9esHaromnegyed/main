@@ -25,7 +25,7 @@ public class Command {
         //Argumentum nélküli parancsoknál (pl testAll) megnézzük hogy args==null -> ha igen, akkor helyes az utasítás, tehát a paraméter nélküli parancs után nem írt a tesztelő semmit
         if (name.equals("loadArena"))  loadArena(args);
         else if (name.equals("initArena")) initArena(args);
-        else if (name.equals("robotMovement")) robotMovement(args);
+        //else if (name.equals("robotMovement")) robotMovement(args);
         else if (name.equals("robotMove")) robotMove(args);
         else if (name.equals("addCleanerRobot")) addCleanerRobot(args);
         else if (name.equals("exitGame")) exitGame(args);
@@ -104,6 +104,7 @@ public class Command {
         }
 
     }
+
 
     //Robot iránytása parancs
     private void robotMovement(String[] args) {
