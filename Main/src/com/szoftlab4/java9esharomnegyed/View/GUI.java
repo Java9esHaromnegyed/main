@@ -52,7 +52,7 @@ public class GUI extends JFrame{
 
     //Játék nézet megjelenítése
     public void loadGamePanel(){
-        if(gamePanel == null)
+       if(gamePanel == null)
             gamePanel = new GamePanel(this);
         else
             gamePanel.update();
@@ -98,9 +98,13 @@ public class GUI extends JFrame{
     //Játék nézet frissítése
     public void updateGame(){
         gamePanel.update();
+        /*
+        nem kell elkérni megint a focust, stb, majd a gamePanelben kérünk canvas.repaint()-et --> nem fog villogni
         setContentPane(gamePanel);
         setVisible(true);
         gamePanel.requestFocus();
+        */
+
     }
 
     //---------------------------------------Window-Listeners--------------------------------------

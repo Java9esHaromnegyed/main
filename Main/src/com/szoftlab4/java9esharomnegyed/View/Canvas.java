@@ -7,7 +7,6 @@ import com.szoftlab4.java9esharomnegyed.Wall;
 import com.szoftlab4.java9esharomnegyed.Robot;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class Canvas extends java.awt.Canvas {
@@ -25,31 +24,22 @@ public class Canvas extends java.awt.Canvas {
         cleanerRobot = getToolkit().getImage(getClass().getResource(Config.CLEANER_ROBOT));
     }
 
+    //Turning the robots image in the direction of robot movement
     private Image rotateRobot(Image image, Robot robot)
     {
+        int width=Config.TILE_SIZE;
+        int height=Config.TILE_SIZE;
         int angle =(2-robot.getDirection())*90;
-        BufferedImage bimage = new BufferedImage(Config.TILE_SIZE, Config.TILE_SIZE, BufferedImage.TYPE_INT_RGB);
+        BufferedImage bimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-        // Draw the image on to the buffered image
         Graphics2D bGr = bimage.createGraphics();
         bGr.drawImage(image, 0, 0, null);
         bGr.dispose();
 
         double radians = Math.toRadians(angle);
-
-        int srcWidth = Config.TILE_SIZE;
-        int srcHeight = Config.TILE_SIZE;
-
-        double sin = Math.abs(Math.sin(radians));
-        double cos = Math.abs(Math.cos(radians));
-        int newWidth = (int) Math.floor(srcWidth * cos + srcHeight * sin);
-        int newHeight = (int) Math.floor(srcHeight * cos + srcWidth * sin);
-
-        BufferedImage result = new BufferedImage(newWidth, newHeight,
-                bimage.getType());
+        BufferedImage result = new BufferedImage(width, height,bimage.getType());
         Graphics2D g = result.createGraphics();
-        g.translate((newWidth - srcWidth) / 2, (newHeight - srcHeight) / 2);
-        g.rotate(radians, srcWidth / 2, srcHeight / 2);
+        g.rotate(radians, width / 2, height / 2);
         g.drawRenderedImage(bimage, null);
 
         return result;
@@ -89,6 +79,8 @@ public class Canvas extends java.awt.Canvas {
                     o.getPosition().height-(Config.TILE_SIZE/2), null);
         }
 
+
+        //HUD kirajzolása
         Font f = new Font("Arial", Font.PLAIN, 14);
         g2.setFont(f);
         FontMetrics metrics = g2.getFontMetrics(f);
@@ -96,29 +88,38 @@ public class Canvas extends java.awt.Canvas {
         int padding = 10;
         g2.fillRect(padding, Game.getArena().getSize().height + (Config.TILE_SIZE/2) - (Config.TILE_SIZE/2)/2, (Config.TILE_SIZE/2), (Config.TILE_SIZE/2));
         padding += (Config.TILE_SIZE/2) + 10;
+
+        //Robot1 nevének kiírása
         g2.drawString(Game.getArena().getRobot(0).getName(), padding,
                 Game.getArena().getSize().height + (Config.TILE_SIZE/2));
         padding += metrics.stringWidth(Game.getArena().getRobot(0).getName() + 10);
+        //Robot1 ragacskészlet kiírása
         g2.drawString("Putty left: " + Game.getArena().getRobot(0).getPuttyLeft(), padding,
                 Game.getArena().getSize().height + (Config.TILE_SIZE/2));
         padding += metrics.stringWidth("Putty left: " + Game.getArena().getRobot(0).getPuttyLeft() + 10);
+        //Robot1 olajkészlet kiírása
         g2.drawString("Oil left: " + Game.getArena().getRobot(0).getOilLeft(), padding,
                 Game.getArena().getSize().height + (Config.TILE_SIZE/2));
-
         padding += metrics.stringWidth("Oil left: " + Game.getArena().getRobot(0).getOilLeft() + 10 + 30);
         g2.setColor(new Color(0, 0, 255));
         g2.fillRect(padding, Game.getArena().getSize().height + (Config.TILE_SIZE/2) - (Config.TILE_SIZE/2)/2, (Config.TILE_SIZE/2), (Config.TILE_SIZE/2));
         padding += (Config.TILE_SIZE/2) + 10;
+
+        //Robot2 nevének kiírása
         g2.drawString(Game.getArena().getRobot(1).getName(), padding,
                 Game.getArena().getSize().height + (Config.TILE_SIZE/2));
         padding += metrics.stringWidth(Game.getArena().getRobot(1).getName() + 10);
+        //Robot2 ragacskészlet kiírása
         g2.drawString("Putty left: " + Game.getArena().getRobot(1).getPuttyLeft(), padding,
                 Game.getArena().getSize().height + (Config.TILE_SIZE/2));
         padding += metrics.stringWidth("Putty left: " + Game.getArena().getRobot(1).getPuttyLeft() + 10);
+        //Robot2 olajkészlet kiírása
         g2.drawString("Oil left: " + Game.getArena().getRobot(1).getOilLeft(), padding,
                 Game.getArena().getSize().height + (Config.TILE_SIZE/2));
         padding += metrics.stringWidth("Oil left: " + Game.getArena().getRobot(1).getOilLeft() + 10);
         g2.setColor(new Color(0, 0, 0));
+
+        //Hátralévő idő kiírása
         g2.drawString("Time left: " + Game.getTime(), padding,
                 Game.getArena().getSize().height + (Config.TILE_SIZE/2));
 

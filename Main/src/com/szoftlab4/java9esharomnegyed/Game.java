@@ -87,6 +87,8 @@ public class Game {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //kell gui update hogy megjelenjen a game over felirat
+        gui.updateGame();
         clock.pauseClock();
 
     }
@@ -122,14 +124,14 @@ public class Game {
 
     //Új játékot kezd a megadott pályával, és robot nevekkel, azok pontszámát nullázva
     public static void rematch(){
-        gameOver = true;
+        //gameOver = true; --> nem kell
         clock.stopClock();  // nullázás
 
+        setGameOver(false); //--> a game over felirat eltűnik az új játékképernyőről
         List<Robot> robots = arena.getRobotList();
         arena.initArena();
         arena.setRobotName(robots.get(0).getName(), 0);
         arena.setRobotName(robots.get(1).getName(), 1);
-
         clock.startClock(); // újra indítás
     }
 

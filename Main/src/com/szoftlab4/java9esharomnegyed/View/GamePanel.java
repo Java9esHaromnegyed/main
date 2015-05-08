@@ -42,6 +42,7 @@ public class GamePanel extends JPanel {
         cleaners = temp.getCleanersList();
         obstacles = temp.getObstacleList();
         walls = temp.getWallList();
+        canvas.repaint();
 
         /*if (one != null && !(one.getText().equals(temp.getRobot(0).getName()))) {
             this.remove(one);

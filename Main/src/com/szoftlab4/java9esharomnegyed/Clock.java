@@ -18,8 +18,8 @@ public class Clock{
             counter++;
             Game.tick();
         } else {
-            timer.stop();
             Game.gameOver();
+            timer.stop();
         }
     }
 
