@@ -85,7 +85,7 @@ public class Robot extends AbstractRobot {
         if(!paralyzed) {
             super.turnRight();
 
-            String temp = "Up";
+            String temp = "Up " + direction;
             if(direction == Config.DIR_RIGHT)
                 temp = "Right";
             else if(direction == Config.DIR_DOWN)

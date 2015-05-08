@@ -4,13 +4,12 @@ import com.szoftlab4.java9esharomnegyed.Config;
 import com.szoftlab4.java9esharomnegyed.Game;
 import com.szoftlab4.java9esharomnegyed.Obstacle;
 import com.szoftlab4.java9esharomnegyed.Wall;
+import com.szoftlab4.java9esharomnegyed.Robot;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
-/**
- * Created by Ricsard on 2015.05.08..
- */
 public class Canvas extends java.awt.Canvas {
 
     Image blue;
@@ -24,6 +23,36 @@ public class Canvas extends java.awt.Canvas {
         blue = getToolkit().getImage(getClass().getResource(Config.BLUE)).getScaledInstance(Config.TILE_SIZE, Config.TILE_SIZE, Image.SCALE_DEFAULT);
         red = getToolkit().getImage(getClass().getResource(Config.RED)).getScaledInstance(Config.TILE_SIZE, Config.TILE_SIZE, Image.SCALE_DEFAULT);
         cleanerRobot = getToolkit().getImage(getClass().getResource(Config.CLEANER_ROBOT));
+    }
+
+    private Image rotateRobot(Image image, Robot robot)
+    {
+        int angle =(2-robot.getDirection())*90;
+        BufferedImage bimage = new BufferedImage(Config.TILE_SIZE, Config.TILE_SIZE, BufferedImage.TYPE_INT_RGB);
+
+        // Draw the image on to the buffered image
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(image, 0, 0, null);
+        bGr.dispose();
+
+        double radians = Math.toRadians(angle);
+
+        int srcWidth = Config.TILE_SIZE;
+        int srcHeight = Config.TILE_SIZE;
+
+        double sin = Math.abs(Math.sin(radians));
+        double cos = Math.abs(Math.cos(radians));
+        int newWidth = (int) Math.floor(srcWidth * cos + srcHeight * sin);
+        int newHeight = (int) Math.floor(srcHeight * cos + srcWidth * sin);
+
+        BufferedImage result = new BufferedImage(newWidth, newHeight,
+                bimage.getType());
+        Graphics2D g = result.createGraphics();
+        g.translate((newWidth - srcWidth) / 2, (newHeight - srcHeight) / 2);
+        g.rotate(radians, srcWidth / 2, srcHeight / 2);
+        g.drawRenderedImage(bimage, null);
+
+        return result;
     }
 
     @Override
@@ -40,11 +69,12 @@ public class Canvas extends java.awt.Canvas {
         }*/
 
         //Kék robot kirajozlása
-        g2.drawImage(blue, Game.getArena().getRobot(0).getPosition().width-(Config.TILE_SIZE/2),
+        g2.drawImage(rotateRobot(blue,Game.getArena().getRobot(0)), Game.getArena().getRobot(0).getPosition().width-(Config.TILE_SIZE/2),
                 Game.getArena().getRobot(0).getPosition().height-(Config.TILE_SIZE/2), null);
 
+
         //Piros robot kirajozlása
-        g2.drawImage(red, Game.getArena().getRobot(1).getPosition().width-(Config.TILE_SIZE/2),
+        g2.drawImage(rotateRobot(red,Game.getArena().getRobot(1)), Game.getArena().getRobot(1).getPosition().width-(Config.TILE_SIZE/2),
                 Game.getArena().getRobot(1).getPosition().height-(Config.TILE_SIZE/2), null);
 
         //Falak kirajozlása
