@@ -207,4 +207,12 @@ public class Robot extends AbstractRobot {
                 break;
         }
     }
+
+    public int getPuttyLeft() {
+        return puttyLeft;
+    }
+
+    public int getOilLeft() {
+        return oilLeft;
+    }
 }
