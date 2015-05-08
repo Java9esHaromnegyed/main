@@ -2,6 +2,7 @@ package com.szoftlab4.java9esharomnegyed;
 
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
+import javax.swing.*;
 import java.awt.*;
 
 //Egy fajta Obstacle
@@ -10,6 +11,7 @@ public class OilSpot extends Obstacle {
     //Olajfolt létrehozása adott pozícióra
     public OilSpot(Dimension pos){
         position = pos;
+        image = new JPanel().getToolkit().getImage(getClass().getResource(Config.OIL)).getScaledInstance(Config.TILE_SIZE, Config.TILE_SIZE, Image.SCALE_DEFAULT);
     }
 
     //Absztrakt metódus megvalósítása az akadály hatásához

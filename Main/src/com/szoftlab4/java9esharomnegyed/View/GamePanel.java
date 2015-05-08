@@ -22,6 +22,7 @@ public class GamePanel extends JPanel {
     JLabel one;
     JLabel two;
     JLabel time;
+    Canvas canvas;
 
     private GUI parent;
 
@@ -42,7 +43,7 @@ public class GamePanel extends JPanel {
         obstacles = temp.getObstacleList();
         walls = temp.getWallList();
 
-        if (one != null && !(one.getText().equals(temp.getRobot(0).getName()))) {
+        /*if (one != null && !(one.getText().equals(temp.getRobot(0).getName()))) {
             this.remove(one);
             one = new JLabel(temp.getRobot(0).getName());
             this.add(one);
@@ -60,16 +61,19 @@ public class GamePanel extends JPanel {
             this.remove(time);
             time = new JLabel("" + Game.getTime());
             this.add(time);
-        }
+        }*/
     }
 
     private void initLayout(){
         one = new JLabel(Game.getArena().getRobot(0).getName());
         two = new JLabel(Game.getArena().getRobot(1).getName());
         time = new JLabel("" + Game.getTime());
-        this.add(one);
-        this.add(two);
-        this.add(time);
+        canvas = new Canvas();
+
+        //this.add(one);
+        //this.add(two);
+        //this.add(time);
+        this.add(canvas);
     }
 
     //----------------------------------------Key-listeners----------------------------------------

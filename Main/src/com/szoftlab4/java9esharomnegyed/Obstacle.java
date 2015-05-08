@@ -8,6 +8,7 @@ public abstract class Obstacle {
     //Obstacle osztály mezői
     protected Dimension position;
     protected Dimension size;
+    protected Image image;
 
     protected int decay;
     protected int age;
@@ -30,6 +31,10 @@ public abstract class Obstacle {
 
     public int getAge(){
         return age;
+    }
+
+    public Image getImage() {
+        return image;
     }
 
     //Szöveges megjelenítés akadályokra

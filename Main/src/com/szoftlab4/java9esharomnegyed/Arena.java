@@ -377,4 +377,8 @@ public class Arena {
     public List<CleanerRobot> getCleanersList(){
         return cleaners;
     }
+
+    public Dimension getSize() {
+        return size;
+    }
 }

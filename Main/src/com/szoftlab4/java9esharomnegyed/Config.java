@@ -43,7 +43,7 @@ public class Config {
     public static final int MOV_P1_PUTTY = KeyEvent.VK_V;
 
     /* ARENA related */
-    public static final int TILE_SIZE = 1;     // obstacles, robots and generally "tile"-s dimension in pixel
+    public static final int TILE_SIZE = 32;     // obstacles, robots and generally "tile"-s dimension in pixel
     public static final int DEF_MAPSIZE = 64;
     public static String ARENA_FOLDER = "Main/data/arenas/";
     public static final String DEF_MAP = "testArena1.txt";
@@ -58,8 +58,8 @@ public class Config {
     public static final String LEADERBOARD_FILE = "leaderboard.ser";
 
     /* Clock related */
-    public static final int TIME_OVER = 60;    //in second
-    public static final int TIMER_TICK = 3000; // 1000 means that the clock will tick every second
+    public static final int TIME_OVER = 15;    //in second
+    public static final int TIMER_TICK = 1000; // 1000 means that the clock will tick every second
 
     /* GUI related */
     public static final String MAIN_TITLE = "Phoebe";
@@ -68,4 +68,8 @@ public class Config {
     // pictur paths for game-init-panel
     public static final String BLUE = "/assets/initPanel/blue.png";
     public static final String RED = "/assets/initPanel/red.png";
+    public static final String PUTTY = "/assets/initPanel/putty.png";
+    public static final String OIL = "/assets/initPanel/oil.png";
+    public static final String CLEANER_ROBOT = "/assets/initPanel/cleanerRobot.png";
+    public static final String WALL = "/assets/initPanel/wall.png";
 }

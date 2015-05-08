@@ -16,6 +16,7 @@ public class Game {
     private static String[] arguments = null;
     private static Clock clock;
     private static GUI gui;
+    private static boolean gameOver;
 
     //Program belépési pontja
     public static void main(String[] args) {
@@ -67,15 +68,17 @@ public class Game {
         //Beolvasás konzolról
         //InputStreamReader inputStreamReader = new InputStreamReader(System.in);
         //BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
+        gameOver = false;
         requestName(playerOne, 0);
         requestName(playerTwo, 1);
         clock.startClock();
+
     }
 
     //Játék vége fgv
     //Leaderboardhoz hozzáadja a játékosok adatait, (később clockot megállítja, megjeleníti a leaderboardot)
     public static void gameOver(){
+        gameOver = true;
         updateLeaderboard(arena.getRobot(0).getName(), arena.getRobot(0).getCoveredDistance());
         updateLeaderboard(arena.getRobot(1).getName(), arena.getRobot(1).getCoveredDistance());
         //Saving the leaderboard
@@ -85,6 +88,7 @@ public class Game {
             e.printStackTrace();
         }
         clock.pauseClock();
+
     }
 
     //Játék elhagyása fgv
@@ -118,6 +122,7 @@ public class Game {
 
     //Új játékot kezd a megadott pályával, és robot nevekkel, azok pontszámát nullázva
     public static void rematch(){
+        gameOver = true;
         clock.stopClock();  // nullázás
 
         List<Robot> robots = arena.getRobotList();
@@ -150,6 +155,14 @@ public class Game {
     public static void tick(){
         arena.tick();
         gui.updateGame();
+    }
+
+    public static boolean isGameOver() {
+        return gameOver;
+    }
+
+    public static void setGameOver(boolean gameOver) {
+        Game.gameOver = gameOver;
     }
 
     public static int getTime(){
