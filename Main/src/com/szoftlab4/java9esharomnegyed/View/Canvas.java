@@ -4,18 +4,23 @@ import com.szoftlab4.java9esharomnegyed.*;
 import com.szoftlab4.java9esharomnegyed.Robot;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
 public class Canvas extends java.awt.Canvas {
+    private GUI parent;
     private List<CleanerRobot> cleaners;
     private List<Obstacle> obstacles;
     private List<Wall> walls;
 
     Image cleanerRobot;
 
-    public Canvas() {
+    public Canvas(GUI parent) {
+        this.parent = parent;
         this.setSize(Config.FRAME_SIZE);
+        this.addKeyListener(new keyAction());
 
         cleanerRobot = getToolkit().getImage(getClass().getResource(Config.CLEANER_ROBOT));
     }
@@ -62,17 +67,6 @@ public class Canvas extends java.awt.Canvas {
             }
         }*/
 
-        //Kék robot kirajozlása
-        if(!blueRobot.dead)
-            g2.drawImage(rotateRobot(blueRobot.getBlue(), blueRobot), blueRobot.getPosition().width-(Config.TILE_SIZE/2),
-                    blueRobot.getPosition().height-(Config.TILE_SIZE/2), null);
-
-
-        //Piros robot kirajozlása
-        if(!redRobot.dead)
-            g2.drawImage(rotateRobot(redRobot.getRed(), redRobot), redRobot.getPosition().width-(Config.TILE_SIZE/2),
-                    redRobot.getPosition().height-(Config.TILE_SIZE/2), null);
-
         //Falak kirajozlása
         for(Wall w : walls){
             g2.drawImage(w.getImage(), w.getPosition().width-(Config.TILE_SIZE/2),
@@ -90,6 +84,17 @@ public class Canvas extends java.awt.Canvas {
             g2.drawImage(rotateRobot(c.getImage(), c), c.getPosition().width-(Config.TILE_SIZE/2),
                     c.getPosition().height-(Config.TILE_SIZE/2), null);
         }
+
+        //Kék robot kirajozlása
+        if(!blueRobot.dead)
+            g2.drawImage(rotateRobot(blueRobot.getBlue(), blueRobot), blueRobot.getPosition().width-(Config.TILE_SIZE/2),
+                    blueRobot.getPosition().height-(Config.TILE_SIZE/2), null);
+
+
+        //Piros robot kirajozlása
+        if(!redRobot.dead)
+            g2.drawImage(rotateRobot(redRobot.getRed(), redRobot), redRobot.getPosition().width-(Config.TILE_SIZE/2),
+                    redRobot.getPosition().height-(Config.TILE_SIZE/2), null);
 
 
         //HUD kirajzolása
@@ -145,5 +150,15 @@ public class Canvas extends java.awt.Canvas {
                     Game.getArena().getSize().height/2);
         }
 
+    }
+
+    //----------------------------------------Key-listeners----------------------------------------
+    private class keyAction extends KeyAdapter {
+        public void keyReleased(KeyEvent e){
+            if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                Game.pauseGame();
+                parent.loadPausePanel();
+            }
+        }
     }
 }

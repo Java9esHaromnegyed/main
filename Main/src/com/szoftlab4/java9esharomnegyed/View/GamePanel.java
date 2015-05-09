@@ -25,7 +25,7 @@ public class GamePanel extends JPanel {
     }
 
     private void initLayout(){
-        canvas = new Canvas();
+        canvas = new Canvas(parent);
 
         this.add(canvas);
     }

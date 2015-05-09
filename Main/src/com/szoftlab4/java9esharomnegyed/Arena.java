@@ -331,9 +331,9 @@ public class Arena {
             cleaners.get(j).move();
         }
 
-        //if(remainingRobots() < 2)
-        //    Game.gameOver();
-        //else {
+        if(remainingRobots() < 2)
+            Game.gameOver();
+        else {
             for (int j = 0; j < obstacles.size(); ) {
                 //ha az olaj felszáradt, vagy ragacs elkopott, töröljük a pályáról, egyébként az olajat öregítjük
                 if (obstacles.get(j).getAge() == Config.AGE_LIMIT) {
@@ -347,7 +347,7 @@ public class Arena {
                     j++;
                 }
             }
-        //}
+        }
     }
 
     private int remainingRobots(){

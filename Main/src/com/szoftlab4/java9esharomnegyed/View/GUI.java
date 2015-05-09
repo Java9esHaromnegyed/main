@@ -2,10 +2,8 @@ package com.szoftlab4.java9esharomnegyed.View;
 
 import com.szoftlab4.java9esharomnegyed.Config;
 import com.szoftlab4.java9esharomnegyed.Game;
-import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -103,7 +101,6 @@ public class GUI extends JFrame{
         setContentPane(gamePanel);
         setVisible(true);
         gamePanel.requestFocus();
-
     }
 
     //---------------------------------------Window-Listeners--------------------------------------
