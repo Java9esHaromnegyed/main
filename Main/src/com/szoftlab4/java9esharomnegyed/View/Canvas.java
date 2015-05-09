@@ -63,13 +63,15 @@ public class Canvas extends java.awt.Canvas {
         }*/
 
         //Kék robot kirajozlása
-        g2.drawImage(rotateRobot(blueRobot.getBlue(), blueRobot), blueRobot.getPosition().width-(Config.TILE_SIZE/2),
-                blueRobot.getPosition().height-(Config.TILE_SIZE/2), null);
+        if(!blueRobot.dead)
+            g2.drawImage(rotateRobot(blueRobot.getBlue(), blueRobot), blueRobot.getPosition().width-(Config.TILE_SIZE/2),
+                    blueRobot.getPosition().height-(Config.TILE_SIZE/2), null);
 
 
         //Piros robot kirajozlása
-        g2.drawImage(rotateRobot(redRobot.getRed(), redRobot), redRobot.getPosition().width-(Config.TILE_SIZE/2),
-                redRobot.getPosition().height-(Config.TILE_SIZE/2), null);
+        if(!redRobot.dead)
+            g2.drawImage(rotateRobot(redRobot.getRed(), redRobot), redRobot.getPosition().width-(Config.TILE_SIZE/2),
+                    redRobot.getPosition().height-(Config.TILE_SIZE/2), null);
 
         //Falak kirajozlása
         for(Wall w : walls){
