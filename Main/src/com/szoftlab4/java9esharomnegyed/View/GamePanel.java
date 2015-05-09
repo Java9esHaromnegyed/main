@@ -3,6 +3,7 @@ package com.szoftlab4.java9esharomnegyed.View;
 import com.szoftlab4.java9esharomnegyed.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -17,17 +18,19 @@ public class GamePanel extends JPanel {
         this.addKeyListener(new keyAction());
         this.setFocusable(true);
         initLayout();
+        canvas.paint(parent.getGraphics());
         invalidate();
     }
 
     public void update() {
-        canvas.repaint();
+        canvas.paint(parent.getGraphics());
     }
 
     private void initLayout(){
+        setLayout(new BorderLayout());
         canvas = new Canvas(parent);
 
-        this.add(canvas);
+        this.add(canvas, BorderLayout.CENTER);
     }
 
     //----------------------------------------Key-listeners----------------------------------------
