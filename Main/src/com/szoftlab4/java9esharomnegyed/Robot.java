@@ -2,6 +2,7 @@ package com.szoftlab4.java9esharomnegyed;
 
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
+import javax.swing.*;
 import java.awt.*;
 
 //Osztály a robotokhoz
@@ -13,6 +14,9 @@ public class Robot extends AbstractRobot {
     boolean paralyzed = false;                  // this flag gets true while robot stands on oil
     boolean slowed = false;                     // this flag gets true while robot stands on putty
 
+    private Image blue;
+    private Image red;
+
     //Robot létrehozása egy arénához adott névvel, kezdő pozícióval és iránnyal.
     public Robot(Arena a, String n, Dimension startPos, int dir, int ID) {
         arena = a;
@@ -20,6 +24,9 @@ public class Robot extends AbstractRobot {
         position = startPos;
         direction = dir;
         id = ID;
+
+        blue = new JPanel().getToolkit().getImage(getClass().getResource(Config.BLUE)).getScaledInstance(Config.TILE_SIZE, Config.TILE_SIZE, Image.SCALE_DEFAULT);
+        red = new JPanel().getToolkit().getImage(getClass().getResource(Config.RED)).getScaledInstance(Config.TILE_SIZE, Config.TILE_SIZE, Image.SCALE_DEFAULT);
     }
 
     //Ragacsfolt lehelyezése a pályára
@@ -214,5 +221,13 @@ public class Robot extends AbstractRobot {
 
     public int getOilLeft() {
         return oilLeft;
+    }
+
+    public Image getBlue(){
+        return blue;
+    }
+
+    public Image getRed(){
+        return red;
     }
 }

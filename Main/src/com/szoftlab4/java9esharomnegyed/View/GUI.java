@@ -52,10 +52,10 @@ public class GUI extends JFrame{
 
     //Játék nézet megjelenítése
     public void loadGamePanel(){
-       if(gamePanel == null)
+        if(gamePanel == null)
             gamePanel = new GamePanel(this);
-        else
-            gamePanel.update();
+
+        gamePanel.update();
         setContentPane(gamePanel);
         setVisible(true);
         gamePanel.requestFocus();
@@ -98,12 +98,11 @@ public class GUI extends JFrame{
     //Játék nézet frissítése
     public void updateGame(){
         gamePanel.update();
-        /*
-        nem kell elkérni megint a focust, stb, majd a gamePanelben kérünk canvas.repaint()-et --> nem fog villogni
+        //nem kell elkérni megint a focust, stb, majd a gamePanelben kérünk canvas.repaint()-et --> nem fog villogni
+        // így sem villog, és azért van rá szükség, hogy az exit optionPane után müködjön a pausePanel
         setContentPane(gamePanel);
         setVisible(true);
         gamePanel.requestFocus();
-        */
 
     }
 
@@ -111,11 +110,13 @@ public class GUI extends JFrame{
     //Ablak bezárásakor megerősítés kérése és kilépés a programból
     private class exitApp extends WindowAdapter {
         public void windowClosing(WindowEvent e){
+            requestFocus(false); // letiltjuk, hogy ESC-re ne hozza be a pausePanelt, amíg fent van az OptionPane
             int i = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?",
                     "Confirm Exit", JOptionPane.YES_NO_OPTION);
             if(i == 0) {
                 Game.exitGame();
             }
+            requestFocus(); // visszaadjuk, ha nem léptünk ki
         }
     }
 

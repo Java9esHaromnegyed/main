@@ -14,7 +14,7 @@ public class Clock{
     }
 
     public void tick() {
-        if(counter < Config.TIME_OVER) {
+        if(counter < Config.TIME_OVER +1) {
             counter++;
             Game.tick();
         } else {
@@ -37,7 +37,7 @@ public class Clock{
     }
 
     public int getTime(){
-        return Config.TIME_OVER - counter;
+        return Config.TIME_OVER - counter +1;
     }
 
     private class action implements ActionListener{

@@ -58,7 +58,7 @@ public class Config {
     public static final String LEADERBOARD_FILE = "leaderboard.ser";
 
     /* Clock related */
-    public static final int TIME_OVER = 15;    //in second
+    public static final int TIME_OVER = 50;    //in ticks
     public static final int TIMER_TICK = 1000; // 1000 means that the clock will tick every second
 
     /* GUI related */

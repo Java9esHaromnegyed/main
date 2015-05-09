@@ -1,35 +1,31 @@
 package com.szoftlab4.java9esharomnegyed.View;
 
-import com.szoftlab4.java9esharomnegyed.Config;
-import com.szoftlab4.java9esharomnegyed.Game;
-import com.szoftlab4.java9esharomnegyed.Obstacle;
-import com.szoftlab4.java9esharomnegyed.Wall;
+import com.szoftlab4.java9esharomnegyed.*;
 import com.szoftlab4.java9esharomnegyed.Robot;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 public class Canvas extends java.awt.Canvas {
+    private List<CleanerRobot> cleaners;
+    private List<Obstacle> obstacles;
+    private List<Wall> walls;
 
-    Image blue;
-    Image red;
     Image cleanerRobot;
 
     public Canvas() {
-
         this.setSize(Config.FRAME_SIZE);
 
-        blue = getToolkit().getImage(getClass().getResource(Config.BLUE)).getScaledInstance(Config.TILE_SIZE, Config.TILE_SIZE, Image.SCALE_DEFAULT);
-        red = getToolkit().getImage(getClass().getResource(Config.RED)).getScaledInstance(Config.TILE_SIZE, Config.TILE_SIZE, Image.SCALE_DEFAULT);
         cleanerRobot = getToolkit().getImage(getClass().getResource(Config.CLEANER_ROBOT));
     }
 
     //Turning the robots image in the direction of robot movement
-    private Image rotateRobot(Image image, Robot robot)
+    private Image rotateRobot(Image image, AbstractRobot robot)
     {
-        int width=Config.TILE_SIZE;
-        int height=Config.TILE_SIZE;
-        int angle =(2-robot.getDirection())*90;
+        int width = Config.TILE_SIZE;
+        int height = Config.TILE_SIZE;
+        int angle = (2-robot.getDirection())*90;
         BufferedImage bimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
         Graphics2D bGr = bimage.createGraphics();
@@ -49,6 +45,14 @@ public class Canvas extends java.awt.Canvas {
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
+        /* observer tervezési minta */
+        Arena temp = Game.getArena();
+        Robot blueRobot = temp.getRobot(0);
+        Robot redRobot = temp.getRobot(1);
+        cleaners = temp.getCleanersList();
+        obstacles = temp.getObstacleList();
+        walls = temp.getWallList();
+
 
         /*g2.setStroke(new BasicStroke(2));
         g2.setColor(new Color(255, 0, 0));
@@ -59,24 +63,30 @@ public class Canvas extends java.awt.Canvas {
         }*/
 
         //Kék robot kirajozlása
-        g2.drawImage(rotateRobot(blue,Game.getArena().getRobot(0)), Game.getArena().getRobot(0).getPosition().width-(Config.TILE_SIZE/2),
-                Game.getArena().getRobot(0).getPosition().height-(Config.TILE_SIZE/2), null);
+        g2.drawImage(rotateRobot(blueRobot.getBlue(), blueRobot), blueRobot.getPosition().width-(Config.TILE_SIZE/2),
+                blueRobot.getPosition().height-(Config.TILE_SIZE/2), null);
 
 
         //Piros robot kirajozlása
-        g2.drawImage(rotateRobot(red,Game.getArena().getRobot(1)), Game.getArena().getRobot(1).getPosition().width-(Config.TILE_SIZE/2),
-                Game.getArena().getRobot(1).getPosition().height-(Config.TILE_SIZE/2), null);
+        g2.drawImage(rotateRobot(redRobot.getRed(), redRobot), redRobot.getPosition().width-(Config.TILE_SIZE/2),
+                redRobot.getPosition().height-(Config.TILE_SIZE/2), null);
 
         //Falak kirajozlása
-        for(Wall w : Game.getArena().getWallList()){
+        for(Wall w : walls){
             g2.drawImage(w.getImage(), w.getPosition().width-(Config.TILE_SIZE/2),
                     w.getPosition().height-(Config.TILE_SIZE/2), null);
         }
 
         //Olaj és Ragacs foltok kirajzolása
-        for(Obstacle o : Game.getArena().getObstacleList()){
+        for(Obstacle o : obstacles){
             g2.drawImage(o.getImage(), o.getPosition().width-(Config.TILE_SIZE/2),
                     o.getPosition().height-(Config.TILE_SIZE/2), null);
+        }
+
+        //Cleaner robotok kirajzolása
+        for(CleanerRobot c : cleaners){
+            g2.drawImage(rotateRobot(c.getImage(), c), c.getPosition().width-(Config.TILE_SIZE/2),
+                    c.getPosition().height-(Config.TILE_SIZE/2), null);
         }
 
 
