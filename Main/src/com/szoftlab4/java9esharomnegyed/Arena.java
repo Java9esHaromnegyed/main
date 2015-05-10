@@ -217,14 +217,15 @@ public class Arena {
         Dimension temp;
         int dir = r.getDirection();
         double speed = r.getSpeed();
+        double plot = speed < 1? speed : 1;
         if(speed != 0) {
             for (temp = r.getPosition(); w == null && !temp.equals(d); ) {
                 if (dir % 2 == 0) {
                     dir = (dir - 1) * (-1);                              // 0: (0 - 1) = -1; (-1) * (-1) = +1;  => X+
-                    temp.height += Math.round(dir * Config.TILE_SIZE);   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => X-
+                    temp.height += Math.round(dir * plot * Config.TILE_SIZE);   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => X-
                 } else {
                     dir = (dir - 2) * (-1);                              // 1: (1 - 2) = -1; (-1) * (-1) = +1;  => Y+
-                    temp.width += Math.round(dir * Config.TILE_SIZE);    // 3: (3 - 2) = +1;   1  * (-1) = -1;  => Y-
+                    temp.width += Math.round(dir * plot * Config.TILE_SIZE);    // 3: (3 - 2) = +1;   1  * (-1) = -1;  => Y-
                 }
                 w = getWall(temp);
             }
