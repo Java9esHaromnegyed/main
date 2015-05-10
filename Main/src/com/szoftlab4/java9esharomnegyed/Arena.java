@@ -329,7 +329,6 @@ public class Arena {
 
         for (int j = 0; j < robots.size(); j++) {
             robots.get(j).move();
-            LogHelper.inline("Speed id: " + j + "s: " + robots.get(j).getSpeed() + " pos: [" + robots.get(j).getPosition().width + ", " + robots.get(j).getPosition().height + "]");
         }
 
         if(remainingRobots() < 2)

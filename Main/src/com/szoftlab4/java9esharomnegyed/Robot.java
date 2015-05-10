@@ -173,7 +173,6 @@ public class Robot extends AbstractRobot {
 
     // TODO: normális távolság
     private double distance(Dimension from, Dimension to){
-        LogHelper.comment("distance: from:" + from + " to: " + to.toString() + "  " + Math.sqrt(Math.pow(from.width - to.width, 2) + Math.pow(from.height - to.height, 2)));
         return Math.sqrt(Math.pow(from.width - to.width, 2) + Math.pow(from.height - to.height, 2));
     }
 
