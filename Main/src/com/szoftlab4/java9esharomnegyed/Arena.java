@@ -252,8 +252,8 @@ public class Arena {
             if (cRobo != null)                           // nyírjuk ki
                 cRobo.die();
             Robot robo = getRobot(fin, r.getID());
-            if (robo != null) {
-                if (robo.getSpeed() < r.getSpeed())      // sebesség alapján nyírjuk ki a megfelelőt
+            if (robo != null && !robo.dead) {
+                if (robo.getSpeed() > r.getSpeed())      // sebesség alapján nyírjuk ki a megfelelőt
                     r.die();
                 else
                     robo.die();
