@@ -45,7 +45,6 @@ public class Arena {
         walls = new ArrayList<Wall>();
 
 
-        LogHelper.pause();
         if(this.map != null){
             for(int i = 0; i < this.map.size(); i++)
                 for(int j = 0; j < this.map.get(0).length(); j++){
@@ -75,7 +74,6 @@ public class Arena {
             //LogHelper.inline("arenaInited");    // kimenet generálás
 
         }
-        LogHelper.rec();
     }
 
     // feladata beolvasni az arénát tartalmazó txt-t majd visszaadni a beolvasott sortömbböt
@@ -142,9 +140,16 @@ public class Arena {
         obstacles.remove(obstacle);
     }
 
-    //Akadály felvétele a listába
-    public void addObstacle(Obstacle o) {
-        obstacles.add(o);
+    //Akadály felvétele a listába, visszatérési értéke, hogy sikerült e lehelyezni foltot, amit csak akkor lehet, ha még nem volt ott
+    public boolean addObstacle(Obstacle o) {
+        boolean ret = true;
+        for(Obstacle temp : obstacles)
+            if(onSpot(o.getPosition(), temp.getPosition()))
+                ret = false;
+        if(ret)
+            obstacles.add(o);
+
+        return ret;
     }
 
     public void addCleanerRobot(Dimension pos, int dir, int id){
@@ -212,7 +217,7 @@ public class Arena {
         Dimension temp;
         int dir = r.getDirection();
         double speed = r.getSpeed();
-        if(r.getSpeed() >= 0.5) {
+        if(speed != 0) {
             for (temp = r.getPosition(); w == null && !temp.equals(d); ) {
                 if (dir % 2 == 0) {
                     dir = (dir - 1) * (-1);                              // 0: (0 - 1) = -1; (-1) * (-1) = +1;  => X+
@@ -323,6 +328,7 @@ public class Arena {
 
         for (int j = 0; j < robots.size(); j++) {
             robots.get(j).move();
+            LogHelper.inline("Speed id: " + j + "s: " + robots.get(j).getSpeed() + " pos: [" + robots.get(j).getPosition().width + ", " + robots.get(j).getPosition().height + "]");
         }
 
         if(remainingRobots() < 2)

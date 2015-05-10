@@ -63,7 +63,6 @@ public class Robot extends AbstractRobot {
 
     //Robot által megtett távolság lekérdezése
     public double getCoveredDistance() {
-        coveredDistance = position.width;                   // lineáris pályán a megtett táv egyezik az x koordiátával
         return coveredDistance;
     }
 
@@ -146,6 +145,7 @@ public class Robot extends AbstractRobot {
     public void move() {
         // új változó felvétele szükséges, mert a belső position változó kell a rajzoláshoz
         Dimension destination = new Dimension(position);
+        Dimension temp = new Dimension(position);
         //Csak akkor tehető meg ha nem halott
         if(!dead) {
             switch (direction) {
@@ -167,7 +167,14 @@ public class Robot extends AbstractRobot {
             // majd a takeEffect fogja a pályának megfelelően eldönteni hogy a destination valid pozíció
             // és ha odaléptünk milyen hatás érvényesüljön a robotra, addig a robot jelenlegi pozíciója marad.
             arena.takeEffect(this, destination);
+            coveredDistance += distance(temp, position);
         }
+    }
+
+    // TODO: normális távolság
+    private double distance(Dimension from, Dimension to){
+        LogHelper.comment("distance: from:" + from + " to: " + to.toString() + "  " + Math.sqrt(Math.pow(from.width - to.width, 2) + Math.pow(from.height - to.height, 2)));
+        return Math.sqrt(Math.pow(from.width - to.width, 2) + Math.pow(from.height - to.height, 2));
     }
 
     //Effektek hatását leveszi a robotról
@@ -192,7 +199,7 @@ public class Robot extends AbstractRobot {
     //Robot megállítása (pl fallal ütközés esetén)
     public void stop(){
         speed = 0; //robot megállítása
-        paralyzed = true; // muszáj feloldani mert irányváltás és sebességnövelés nélkül nem tudnál elmozdulni onnan. !?
+        paralyzed = false; // muszáj feloldani mert irányváltás és sebességnövelés nélkül nem tudnál elmozdulni onnan. !?
         slowed = false; //Jófejségből ha voltál olyan szerencsétlen hogy falnak mentél akkor ezt is levesszük
         //LogHelper.inline("robotStopped "+"id: "+id+" speed: "+speed);
     }
@@ -215,6 +222,7 @@ public class Robot extends AbstractRobot {
         }
     }
 
+    /* getters */
     public int getPuttyLeft() {
         return puttyLeft;
     }

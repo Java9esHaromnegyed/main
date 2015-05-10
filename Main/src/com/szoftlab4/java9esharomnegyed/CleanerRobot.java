@@ -53,7 +53,6 @@ public class CleanerRobot extends AbstractRobot {
                         position = destination;     // lépjünk oda
                     } else {                    // ha igen akkor
                         // if(destination == target.getPosition())
-                        // TODO: find new target if another robot cleaning yours
                         Obstacle temp = findTarget();   // nézzük meg van e közelebb másik folt("induljunk másfele")
                         if(temp != target) {            // ha van új
                             target = temp;                  // célozzuk meg

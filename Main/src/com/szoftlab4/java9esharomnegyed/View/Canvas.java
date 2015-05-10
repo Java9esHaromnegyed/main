@@ -94,7 +94,7 @@ public class Canvas extends java.awt.Canvas {
         Font f = new Font("Arial", Font.PLAIN, 14);
         g2.setFont(f);
         FontMetrics metrics = g2.getFontMetrics(f);
-        g2.setColor(new Color(255, 0, 0));
+        g2.setColor(new Color(0, 0, 255));
         int padding = 10;
         g2.fillRect(padding, tempArena.getSize().height + (Config.TILE_SIZE/2) - (Config.TILE_SIZE/2)/2, (Config.TILE_SIZE/2), (Config.TILE_SIZE/2));
         padding += (Config.TILE_SIZE/2) + 10;
@@ -120,7 +120,7 @@ public class Canvas extends java.awt.Canvas {
                 tempArena.getSize().height + (Config.TILE_SIZE/2));
         padding += metrics.stringWidth("Speed: " + blueRobot.getSpeed() + 10 + 10);
 
-        g2.setColor(new Color(0, 0, 255));
+        g2.setColor(new Color(255, 0, 0));
         g2.fillRect(padding, tempArena.getSize().height + (Config.TILE_SIZE/2) - (Config.TILE_SIZE/2)/2, (Config.TILE_SIZE/2), (Config.TILE_SIZE/2));
         padding += (Config.TILE_SIZE/2) + 10;
 
