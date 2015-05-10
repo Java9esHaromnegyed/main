@@ -55,6 +55,7 @@ public class LeaderPanel extends JPanel {
         leaderTable.setFillsViewportHeight(true);
         leaderTable.setEnabled(false);
         leaderTable.getTableHeader().setReorderingAllowed(false);
+        leaderTable.getTableHeader().setEnabled(false);
         leaderTable.setShowVerticalLines(false);
         this.add(table);
 

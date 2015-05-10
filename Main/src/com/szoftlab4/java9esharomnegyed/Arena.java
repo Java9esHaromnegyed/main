@@ -249,8 +249,6 @@ public class Arena {
         LogHelper.inline("robotMoved id: " + r.getID() + " pos: [" + r.getPosition().width + "; " + r.getPosition().height + "]");
         if(isOutOfArena(fin)) {                 // fin a végső pozíció ahova ugrottunk
             r.die();                            // ha pályán kívül van akkor kinyírjuk a robotot
-            if(remainingRobots() < 2)           // minden alkalommal amikor meghal egy robot tesztelni kell hogy gameOver van-e
-                Game.gameOver();
         } else {
             CleanerRobot cRobo = getCleanerRobot(fin);  // ha ráléptünk takarítóra
             if (cRobo != null)                           // nyírjuk ki
@@ -324,11 +322,12 @@ public class Arena {
 
     public void tick() {
         LogHelper.inline("tick");
-        for (int j = 0; j < robots.size(); j++) {
-            robots.get(j).move();
-        }
         for (int j = 0; j < cleaners.size(); j++) {
             cleaners.get(j).move();
+        }
+
+        for (int j = 0; j < robots.size(); j++) {
+            robots.get(j).move();
         }
 
         if(remainingRobots() < 2)
