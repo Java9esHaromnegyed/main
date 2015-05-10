@@ -99,39 +99,55 @@ public class Canvas extends java.awt.Canvas {
         g2.fillRect(padding, tempArena.getSize().height + (Config.TILE_SIZE/2) - (Config.TILE_SIZE/2)/2, (Config.TILE_SIZE/2), (Config.TILE_SIZE/2));
         padding += (Config.TILE_SIZE/2) + 10;
 
+
         //Robot1 nevének kiírása
-        g2.drawString(blueRobot.getName(), padding,
+        String name = blueRobot.getName();
+        if(name.length() > 11)
+            name = name.substring(0, 10) + "..";
+        g2.drawString(name, padding,
                 tempArena.getSize().height + (Config.TILE_SIZE/2));
-        padding += metrics.stringWidth(blueRobot.getName() + 10);
+        padding += metrics.stringWidth(name + 10);
         //Robot1 ragacskészlet kiírása
-        g2.drawString("Putty left: " + blueRobot.getPuttyLeft(), padding,
+        g2.drawString("Putty: " + blueRobot.getPuttyLeft(), padding,
                 tempArena.getSize().height + (Config.TILE_SIZE/2));
-        padding += metrics.stringWidth("Putty left: " + blueRobot.getPuttyLeft() + 10);
+        padding += metrics.stringWidth("Putty: " + blueRobot.getPuttyLeft() + 10);
         //Robot1 olajkészlet kiírása
-        g2.drawString("Oil left: " + blueRobot.getOilLeft(), padding,
+        g2.drawString("Oil: " + blueRobot.getOilLeft(), padding,
                 tempArena.getSize().height + (Config.TILE_SIZE/2));
-        padding += metrics.stringWidth("Oil left: " + blueRobot.getOilLeft() + 10 + 30);
+        padding += metrics.stringWidth("Oil: " + blueRobot.getOilLeft() + 10);
+        // Robot1 sebesség kiírása
+        g2.drawString("Speed: " + blueRobot.getSpeed(), padding,
+                tempArena.getSize().height + (Config.TILE_SIZE/2));
+        padding += metrics.stringWidth("Speed: " + blueRobot.getSpeed() + 10 + 10);
+
         g2.setColor(new Color(0, 0, 255));
         g2.fillRect(padding, tempArena.getSize().height + (Config.TILE_SIZE/2) - (Config.TILE_SIZE/2)/2, (Config.TILE_SIZE/2), (Config.TILE_SIZE/2));
         padding += (Config.TILE_SIZE/2) + 10;
 
         //Robot2 nevének kiírása
-        g2.drawString(redRobot.getName(), padding,
+        name = redRobot.getName();
+        if(name.length() > 11)
+            name = name.substring(0, 10) + "..";
+        g2.drawString(name, padding,
                 tempArena.getSize().height + (Config.TILE_SIZE/2));
-        padding += metrics.stringWidth(redRobot.getName() + 10);
+        padding += metrics.stringWidth(name + 10);
         //Robot2 ragacskészlet kiírása
-        g2.drawString("Putty left: " + redRobot.getPuttyLeft(), padding,
+        g2.drawString("Putty: " + redRobot.getPuttyLeft(), padding,
                 tempArena.getSize().height + (Config.TILE_SIZE/2));
-        padding += metrics.stringWidth("Putty left: " + redRobot.getPuttyLeft() + 10);
+        padding += metrics.stringWidth("Putty: " + redRobot.getPuttyLeft() + 10);
         //Robot2 olajkészlet kiírása
-        g2.drawString("Oil left: " + redRobot.getOilLeft(), padding,
+        g2.drawString("Oil: " + redRobot.getOilLeft(), padding,
                 tempArena.getSize().height + (Config.TILE_SIZE/2));
-        padding += metrics.stringWidth("Oil left: " + redRobot.getOilLeft() + 10);
+        padding += metrics.stringWidth("Oil: " + redRobot.getOilLeft() + 10);
+        //Robot2 sebesség kiírása
+        g2.drawString("Speed: " + redRobot.getSpeed(), padding,
+                tempArena.getSize().height + (Config.TILE_SIZE/2));
+        //padding += metrics.stringWidth("Speed: " + redRobot.getSpeed() + 10);
         g2.setColor(new Color(0, 0, 0));
 
         //Hátralévő idő kiírása
         g2.drawString("Time left: " + Game.getTime(), padding,
-                tempArena.getSize().height + (Config.TILE_SIZE/2));
+                tempArena.getSize().height + (Config.TILE_SIZE));
 
         //Game over felirat kirajzolása
         if(Game.isGameOver()){

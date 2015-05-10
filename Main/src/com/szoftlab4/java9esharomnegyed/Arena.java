@@ -20,7 +20,7 @@ public class Arena {
     private List<Wall> walls;           // a List where the arena register all the walls from init
     private List<Robot> robots;         // Playable robot list
     private List<CleanerRobot> cleaners;    // cleaner robot list
-    ArrayList<String> map;              // temporary place for the source txt
+    private ArrayList<String> map;              // temporary place for the source txt
 
     //Üres konstruktor az elemek megfelelő inicializálásához
     public Arena(){
@@ -122,8 +122,7 @@ public class Arena {
     //Egy adott pozíció alapján esetleges ott lévő akadály elkérése
     public Obstacle getObstacle(Dimension dest) {
         for(int i = 0; i < obstacles.size(); i++){
-            if(obstacles.get(i).getPosition().width == dest.width
-                    && obstacles.get(i).getPosition().height == dest.height) {
+            if(onSpot(dest, obstacles.get(i).getPosition())) {
                 return obstacles.get(i);
             }
         }
@@ -133,7 +132,7 @@ public class Arena {
     //Egy adott pozíció alapján esetleges itt lévő fal elkérése
     public Wall getWall(Dimension dest){
         for(int i = 0; i < walls.size(); i++){
-            if(walls.get(i).getPosition().equals(dest)) {
+            if(onSpot(dest, walls.get(i).getPosition())) {
                 return walls.get(i);
             }
         }
@@ -163,7 +162,7 @@ public class Arena {
     public CleanerRobot getCleanerRobot(Dimension pos){
         CleanerRobot cRobo = null;
         for(int i = 0; i < cleaners.size(); i++)
-            if(cleaners.get(i).getPosition().equals(pos)) {
+            if(onSpot(pos, cleaners.get(i).getPosition())) {
                 cRobo = cleaners.get(i);
             }
         return cRobo;
@@ -172,7 +171,7 @@ public class Arena {
     public CleanerRobot getCleanerRobot(Dimension pos, int id){
         CleanerRobot cRobo = null;
         for(int i = 0; i < cleaners.size(); i++)
-            if(cleaners.get(i).getPosition().equals(pos) && cleaners.get(i).getID() != id) {
+            if(onSpot(pos, cleaners.get(i).getPosition()) && cleaners.get(i).getID() != id) {
                 cRobo = cleaners.get(i);
             }
         return cRobo;
@@ -203,7 +202,7 @@ public class Arena {
     public Robot getRobot(Dimension pos, int id){
         Robot robo = null;
         for(int i = 0; i < robots.size(); i++)
-            if(robots.get(i).getPosition().equals(pos) && robots.get(i).getID() != id) {
+            if(onSpot(pos, robots.get(i).getPosition()) && robots.get(i).getID() != id) {
                 robo = robots.get(i);
             }
         return robo;
@@ -228,7 +227,6 @@ public class Arena {
                 w = getWall(temp);
             }
         }
-
         if (w != null)
             w.collide(r);
         else
@@ -349,6 +347,20 @@ public class Arena {
         }
     }
 
+    // igazat ad ha a dest(ination) pozíció a spot közelében van. (azaz ha a robot tényleg folton áll)
+    private boolean onSpot(Dimension dest, Dimension spot){
+        boolean ret = false;
+        int tile = Config.TILE_SIZE; // csupán rövidítés
+
+        if(dest.width < spot.width + tile && dest.width > spot.width - tile
+                && dest.height < spot.height + tile && dest .height > spot.height - tile){
+            ret = true;
+        }
+
+        return ret;
+    }
+
+    // visszaadja mennyi robot él még
     private int remainingRobots(){
         int ret = robots.size();
 
@@ -356,7 +368,6 @@ public class Arena {
             if(robots.get(i).dead)
                 ret--;
         }
-
         return ret;
     }
 
