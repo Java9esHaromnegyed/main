@@ -329,6 +329,7 @@ public class Arena {
 
         for (int j = 0; j < robots.size(); j++) {
             robots.get(j).move();
+            robots.get(j).dropObstacle();
         }
 
         if(remainingRobots() < 2)

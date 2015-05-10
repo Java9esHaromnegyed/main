@@ -11,8 +11,11 @@ public class Robot extends AbstractRobot {
     private int puttyLeft = Config.PUTTY_TANK;
     private int oilLeft = Config.OIL_TANK;
     private double coveredDistance = 0;
-    boolean paralyzed = false;                  // this flag gets true while robot stands on oil
-    boolean slowed = false;                     // this flag gets true while robot stands on putty
+    private boolean paralyzed = false;                  // this flag gets true while robot stands on oil
+    private boolean slowed = false;                     // this flag gets true while robot stands on putty
+
+    private Obstacle clip = null;                       // this stores temporary the obstacle you want to drop
+    private int type = 0;                               // 0 means clip is empty, 2 means oil, 1 means putty
 
     private Image blue;
     private Image red;
@@ -35,8 +38,13 @@ public class Robot extends AbstractRobot {
         if(!dead && !paralyzed) {
             //Ha van még ragacs a készleten lerakjuk, egyébként jelezzük, hogy kiürült
             if(puttyLeft != 0){
-                arena.addObstacle(new PuttySpot(position));
-                puttyLeft--;  //csökkentyük a putty készletet 1-el
+                clip = new PuttySpot(position);
+                if(type == 0)
+                    puttyLeft--;  //csökkentyük a putty készletet 1-el
+                else if (type == 2)
+                    oilLeft++;
+
+                type = 1;
                 //LogHelper.inline("puttyDropped fromId: "+id+" pos: "+"["+position.width+"; "+position.height+"]");
             }
             else{
@@ -51,13 +59,26 @@ public class Robot extends AbstractRobot {
         if(!dead && !paralyzed){
             //Ha van még olaj a készleten lerakjuk, egyébként jelezzük, hogy kiürült
             if(oilLeft != 0){
-                arena.addObstacle(new OilSpot(position));
-                oilLeft--; //csökkentyük az olaj készletet 1-el
+                clip = new OilSpot(position);
+                if(type == 0)
+                    oilLeft--; //csökkentyük az olaj készletet 1-el
+                else if (type == 1)
+                    puttyLeft++;
+
+                type = 2;
                 //LogHelper.inline("oilDropped fromId: "+id+" pos: "+"["+position.width+"; "+position.height+"]");
             }
             else{
                 //LogHelper.inline("#OIL TANK IS EMPTY");
             }
+        }
+    }
+
+    // tick hatására dobja le a kívánt akadályt
+    public void dropObstacle(){
+        if(clip != null) {
+            arena.addObstacle(clip);
+            type = 0;
         }
     }
 
