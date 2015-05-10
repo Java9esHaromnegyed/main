@@ -37,10 +37,10 @@ public class Robot extends AbstractRobot {
             if(puttyLeft != 0){
                 arena.addObstacle(new PuttySpot(position));
                 puttyLeft--;  //csökkentyük a putty készletet 1-el
-                LogHelper.inline("puttyDropped fromId: "+id+" pos: "+"["+position.width+"; "+position.height+"]");
+                //LogHelper.inline("puttyDropped fromId: "+id+" pos: "+"["+position.width+"; "+position.height+"]");
             }
             else{
-                LogHelper.inline("#PUTTY TANK IS EMPTY");
+                //LogHelper.inline("#PUTTY TANK IS EMPTY");
             }
         }
     }
@@ -53,10 +53,10 @@ public class Robot extends AbstractRobot {
             if(oilLeft != 0){
                 arena.addObstacle(new OilSpot(position));
                 oilLeft--; //csökkentyük az olaj készletet 1-el
-                LogHelper.inline("oilDropped fromId: "+id+" pos: "+"["+position.width+"; "+position.height+"]");
+                //LogHelper.inline("oilDropped fromId: "+id+" pos: "+"["+position.width+"; "+position.height+"]");
             }
             else{
-                LogHelper.inline("#OIL TANK IS EMPTY");
+                //LogHelper.inline("#OIL TANK IS EMPTY");
             }
         }
     }
@@ -81,7 +81,7 @@ public class Robot extends AbstractRobot {
             else if(direction == Config.DIR_LEFT)
                 temp = "Left";
 
-            LogHelper.inline("robotTurnedLeft id: " + id + " facing: " + temp);
+            //LogHelper.inline("robotTurnedLeft id: " + id + " facing: " + temp);
         }
         //Amúgy semmit sem csinálunk
     }
@@ -100,7 +100,7 @@ public class Robot extends AbstractRobot {
             else if(direction == Config.DIR_LEFT)
                 temp = "Left";
 
-            LogHelper.inline("robotTurnedRight id: " + id + " facing: " + temp);
+            //LogHelper.inline("robotTurnedRight id: " + id + " facing: " + temp);
         }
         //Amúgy semmit sem csinálunk
     }
@@ -109,7 +109,7 @@ public class Robot extends AbstractRobot {
     public void die() {
         //ha meghalt, vele nem foglalkozunk
         dead = true;
-        LogHelper.inline("robotDied id: " + id);
+        //LogHelper.inline("robotDied id: " + id);
     }
 
     //Robot gyorsítása
@@ -121,7 +121,7 @@ public class Robot extends AbstractRobot {
                 speed += Config.SPD_UNIT;                       // with Config.SPD_UNIT steps
             else
                 speed = Config.SPD_LIMIT;
-            LogHelper.inline("robotSpeedUp id: " + id + " speed: " + speed);
+            //LogHelper.inline("robotSpeedUp id: " + id + " speed: " + speed);
         }
         //Amúgy semmit sem csinálunk
     }
@@ -136,7 +136,7 @@ public class Robot extends AbstractRobot {
             //Egyébként a lehető legkisebb lesz, tehát 1
             else
                 speed = 1;
-            LogHelper.inline("robotSlowedDown id: " + id + " speed: " + speed);
+            //LogHelper.inline("robotSlowedDown id: " + id + " speed: " + speed);
         }
         //Amúgy semmit sem csinálunk
     }
@@ -180,21 +180,21 @@ public class Robot extends AbstractRobot {
     public void stuck() {
         speed *= 0.5; //sebesség feleződik
         slowed = true;
-        LogHelper.inline("robotSlowedDown id: " + id + " speed: " + speed);
+        //LogHelper.inline("robotSlowedDown id: " + id + " speed: " + speed);
     }
 
     //Robotra olajfolt hat
     public void slipping() {
         paralyzed = true;
-        LogHelper.inline("robotSlipped id: " + id);
+        //LogHelper.inline("robotSlipped id: " + id);
     }
 
     //Robot megállítása (pl fallal ütközés esetén)
     public void stop(){
         speed = 0; //robot megállítása
-        paralyzed = false; // muszáj feloldani mert irányváltás és sebességnövelés nélkül nem tudnál elmozdulni onnan.
+        paralyzed = true; // muszáj feloldani mert irányváltás és sebességnövelés nélkül nem tudnál elmozdulni onnan. !?
         slowed = false; //Jófejségből ha voltál olyan szerencsétlen hogy falnak mentél akkor ezt is levesszük
-        LogHelper.inline("robotStopped "+"id: "+id+" speed: "+speed);
+        //LogHelper.inline("robotStopped "+"id: "+id+" speed: "+speed);
     }
 
     //Falba ütközéskor a robotot a fal előtti pozícióba állítja

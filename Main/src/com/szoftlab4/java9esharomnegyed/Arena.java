@@ -55,13 +55,13 @@ public class Arena {
 
                     switch (element) {
                         case 'w': walls.add(new Wall(place));   // W falat jelöl a txt-ben
-                            LogHelper.inline("obstacleAdded type: WALL  pos: [" + place.width + "; " + place.height +"]");
+                            //LogHelper.inline("obstacleAdded type: WALL  pos: [" + place.width + "; " + place.height +"]");
                             break;
                         case 'o': obstacles.add(new OilSpot(place));    // O olajat jelöl a txt-ben
-                            LogHelper.inline("obstacleAdded type: OIL  pos: [" + place.width + "; " + place.height +"]");
+                            //LogHelper.inline("obstacleAdded type: OIL  pos: [" + place.width + "; " + place.height +"]");
                             break;
                         case 'p': obstacles.add(new PuttySpot(place));  // P ragacsot jelöl a txt-ben
-                            LogHelper.inline("obstacleAdded type: PUTTY  pos: [" + place.width + "; " + place.height + "]");
+                            //LogHelper.inline("obstacleAdded type: PUTTY  pos: [" + place.width + "; " + place.height + "]");
                             break;
                         case '_': break;    // _ üres mezőt jelent a txt-ben
                         default: break;
@@ -72,7 +72,7 @@ public class Arena {
                         addRobot("player" + element, place, Config.DIR_RIGHT, robots.size()); // így megegyezik a robot id a robots-beli helyével
                     }
                 }
-            LogHelper.inline("arenaInited");    // kimenet generálás
+            //LogHelper.inline("arenaInited");    // kimenet generálás
 
         }
         LogHelper.rec();
@@ -103,9 +103,7 @@ public class Arena {
         }
 
         this.map = temp;
-        LogHelper.pause();
-        LogHelper.inline("arenaLoaded src: " + fileName);
-        LogHelper.rec();
+        //LogHelper.inline("arenaLoaded src: " + fileName);
 
         // size beállítása
         if(this.map != null)
@@ -151,7 +149,7 @@ public class Arena {
 
     public void addCleanerRobot(Dimension pos, int dir, int id){
         CleanerRobot roboC = new CleanerRobot(this, pos, dir, id);
-        LogHelper.inline("cleanerRobotAdded id: " + id + " pos: [" + pos.width + "; " + pos.height + "]");
+        //LogHelper.inline("cleanerRobotAdded id: " + id + " pos: [" + pos.width + "; " + pos.height + "]");
         cleaners.add(roboC);
     }
 
@@ -181,7 +179,7 @@ public class Arena {
     public void addRobot(String name, Dimension pos, int dir, int id){
         if(robots.size() < 2) {
             Robot robo = new Robot(this, name, pos, dir, id);
-            LogHelper.inline("robotAdded id: " + id + " name: \"" + name + "\" pos: [" + pos.width + "; " + pos.height + "]");
+            //LogHelper.inline("robotAdded id: " + id + " name: \"" + name + "\" pos: [" + pos.width + "; " + pos.height + "]");
             robots.add(robo);
         } else {
             LogHelper.error("There isn't room for another robot!");
@@ -212,17 +210,16 @@ public class Arena {
     public Dimension collision(Robot r, Dimension d) {
         Obstacle w = null;
         Dimension temp;
-        int dir;
+        int dir = r.getDirection();
+        double speed = r.getSpeed();
         if(r.getSpeed() >= 0.5) {
             for (temp = r.getPosition(); w == null && !temp.equals(d); ) {
-                //LogHelper.comment(temp.toString() + " dest: " + d.toString());
-                dir = r.getDirection();
                 if (dir % 2 == 0) {
-                    dir = (dir - 1) * (-1);                                             // 0: (0 - 1) = -1; (-1) * (-1) = +1;  => X+
-                    temp.height += Math.round(dir * r.getSpeed() * Config.TILE_SIZE);   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => X-
+                    dir = (dir - 1) * (-1);                              // 0: (0 - 1) = -1; (-1) * (-1) = +1;  => X+
+                    temp.height += Math.round(dir * Config.TILE_SIZE);   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => X-
                 } else {
-                    dir = (dir - 2) * (-1);                                             // 1: (1 - 2) = -1; (-1) * (-1) = +1;  => Y+
-                    temp.width += Math.round(dir * r.getSpeed() * Config.TILE_SIZE);    // 3: (3 - 2) = +1;   1  * (-1) = -1;  => Y-
+                    dir = (dir - 2) * (-1);                              // 1: (1 - 2) = -1; (-1) * (-1) = +1;  => Y+
+                    temp.width += Math.round(dir * Config.TILE_SIZE);    // 3: (3 - 2) = +1;   1  * (-1) = -1;  => Y-
                 }
                 w = getWall(temp);
             }
@@ -244,7 +241,7 @@ public class Arena {
     //Effekt érvényesítése egy adott roboton egy adott pozícióban
     public void takeEffect(Robot r, Dimension dest) {
         Dimension fin = collision(r, dest);     // először megnézi falbe ütközött-e
-        LogHelper.inline("robotMoved id: " + r.getID() + " pos: [" + r.getPosition().width + "; " + r.getPosition().height + "]");
+        //LogHelper.inline("robotMoved id: " + r.getID() + " pos: [" + r.getPosition().width + "; " + r.getPosition().height + "]");
         if(isOutOfArena(fin)) {                 // fin a végső pozíció ahova ugrottunk
             r.die();                            // ha pályán kívül van akkor kinyírjuk a robotot
         } else {
@@ -319,7 +316,7 @@ public class Arena {
     }
 
     public void tick() {
-        LogHelper.inline("tick");
+        //LogHelper.inline("tick");
         for (int j = 0; j < cleaners.size(); j++) {
             cleaners.get(j).move();
         }
@@ -334,10 +331,10 @@ public class Arena {
             for (int j = 0; j < obstacles.size(); ) {
                 //ha az olaj felszáradt, vagy ragacs elkopott, töröljük a pályáról, egyébként az olajat öregítjük
                 if (obstacles.get(j).getAge() == Config.AGE_LIMIT) {
-                    LogHelper.inline("obstacleRemoved pos: [" + obstacles.get(j).getPosition().width + "; " + obstacles.get(j).getPosition().height + "]");
+                    //LogHelper.inline("obstacleRemoved pos: [" + obstacles.get(j).getPosition().width + "; " + obstacles.get(j).getPosition().height + "]");
                     obstacles.remove(j);
                 } else if (obstacles.get(j).getDecay() == Config.DECAY_LIMIT) {
-                    LogHelper.inline("obstacleRemoved pos: [" + obstacles.get(j).getPosition().width + "; " + obstacles.get(j).getPosition().height + "]");
+                    //LogHelper.inline("obstacleRemoved pos: [" + obstacles.get(j).getPosition().width + "; " + obstacles.get(j).getPosition().height + "]");
                     obstacles.remove(j);
                 } else {
                     obstacles.get(j).age();
@@ -350,7 +347,7 @@ public class Arena {
     // igazat ad ha a dest(ination) pozíció a spot közelében van. (azaz ha a robot tényleg folton áll)
     private boolean onSpot(Dimension dest, Dimension spot){
         boolean ret = false;
-        int tile = Config.TILE_SIZE; // csupán rövidítés
+        int tile = Config.TILE_SIZE/2; // csupán rövidítés
 
         if(dest.width < spot.width + tile && dest.width > spot.width - tile
                 && dest.height < spot.height + tile && dest .height > spot.height - tile){
