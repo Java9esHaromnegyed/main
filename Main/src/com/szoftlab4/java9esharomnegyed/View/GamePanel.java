@@ -11,6 +11,7 @@ public class GamePanel extends JPanel {
     private Canvas canvas;
     private GUI parent;
 
+    //Konstruktor
     public GamePanel(GUI p){
         super();
         parent = p;
@@ -22,10 +23,12 @@ public class GamePanel extends JPanel {
         invalidate();
     }
 
+    //Felhasználói felület frissítése
     public void update() {
         canvas.paint(parent.getGraphics());
     }
 
+    //Felület elrendezésének inicializálása
     private void initLayout(){
         setLayout(new BorderLayout());
         canvas = new Canvas(parent);
@@ -34,6 +37,8 @@ public class GamePanel extends JPanel {
     }
 
     //----------------------------------------Key-listeners----------------------------------------
+    //ESC gomb megnyomására (felengedésére) a játék szünetel és megjelenik a Pause Menu
+    //egyébként a megnyomott gombnak megfelelő irányítás hajtódik végre
     private class keyAction extends KeyAdapter {
         public void keyReleased(KeyEvent e){
             if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {

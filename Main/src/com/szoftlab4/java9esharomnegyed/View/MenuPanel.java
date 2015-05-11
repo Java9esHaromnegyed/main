@@ -14,6 +14,7 @@ public class MenuPanel extends JPanel {
     private JButton leaderBoard;
     private JButton exit;
 
+    //Konstruktor
     public MenuPanel(GUI p){
         parent = p;
 

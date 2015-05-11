@@ -175,6 +175,7 @@ public class CleanerRobot extends AbstractRobot {
             this.target = target;
     }
 
+    //Vissza adja a Takarító Robotot a játékteren reprezentáló grafikát
     public Image getImage() {
         return image;
     }

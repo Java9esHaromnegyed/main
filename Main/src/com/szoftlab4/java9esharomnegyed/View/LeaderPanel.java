@@ -19,6 +19,7 @@ public class LeaderPanel extends JPanel {
     private JButton backButton;
     private GUI parent;
 
+    //Konstruktor
     public LeaderPanel(GUI p){
         parent = p;
         subject = Game.getLeaderboard();

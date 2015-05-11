@@ -15,6 +15,7 @@ public class Canvas extends java.awt.Canvas {
     private List<Obstacle> obstacles;
     private List<Wall> walls;
 
+    //Konstruktor
     public Canvas(GUI parent) {
         super();
         this.parent = parent;
@@ -42,6 +43,7 @@ public class Canvas extends java.awt.Canvas {
 
         return result;
     }
+
 
     @Override
     public void paint(Graphics g) {
@@ -162,6 +164,7 @@ public class Canvas extends java.awt.Canvas {
     }
 
     //----------------------------------------Key-listeners----------------------------------------
+    //ESC gomb megnyomásakor (felengedésekor) szüneteltetjük a játékot és megjelenik a Pause Menu
     private class keyAction extends KeyAdapter {
         public void keyReleased(KeyEvent e){
             if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {

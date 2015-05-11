@@ -146,27 +146,33 @@ public class Game {
         leaderboard.addRecord(name, score);
     }
 
+    //Vissza adja a Ranglistát
     public static Leaderboard getLeaderboard() {
         return leaderboard;
     }
 
+    //Visszaadja a Játékteret
     public static Arena getArena(){
         return arena;
     }
 
+    //A játék óraütés általi ütemezésére használt
     public static void tick(){
         arena.tick();
         gui.updateGame();
     }
 
+    //Vissza adja, hogy vége van-e a játéknak
     public static boolean isGameOver() {
         return gameOver;
     }
 
+    //Beállítja, ha vége a játéknak
     public static void setGameOver(boolean gameOver) {
         Game.gameOver = gameOver;
     }
 
+    //Vissza adja az aktuális játékidőt
     public static int getTime(){
         return clock.getTime();
     }

@@ -17,6 +17,7 @@ public class PausePanel extends JPanel {
     private JButton rematchButton;
     private JButton leaveButton;
 
+    //Konstruktor
     public PausePanel(GUI p){
         parent = p;
 
@@ -106,6 +107,7 @@ public class PausePanel extends JPanel {
     }
 
     //----------------------------------------Key-listeners----------------------------------------
+    //ESC gomb megnyomására (felengedésére) folytatódik a játék
     private class escAction extends KeyAdapter {
         public void keyReleased(KeyEvent e){
             if(e.getKeyCode() == KeyEvent.VK_ESCAPE)

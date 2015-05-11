@@ -65,7 +65,7 @@ public class Config {
     public static final String MAIN_TITLE = "Phoebe";
     public static final Dimension FRAME_SIZE = new Dimension(670,390);
 
-    // pictur paths for game-init-panel
+    // picture paths for game-init-panel
     public static final String BLUE = "/assets/initPanel/blue.png";
     public static final String RED = "/assets/initPanel/red.png";
     public static final String PUTTY = "/assets/initPanel/putty.png";

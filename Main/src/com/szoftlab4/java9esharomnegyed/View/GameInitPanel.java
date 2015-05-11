@@ -20,6 +20,7 @@ public class GameInitPanel extends JPanel {
     private JButton doneButton;
     private JButton backButton;
 
+    //Konstruktor
     GameInitPanel(GUI p){
         parent = p;
         subject = Game.getArena();
@@ -107,6 +108,7 @@ public class GameInitPanel extends JPanel {
     }
 
     //Gombnyomásra meghívjuk a megfelelő metódust(Új játék indítása)
+    //Ha valamelyik név nem megfelelő, nem indítunk új játékot, hanem arra helyezzük a fókuszt
     private class doneAction implements ActionListener{
 
         @Override

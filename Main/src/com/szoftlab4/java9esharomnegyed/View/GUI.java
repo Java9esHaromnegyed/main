@@ -15,6 +15,7 @@ public class GUI extends JFrame{
     private LeaderPanel leaderPanel;
     private PausePanel pausePanel;
 
+    //Konstruktor
     public GUI(){
         setWindowTheme("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 
@@ -48,7 +49,7 @@ public class GUI extends JFrame{
         setVisible(true);
     }
 
-    //Játék nézet megjelenítése
+    //Játék nézet betöltése és megjelenítése
     public void loadGamePanel(){
         if(gamePanel == null)
             gamePanel = new GamePanel(this);
@@ -59,6 +60,7 @@ public class GUI extends JFrame{
         gamePanel.requestFocus();
     }
 
+    //Játék nézet megjelenítése
     public void showGamePanel(){
         setContentPane(gamePanel);
         setVisible(true);

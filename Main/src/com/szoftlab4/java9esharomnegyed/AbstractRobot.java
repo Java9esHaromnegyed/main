@@ -25,14 +25,16 @@ public abstract class AbstractRobot {
         position = pos;
     }
 
+    //Balra kanyarodáskor hívódik meg aktuális roboton
     public void turnLeft(){
         //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
         if(!dead)
             direction++;
         if (direction > Config.DIR_LEFT)     // when direction reached 4 we have to change it to 0.  direction only goes from 0 to 3
             direction = Config.DIR_UP;
-    };
+    }
 
+    //Jobbra kanyarodáskor hívódik meg aktuális roboton
     public void turnRight(){
         //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
         if(!dead)
@@ -44,6 +46,7 @@ public abstract class AbstractRobot {
     //A robot halálakor bekövetkező esemény
     public abstract void die();
 
+    //Vissza adja, hogy éppen merre néz a Robot
     public int getDirection() {
         return direction;
     }
@@ -58,12 +61,15 @@ public abstract class AbstractRobot {
         this.name = name;
     }
 
+    //Mozgatja a Robotot
     public abstract void move();
 
+    //Vissza adja adott Robot sebességét
     public double getSpeed(){
         return speed;
     }
 
+    //Vissza adja adott Robot ID-ját
     public int getID() {
         return id;
     }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-// TODO: more comments. Soul.
+
 public class Arena {
     //Arena osztály mezői
     private Dimension size;             // Arena size
@@ -152,6 +152,7 @@ public class Arena {
         return ret;
     }
 
+    //Új Takarító Robotot ad a játékhoz
     public void addCleanerRobot(Dimension pos, int dir, int id){
         CleanerRobot roboC = new CleanerRobot(this, pos, dir, id);
         //LogHelper.inline("cleanerRobotAdded id: " + id + " pos: [" + pos.width + "; " + pos.height + "]");
@@ -162,6 +163,7 @@ public class Arena {
         return cleaners.get(id);
     }
 
+    //Vissza adja az adott pozícióban lévő Takarító Robotot
     public CleanerRobot getCleanerRobot(Dimension pos){
         CleanerRobot cRobo = null;
         for(int i = 0; i < cleaners.size(); i++)
@@ -171,6 +173,7 @@ public class Arena {
         return cRobo;
     }
 
+    //Vissza adja az adott pozícióban lévő és ID-val rendelkező Takarító Robotot
     public CleanerRobot getCleanerRobot(Dimension pos, int id){
         CleanerRobot cRobo = null;
         for(int i = 0; i < cleaners.size(); i++)
@@ -202,6 +205,7 @@ public class Arena {
         return temp;
     }
 
+    //Vissza adja az adott pozícióban lévő és ID-val rendelkező Robotot
     public Robot getRobot(Dimension pos, int id){
         Robot robo = null;
         for(int i = 0; i < robots.size(); i++)
@@ -321,6 +325,7 @@ public class Arena {
         movementControl(e.getKeyCode());
     }
 
+    //A játék óraütéshez igazításához hazsnált
     public void tick() {
         //LogHelper.inline("tick");
         for (int j = 0; j < cleaners.size(); j++) {
@@ -380,18 +385,22 @@ public class Arena {
         return obstacles;
     }
 
+    //Vissza adja a Falakat tartalmazó listát
     public List<Wall> getWallList(){
         return walls;
     }
 
+    //Vissza adja a Robotokat tartalmazó listát
     public List<Robot> getRobotList(){
         return robots;
     }
 
+    //Vissza adja a Takarító Robotokat tartalmazó listát
     public List<CleanerRobot> getCleanersList(){
         return cleaners;
     }
 
+    //Vissza adja a Pálya méretét
     public Dimension getSize() {
         return size;
     }
