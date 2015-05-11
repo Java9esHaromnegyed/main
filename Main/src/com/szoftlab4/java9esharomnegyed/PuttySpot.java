@@ -23,13 +23,15 @@ public class PuttySpot extends Obstacle {
         //LogHelper.inline("puttyDecayed atPos: [" + position.width + "; " + position.height + "] decay: " + decay);
     }
 
+    //Csak Olajfoltnál használt
     @Override
     public void age() {}
 
-
+    //Ragaccsal nincs "ütközés"
     @Override
     public void collide(Robot robot) {}
 
+    //Adott Ragacsfolt adatait kiírja Stringbe
     @Override
     public String toString() {
         return "PuttySpot(" + position.width + ", " + position.height + ")";
