@@ -27,7 +27,7 @@ public class PuttySpot extends Obstacle {
     @Override
     public void age() {}
 
-    //Ragaccsal nincs "ütközés"
+    //Nem használt, csak Falnál
     @Override
     public void collide(Robot robot) {}
 

@@ -27,9 +27,11 @@ public class OilSpot extends Obstacle {
         //LogHelper.inline("oilAged atPos: [" + position.width + "; " + position.height + "] age: " + age);
     }
 
+    //Nem használt, csak Falnál
     @Override
     public void collide(Robot robot) {}
 
+    //Adott Olajfolt adatainak kiírása Stringbe
     @Override
     public String toString() {
         return "OilSpot(" + position.width + ", " + position.height + ")";
