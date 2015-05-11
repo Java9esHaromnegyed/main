@@ -411,15 +411,6 @@ public class Arena {
 
             }
 
-            for (int j = 0; j < cleaners.size(); j++) {
-                cleaners.get(j).move();
-            }
-
-            for (int j = 0; j < robots.size(); j++) {
-                robots.get(j).move();
-                robots.get(j).dropObstacle();
-            }
-
             for (int j = 0; j < obstacles.size(); ) {
                 //ha az olaj felszáradt, vagy ragacs elkopott, töröljük a pályáról, egyébként az olajat öregítjük
                 if (obstacles.get(j).getAge() == Config.AGE_LIMIT) {

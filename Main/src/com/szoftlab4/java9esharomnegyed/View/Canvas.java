@@ -29,7 +29,7 @@ public class Canvas extends java.awt.Canvas {
         int width = Config.TILE_SIZE;
         int height = Config.TILE_SIZE;
         int angle = (robot.getDirection())*90;
-        BufferedImage bimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        BufferedImage bimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         
 
         Graphics2D bGr = bimage.createGraphics();
