@@ -15,10 +15,12 @@ public class Wall extends Obstacle {
     }
 
     //Absztrakt metódus megvalósítása az akadály hatásához
+    //Falnál nem használt, csak Falnál
     @Override
     public void effect(Robot robot) {
     }
 
+    //Falnál nem használt, csak Olajnál
     @Override
     public void age() {}
 
@@ -29,6 +31,7 @@ public class Wall extends Obstacle {
         robot.stop();
     }
 
+    //Adott fal adatainak kiírása Stringbe
     @Override
     public String toString() {
         return "Wall(" + position.width + ", " + position.height + ")";

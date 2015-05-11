@@ -243,18 +243,22 @@ public class Robot extends AbstractRobot {
     }
 
     /* getters */
+    //Vissza adja adott Robot hátralévő Ragacsainak számát
     public int getPuttyLeft() {
         return puttyLeft;
     }
 
+    //Vissza adja adott Robot hátralévő Olajainak számát
     public int getOilLeft() {
         return oilLeft;
     }
 
+    //Vissza adja a játékteren a Robotot reprezentáló kék grafikát
     public Image getBlue(){
         return blue;
     }
 
+    //Vissza adja a játékteren a Robotot reprezentáló piros grafikát
     public Image getRed(){
         return red;
     }
