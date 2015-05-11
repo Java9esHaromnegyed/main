@@ -20,6 +20,9 @@ public class Arena {
     private List<CleanerRobot> cleaners;    // cleaner robot list
     private ArrayList<String> map;              // temporary place for the source txt
 
+    private Robot dummy00;
+    private Robot dummy01;
+
     //Üres konstruktor az elemek megfelelő inicializálásához
     public Arena(){
         robots = new ArrayList<Robot>();
@@ -214,29 +217,50 @@ public class Arena {
         return robo;
     }
 
+    // igazat ad ha a dest(ination) pozíció a spot közelében van. (azaz ha a robot tényleg folton áll)
+    private boolean onSpot(Dimension dest, Dimension spot){
+        boolean ret = false;
+        int tile = Config.TILE_SIZE/2; // csupán rövidítés
+
+        if((dest.width < spot.width + tile && dest.width > spot.width - tile)
+                && (dest.height < spot.height + tile && dest.height > spot.height - tile)){
+            //LogHelper.comment("r: " + dest.toString() + " ---spot: " + spot.toString());
+            ret = true;
+        }
+
+        return ret;
+    }
+
     //Ütközésdetekció
     public Dimension collision(Robot r, Dimension d) {
+        int fuu;
         Obstacle w = null;
         Dimension temp;
         int dir = r.getDirection();
         double speed = r.getSpeed();
         double plot = speed < 1? speed : 1;
         if(speed != 0) {
+            fuu = 0;
             for (temp = r.getPosition(); w == null && !temp.equals(d); ) {
+                dir = r.getDirection();
                 if (dir % 2 == 0) {
-                    dir = (dir - 1) * (-1);                              // 0: (0 - 1) = -1; (-1) * (-1) = +1;  => X+
-                    temp.height += Math.round(dir * plot * Config.TILE_SIZE);   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => X-
+                    dir = (dir - 1);                                     // 0: (0 - 1) = -1; (-1) * (-1) = +1;  => Y+
+                    temp.height += Math.round(dir * plot * Config.TILE_SIZE);   // 2: (2 - 1) = +1;   1  * (-1) = -1;  => Y-
                 } else {
-                    dir = (dir - 2) * (-1);                              // 1: (1 - 2) = -1; (-1) * (-1) = +1;  => Y+
-                    temp.width += Math.round(dir * plot * Config.TILE_SIZE);    // 3: (3 - 2) = +1;   1  * (-1) = -1;  => Y-
+                    dir = (dir - 2) * (-1);                                     // 1: (1 - 2) = -1; (-1) * (-1) = +1;  => X+
+                    temp.width += Math.round(dir * plot * Config.TILE_SIZE);    // 3: (3 - 2) = +1;   1  * (-1) = -1;  => X-
                 }
+                LogHelper.comment(fuu + ". dir: " + r.getDirection() + " temp: [" + (temp.width - Config.TILE_SIZE/2)/Config.TILE_SIZE + ", " + (temp.height - Config.TILE_SIZE/2)/Config.TILE_SIZE + "]");
+                fuu++;
                 w = getWall(temp);
             }
         }
-        if (w != null)
+        if (w != null) {
             w.collide(r);
-        else
+            LogHelper.comment("id: " + r.getID() + " w: " + w.toString());
+        } else {
             r.setPosition(d);
+        }
         return r.getPosition();
     }
 
@@ -249,6 +273,7 @@ public class Arena {
 
     //Effekt érvényesítése egy adott roboton egy adott pozícióban
     public void takeEffect(Robot r, Dimension dest) {
+        LogHelper.comment(r.toString());
         Dimension fin = collision(r, dest);     // először megnézi falbe ütközött-e
         //LogHelper.inline("robotMoved id: " + r.getID() + " pos: [" + r.getPosition().width + "; " + r.getPosition().height + "]");
         if(isOutOfArena(fin)) {                 // fin a végső pozíció ahova ugrottunk
@@ -279,18 +304,25 @@ public class Arena {
     public void movementControl(int e) {
         //A két robot mozgását külön gombokkal kezeljük, ezek megnyomása közvetlen a robot
         //megfelelő fgvének meghívását vonja maga után
+
+        dummy00 = new Robot(this,"dummy00", new Dimension(0, 0), robots.get(0).getDirection(), 00);
+        dummy00.setSpeed(robots.get(0).getSpeed());
+
+        dummy01 = new Robot(this,"dummy01", new Dimension(0, 0), robots.get(1).getDirection(), 11);
+        dummy01.setSpeed(robots.get(1).getSpeed());
+
         switch (e) {
             case Config.MOV_P1_UP:
-                robots.get(0).speedUp();
+                dummy00.speedUp();
                 break;
             case Config.MOV_P1_DOWN:
-                robots.get(0).slowDown();
+                dummy00.slowDown();
                 break;
             case Config.MOV_P1_LEFT:
-                robots.get(0).turnLeft();
+                dummy00.turnLeft();
                 break;
             case Config.MOV_P1_RIGHT:
-                robots.get(0).turnRight();
+                dummy00.turnRight();
                 break;
             case Config.MOV_P1_OIL:
                 robots.get(0).dropOil();
@@ -299,16 +331,16 @@ public class Arena {
                 robots.get(0).dropPutty();
                 break;
             case Config.MOV_P2_UP:
-                robots.get(1).speedUp();
+                dummy01.speedUp();
                 break;
             case Config.MOV_P2_DOWN:
-                robots.get(1).slowDown();
+                dummy01.slowDown();
                 break;
             case Config.MOV_P2_LEFT:
-                robots.get(1).turnLeft();
+                dummy01.turnLeft();
                 break;
             case Config.MOV_P2_RIGHT:
-                robots.get(1).turnRight();
+                dummy01.turnRight();
                 break;
             case Config.MOV_P2_OIL:
                 robots.get(1).dropOil();
@@ -327,6 +359,25 @@ public class Arena {
     //A játék óraütéshez igazításához hazsnált
     public void tick() {
         //LogHelper.inline("tick");
+        if(dummy00 != null) {
+            robots.get(0).setSpeed(dummy00.getSpeed());
+            robots.get(0).setDirection(dummy00.getDirection());
+        }
+
+        if(dummy01 != null) {
+            robots.get(1).setSpeed(dummy01.getSpeed());
+            robots.get(1).setDirection(dummy01.getDirection());
+        }
+
+        for (int j = 0; j < cleaners.size(); j++) {
+            cleaners.get(j).move();
+        }
+
+        for (int j = 0; j < robots.size(); j++) {
+            robots.get(j).move();
+            robots.get(j).dropObstacle();
+        }
+
         if(remainingRobots() < 2)
             Game.gameOver();
         else {
@@ -383,19 +434,6 @@ public class Arena {
                 }
             }
         }
-    }
-
-    // igazat ad ha a dest(ination) pozíció a spot közelében van. (azaz ha a robot tényleg folton áll)
-    private boolean onSpot(Dimension dest, Dimension spot){
-        boolean ret = false;
-        int tile = Config.TILE_SIZE/2; // csupán rövidítés
-
-        if(dest.width < spot.width + tile && dest.width > spot.width - tile
-                && dest.height < spot.height + tile && dest .height > spot.height - tile){
-            ret = true;
-        }
-
-        return ret;
     }
 
     // visszaadja mennyi robot él még

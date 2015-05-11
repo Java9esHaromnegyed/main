@@ -23,13 +23,14 @@ public class Canvas extends java.awt.Canvas {
         this.addKeyListener(new keyAction());
     }
 
-    //A robotok képének haladás irányába forgatása
+    //Turning the robots image in the direction of robot movement
     private Image rotateRobot(Image image, AbstractRobot robot)
     {
         int width = Config.TILE_SIZE;
         int height = Config.TILE_SIZE;
-        int angle = (2-robot.getDirection())*90;
-        BufferedImage bimage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
+        int angle = (robot.getDirection())*90;
+        BufferedImage bimage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        
 
         Graphics2D bGr = bimage.createGraphics();
         bGr.drawImage(image, 0, 0, null);
@@ -40,6 +41,7 @@ public class Canvas extends java.awt.Canvas {
         Graphics2D g = result.createGraphics();
         g.rotate(radians, width / 2, height / 2);
         g.drawRenderedImage(bimage, null);
+
         return result;
     }
 

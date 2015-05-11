@@ -101,6 +101,7 @@ public class Robot extends AbstractRobot {
         return coveredDistance;
     }
 
+
     //Robotnak balra fordulás utasítás adása
     public void turnLeft() {
         //Ha nem paralyzed meghívjuk az ősosztály turnLeft-jét
@@ -115,7 +116,7 @@ public class Robot extends AbstractRobot {
             else if(direction == Config.DIR_LEFT)
                 temp = "Left";
 
-            //LogHelper.inline("robotTurnedLeft id: " + id + " facing: " + temp);
+            LogHelper.inline("robotTurnedLeft id: " + id + " facing: " + temp + " " + direction);
         }
         //Amúgy semmit sem csinálunk
     }
@@ -126,7 +127,7 @@ public class Robot extends AbstractRobot {
         if(!paralyzed) {
             super.turnRight();
 
-            String temp = "Up " + direction;
+            String temp = "Up ";
             if(direction == Config.DIR_RIGHT)
                 temp = "Right";
             else if(direction == Config.DIR_DOWN)
@@ -134,7 +135,7 @@ public class Robot extends AbstractRobot {
             else if(direction == Config.DIR_LEFT)
                 temp = "Left";
 
-            //LogHelper.inline("robotTurnedRight id: " + id + " facing: " + temp);
+            LogHelper.inline("robotTurnedRight id: " + id + " facing: " + temp + " " + direction);
         }
         //Amúgy semmit sem csinálunk
     }
@@ -143,7 +144,7 @@ public class Robot extends AbstractRobot {
     public void die() {
         //ha meghalt, vele nem foglalkozunk
         dead = true;
-        //LogHelper.inline("robotDied id: " + id);
+        LogHelper.inline("robotDied id: " + id);
     }
 
     //Robot gyorsítása
@@ -155,7 +156,7 @@ public class Robot extends AbstractRobot {
                 speed += Config.SPD_UNIT;                       // with Config.SPD_UNIT steps
             else
                 speed = Config.SPD_LIMIT;
-            //LogHelper.inline("robotSpeedUp id: " + id + " speed: " + speed);
+            LogHelper.inline("robotSpeedUp id: " + id + " speed: " + speed);
         }
         //Amúgy semmit sem csinálunk
     }
@@ -185,13 +186,13 @@ public class Robot extends AbstractRobot {
         if(!dead) {
             switch (direction) {
                 case Config.DIR_UP:
-                    destination.setSize(destination.width, destination.height + speed * Config.TILE_SIZE);
+                    destination.setSize(destination.width, destination.height - speed * Config.TILE_SIZE);
                     break;
                 case Config.DIR_RIGHT:
                     destination.setSize(destination.width + speed * Config.TILE_SIZE, destination.height);
                     break;
                 case Config.DIR_DOWN:
-                    destination.setSize(destination.width, destination.height - speed * Config.TILE_SIZE);
+                    destination.setSize(destination.width, destination.height + speed * Config.TILE_SIZE);
                     break;
                 case Config.DIR_LEFT:
                     destination.setSize(destination.width - speed * Config.TILE_SIZE, destination.height);
@@ -206,7 +207,6 @@ public class Robot extends AbstractRobot {
         }
     }
 
-    // TODO: normális távolság
     private double distance(Dimension from, Dimension to){
         return Math.sqrt(Math.pow(from.width - to.width, 2) + Math.pow(from.height - to.height, 2));
     }
@@ -242,13 +242,13 @@ public class Robot extends AbstractRobot {
     public void stepBack(Dimension wall){
         switch (direction) {
             case Config.DIR_UP:
-                position.setSize(wall.width, wall.height - Config.TILE_SIZE);
+                position.setSize(wall.width, wall.height + Config.TILE_SIZE);
                 break;
             case Config.DIR_RIGHT:
                 position.setSize(wall.width - Config.TILE_SIZE, wall.height);
                 break;
             case Config.DIR_DOWN:
-                position.setSize(wall.width, wall.height + Config.TILE_SIZE);
+                position.setSize(wall.width, wall.height - Config.TILE_SIZE);
                 break;
             case Config.DIR_LEFT:
                 position.setSize(wall.width + Config.TILE_SIZE, wall.height);
@@ -275,5 +275,20 @@ public class Robot extends AbstractRobot {
     //Vissza adja a játékteren a Robotot reprezentáló piros grafikát
     public Image getRed(){
         return red;
+    }
+
+    // Robot sebességének beállítása
+    public void setSpeed(double sp){
+        this.speed = sp;
+    }
+
+    // Robot irányának beállítása
+    public void setDirection(int dir){
+        this.direction = dir;
+    }
+
+    public String toString(){
+        int tile = Config.TILE_SIZE;
+        return "Robot id: " + id + " dir: " + direction + " speed: " + speed + "["  + (position.width - tile/2)/tile + ", " + (position.height - tile/2)/tile + "]";
     }
 }

@@ -38,12 +38,14 @@ public class Wall extends Obstacle {
     public void collide(Robot robot) {
         //Roboton megfelelő hatást kiváltó fgv meghívása
         robot.stepBack(this.position);
+        LogHelper.comment("stepBack: " + this.toString());
         robot.stop();
     }
 
     //Adott fal adatainak kiírása Stringbe
     @Override
     public String toString() {
-        return "Wall(" + position.width + ", " + position.height + ")";
+        int tile = Config.TILE_SIZE;
+        return "Wall(" + (position.width - tile/2)/tile + ", " + (position.height - tile/2)/tile + ")";
     }
 }

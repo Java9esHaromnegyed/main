@@ -25,22 +25,24 @@ public abstract class AbstractRobot {
         position = pos;
     }
 
-    //Balra kanyarodáskor hívódik meg aktuális roboton
-    public void turnLeft(){
-        //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
-        if(!dead)
-            direction++;
-        if (direction > Config.DIR_LEFT)     // when direction reached 4 we have to change it to 0.  direction only goes from 0 to 3
-            direction = Config.DIR_UP;
-    }
-
     //Jobbra kanyarodáskor hívódik meg aktuális roboton
     public void turnRight(){
         //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
-        if(!dead)
+        if(!dead) {
+            direction++;
+            if (direction > Config.DIR_LEFT)     // when direction reached 4 we have to change it to 0.  direction only goes from 0 to 3
+                direction = Config.DIR_UP;
+        }
+    }
+
+    //Balra kanyarodáskor hívódik meg aktuális roboton
+    public void turnLeft(){
+        //Csak akkor tehető meg ha épp nem blokkolja valamilyen hatás és nem halott
+        if(!dead) {
             direction--;
-        if(direction < Config.DIR_UP)       // when direction reached -1 we have to change it to 3.  direction only goes from 0 to 3
-            direction = Config.DIR_LEFT;
+            if (direction < Config.DIR_UP)       // when direction reached -1 we have to change it to 3.  direction only goes from 0 to 3
+                direction = Config.DIR_LEFT;
+        }
     };
 
     //A robot halálakor bekövetkező esemény
