@@ -108,7 +108,7 @@ public class Canvas extends java.awt.Canvas {
             name = name.substring(0, 10) + "..";
         g2.drawString(name, padding,
                 tempArena.getSize().height + (Config.TILE_SIZE/2));
-        padding += metrics.stringWidth(name + 10);
+        padding += metrics.stringWidth("0123456789" + 5); // "01234567891" 11 hosszú string, mert ez a leghosszabb ami névként szerepelhet, ezt a helyet tartsuk fenn mindig
         //Robot1 ragacskészlet kiírása
         g2.drawString("Putty: " + blueRobot.getPuttyLeft(), padding,
                 tempArena.getSize().height + (Config.TILE_SIZE/2));
@@ -132,7 +132,7 @@ public class Canvas extends java.awt.Canvas {
             name = name.substring(0, 10) + "..";
         g2.drawString(name, padding,
                 tempArena.getSize().height + (Config.TILE_SIZE/2));
-        padding += metrics.stringWidth(name + 10);
+        padding += metrics.stringWidth("0123456789" + 5); // "01234567891" 11 hosszú string, mert ez a leghosszabb ami névként szerepelhet, ezt a helyet tartsuk fenn mindig
         //Robot2 ragacskészlet kiírása
         g2.drawString("Putty: " + redRobot.getPuttyLeft(), padding,
                 tempArena.getSize().height + (Config.TILE_SIZE/2));
