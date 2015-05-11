@@ -348,10 +348,10 @@ public class Arena {
                         addCleanerRobot(new Dimension((int) ((x+0.5) * Config.TILE_SIZE), Config.TILE_SIZE/2),Config.DIR_DOWN,1);
                         break;
                     case 1:
-                        addCleanerRobot(new Dimension((int)(this.getSize().width+0.5*Config.TILE_SIZE), (int) ((y+0.5) * Config.TILE_SIZE)),Config.DIR_LEFT,1);
+                        addCleanerRobot(new Dimension((int)(this.getSize().width-0.5*Config.TILE_SIZE), (int) ((y+0.5) * Config.TILE_SIZE)),Config.DIR_LEFT,1);
                         break;
                     case 2:
-                        addCleanerRobot(new Dimension((int) ((x+0.5) * Config.TILE_SIZE), (int)(this.getSize().height+0.5*Config.TILE_SIZE)),Config.DIR_UP,1);
+                        addCleanerRobot(new Dimension((int) ((x+0.5) * Config.TILE_SIZE), (int)(this.getSize().height-0.5*Config.TILE_SIZE)),Config.DIR_UP,1);
                         break;
                     case 3:
                         addCleanerRobot(new Dimension(Config.TILE_SIZE/2, (int) ((y+0.5) * Config.TILE_SIZE)),Config.DIR_RIGHT,1);
