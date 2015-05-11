@@ -67,6 +67,7 @@ public class GameInitPanel extends JPanel {
 
         blue.setIcon(new ImageIcon(temp.getScaledInstance(imgSize.width, imgSize.height, Image.SCALE_DEFAULT)));
         this.add(blue);
+
         blue.setSize(imgSize);
         blue.setLocation(imgBluePlace);
 
@@ -129,6 +130,7 @@ public class GameInitPanel extends JPanel {
         }
     }
 
+    //Amíg a megadott név túl rövid, nem engedélyezzük a játék indítását
     private class keyAction extends KeyAdapter{
         @Override
         public void keyPressed(KeyEvent e){
