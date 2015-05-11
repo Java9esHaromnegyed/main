@@ -2,8 +2,11 @@ package com.szoftlab4.java9esharomnegyed;
 
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 //Osztály a robotokhoz
 public class Robot extends AbstractRobot {
@@ -28,8 +31,19 @@ public class Robot extends AbstractRobot {
         direction = dir;
         id = ID;
 
-        blue = new JPanel().getToolkit().getImage(getClass().getResource(Config.BLUE)).getScaledInstance(Config.TILE_SIZE, Config.TILE_SIZE, Image.SCALE_DEFAULT);
-        red = new JPanel().getToolkit().getImage(getClass().getResource(Config.RED)).getScaledInstance(Config.TILE_SIZE, Config.TILE_SIZE, Image.SCALE_DEFAULT);
+        InputStream is = this.getClass().getResourceAsStream(Config.BLUE);
+        InputStream is2 = this.getClass().getResourceAsStream(Config.RED);
+        Image temp = null;
+        Image temp2 = null;
+        try {
+            temp = ImageIO.read(is);
+            temp2 = ImageIO.read(is2);
+            blue = temp.getScaledInstance(Config.TILE_SIZE, Config.TILE_SIZE, Image.SCALE_DEFAULT);
+            red = temp2.getScaledInstance(Config.TILE_SIZE, Config.TILE_SIZE, Image.SCALE_DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     //Ragacsfolt lehelyezése a pályára

@@ -2,12 +2,10 @@ package com.szoftlab4.java9esharomnegyed;
 
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,8 +83,9 @@ public class Arena {
         BufferedReader br = null;
 
         try {
-            fr = new FileReader(Config.ARENA_FOLDER + fileName);
-            br = new BufferedReader(fr);
+            InputStream is = this.getClass().getResourceAsStream(Config.ARENA_FOLDER + fileName);
+            InputStreamReader ir = new InputStreamReader(is);
+            br = new BufferedReader(ir);
 
             while ((line = br.readLine()) != null)
                 temp.add(new String(line.toLowerCase()));

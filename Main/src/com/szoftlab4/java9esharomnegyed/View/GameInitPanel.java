@@ -4,6 +4,7 @@ import com.szoftlab4.java9esharomnegyed.Arena;
 import com.szoftlab4.java9esharomnegyed.Config;
 import com.szoftlab4.java9esharomnegyed.Game;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class GameInitPanel extends JPanel {
     GUI parent;
@@ -64,7 +66,17 @@ public class GameInitPanel extends JPanel {
 
         JLabel blue = new JLabel();
         JLabel red = new JLabel();
-        Image temp = getToolkit().getImage(getClass().getResource(Config.BLUE));
+
+        InputStream is = this.getClass().getResourceAsStream(Config.BLUE);
+        InputStream is2 = this.getClass().getResourceAsStream(Config.RED);
+        Image temp = null;
+        Image temp2 = null;
+        try {
+            temp = ImageIO.read(is);
+            temp2 = ImageIO.read(is2);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         blue.setIcon(new ImageIcon(temp.getScaledInstance(imgSize.width, imgSize.height, Image.SCALE_DEFAULT)));
         this.add(blue);
@@ -72,8 +84,7 @@ public class GameInitPanel extends JPanel {
         blue.setSize(imgSize);
         blue.setLocation(imgBluePlace);
 
-        temp = getToolkit().getImage(getClass().getResource(Config.RED));
-        red.setIcon(new ImageIcon(temp.getScaledInstance(imgSize.width, imgSize.height, Image.SCALE_DEFAULT)));
+        red.setIcon(new ImageIcon(temp2.getScaledInstance(imgSize.width, imgSize.height, Image.SCALE_DEFAULT)));
         this.add(red);
         red.setSize(imgSize);
         red.setLocation(imgRedPlace);

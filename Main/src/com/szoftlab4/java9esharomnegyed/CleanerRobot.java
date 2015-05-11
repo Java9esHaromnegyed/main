@@ -2,8 +2,11 @@ package com.szoftlab4.java9esharomnegyed;
 
 import com.szoftlab4.java9esharomnegyed.Utility.LogHelper;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class CleanerRobot extends AbstractRobot {
 
@@ -21,7 +24,15 @@ public class CleanerRobot extends AbstractRobot {
         cleanTime = cTime;
         speed = Config.SPD_DEFFAULT;
         target = findTarget(); //Initnél megkeresi a legközelebbi foltot, hogy egyből el tudjon arra indulni
-        image = new JPanel().getToolkit().getImage(getClass().getResource(Config.CLEANER_ROBOT)).getScaledInstance(Config.TILE_SIZE, Config.TILE_SIZE, Image.SCALE_DEFAULT);
+
+        InputStream is = this.getClass().getResourceAsStream(Config.CLEANER_ROBOT);
+        Image temp = null;
+        try {
+            temp = ImageIO.read(is);
+            image = temp.getScaledInstance(Config.TILE_SIZE, Config.TILE_SIZE, Image.SCALE_DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public CleanerRobot(Arena arena, Dimension pos, int dir, int ID){
