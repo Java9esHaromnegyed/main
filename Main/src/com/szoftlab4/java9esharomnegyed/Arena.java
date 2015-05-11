@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 
 
 public class Arena {
@@ -327,18 +327,48 @@ public class Arena {
     //A játék óraütéshez igazításához hazsnált
     public void tick() {
         //LogHelper.inline("tick");
-        for (int j = 0; j < cleaners.size(); j++) {
-            cleaners.get(j).move();
-        }
-
-        for (int j = 0; j < robots.size(); j++) {
-            robots.get(j).move();
-            robots.get(j).dropObstacle();
-        }
-
         if(remainingRobots() < 2)
             Game.gameOver();
         else {
+
+            //Takarítórobotokat küld be a pályára 5 tickenként, véletlenszerű irányból
+            if (Game.getTime()%5==0 && Game.getTime()!=Config.TIME_OVER){
+
+                //véletlenszerűen kiválasztja hogy melyik odlalról engedje be a takarítórobotot
+                //0: fenn, 1: jobb, 2:lenn, 3 bal
+                Random rand3 = new Random();
+                int side = rand3.nextInt(4);
+                //Véletlenszerűen kiválasztja hogy melyik x vagy y koordinátára szúrja be az adott oldalnak megfelelően
+                Random rand1 = new Random();
+                int x = rand1.nextInt(this.getSize().width/Config.TILE_SIZE);
+                Random rand2 = new Random();
+                int y = rand2.nextInt(this.getSize().height/Config.TILE_SIZE);
+                switch (side){
+                    case 0:
+                        addCleanerRobot(new Dimension((int) ((x+0.5) * Config.TILE_SIZE), Config.TILE_SIZE/2),Config.DIR_DOWN,1);
+                        break;
+                    case 1:
+                        addCleanerRobot(new Dimension((int)(this.getSize().width+0.5*Config.TILE_SIZE), (int) ((y+0.5) * Config.TILE_SIZE)),Config.DIR_LEFT,1);
+                        break;
+                    case 2:
+                        addCleanerRobot(new Dimension((int) ((x+0.5) * Config.TILE_SIZE), (int)(this.getSize().height+0.5*Config.TILE_SIZE)),Config.DIR_UP,1);
+                        break;
+                    case 3:
+                        addCleanerRobot(new Dimension(Config.TILE_SIZE/2, (int) ((y+0.5) * Config.TILE_SIZE)),Config.DIR_RIGHT,1);
+                        break;
+                }
+
+            }
+
+            for (int j = 0; j < cleaners.size(); j++) {
+                cleaners.get(j).move();
+            }
+
+            for (int j = 0; j < robots.size(); j++) {
+                robots.get(j).move();
+                robots.get(j).dropObstacle();
+            }
+
             for (int j = 0; j < obstacles.size(); ) {
                 //ha az olaj felszáradt, vagy ragacs elkopott, töröljük a pályáról, egyébként az olajat öregítjük
                 if (obstacles.get(j).getAge() == Config.AGE_LIMIT) {

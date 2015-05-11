@@ -77,7 +77,7 @@ public class CleanerRobot extends AbstractRobot {
                             } // viszont ha így sem jó, várunk
                         }           // és nem lépünk sehova(esetleg animálhatunk egy ütközés/lepattanást)...
                     }
-                    LogHelper.inline("cleanerRobotMoved id: " + id + " pos: [" + position.width + "; " + position.height + "]");
+                   // LogHelper.inline("cleanerRobotMoved id: " + id + " pos: [" + position.width + "; " + position.height + "]");
                 }
             } else {  //Egyébként takarít
                 clean();    // önmagában figyeli hogy halott-e a robot
@@ -97,16 +97,16 @@ public class CleanerRobot extends AbstractRobot {
 
         if (position.getWidth() < target.getPosition().getWidth()) {
             //X tengelyen lép előre
-            x.setSize(position.getWidth() + speed, position.getHeight());
+            x.setSize(position.getWidth() + speed*Config.TILE_SIZE, position.getHeight());
         } else if (position.getWidth() > target.getPosition().getWidth()) {
             //X tengelyen lép vissza
-            x.setSize(position.getWidth() - speed, position.getHeight());
+            x.setSize(position.getWidth() - speed*Config.TILE_SIZE, position.getHeight());
         }else if (position.getHeight() < target.getPosition().getHeight()) {
             //Y tengelyen lép előre
-            x.setSize(position.getWidth(), position.getHeight() + speed);
+            x.setSize(position.getWidth(), position.getHeight() + speed*Config.TILE_SIZE);
         } else if (position.getHeight() > target.getPosition().getHeight()) {
             //Y tengelyen lép vissza
-            x.setSize(position.getWidth(), position.getHeight() - speed);
+            x.setSize(position.getWidth(), position.getHeight() - speed*Config.TILE_SIZE);
         }
 
         return x;
@@ -118,16 +118,16 @@ public class CleanerRobot extends AbstractRobot {
 
         if (position.getHeight() < target.getPosition().getHeight()) {
             //Y tengelyen lép előre
-            y.setSize(position.getWidth(), position.getHeight() + speed);
+            y.setSize(position.getWidth(), position.getHeight() + speed*Config.TILE_SIZE);
         } else if (position.getHeight() > target.getPosition().getHeight()) {
             //Y tengelyen lép vissza
-            y.setSize(position.getWidth(), position.getHeight() - speed);
+            y.setSize(position.getWidth(), position.getHeight() - speed*Config.TILE_SIZE);
         } else if (position.getWidth() < target.getPosition().getWidth()) {
             //X tengelyen lép előre
-            y.setSize(position.getWidth() + speed, position.getHeight());
+            y.setSize(position.getWidth() + speed*Config.TILE_SIZE, position.getHeight());
         } else if (position.getWidth() > target.getPosition().getWidth()) {
             //X tengelyen lép vissza
-            y.setSize(position.getWidth() - speed, position.getHeight());
+            y.setSize(position.getWidth() - speed*Config.TILE_SIZE, position.getHeight());
         }
 
         return y;
