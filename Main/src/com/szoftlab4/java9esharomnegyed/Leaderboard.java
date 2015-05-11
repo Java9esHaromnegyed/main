@@ -10,6 +10,7 @@ import java.util.List;
 public class Leaderboard implements Serializable {
     private List<Record> records;
 
+    //Konstruktor
     public Leaderboard(){
         records = new ArrayList<Record>();
     }
@@ -18,6 +19,7 @@ public class Leaderboard implements Serializable {
         return records;
     }
 
+    //Hozzá ad egy Rekordot a Ranglistához
     public void addRecord(String playerName, double score) {
         Record temp = new Record(playerName, score);
 
@@ -34,16 +36,19 @@ public class Leaderboard implements Serializable {
         }
     }
 
+    //Vissza adja a Ranglista méretét
     public int getListSize(){
         return records.size();
     }
 
+    //Vissza adja az adott "rekordhoz" tartozó nevet
     public String getName(int place){
         if(records.size() <= place)
             return null;
         return records.get(place).getName();
     }
 
+    //Vissza adja az adott "rekordhoz" tartozó pontszámot
     public double getScore(int place){
         if(records.size() <= place)
             return 0;
@@ -51,7 +56,7 @@ public class Leaderboard implements Serializable {
     }
 
 
-    //Saving the leaderboard to file
+    //Save the leaderboard to file
     public void saveLeaderboard () throws IOException {
         FileOutputStream fileOut = null;
         ObjectOutputStream objectOut = null;
@@ -71,7 +76,7 @@ public class Leaderboard implements Serializable {
     }
 
 
-    //loading the leaderboard from file
+    //load the leaderboard from file
     public Leaderboard loadLeaderboard() throws IOException {
         Leaderboard temp = null;
         FileInputStream fileIn = null;
