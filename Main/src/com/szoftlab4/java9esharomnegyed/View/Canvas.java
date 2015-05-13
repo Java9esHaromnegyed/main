@@ -77,8 +77,9 @@ public class Canvas extends java.awt.Canvas {
 
         //Cleaner robotok kirajzolása
         for(CleanerRobot c : cleaners){
-            g2.drawImage(rotateRobot(c.getImage(), c), c.getPosition().width-(Config.TILE_SIZE/2),
-                    c.getPosition().height-(Config.TILE_SIZE/2), null);
+            if(!c.dead)
+                g2.drawImage(rotateRobot(c.getImage(), c), c.getPosition().width-(Config.TILE_SIZE/2),
+                        c.getPosition().height-(Config.TILE_SIZE/2), null);
         }
 
         //Kék robot kirajozlása
